@@ -1,0 +1,124 @@
+{
+  "phases": [
+    {
+      "phase_id": "KTDW-00",
+      "order": 0,
+      "phase_name": "사업/발주 및 착수준비",
+      "phase_short": "착수준비",
+      "color": "#546E7A",
+      "axd_activities": [
+        "프로젝트 Context 정리",
+        "역할/RACI 정의",
+        "수행계획 초안 작성"
+      ],
+      "admin_controls": ["ADM-001","ADM-002","ADM-003","ADM-004","ADM-006","ADM-008","ADM-019"],
+      "pm_tasks": ["착수 전","착수 시"],
+      "gate_entry": [],
+      "gate_exit": ["발주처리 완료","프로젝트 기본계획 등록","착수 PRB 타 시스템 처리 상태 확인","인력투입계획 등록","공정계획 등록","초기 Risk 등록"]
+    },
+    {
+      "phase_id": "KTDW-01",
+      "order": 1,
+      "phase_name": "Discovery / 요구사항·AI 시나리오 정의",
+      "phase_short": "Discovery",
+      "color": "#1565C0",
+      "axd_activities": [
+        "AXD-1-1: 현행시스템 리뷰",
+        "AXD-1-2: 유저스토리 매핑",
+        "AXD-1-3: Agent AI 활용 시나리오 정의",
+        "AXD-1-4: Agent AI 서비스 정의",
+        "AXD-1-5: Agent AI 모델·정책 명세",
+        "AXD-1-6: 평가전략 수립",
+        "AXD-1-7: 요구사항 추적",
+        "AXD-1-8: Discovery 단계 점검"
+      ],
+      "admin_controls": ["ADM-007","ADM-009","ADM-010","ADM-011"],
+      "pm_tasks": ["중간 보고"],
+      "gate_exit": ["현행분석 보고서","AI 시나리오 정의서","요구사항정의서","평가전략서","공정실적 등록"]
+    },
+    {
+      "phase_id": "KTDW-02",
+      "order": 2,
+      "phase_name": "설계·Sprint 계획",
+      "phase_short": "설계",
+      "color": "#6A1B9A",
+      "axd_activities": [
+        "AXD-2-1: Agent 아키텍처 설계",
+        "AXD-2-2: 평가기준 정의",
+        "AXD-2-3: PI 및 Sprint 계획 수립",
+        "AXD-2-4: DataOps 설계",
+        "AXD-2-5: AgentOps 설계",
+        "AXD-2-6: 서비스 관리도구 설계"
+      ],
+      "admin_controls": ["ADM-012","ADM-013","ADM-015","ADM-016","ADM-017"],
+      "pm_tasks": ["중간 보고"],
+      "gate_exit": ["Agent 아키텍처 설계서","평가기준 정의서","Sprint Backlog","DataOps 설계서","AgentOps 설계서","진행 PRB 타 시스템 처리 상태 확인","공정실적 최신화"]
+    },
+    {
+      "phase_id": "KTDW-03",
+      "order": 3,
+      "phase_name": "구축·실험·통합",
+      "phase_short": "구축",
+      "color": "#E65100",
+      "axd_activities": [
+        "AXD-3-1: DataOps 구현/테스트",
+        "AXD-3-2: AgentOps 구현/테스트",
+        "AXD-3-3: 서비스 관리도구 구현/테스트",
+        "AXD-3-4: Sprint 개발",
+        "AXD-3-5: 통합 준비"
+      ],
+      "admin_controls": ["ADM-007","ADM-009","ADM-015","ADM-018","ADM-020","ADM-021","ADM-022"],
+      "pm_tasks": ["중간 보고","완료 보고"],
+      "gate_exit": ["DataOps 구현 완료","AgentOps 구현 완료","Sprint 개발 완료","통합테스트 준비","공정실적 등록","하도급 대가지급 처리"]
+    },
+    {
+      "phase_id": "KTDW-04",
+      "order": 4,
+      "phase_name": "평가·검증·보안점검",
+      "phase_short": "평가",
+      "color": "#C62828",
+      "axd_activities": [
+        "AXD-4-1: Agent AI 평가",
+        "AXD-4-2: 통합 초기 테스트",
+        "AXD-4-3: E2E 시스템 테스트",
+        "AXD-4-4: 보안 취약점 점검",
+        "AXD-4-5: 단계별 품질 점검"
+      ],
+      "admin_controls": ["ADM-013","ADM-009","ADM-007","ADM-015"],
+      "pm_tasks": ["완료 보고"],
+      "gate_exit": ["Agent AI 평가 결과서","통합테스트 결과서","E2E 테스트 결과서","보안 점검 결과서","공정실적 반영","Risk 조치 완료"]
+    },
+    {
+      "phase_id": "KTDW-05",
+      "order": 5,
+      "phase_name": "전환·오픈·안정화",
+      "phase_short": "전환",
+      "color": "#00695C",
+      "axd_activities": [
+        "AXD-5-1: 사용자 교육",
+        "AXD-5-2: 인수 및 검증 테스트",
+        "AXD-5-3: 딜리버리 준비·전환 계획",
+        "AXD-5-4: 시스템 전환·오픈",
+        "AXD-5-5: 안정화"
+      ],
+      "admin_controls": ["ADM-023","ADM-024","ADM-027"],
+      "pm_tasks": ["완료 보고","종료"],
+      "gate_exit": ["사용자 교육자료","전환계획서","인수검증 결과","안정화 완료 확인","종료 PRB 준비"]
+    },
+    {
+      "phase_id": "KTDW-06",
+      "order": 6,
+      "phase_name": "준공·종료·사후관리",
+      "phase_short": "종료",
+      "color": "#37474F",
+      "axd_activities": [
+        "AXD-6-1: 안정화 결과 정리",
+        "AXD-6-2: 운영 인수인계",
+        "AXD-6-3: Lessons Learned"
+      ],
+      "admin_controls": ["ADM-024","ADM-025","ADM-026","ADM-027","ADM-028","ADM-043","ADM-044"],
+      "pm_tasks": ["종료"],
+      "gate_exit": ["종료 PRB 타 시스템 처리 완료 확인","무상유지보수 정보 등록","하도급사 평가","검수/검사 조서","종료보고서","Lessons Learned"]
+    }
+  ]
+}

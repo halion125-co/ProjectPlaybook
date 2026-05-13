@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KT Delivery Way Platform</title>
+  <link rel="stylesheet" href="src/assets/css/design-system.css">
+  <style>
+    /* Override app-shell to work at root level */
+    .app-shell {
+      display: grid;
+      grid-template-columns: var(--sidebar-width) 1fr;
+      grid-template-rows: var(--header-height) 1fr;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar phase nav items */
+    .phase-nav-sub {
+      padding: 0 16px 4px 36px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.38);
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ── HEADER ── -->
+  <header class="app-header">
+    <div class="logo">
+      <span class="logo-kt">KT</span>
+      <div class="logo-divider"></div>
+      <span class="logo-title">Delivery Way Platform</span>
+    </div>
+    <div style="flex:1; max-width:380px; margin-left:24px;">
+      <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:8px; padding:6px 14px; display:flex; align-items:center; gap:8px; cursor:pointer;">
+        <span style="opacity:0.5; font-size:13px;">🔍</span>
+        <span style="font-size:12px; color:rgba(255,255,255,0.4);">프로젝트 / 기능 검색...</span>
+        <span style="margin-left:auto; font-size:10px; color:rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); padding:2px 6px; border-radius:4px;">⌘K</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div style="font-size:11px; color:rgba(255,255,255,0.5); display:flex; align-items:center; gap:6px;">
+        <span style="width:6px;height:6px;background:#4CAF50;border-radius:50%;display:inline-block;"></span>
+        Agent 활성
+      </div>
+      <div style="width:1px;height:20px;background:rgba(255,255,255,0.1);"></div>
+      <a href="kt-delivery-playbook.html" target="_blank"
+        style="display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;background:rgba(227,0,27,0.15);color:#FF6B6B;border:1px solid rgba(227,0,27,0.3);transition:all 0.2s;">
+        📖 Delivery Way 플레이북
+      </a>
+      <div style="width:1px;height:20px;background:rgba(255,255,255,0.1);"></div>
+      <div class="user-badge">
+        <div class="user-avatar">PM</div>
+        <span>이수행 PM</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="app-sidebar">
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">메인</div>
+      <button class="sidebar-nav-item active" onclick="navigate('dashboard')">
+        <span class="nav-icon">📊</span>
+        Portfolio Dashboard
+        <span class="nav-badge">3</span>
+      </button>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">프로젝트 관리</div>
+      <button class="sidebar-nav-item" onclick="navigate('playbook')">
+        <span class="nav-icon">📋</span>
+        프로젝트 플레이북
+      </button>
+      <button class="sidebar-nav-item" onclick="navigate('workbench')">
+        <span class="nav-icon">✅</span>
+        수행PM 할일 Workbench
+      </button>
+      <button class="sidebar-nav-item" onclick="navigate('gate')">
+        <span class="nav-icon">🚦</span>
+        Gate Checker
+      </button>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">행정 관리</div>
+      <button class="sidebar-nav-item" onclick="navigate('prb')">
+        <span class="nav-icon">📌</span>
+        PRB 상태 확인
+        <span class="nav-badge" style="background:#E67E00;">1</span>
+      </button>
+      <button class="sidebar-nav-item" onclick="navigate('risk')">
+        <span class="nav-icon">⚠️</span>
+        Risk / Issue
+      </button>
+      <button class="sidebar-nav-item" onclick="navigate('progress')">
+        <span class="nav-icon">📈</span>
+        공정 / 매출인식
+      </button>
+      <button class="sidebar-nav-item" onclick="navigate('contract')">
+        <span class="nav-icon">📝</span>
+        계약 / 하도급
+      </button>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">AI 지원</div>
+      <button class="sidebar-nav-item" onclick="navigate('artifact-studio')">
+        <span class="nav-icon">✨</span>
+        AI Artifact Studio
+      </button>
+      <button class="sidebar-nav-item" onclick="navigate('agent-chat')">
+        <span class="nav-icon">🤖</span>
+        Agent 질의응답
+      </button>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">시스템</div>
+      <button class="sidebar-nav-item" onclick="navigate('admin')">
+        <span class="nav-icon">⚙️</span>
+        방법론 설정
+      </button>
+      <button class="sidebar-nav-item" onclick="navigate('audit')">
+        <span class="nav-icon">🔍</span>
+        감사 로그
+      </button>
+    </div>
+
+    <!-- 현재 프로젝트 quick info -->
+    <div style="margin-top:auto; padding:12px 16px; background:rgba(255,255,255,0.04); border-top:1px solid rgba(255,255,255,0.06);">
+      <div style="font-size:10px; color:rgba(255,255,255,0.35); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">현재 프로젝트</div>
+      <div style="font-size:12px; font-weight:700; color:rgba(255,255,255,0.8); margin-bottom:4px; line-height:1.3;">Agent AI 기반 고객 상담 자동화</div>
+      <div style="font-size:11px; color:rgba(255,255,255,0.4);">KT-PJT-001 · 설계 단계</div>
+      <div style="margin-top:8px; display:flex; gap:4px;">
+        <span style="font-size:10px; padding:2px 6px; border-radius:4px; background:rgba(230,127,0,0.2); color:#FFB74D; font-weight:700;">주의</span>
+        <span style="font-size:10px; padding:2px 6px; border-radius:4px; background:rgba(230,127,0,0.15); color:#FFB74D; font-weight:700;">조건부</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main class="app-main">
+    <iframe id="app-frame"
+      src="src/pages/dashboard/index.html"
+      style="width:100%; height:100%; border:none; display:block;"
+      id="app-frame">
+    </iframe>
+  </main>
+
+</div>
+
+<script>
+const routes = {
+  'dashboard':      'src/pages/dashboard/index.html',
+  'playbook':       'src/pages/playbook/index.html',
+  'workbench':      'src/pages/workbench/index.html',
+  'gate':           'src/pages/playbook/index.html',   // placeholder
+  'prb':            'src/pages/playbook/index.html',   // placeholder
+  'risk':           'src/pages/playbook/index.html',   // placeholder
+  'progress':       'src/pages/playbook/index.html',   // placeholder
+  'contract':       'src/pages/playbook/index.html',   // placeholder
+  'artifact-studio':'src/pages/artifact-studio/index.html',
+  'agent-chat':     'src/pages/dashboard/index.html',  // placeholder
+  'admin':          'src/pages/admin/index.html',
+  'audit':          'src/pages/dashboard/index.html',  // placeholder
+};
+
+function navigate(page) {
+  document.querySelectorAll('.sidebar-nav-item').forEach(el => el.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  const frame = document.getElementById('app-frame');
+  frame.src = routes[page] || 'src/pages/dashboard/index.html';
+  window.history.pushState({ page }, '', `#${page}`);
+}
+
+window.addEventListener('popstate', (e) => {
+  if (e.state?.page) {
+    document.getElementById('app-frame').src = routes[e.state.page] || 'src/pages/dashboard/index.html';
+  }
+});
+
+// Hash routing on load
+const hash = window.location.hash.replace('#', '');
+if (hash && routes[hash]) {
+  document.getElementById('app-frame').src = routes[hash];
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>수행PM 할일 Workbench – KT Delivery Way</title>
+  <link rel="stylesheet" href="../../assets/css/design-system.css">
+  <style>
+    body { background: var(--gray-50); }
+
+    .workbench-layout {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 48px);
+      overflow: hidden;
+    }
+
+    .workbench-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .stage-tab-bar {
+      background: var(--white);
+      border-bottom: 2px solid var(--gray-200);
+      display: flex;
+      overflow-x: auto;
+      flex-shrink: 0;
+    }
+
+    .stage-tab {
+      padding: 12px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-500);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s;
+    }
+    .stage-tab:hover { color: var(--gray-900); }
+    .stage-tab.active { color: var(--kt-red); border-bottom-color: var(--kt-red); }
+    .stage-tab .tab-count {
+      background: var(--status-caution-bg);
+      color: var(--status-caution);
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 10px;
+    }
+    .stage-tab.active .tab-count {
+      background: var(--kt-red-light);
+      color: var(--kt-red);
+    }
+
+    .workbench-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+    }
+
+    /* Task group */
+    .task-group {
+      margin-bottom: 20px;
+    }
+    .task-group-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      margin-bottom: 8px;
+      border-bottom: 2px solid var(--gray-200);
+    }
+    .task-group-icon { font-size: 18px; }
+    .task-group-name { font-size: 14px; font-weight: 800; color: var(--gray-900); }
+    .task-group-desc { font-size: 11px; color: var(--gray-400); margin-left: auto; }
+
+    /* Task row */
+    .task-row {
+      display: grid;
+      grid-template-columns: 1fr 80px 100px 100px 80px;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 14px;
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      background: var(--white);
+      margin-bottom: 6px;
+      transition: all 0.15s;
+    }
+    .task-row:hover { border-color: var(--gray-300); box-shadow: var(--shadow-sm); }
+    .task-row.blocking { border-left: 3px solid var(--status-danger); background: var(--status-danger-bg); }
+    .task-row.needcheck { border-left: 3px solid var(--status-caution); }
+
+    .task-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+    .task-detail {
+      font-size: 11px;
+      color: var(--gray-500);
+      margin-top: 2px;
+    }
+    .task-prereq {
+      font-size: 10px;
+      color: var(--status-info);
+      margin-top: 3px;
+    }
+
+    .task-status-select {
+      width: 100%;
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      padding: 4px 6px;
+      font-size: 11px;
+      background: white;
+      cursor: pointer;
+      color: var(--gray-700);
+    }
+
+    .gate-tag {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      background: var(--status-info-bg);
+      color: var(--status-info);
+      white-space: nowrap;
+    }
+
+    .ref-btn {
+      font-size: 10px;
+      color: var(--status-info);
+      text-decoration: underline;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="page-topbar">
+  <span class="breadcrumb">
+    <span>KT-PJT-001</span>
+    <span>›</span>
+    <span class="current">수행PM 할일 Workbench</span>
+  </span>
+  <div style="margin-left:auto; display:flex; gap:8px; align-items:center;">
+    <span style="font-size:11px; color:var(--gray-500);">Agent AI 기반 고객 상담 자동화 구축</span>
+    <span class="badge badge-caution">착수 시 · 진행중</span>
+    <button class="btn btn-primary btn-sm">🤖 Agent 점검</button>
+  </div>
+</div>
+
+<div class="workbench-layout">
+<div class="workbench-main">
+
+  <!-- Stage Tabs -->
+  <div class="stage-tab-bar">
+    <div class="stage-tab" onclick="switchStage('pre')">
+      <span>착수 전</span>
+      <span class="tab-count">2건 미완료</span>
+    </div>
+    <div class="stage-tab active" onclick="switchStage('init')">
+      <span>착수 시</span>
+      <span class="tab-count">4건 미완료</span>
+    </div>
+    <div class="stage-tab" onclick="switchStage('mid')">
+      <span>중간 보고</span>
+      <span class="tab-count">조건부</span>
+    </div>
+    <div class="stage-tab" onclick="switchStage('comp')">
+      <span>완료 보고</span>
+      <span class="tab-count">조건부</span>
+    </div>
+    <div class="stage-tab" onclick="switchStage('close')">
+      <span>종료</span>
+      <span class="tab-count">미도래</span>
+    </div>
+  </div>
+
+  <!-- Task Content -->
+  <div class="workbench-content">
+
+    <div style="background:var(--status-caution-bg); border:1px solid #FFB74D; border-radius:8px; padding:10px 14px; margin-bottom:16px; font-size:12px; color:var(--gray-700);">
+      <strong style="color:var(--status-caution);">⚠️ 착수 시 현황:</strong>
+      KOS/PRB 착수 PRB 타 시스템 처리 상태 확인 미완료, TM 반영 미완료 — 착수 Gate 통과를 위해 우선 처리하세요.
+    </div>
+
+    <!-- KOS 그룹 -->
+    <div class="task-group">
+      <div class="task-group-header">
+        <span class="task-group-icon">🏢</span>
+        <span class="task-group-name">KOS</span>
+        <span class="task-group-desc">KOS-B2B 계약/발주 시스템</span>
+      </div>
+
+      <div class="task-row">
+        <div>
+          <div class="task-name">공조 재요청 여부 확인</div>
+          <div class="task-detail">투입인력 및 투입일 수정이 필요한 경우 재요청 처리 · ADM-032</div>
+          <div class="task-prereq">선행: 투입정보 변경 발생 시</div>
+        </div>
+        <div><span class="required-badge conditional" style="display:inline-block;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;background:var(--status-caution-bg);color:var(--status-caution);">조건부</span></div>
+        <div><span class="gate-tag">착수 Gate</span></div>
+        <select class="task-status-select">
+          <option>완료</option>
+          <option>미대상</option>
+          <option>진행중</option>
+          <option>확인필요</option>
+        </select>
+        <button class="ref-btn">📎 자료</button>
+      </div>
+
+      <div class="task-row">
+        <div>
+          <div class="task-name">계약서 날인 후 발주요청 확인</div>
+          <div class="task-detail">영업대표가 발주요청 진행하도록 확인 · ADM-033</div>
+          <div class="task-prereq">선행: 계약서 날인 완료</div>
+        </div>
+        <div><span class="required-badge must" style="display:inline-block;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;background:var(--status-danger-bg);color:var(--status-danger);">필수</span></div>
+        <div><span class="gate-tag">착수 Gate</span></div>
+        <select class="task-status-select">
+          <option>완료</option>
+          <option>요청완료</option>
+          <option>진행중</option>
+        </select>
+        <button class="ref-btn">📎 자료</button>
+      </div>
+
+      <div class="task-row">
+        <div>
+          <div class="task-name">계약관련 문서 다운로드 및 확인</div>
+          <div class="task-detail">계약서, 첨부문서 등 다운로드 및 보관 · ADM-034</div>
+          <div class="task-prereq">선행: 계약 문서 KOS 등록</div>
+        </div>
+        <div><span class="required-badge must" style="display:inline-block;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;background:var(--status-danger-bg);color:var(--status-danger);">필수</span></div>
+        <div><span class="gate-tag">착수 산출물 Gate</span></div>
+        <select class="task-status-select">
+          <option>완료</option>
+          <option>진행중</option>
+          <option>미완료</option>
+        </select>
+        <button class="ref-btn">📎 자료</button>
+      </div>
+
+      <div class="task-row blocking">
+        <div>
+          <div class="task-name" style="color:var(--status-danger);">⚠️ 계약서 날인 후 착수 PRB 타 시스템 처리 상태 확인</div>
+          <div class="task-detail">계약서 날인 완료 후 타 시스템(Easy ERP/PRB 시스템)에서 착수 PRB 처리 여부 확인 · ADM-003</div>
+          <div class="task-prereq">선행: 계약서 날인 · PRB 처리: 타 PRB 시스템에서 수행</div>
+        </div>
+        <div><span class="required-badge must" style="display:inline-block;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;background:var(--status-danger-bg);color:var(--status-danger);">필수</span></div>
+        <div><span class="gate-tag" style="background:var(--status-danger-bg);color:var(--status-danger);">착수 PRB Gate ⛔</span></div>
+        <select class="task-status-select">
+          <option>미완료</option>
+          <option>타시스템처리중</option>
+          <option>완료</option>
+          <option>확인필요</option>
+        </select>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <button class="ref-btn">🔗 타 시스템</button>
+          <button class="ref-btn">📋 준비자료</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ERP/PMS 그룹 -->
+    <div class="task-group">
+      <div class="task-group-header">
+        <span class="task-group-icon">💼</span>
+        <span class="task-group-name">ERP / PMS</span>
+        <span class="task-group-desc">Easy ERP · 투입인력 / 공정 / 재무</span>
+      </div>
+
+      <div class="task-row">
+        <div>
+          <div class="task-name">수지분석표 기반 매출/비용 인식 방법 확인 및 반영</div>
+          <div class="task-detail">수지분석표를 기반으로 매출/비용 인식 방법 확인 후 ERP 반영 · ADM-017</div>
+          <div class="task-prereq">선행: 수지분석표 확보</div>
+        </div>
+        <div><span class="required-badge must" style="display:inline-block;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;background:var(--status-danger-bg);color:var(--status-danger);">필수</span></div>
+        <div><span class="gate-tag">재무/공정 Gate</span></div>
+        <select class="task-status-select">
+          <option>확인필요</option>
+          <option>진행중</option>
+          <option>완료</option>
+        </select>
+        <button class="ref-btn">📎 자료</button>
+      </div>
+
+      <div class="task-row needcheck">
+        <div>
+          <div class="task-name">투입인력 계획 작성</div>
+          <div class="task-detail">ERP/PMS 내 투입인력 계획 입력 · ADM-004</div>
+          <div class="task-prereq">선행: 투입인력 확정</div>
+        </div>
+        <div><span class="required-badge must" style="display:inline-block;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;background:var(--status-danger-bg);color:var(--status-danger);">필수</span></div>
+        <div><span class="gate-tag">착수 Gate</span></div>
+        <select class="task-status-select">
+          <option>진행중</option>
+          <option>완료</option>
+          <option>미완료</option>
+        </select>
+        <button class="ref-btn">📎 자료</button>
+      </div>
+
+      <div class="task-row">
+        <div>
+          <div class="task-name">하도급계약 대상 여부 확인 및 계약 처리</div>
+          <div class="task-detail">하도급 대상 시 최초 하도급 계약 처리 · ADM-019</div>
+          <div class="task-prereq">선행: 하도급 대상 여부 확정</div>
+        </div>
+        <div><span class="required-badge conditional" style="display:inline-block;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;background:var(--status-caution-bg);color:var(--status-caution);">조건부 필수</span></div>
+        <div><span class="gate-tag">계약/하도급 Gate</span></div>
+        <select class="task-status-select">
+          <option>확인필요</option>
+          <option>미대상</option>
+          <option>진행중</option>
+          <option>완료</option>
+        </select>
+        <button class="ref-btn">📎 자료</button>
+      </div>
+
+      <div class="task-row">
+        <div>
+          <div class="task-name">안전보건 검토</div>
+          <div class="task-detail">세부 기준 및 처리 방식 추가 확인 필요 · ADM-005</div>
+        </div>
+        <div><span class="required-badge" style="display:inline-block;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;background:var(--gray-100);color:var(--gray-500);">확인필요</span></div>
+        <div><span class="gate-tag" style="background:var(--gray-100);color:var(--gray-500);">착수 Gate 후보</span></div>
+        <select class="task-status-select">
+          <option>확인필요</option>
+          <option>미대상</option>
+          <option>완료</option>
+        </select>
+        <button class="ref-btn">📎 자료</button>
+      </div>
+    </div>
+
+    <!-- TM 그룹 -->
+    <div class="task-group">
+      <div class="task-group-header">
+        <span class="task-group-icon">⏱️</span>
+        <span class="task-group-name">TM (Time Management)</span>
+        <span class="task-group-desc">투입공수 관리</span>
+      </div>
+
+      <div class="task-row blocking">
+        <div>
+          <div class="task-name" style="color:var(--status-danger);">⚠️ 투입인력 TM 반영 확인 및 월별 관리 기준 수립</div>
+          <div class="task-detail">투입인력 TM 반영 확인, 월별 관리 기준 수립 · ADM-039</div>
+          <div class="task-prereq">선행: 투입인력 계획 작성 완료</div>
+        </div>
+        <div><span class="required-badge must" style="display:inline-block;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;background:var(--status-danger-bg);color:var(--status-danger);">필수</span></div>
+        <div><span class="gate-tag" style="background:var(--status-danger-bg);color:var(--status-danger);">공수 관리 Gate ⛔</span></div>
+        <select class="task-status-select">
+          <option>미완료</option>
+          <option>진행중</option>
+          <option>완료</option>
+        </select>
+        <button class="ref-btn">📎 자료</button>
+      </div>
+    </div>
+
+    <!-- VDC 그룹 (착수 시) -->
+    <div class="task-group">
+      <div class="task-group-header">
+        <span class="task-group-icon">📊</span>
+        <span class="task-group-name">VDC-C 사전 검토</span>
+        <span class="task-group-desc">발의서 · 법무검토 · 수행계획서</span>
+      </div>
+
+      <div class="task-row">
+        <div>
+          <div class="task-name">발의서, 계약서 법무검토본, 미반영사유, 수행계획서 재확인</div>
+          <div class="task-detail">착수 기준으로 VDC-C 관련 문서 재검토 · ADM-037</div>
+          <div class="task-prereq">조건: VDC-C 대상 프로젝트</div>
+        </div>
+        <div><span class="required-badge conditional" style="display:inline-block;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;background:var(--status-caution-bg);color:var(--status-caution);">조건부</span></div>
+        <div><span class="gate-tag">착수 Gate</span></div>
+        <select class="task-status-select">
+          <option>미대상</option>
+          <option>완료</option>
+          <option>진행중</option>
+          <option>확인필요</option>
+        </select>
+        <button class="ref-btn">📎 자료</button>
+      </div>
+    </div>
+
+    <!-- 수행원가/직접비 -->
+    <div class="task-group">
+      <div class="task-group-header">
+        <span class="task-group-icon">💰</span>
+        <span class="task-group-name">수행원가 / 직접비</span>
+        <span class="task-group-desc">렌탈비 · 워크샵 · 수행활동비</span>
+      </div>
+
+      <div class="task-row">
+        <div>
+          <div class="task-name">렌탈비, 워크샵 등 수행원가 항목 확인</div>
+          <div class="task-detail">수행원가 발생 시 항목별 관리 · ADM-041</div>
+        </div>
+        <div><span class="required-badge conditional" style="display:inline-block;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;background:var(--status-caution-bg);color:var(--status-caution);">조건부</span></div>
+        <div><span class="gate-tag" style="background:var(--gray-100);color:var(--gray-500);">비용 관리</span></div>
+        <select class="task-status-select">
+          <option>미대상</option>
+          <option>확인필요</option>
+          <option>완료</option>
+        </select>
+        <button class="ref-btn">📎 자료</button>
+      </div>
+
+      <div class="task-row">
+        <div>
+          <div class="task-name">수행활동비 등 직접비 항목 확인</div>
+          <div class="task-detail">직접비 발생 시 항목별 관리 · ADM-042</div>
+        </div>
+        <div><span class="required-badge conditional" style="display:inline-block;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;background:var(--status-caution-bg);color:var(--status-caution);">조건부</span></div>
+        <div><span class="gate-tag" style="background:var(--gray-100);color:var(--gray-500);">비용 관리</span></div>
+        <select class="task-status-select">
+          <option>미대상</option>
+          <option>확인필요</option>
+          <option>완료</option>
+        </select>
+        <button class="ref-btn">📎 자료</button>
+      </div>
+    </div>
+
+  </div><!-- /workbench-content -->
+</div><!-- /workbench-main -->
+
+<!-- ── Agent Panel ── -->
+<div class="agent-panel">
+  <div class="agent-panel-header">
+    <div class="agent-icon">🤖</div>
+    <div>
+      <div class="agent-panel-title">수행PM 할일 Agent</div>
+      <div style="font-size:10px; color:var(--gray-400);">착수 시 단계</div>
+    </div>
+  </div>
+  <div class="agent-panel-body">
+    <div>
+      <div class="agent-section-title">지금 누락 항목</div>
+      <div class="agent-action-list">
+        <div class="agent-action-item" style="background:var(--status-danger-bg); border-color:#EF9A9A;">
+          <div class="agent-action-priority high"></div>
+          <div>
+            <div style="font-weight:700; font-size:12px; color:var(--status-danger);">착수 PRB 타 시스템 처리 상태 미확인</div>
+            <div style="font-size:11px; color:var(--gray-600); margin-top:2px;">Gate 블로킹 · Easy ERP 또는 타 PRB 시스템에서 확인</div>
+          </div>
+        </div>
+        <div class="agent-action-item" style="background:var(--status-danger-bg); border-color:#EF9A9A;">
+          <div class="agent-action-priority high"></div>
+          <div>
+            <div style="font-weight:700; font-size:12px; color:var(--status-danger);">TM 반영 미완료</div>
+            <div style="font-size:11px; color:var(--gray-600); margin-top:2px;">착수 Gate 조건 · 투입인력 TM 즉시 반영 필요</div>
+          </div>
+        </div>
+        <div class="agent-action-item">
+          <div class="agent-action-priority medium"></div>
+          <div>
+            <div style="font-weight:700; font-size:12px;">수지분석표 매출/비용 인식 확인</div>
+            <div style="font-size:11px; color:var(--gray-500); margin-top:2px;">ERP/PMS 반영 필요</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="agent-section-title">시스템 간 의존관계</div>
+      <div style="font-size:11px; color:var(--gray-600); background:var(--gray-50); border:1px solid var(--gray-200); border-radius:8px; padding:10px 12px; line-height:1.8;">
+        <strong>KOS 승인 완료</strong> → PMS 자동 연동 확인<br>
+        <strong>착수 PRB 타 시스템 처리 완료</strong> → 착수 Gate 통과<br>
+        <strong>TM 반영 완료</strong> → 공수 관리 Gate 통과<br>
+        <strong>투입인력 계획 작성</strong> → TM 반영 가능
+      </div>
+    </div>
+
+    <div class="agent-approval-badge">
+      ⚠️ 착수 Gate 통과 시 팀장 확인 필요
+    </div>
+
+    <div>
+      <div class="agent-section-title">AI 지원</div>
+      <div style="display:flex; flex-direction:column; gap:6px;">
+        <button class="agent-btn agent-btn-primary">📋 착수 PRB 준비자료 초안</button>
+        <button class="agent-btn agent-btn-secondary">✅ Gate 통과 가능 여부 점검</button>
+        <button class="agent-btn agent-btn-secondary">📊 투입인력 계획 초안</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /workbench-layout -->
+
+<script>
+function switchStage(stage) {
+  document.querySelectorAll('.stage-tab').forEach(t => t.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+}
+</script>
+</body>
+</html>

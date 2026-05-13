@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>프로젝트 플레이북 – KT Delivery Way</title>
+  <link rel="stylesheet" href="../../assets/css/design-system.css">
+  <style>
+    body { background: var(--gray-50); }
+
+    .playbook-layout {
+      display: flex;
+      flex: 1;
+      gap: 0;
+      height: calc(100vh - 48px);
+      overflow: hidden;
+    }
+
+    /* Phase sidebar */
+    .phase-sidebar {
+      width: 200px;
+      background: var(--white);
+      border-right: 1px solid var(--gray-200);
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+    .phase-sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+      color: var(--gray-600);
+    }
+    .phase-sidebar-item:hover { background: var(--gray-50); }
+    .phase-sidebar-item.active { background: var(--gray-50); color: var(--gray-900); }
+
+    /* Workspace */
+    .playbook-workspace {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--space-5) var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+
+    /* Activity item */
+    .activity-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      background: var(--white);
+      transition: all 0.15s;
+    }
+    .activity-item:hover { border-color: var(--gray-300); }
+    .activity-item.done { background: var(--status-normal-bg); border-color: #A5D6A7; }
+
+    .activity-status-select {
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 11px;
+      background: white;
+      cursor: pointer;
+      color: var(--gray-700);
+    }
+
+    /* Control item */
+    .control-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 16px;
+      border-radius: var(--radius-md);
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      font-size: 12px;
+    }
+
+    .required-badge {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .required-badge.must { background: var(--status-danger-bg); color: var(--status-danger); }
+    .required-badge.conditional { background: var(--status-caution-bg); color: var(--status-caution); }
+    .required-badge.optional { background: var(--gray-100); color: var(--gray-500); }
+    .required-badge.ref { background: #EDE7F6; color: #6A1B9A; }
+  </style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="page-topbar">
+  <span class="breadcrumb">
+    <span>Portfolio</span>
+    <span>›</span>
+    <span>KT-PJT-001</span>
+    <span>›</span>
+    <span class="current">프로젝트 플레이북</span>
+  </span>
+  <div style="margin-left:auto; display:flex; gap:8px; align-items:center;">
+    <span class="badge badge-caution">주의</span>
+    <span class="badge badge-gate-conditional">조건부 진행</span>
+    <button class="btn btn-secondary btn-sm">단계 이동 요청</button>
+    <button class="btn btn-primary btn-sm">🤖 Agent 실행</button>
+  </div>
+</div>
+
+<div class="playbook-layout">
+
+  <!-- ── Phase 사이드바 ── -->
+  <div class="phase-sidebar">
+    <div style="padding:12px 16px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--gray-400); border-bottom:1px solid var(--gray-100);">
+      KT Delivery Way 단계
+    </div>
+
+    <div class="phase-sidebar-item" onclick="selectPhase(0)">
+      <div class="phase-dot" style="background:#546E7A"></div>
+      <div>
+        <div style="font-size:10px; color:var(--gray-400);">0단계</div>
+        착수준비
+        <span class="badge badge-gate-pass" style="display:block; margin-top:2px; width:fit-content;">통과</span>
+      </div>
+    </div>
+    <div class="phase-sidebar-item" onclick="selectPhase(1)">
+      <div class="phase-dot" style="background:#1565C0"></div>
+      <div>
+        <div style="font-size:10px; color:var(--gray-400);">1단계</div>
+        Discovery
+        <span class="badge badge-gate-pass" style="display:block; margin-top:2px; width:fit-content;">통과</span>
+      </div>
+    </div>
+    <div class="phase-sidebar-item active" onclick="selectPhase(2)">
+      <div class="phase-dot" style="background:#6A1B9A"></div>
+      <div>
+        <div style="font-size:10px; color:var(--gray-400);">2단계 · 현재</div>
+        설계·Sprint 계획
+        <span class="badge badge-gate-conditional" style="display:block; margin-top:2px; width:fit-content;">조건부</span>
+      </div>
+    </div>
+    <div class="phase-sidebar-item" onclick="selectPhase(3)" style="opacity:0.5;">
+      <div class="phase-dot" style="background:#E65100"></div>
+      <div>
+        <div style="font-size:10px; color:var(--gray-400);">3단계</div>
+        구축·실험·통합
+      </div>
+    </div>
+    <div class="phase-sidebar-item" onclick="selectPhase(4)" style="opacity:0.5;">
+      <div class="phase-dot" style="background:#C62828"></div>
+      <div>
+        <div style="font-size:10px; color:var(--gray-400);">4단계</div>
+        평가·검증·보안
+      </div>
+    </div>
+    <div class="phase-sidebar-item" onclick="selectPhase(5)" style="opacity:0.5;">
+      <div class="phase-dot" style="background:#00695C"></div>
+      <div>
+        <div style="font-size:10px; color:var(--gray-400);">5단계</div>
+        전환·오픈·안정화
+      </div>
+    </div>
+    <div class="phase-sidebar-item" onclick="selectPhase(6)" style="opacity:0.5;">
+      <div class="phase-dot" style="background:#37474F"></div>
+      <div>
+        <div style="font-size:10px; color:var(--gray-400);">6단계</div>
+        준공·종료·사후관리
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Workspace ── -->
+  <div class="playbook-workspace">
+
+    <!-- Project Summary Banner -->
+    <div class="project-banner">
+      <div>
+        <div class="project-banner-name">Agent AI 기반 고객 상담 자동화 구축</div>
+        <div class="project-banner-meta">
+          <span>📋 KT-PJT-001</span>
+          <span>🏢 KT 고객서비스사업본부</span>
+          <span>👤 이수행 PM</span>
+          <span>📅 2026-03-01 ~ 2026-10-31</span>
+        </div>
+        <div style="margin-top:12px; display:flex; gap:24px;">
+          <div>
+            <div style="font-size:10px; opacity:0.6; margin-bottom:4px;">수행 완료율</div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div class="progress-bar" style="width:120px;"><div class="progress-bar-fill caution" style="width:58%"></div></div>
+              <span style="font-size:14px; font-weight:800;">58%</span>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:10px; opacity:0.6; margin-bottom:4px;">행정 완료율</div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div class="progress-bar" style="width:120px;"><div class="progress-bar-fill danger" style="width:45%"></div></div>
+              <span style="font-size:14px; font-weight:800;">45%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="project-banner-stats">
+        <div class="project-stat">
+          <div class="project-stat-label">공정율</div>
+          <div class="project-stat-value" style="color:#FFB74D;">42%</div>
+        </div>
+        <div class="project-stat">
+          <div class="project-stat-label">위험도</div>
+          <div class="project-stat-value" style="color:#EF5350;">High</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gate Checker -->
+    <div class="gate-card">
+      <div class="gate-card-header conditional">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:16px;">🚦</span>
+          <span style="font-size:14px; font-weight:800; color:var(--status-caution);">Gate 결과 · 조건부 진행</span>
+        </div>
+        <span class="badge badge-gate-conditional">조건부 진행</span>
+      </div>
+      <div class="gate-items">
+        <div class="gate-item">
+          <span class="gate-item-icon">✅</span>
+          <span class="gate-item-label">Agent 아키텍처 설계서</span>
+          <span class="gate-item-status" style="color:var(--status-normal)">완료</span>
+        </div>
+        <div class="gate-item">
+          <span class="gate-item-icon">✅</span>
+          <span class="gate-item-label">평가기준 정의서</span>
+          <span class="gate-item-status" style="color:var(--status-normal)">완료</span>
+        </div>
+        <div class="gate-item" style="background:var(--status-caution-bg);">
+          <span class="gate-item-icon">🔄</span>
+          <span class="gate-item-label">Sprint Backlog 확정</span>
+          <span class="gate-item-status" style="color:var(--status-caution)">진행중</span>
+        </div>
+        <div class="gate-item" style="background:var(--status-danger-bg);">
+          <span class="gate-item-icon">❌</span>
+          <span class="gate-item-label">DataOps 설계서</span>
+          <span class="gate-item-status" style="color:var(--status-danger)">미완료</span>
+        </div>
+        <div class="gate-item" style="background:var(--status-caution-bg);">
+          <span class="gate-item-icon">⚠️</span>
+          <span class="gate-item-label">진행 PRB 타 시스템 처리 상태 확인</span>
+          <span class="gate-item-status" style="color:var(--status-caution)">확인필요</span>
+        </div>
+        <div class="gate-item" style="background:var(--status-caution-bg);">
+          <span class="gate-item-icon">⚠️</span>
+          <span class="gate-item-label">공정실적 최신화 (Easy ERP)</span>
+          <span class="gate-item-status" style="color:var(--status-caution)">최신화 필요</span>
+        </div>
+        <div class="gate-item" style="background:var(--status-danger-bg);">
+          <span class="gate-item-icon">🔴</span>
+          <span class="gate-item-label">High Risk 미조치 2건</span>
+          <span class="gate-item-status" style="color:var(--status-danger)">조치 필요</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs: 수행활동 / 행정 Control / 산출물 / PRB -->
+    <div class="card">
+      <div class="tab-bar" id="playbook-tabs">
+        <div class="tab-item active" data-target="tab-activity">📌 AXD 수행 활동</div>
+        <div class="tab-item" data-target="tab-control">🗂️ KT 행정 Control</div>
+        <div class="tab-item" data-target="tab-artifact">📄 산출물</div>
+        <div class="tab-item" data-target="tab-prb">📌 PRB 상태</div>
+        <div class="tab-item" data-target="tab-risk">⚠️ Risk/Issue</div>
+      </div>
+
+      <!-- Tab: 수행 활동 -->
+      <div id="tab-activity" class="tab-panel" style="padding:16px 20px;">
+        <div style="font-size:12px; color:var(--gray-500); margin-bottom:12px; font-weight:600;">
+          2단계 · 설계·Sprint 계획 — AXD 수행 활동
+        </div>
+        <div class="checklist">
+          <div class="activity-item done">
+            <div class="checklist-checkbox checked" style="cursor:default;">✓</div>
+            <div style="flex:1;">
+              <div style="font-size:13px; font-weight:600;">AXD-2-1 · Agent 아키텍처 설계</div>
+              <div style="font-size:11px; color:var(--gray-500); margin-top:2px;">산출물: Agent 아키텍처 설계서 · 담당: AA/TA</div>
+            </div>
+            <span class="badge badge-complete">완료</span>
+          </div>
+          <div class="activity-item done">
+            <div class="checklist-checkbox checked" style="cursor:default;">✓</div>
+            <div style="flex:1;">
+              <div style="font-size:13px; font-weight:600;">AXD-2-2 · 평가기준 정의</div>
+              <div style="font-size:11px; color:var(--gray-500); margin-top:2px;">산출물: 평가기준 정의서 · 담당: AA/QA</div>
+            </div>
+            <span class="badge badge-complete">완료</span>
+          </div>
+          <div class="activity-item">
+            <div class="checklist-checkbox"></div>
+            <div style="flex:1;">
+              <div style="font-size:13px; font-weight:600;">AXD-2-3 · PI 및 Sprint 계획 수립</div>
+              <div style="font-size:11px; color:var(--gray-500); margin-top:2px;">산출물: Sprint Backlog · 담당: 수행PM/스크럼마스터</div>
+            </div>
+            <select class="activity-status-select">
+              <option>진행중</option>
+              <option>완료</option>
+              <option>미완료</option>
+              <option>비대상</option>
+            </select>
+          </div>
+          <div class="activity-item" style="background:var(--status-danger-bg); border-color:#EF9A9A;">
+            <div class="checklist-checkbox"></div>
+            <div style="flex:1;">
+              <div style="font-size:13px; font-weight:600;">AXD-2-4 · DataOps 설계</div>
+              <div style="font-size:11px; color:var(--gray-500); margin-top:2px;">산출물: DataOps 설계서 · 담당: DA ⚠️ Gate 블로킹 항목</div>
+            </div>
+            <select class="activity-status-select">
+              <option>미완료</option>
+              <option>진행중</option>
+              <option>완료</option>
+              <option>비대상</option>
+            </select>
+          </div>
+          <div class="activity-item">
+            <div class="checklist-checkbox"></div>
+            <div style="flex:1;">
+              <div style="font-size:13px; font-weight:600;">AXD-2-5 · AgentOps 설계</div>
+              <div style="font-size:11px; color:var(--gray-500); margin-top:2px;">산출물: AgentOps 설계서 · 담당: AA/운영팀</div>
+            </div>
+            <select class="activity-status-select">
+              <option>진행중</option>
+              <option>완료</option>
+              <option>미완료</option>
+            </select>
+          </div>
+          <div class="activity-item">
+            <div class="checklist-checkbox"></div>
+            <div style="flex:1;">
+              <div style="font-size:13px; font-weight:600;">AXD-2-6 · 서비스 관리도구 설계</div>
+              <div style="font-size:11px; color:var(--gray-500); margin-top:2px;">산출물: 서비스 관리도구 설계서 · 담당: TA</div>
+            </div>
+            <select class="activity-status-select">
+              <option>준비중</option>
+              <option>완료</option>
+              <option>미완료</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: 행정 Control -->
+      <div id="tab-control" class="tab-panel" style="display:none; padding:16px 20px;">
+        <div style="font-size:12px; color:var(--gray-500); margin-bottom:12px; font-weight:600;">
+          2단계 · 설계·Sprint 계획 — KT 행정 Control
+        </div>
+        <div class="prb-status-notice" style="margin-bottom:16px;">
+          ℹ️ PRB 요청·검토·회의·심의결과 입력은 <strong>타 시스템(Easy ERP/PRB 시스템)</strong>에서 처리합니다. 여기서는 처리 여부 확인과 Gate 영향도만 표시합니다.
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div class="control-item">
+            <span class="required-badge ref">참고 Gate</span>
+            <div style="flex:1;">
+              <div style="font-weight:700; margin-bottom:2px;">진행 PRB 타 시스템 처리 상태 확인</div>
+              <div style="color:var(--gray-500); font-size:11px;">담당: 수행PM(확인) · 처리: 타 PRB 시스템 · ADM-012</div>
+              <div style="margin-top:4px; font-size:11px; color:var(--status-caution);">⚠️ 심의결과 미확인 — 타 PRB 시스템에서 처리 여부 확인 필요</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:4px; align-items:flex-end;">
+              <span class="badge badge-needcheck">확인필요</span>
+              <button class="btn btn-ghost btn-sm" style="font-size:10px;">🔗 타 시스템</button>
+            </div>
+          </div>
+          <div class="control-item">
+            <span class="required-badge conditional">조건부</span>
+            <div style="flex:1;">
+              <div style="font-weight:700; margin-bottom:2px;">수주계약변경 요청 여부 검토</div>
+              <div style="color:var(--gray-500); font-size:11px;">담당: 수행PM/영업대표 · 시스템: Easy ERP · ADM-015</div>
+            </div>
+            <span class="badge badge-needcheck">검토필요</span>
+          </div>
+          <div class="control-item">
+            <span class="required-badge must">필수</span>
+            <div style="flex:1;">
+              <div style="font-weight:700; margin-bottom:2px;">공정실적 등록</div>
+              <div style="color:var(--gray-500); font-size:11px;">담당: 수행PM · 시스템: Easy ERP · ADM-007</div>
+            </div>
+            <span class="badge badge-needcheck">최신화 필요</span>
+          </div>
+          <div class="control-item">
+            <span class="required-badge conditional">조건부</span>
+            <div style="flex:1;">
+              <div style="font-weight:700; margin-bottom:2px;">매출인식공정율 계획 등록</div>
+              <div style="color:var(--gray-500); font-size:11px;">담당: 수행PM · 시스템: Easy ERP · ADM-017</div>
+            </div>
+            <span class="badge badge-inprogress">진행중</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: 산출물 -->
+      <div id="tab-artifact" class="tab-panel" style="display:none; padding:16px 20px;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>산출물명</th>
+              <th>구분</th>
+              <th>담당</th>
+              <th>상태</th>
+              <th>승인</th>
+              <th>액션</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Agent 아키텍처 설계서</strong></td>
+              <td><span class="badge badge-danger">필수</span></td>
+              <td>AA/TA</td>
+              <td><span class="badge badge-complete">완료</span></td>
+              <td><span class="badge badge-complete">승인완료</span></td>
+              <td><button class="btn btn-ghost btn-sm">보기</button></td>
+            </tr>
+            <tr>
+              <td><strong>평가기준 정의서</strong></td>
+              <td><span class="badge badge-danger">필수</span></td>
+              <td>AA/QA</td>
+              <td><span class="badge badge-complete">완료</span></td>
+              <td><span class="badge badge-needcheck">승인대기</span></td>
+              <td><button class="btn btn-ghost btn-sm">보기</button></td>
+            </tr>
+            <tr>
+              <td><strong>Sprint Backlog</strong></td>
+              <td><span class="badge badge-danger">필수</span></td>
+              <td>수행PM</td>
+              <td><span class="badge badge-inprogress">진행중</span></td>
+              <td>—</td>
+              <td><button class="btn btn-ghost btn-sm">✨ 초안 생성</button></td>
+            </tr>
+            <tr style="background:var(--status-danger-bg);">
+              <td><strong>DataOps 설계서</strong> ⚠️</td>
+              <td><span class="badge badge-danger">필수</span></td>
+              <td>DA</td>
+              <td><span class="badge badge-pending">미완료</span></td>
+              <td>—</td>
+              <td><button class="btn btn-primary btn-sm">✨ 초안 생성</button></td>
+            </tr>
+            <tr>
+              <td>AgentOps 설계서</td>
+              <td><span class="badge badge-danger">필수</span></td>
+              <td>AA</td>
+              <td><span class="badge badge-inprogress">진행중</span></td>
+              <td>—</td>
+              <td><button class="btn btn-ghost btn-sm">✨ 초안 생성</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Tab: PRB 상태 -->
+      <div id="tab-prb" class="tab-panel" style="display:none; padding:16px 20px;">
+        <div class="prb-status-notice" style="margin-bottom:16px;">
+          ℹ️ PRB 요청·검토·회의·심의결과 입력·보완 요청 등록은 <strong>타 시스템 또는 기존 PRB 프로세스</strong>에서 처리합니다. 본 화면은 처리 여부, 결과 상태, Gate 영향도만 확인합니다.
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div class="prb-status-card">
+            <div class="prb-status-header">
+              <span>착수 PRB</span>
+              <span class="badge badge-complete">처리완료 · 승인</span>
+            </div>
+            <div style="padding:12px 16px; font-size:12px; color:var(--gray-600);">
+              심의결과: 승인 · Gate 영향: 없음 (통과)
+            </div>
+          </div>
+          <div class="prb-status-card">
+            <div class="prb-status-header" style="background:var(--status-caution-bg);">
+              <span>진행 PRB</span>
+              <span class="badge badge-needcheck">확인필요</span>
+            </div>
+            <div style="padding:12px 16px; font-size:12px;">
+              <div style="color:var(--gray-600); margin-bottom:8px;">타 시스템 처리 상태: 미확인 · 심의결과 조회 필요</div>
+              <div style="color:var(--status-caution); font-weight:600; margin-bottom:8px;">⚠️ Gate 영향: 조건부 — 처리 결과 확인 전까지 다음 단계 이동 제한</div>
+              <div style="display:flex; gap:8px;">
+                <button class="btn btn-secondary btn-sm">✨ 준비자료 초안 생성</button>
+                <button class="btn btn-ghost btn-sm">🔗 타 PRB 시스템 링크</button>
+                <button class="btn btn-ghost btn-sm">📎 증적 파일 연결</button>
+              </div>
+            </div>
+          </div>
+          <div class="prb-status-card">
+            <div class="prb-status-header">
+              <span>종료 PRB</span>
+              <span class="badge badge-na">미대상 (현재 단계)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Risk/Issue -->
+      <div id="tab-risk" class="tab-panel" style="display:none; padding:16px 20px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <span style="font-size:12px; font-weight:700; color:var(--gray-600);">Risk 목록 (High 2건 미조치 — Gate 블로킹)</span>
+          <button class="btn btn-secondary btn-sm">+ Risk 등록</button>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Risk ID</th>
+              <th>Risk 내용</th>
+              <th>영향도</th>
+              <th>발생가능성</th>
+              <th>심각도</th>
+              <th>대응상태</th>
+              <th>액션</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:var(--status-danger-bg);">
+              <td>RISK-001</td>
+              <td>DataOps 파이프라인 지연으로 Sprint 일정 영향</td>
+              <td>높음</td>
+              <td>높음</td>
+              <td><span class="badge badge-danger">High</span></td>
+              <td><span class="badge badge-pending">미조치</span></td>
+              <td><button class="btn btn-primary btn-sm">대응계획 등록</button></td>
+            </tr>
+            <tr style="background:var(--status-danger-bg);">
+              <td>RISK-002</td>
+              <td>외부 AI API 응답 지연으로 SLA 미충족 가능성</td>
+              <td>높음</td>
+              <td>중간</td>
+              <td><span class="badge badge-danger">High</span></td>
+              <td><span class="badge badge-pending">미조치</span></td>
+              <td><button class="btn btn-primary btn-sm">대응계획 등록</button></td>
+            </tr>
+            <tr>
+              <td>RISK-003</td>
+              <td>고객사 담당자 변경으로 요구사항 변동 가능성</td>
+              <td>중간</td>
+              <td>중간</td>
+              <td><span class="badge badge-caution">Medium</span></td>
+              <td><span class="badge badge-inprogress">대응중</span></td>
+              <td><button class="btn btn-ghost btn-sm">보기</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ── Agent Panel ── -->
+  <div class="agent-panel">
+    <div class="agent-panel-header">
+      <div class="agent-icon">🤖</div>
+      <div>
+        <div class="agent-panel-title">KT Delivery Way Agent</div>
+        <div style="font-size:10px; color:var(--gray-400);">설계·Sprint 계획 단계</div>
+      </div>
+    </div>
+
+    <div class="agent-panel-body">
+      <!-- Summary -->
+      <div>
+        <div class="agent-section-title">단계 요약</div>
+        <div class="agent-summary-box">
+          수행 산출물 일부와 진행 PRB 타 시스템 처리 결과 확인이 미완료되어 다음 단계 이동 전 조치가 필요합니다.
+          <strong>DataOps 설계서 완료</strong>와 <strong>High Risk 2건 대응계획 등록</strong>이 최우선 필요합니다.
+        </div>
+      </div>
+
+      <div class="agent-approval-badge">
+        ⚠️ 단계 이동 시 PM 및 팀장 승인 필요
+      </div>
+
+      <!-- Missing Items -->
+      <div>
+        <div class="agent-section-title">누락 항목</div>
+        <div class="agent-action-list">
+          <div class="agent-action-item">
+            <div class="agent-action-priority high"></div>
+            <div>
+              <div style="font-weight:700; font-size:12px;">DataOps 설계서 미완료</div>
+              <div style="color:var(--gray-500); font-size:11px; margin-top:2px;">Gate 블로킹 · DA 담당 · 즉시 처리 필요</div>
+            </div>
+          </div>
+          <div class="agent-action-item">
+            <div class="agent-action-priority high"></div>
+            <div>
+              <div style="font-weight:700; font-size:12px;">진행 PRB 처리 결과 미확인</div>
+              <div style="color:var(--gray-500); font-size:11px; margin-top:2px;">타 PRB 시스템에서 처리 여부 확인 필요</div>
+            </div>
+          </div>
+          <div class="agent-action-item">
+            <div class="agent-action-priority high"></div>
+            <div>
+              <div style="font-weight:700; font-size:12px;">High Risk 2건 미조치</div>
+              <div style="color:var(--gray-500); font-size:11px; margin-top:2px;">RISK-001, RISK-002 대응계획 등록 필요</div>
+            </div>
+          </div>
+          <div class="agent-action-item">
+            <div class="agent-action-priority medium"></div>
+            <div>
+              <div style="font-weight:700; font-size:12px;">공정실적 최신화</div>
+              <div style="color:var(--gray-500); font-size:11px; margin-top:2px;">Easy ERP 공정실적 등록 필요</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Actions -->
+      <div>
+        <div class="agent-section-title">다음 액션 추천</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="padding:8px 10px; background:var(--status-danger-bg); border-radius:6px; font-size:11px; border-left:3px solid var(--status-danger);">
+            <div style="font-weight:700; color:var(--status-danger); margin-bottom:2px;">즉시 · 수행PM</div>
+            타 PRB 시스템에서 진행 PRB 결과 처리 여부 확인
+          </div>
+          <div style="padding:8px 10px; background:var(--status-danger-bg); border-radius:6px; font-size:11px; border-left:3px solid var(--status-danger);">
+            <div style="font-weight:700; color:var(--status-danger); margin-bottom:2px;">즉시 · DA</div>
+            DataOps 설계서 초안 작성 착수
+          </div>
+          <div style="padding:8px 10px; background:var(--status-caution-bg); border-radius:6px; font-size:11px; border-left:3px solid var(--status-caution);">
+            <div style="font-weight:700; color:var(--status-caution); margin-bottom:2px;">이번 주 · 수행PM</div>
+            Easy ERP 공정실적 최신화
+          </div>
+        </div>
+      </div>
+
+      <!-- AI 생성 버튼 -->
+      <div>
+        <div class="agent-section-title">AI 지원</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <button class="agent-btn agent-btn-primary">✨ DataOps 설계서 초안 생성</button>
+          <button class="agent-btn agent-btn-secondary">📋 진행 PRB 준비자료 초안</button>
+          <button class="agent-btn agent-btn-secondary">📊 주간보고 초안 생성</button>
+          <button class="agent-btn agent-btn-secondary">🚦 Gate 통과 가능 여부 점검</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="../../assets/js/app.js"></script>
+<script>
+  // Tab 초기화
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.tab-item');
+    const panels = document.querySelectorAll('.tab-panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.style.display = 'none');
+        tab.classList.add('active');
+        const target = document.getElementById(tab.dataset.target);
+        if (target) target.style.display = 'block';
+      });
+    });
+    KTDeliveryWay.initChecklists();
+  });
+
+  function selectPhase(order) {
+    document.querySelectorAll('.phase-sidebar-item').forEach((el, i) => {
+      el.classList.toggle('active', i === order);
+    });
+  }
+</script>
+</body>
+</html>

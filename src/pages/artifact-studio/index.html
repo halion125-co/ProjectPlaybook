@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Artifact Studio – KT Delivery Way</title>
+  <link rel="stylesheet" href="../../assets/css/design-system.css">
+  <style>
+    body { background: var(--gray-50); }
+    .studio-layout { display: flex; height: calc(100vh - 48px); overflow: hidden; }
+    .artifact-list-panel { width: 260px; background: var(--white); border-right: 1px solid var(--gray-200); overflow-y: auto; flex-shrink: 0; }
+    .artifact-workspace { flex: 1; overflow-y: auto; padding: 24px; }
+    .artifact-category { padding: 8px 16px 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-400); }
+    .artifact-item { display: flex; align-items: center; gap: 8px; padding: 9px 16px; font-size: 12px; font-weight: 600; color: var(--gray-600); cursor: pointer; transition: all 0.15s; }
+    .artifact-item:hover { background: var(--gray-50); color: var(--gray-900); }
+    .artifact-item.active { background: var(--kt-red-light); color: var(--kt-red); }
+    .doc-preview { background: white; border: 1px solid var(--gray-200); border-radius: 12px; padding: 32px; min-height: 400px; }
+    .doc-preview h1 { font-size: 20px; font-weight: 800; color: var(--gray-900); margin-bottom: 8px; }
+    .doc-preview h2 { font-size: 15px; font-weight: 700; color: var(--gray-800); margin: 20px 0 8px; }
+    .doc-preview p { font-size: 13px; color: var(--gray-600); line-height: 1.7; }
+    .doc-preview table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 12px 0; }
+    .doc-preview th { background: var(--gray-50); border: 1px solid var(--gray-200); padding: 8px 12px; font-weight: 700; text-align: left; }
+    .doc-preview td { border: 1px solid var(--gray-200); padding: 8px 12px; }
+    .placeholder-box { background: var(--gray-50); border: 2px dashed var(--gray-300); border-radius: 8px; padding: 16px; font-size: 12px; color: var(--gray-400); text-align: center; margin: 16px 0; }
+  </style>
+</head>
+<body>
+
+<div class="page-topbar">
+  <span class="breadcrumb"><span>KT-PJT-001</span><span>›</span><span class="current">AI Artifact Studio</span></span>
+  <div style="margin-left:auto; display:flex; gap:8px;">
+    <button class="btn btn-secondary btn-sm">⬇️ 다운로드</button>
+    <button class="btn btn-primary btn-sm">✨ 초안 재생성</button>
+  </div>
+</div>
+
+<div class="studio-layout">
+
+  <!-- 산출물 목록 -->
+  <div class="artifact-list-panel">
+    <div style="padding:12px 16px; font-size:13px; font-weight:800; color:var(--gray-900); border-bottom:1px solid var(--gray-200);">산출물 / 문서 유형</div>
+
+    <div class="artifact-category">PRB 준비자료</div>
+    <div class="artifact-item" onclick="selectArtifact('initiation-prb')">📌 착수 PRB 준비자료</div>
+    <div class="artifact-item" onclick="selectArtifact('progress-prb')">📌 진행 PRB 준비자료</div>
+    <div class="artifact-item" onclick="selectArtifact('closure-prb')">📌 종료 PRB 준비자료</div>
+
+    <div class="artifact-category">수행계획 / 분석</div>
+    <div class="artifact-item active" onclick="selectArtifact('exec-plan')">📄 프로젝트 수행계획서</div>
+    <div class="artifact-item" onclick="selectArtifact('current-analysis')">📄 현행분석 보고서</div>
+    <div class="artifact-item" onclick="selectArtifact('requirements')">📄 요구사항정의서</div>
+
+    <div class="artifact-category">AI/Agent 산출물</div>
+    <div class="artifact-item" onclick="selectArtifact('ai-scenario')">🤖 AI 시나리오 정의서</div>
+    <div class="artifact-item" onclick="selectArtifact('ai-service')">🤖 AI 서비스 정의서</div>
+    <div class="artifact-item" onclick="selectArtifact('agent-arch')">🤖 Agent 아키텍처 설계서</div>
+    <div class="artifact-item" onclick="selectArtifact('eval-criteria')">🤖 평가기준 정의서</div>
+    <div class="artifact-item" onclick="selectArtifact('dataops')">🤖 DataOps 설계서</div>
+    <div class="artifact-item" onclick="selectArtifact('agentops')">🤖 AgentOps 설계서</div>
+
+    <div class="artifact-category">테스트 / 검증</div>
+    <div class="artifact-item" onclick="selectArtifact('eval-result')">🧪 AI 평가 결과서</div>
+    <div class="artifact-item" onclick="selectArtifact('e2e-test')">🧪 E2E 테스트 결과서</div>
+    <div class="artifact-item" onclick="selectArtifact('security')">🔐 보안 취약점 점검 결과서</div>
+
+    <div class="artifact-category">종료 / 보고</div>
+    <div class="artifact-item" onclick="selectArtifact('weekly-report')">📊 주간보고</div>
+    <div class="artifact-item" onclick="selectArtifact('closure-report')">📊 종료보고서</div>
+    <div class="artifact-item" onclick="selectArtifact('lessons-learned')">📊 Lessons Learned</div>
+  </div>
+
+  <!-- 문서 워크스페이스 -->
+  <div class="artifact-workspace">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+      <div>
+        <div style="font-size:16px; font-weight:800; color:var(--gray-900);">프로젝트 수행계획서</div>
+        <div style="font-size:12px; color:var(--gray-500); margin-top:2px;">KT-PJT-001 · Agent AI 기반 고객 상담 자동화 구축 · ✨ AI 초안</div>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn btn-secondary btn-sm">✏️ 편집</button>
+        <button class="btn btn-secondary btn-sm">💬 검토 요청</button>
+        <button class="btn btn-primary btn-sm">✅ 승인 요청</button>
+      </div>
+    </div>
+
+    <div style="background:#FFF3E0; border:1px solid #FFB74D; border-radius:8px; padding:10px 14px; margin-bottom:16px; font-size:12px; color:#E65100;">
+      ⚡ AI가 생성한 초안입니다. 내용을 검토하고 수행PM이 확인 후 승인 요청하세요.
+    </div>
+
+    <div class="doc-preview">
+      <h1>프로젝트 수행계획서</h1>
+      <div style="font-size:12px; color:var(--gray-500); margin-bottom:24px; padding-bottom:16px; border-bottom:1px solid var(--gray-200);">
+        프로젝트명: Agent AI 기반 고객 상담 자동화 구축 &nbsp;|&nbsp; 버전: v0.1 (초안) &nbsp;|&nbsp; 작성일: 2026-05-12
+      </div>
+
+      <h2>1. 프로젝트 개요</h2>
+      <table>
+        <tr><th style="width:140px">항목</th><th>내용</th></tr>
+        <tr><td>프로젝트명</td><td>Agent AI 기반 고객 상담 자동화 구축</td></tr>
+        <tr><td>발주기관</td><td>KT 고객서비스사업본부</td></tr>
+        <tr><td>수행 기간</td><td>2026-03-01 ~ 2026-10-31</td></tr>
+        <tr><td>수행PM</td><td>이수행</td></tr>
+        <tr><td>영업대표</td><td>김영업</td></tr>
+        <tr><td>프로젝트 유형</td><td>AI Agent 구축</td></tr>
+        <tr><td>KT Delivery Way 단계</td><td>설계·Sprint 계획 (2단계)</td></tr>
+      </table>
+
+      <h2>2. 수행 목표</h2>
+      <p>
+        본 프로젝트는 KT 고객서비스사업본부의 고객 상담 업무에 AI Agent를 적용하여 반복적인 상담 업무를 자동화하고, 상담사의 업무 효율을 향상시키는 것을 목표로 합니다.
+      </p>
+
+      <h2>3. KT Delivery Way 수행 계획</h2>
+      <table>
+        <tr><th>단계</th><th>기간</th><th>주요 활동</th><th>게이트</th></tr>
+        <tr><td>0. 착수준비</td><td>3월 1일 ~ 3월 15일</td><td>프로젝트 Context 정리, 역할 정의</td><td>착수 PRB</td></tr>
+        <tr><td>1. Discovery</td><td>3월 16일 ~ 4월 15일</td><td>현행분석, AI 시나리오 정의</td><td>발견 Gate</td></tr>
+        <tr><td>2. 설계 (현재)</td><td>4월 16일 ~ 5월 31일</td><td>Agent 아키텍처, Sprint 계획</td><td>설계 Gate</td></tr>
+        <tr><td>3. 구축</td><td>6월 1일 ~ 8월 31일</td><td>DataOps, AgentOps 구현</td><td>구축 Gate</td></tr>
+        <tr><td>4. 평가</td><td>9월 1일 ~ 9월 30일</td><td>AI 평가, E2E 테스트, 보안점검</td><td>평가 Gate</td></tr>
+        <tr><td>5. 전환</td><td>10월 1일 ~ 10월 20일</td><td>사용자 교육, 전환 오픈</td><td>전환 Gate</td></tr>
+        <tr><td>6. 종료</td><td>10월 21일 ~ 10월 31일</td><td>인수인계, 종료 PRB</td><td>종료 PRB</td></tr>
+      </table>
+
+      <div class="placeholder-box">
+        📝 4. 역할 및 RACI 매트릭스 — AI가 수행팀 정보를 기반으로 생성 예정
+      </div>
+      <div class="placeholder-box">
+        📝 5. Risk 관리 계획 — 등록된 Risk 목록을 기반으로 AI가 생성 예정
+      </div>
+      <div class="placeholder-box">
+        📝 6. 커뮤니케이션 계획 — 프로젝트 정보를 기반으로 AI가 생성 예정
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function selectArtifact(type) {
+  document.querySelectorAll('.artifact-item').forEach(el => el.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+}
+</script>
+</body>
+</html>

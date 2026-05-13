@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KT Delivery Way Platform</title>
+  <link rel="stylesheet" href="../../assets/css/design-system.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ── HEADER ── -->
+  <header class="app-header">
+    <div class="logo">
+      <span class="logo-kt">KT</span>
+      <div class="logo-divider"></div>
+      <span class="logo-title">Delivery Way Platform</span>
+    </div>
+
+    <!-- Global search placeholder -->
+    <div style="flex:1; max-width:360px; margin-left:24px;">
+      <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:8px; padding:6px 14px; display:flex; align-items:center; gap:8px; cursor:pointer;">
+        <span style="opacity:0.5; font-size:13px;">🔍</span>
+        <span style="font-size:12px; color:rgba(255,255,255,0.45);">프로젝트 검색...</span>
+        <span style="margin-left:auto; font-size:10px; color:rgba(255,255,255,0.25); background:rgba(255,255,255,0.08); padding:2px 6px; border-radius:4px;">⌘K</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div style="font-size:11px; color:rgba(255,255,255,0.5); display:flex; align-items:center; gap:6px;">
+        <span style="width:6px;height:6px;background:#4CAF50;border-radius:50%;"></span>
+        KT Delivery Way Agent 활성
+      </div>
+      <div style="width:1px;height:20px;background:rgba(255,255,255,0.12);"></div>
+      <div class="user-badge">
+        <div class="user-avatar">PM</div>
+        <span>이수행 PM</span>
+        <span style="opacity:0.4">▾</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="app-sidebar">
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">메인 메뉴</div>
+      <button class="sidebar-nav-item active" data-page="dashboard">
+        <span class="nav-icon">📊</span>
+        Portfolio Dashboard
+        <span class="nav-badge">3</span>
+      </button>
+      <button class="sidebar-nav-item" data-page="playbook">
+        <span class="nav-icon">📋</span>
+        프로젝트 플레이북
+      </button>
+      <button class="sidebar-nav-item" data-page="workbench">
+        <span class="nav-icon">✅</span>
+        수행PM 할일 Workbench
+      </button>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">관리 영역</div>
+      <button class="sidebar-nav-item" data-page="gate">
+        <span class="nav-icon">🚦</span>
+        Gate Checker
+      </button>
+      <button class="sidebar-nav-item" data-page="prb">
+        <span class="nav-icon">📌</span>
+        PRB 상태 확인
+        <span class="nav-badge" style="background:#E67E00;">1</span>
+      </button>
+      <button class="sidebar-nav-item" data-page="risk">
+        <span class="nav-icon">⚠️</span>
+        Risk / Issue
+      </button>
+      <button class="sidebar-nav-item" data-page="progress">
+        <span class="nav-icon">📈</span>
+        공정 / 매출인식
+      </button>
+      <button class="sidebar-nav-item" data-page="contract">
+        <span class="nav-icon">📝</span>
+        계약 / 하도급
+      </button>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">AI 지원</div>
+      <button class="sidebar-nav-item" data-page="artifact-studio">
+        <span class="nav-icon">✨</span>
+        AI Artifact Studio
+      </button>
+      <button class="sidebar-nav-item" data-page="agent-chat">
+        <span class="nav-icon">🤖</span>
+        Agent 질의응답
+      </button>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">시스템</div>
+      <button class="sidebar-nav-item" data-page="admin">
+        <span class="nav-icon">⚙️</span>
+        방법론 설정
+      </button>
+      <button class="sidebar-nav-item" data-page="audit">
+        <span class="nav-icon">🔍</span>
+        감사 로그
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main class="app-main" id="app-main">
+    <!-- Page content injected here by router -->
+    <iframe id="app-content" src="pages/dashboard/index.html"
+      style="width:100%;height:100%;border:none;display:block;"></iframe>
+  </main>
+
+</div>
+
+<script src="../../assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+{
+  "projects": [
+    {
+      "project_id": "KT-PJT-001",
+      "project_name": "Agent AI 기반 고객 상담 자동화 구축",
+      "customer": "KT 고객서비스사업본부",
+      "project_type": "AI Agent 구축",
+      "business_owner": "김영업",
+      "project_manager": "이수행",
+      "team": ["박개발", "최AI", "정QA"],
+      "current_phase_id": "KTDW-02",
+      "current_phase_name": "설계·Sprint 계획",
+      "start_date": "2026-03-01",
+      "end_date": "2026-10-31",
+      "overall_status": "caution",
+      "delivery_completion_rate": 58,
+      "admin_completion_rate": 45,
+      "gate_status": "conditional",
+      "risk_level": "high",
+      "prb": {
+        "initiation": { "target": true, "status": "confirmed", "result": "승인" },
+        "progress": { "target": false, "status": "not_required" },
+        "closure": { "target": true, "status": "pending" },
+        "postmgmt": { "target": false, "status": "not_required" }
+      },
+      "progress_rate": 42,
+      "revenue_recognition_rate": 40,
+      "contract_change": { "required": true, "status": "reviewing" },
+      "subcontract": { "target": true, "status": "active" },
+      "risk_count": { "high": 2, "medium": 3, "low": 1 }
+    },
+    {
+      "project_id": "KT-PJT-002",
+      "project_name": "DataOps 파이프라인 구축 및 AI 모델 운영",
+      "customer": "KT AI2X TF",
+      "project_type": "AI/Data 플랫폼",
+      "business_owner": "박영업",
+      "project_manager": "김수행",
+      "team": ["이데이터", "최플랫폼"],
+      "current_phase_id": "KTDW-03",
+      "current_phase_name": "구축·실험·통합",
+      "start_date": "2026-01-15",
+      "end_date": "2026-09-30",
+      "overall_status": "danger",
+      "delivery_completion_rate": 72,
+      "admin_completion_rate": 61,
+      "gate_status": "fail",
+      "risk_level": "critical",
+      "prb": {
+        "initiation": { "target": true, "status": "confirmed", "result": "승인" },
+        "progress": { "target": true, "status": "pending", "result": null },
+        "closure": { "target": true, "status": "pending" },
+        "postmgmt": { "target": false, "status": "not_required" }
+      },
+      "progress_rate": 68,
+      "revenue_recognition_rate": 65,
+      "contract_change": { "required": false, "status": null },
+      "subcontract": { "target": true, "status": "overdue" },
+      "risk_count": { "high": 4, "medium": 2, "low": 2 }
+    },
+    {
+      "project_id": "KT-PJT-003",
+      "project_name": "AgentOps 운영 자동화 플랫폼",
+      "customer": "KT Cloud 사업단",
+      "project_type": "AI Agent 구축",
+      "business_owner": "정영업",
+      "project_manager": "박수행",
+      "team": ["김개발", "이AI"],
+      "current_phase_id": "KTDW-00",
+      "current_phase_name": "사업/발주 및 착수준비",
+      "start_date": "2026-05-01",
+      "end_date": "2026-12-31",
+      "overall_status": "normal",
+      "delivery_completion_rate": 18,
+      "admin_completion_rate": 32,
+      "gate_status": "pass",
+      "risk_level": "low",
+      "prb": {
+        "initiation": { "target": true, "status": "processing" },
+        "progress": { "target": false, "status": "not_required" },
+        "closure": { "target": true, "status": "pending" },
+        "postmgmt": { "target": false, "status": "not_required" }
+      },
+      "progress_rate": 8,
+      "revenue_recognition_rate": 0,
+      "contract_change": { "required": false, "status": null },
+      "subcontract": { "target": false, "status": null },
+      "risk_count": { "high": 0, "medium": 1, "low": 2 }
+    }
+  ]
+}

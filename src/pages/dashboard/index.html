@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Portfolio Dashboard – KT Delivery Way</title>
+  <link rel="stylesheet" href="../../assets/css/design-system.css">
+  <style>
+    body { background: var(--gray-50); }
+
+    .project-row {
+      display: grid;
+      grid-template-columns: 2fr 120px 100px 100px 80px 80px 90px 90px 100px;
+      gap: var(--space-3);
+      align-items: center;
+      padding: var(--space-3) var(--space-5);
+      border-bottom: 1px solid var(--gray-100);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .project-row:hover { background: var(--gray-50); }
+    .project-row.header {
+      background: var(--gray-50);
+      border-bottom: 2px solid var(--gray-200);
+      cursor: default;
+    }
+    .project-row.header span {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gray-500);
+    }
+
+    .alert-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md);
+      border-left: 3px solid;
+      margin-bottom: var(--space-2);
+    }
+    .alert-item.danger  { background:#FFF5F5; border-color:var(--status-danger); }
+    .alert-item.caution { background:#FFFBF0; border-color:var(--status-caution); }
+    .alert-item.info    { background:#F0F7FF; border-color:var(--status-info); }
+
+    .filter-bar {
+      display: flex;
+      gap: var(--space-3);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .filter-chip {
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--gray-200);
+      background: var(--white);
+      color: var(--gray-600);
+      transition: all 0.15s;
+    }
+    .filter-chip.active {
+      background: var(--gray-900);
+      color: white;
+      border-color: var(--gray-900);
+    }
+
+    .phase-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .phase-dot-sm {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="page-topbar">
+  <span class="breadcrumb">
+    <span>KT Delivery Way</span>
+    <span>›</span>
+    <span class="current">Portfolio Dashboard</span>
+  </span>
+  <div style="margin-left:auto; display:flex; gap:8px;">
+    <button class="btn btn-secondary btn-sm">📥 내보내기</button>
+    <button class="btn btn-primary btn-sm" onclick="document.getElementById('new-project-modal').style.display='flex'">
+      + 프로젝트 등록
+    </button>
+  </div>
+</div>
+
+<div style="padding:24px; display:flex; flex-direction:column; gap:24px;">
+
+  <!-- ── KPI Grid ── -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-value" style="color:var(--gray-900)">3</div>
+      <div class="kpi-label">전체 프로젝트</div>
+    </div>
+    <div class="kpi-card" onclick="filterStatus('normal')" style="cursor:pointer">
+      <div class="kpi-value" style="color:var(--status-normal)">1</div>
+      <div class="kpi-label">정상</div>
+    </div>
+    <div class="kpi-card" onclick="filterStatus('caution')" style="cursor:pointer">
+      <div class="kpi-value" style="color:var(--status-caution)">1</div>
+      <div class="kpi-label">주의</div>
+      <div class="kpi-change up">▲ 1</div>
+    </div>
+    <div class="kpi-card" onclick="filterStatus('danger')" style="cursor:pointer">
+      <div class="kpi-value" style="color:var(--status-danger)">1</div>
+      <div class="kpi-label">위험</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value" style="color:var(--status-caution)">1</div>
+      <div class="kpi-label">PRB 확인 대기</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value" style="color:var(--status-danger)">2</div>
+      <div class="kpi-label">High Risk 미조치</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value" style="color:var(--status-caution)">1</div>
+      <div class="kpi-label">하도급 지연</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value" style="color:var(--gate-fail)">1</div>
+      <div class="kpi-label">Gate 미통과</div>
+    </div>
+  </div>
+
+  <!-- ── Alert Panel + Filters ── -->
+  <div class="grid-2">
+
+    <!-- Agent 위험 브리핑 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">🤖 Agent 위험 브리핑</span>
+        <span style="font-size:11px; color:var(--gray-400)">방금 업데이트</span>
+      </div>
+      <div class="card-body" style="padding:16px;">
+        <div class="alert-item danger">
+          <span>🔴</span>
+          <div>
+            <div style="font-size:12px; font-weight:700; margin-bottom:4px;">KT-PJT-002 · 구축·실험·통합</div>
+            <div style="font-size:12px; color:var(--gray-600)">하도급 대가지급 예정일 초과 · High Risk 4건 미조치 · Gate 미통과</div>
+            <button class="btn btn-secondary btn-sm" style="margin-top:8px" onclick="openProject('KT-PJT-002')">플레이북 보기</button>
+          </div>
+        </div>
+        <div class="alert-item caution">
+          <span>🟡</span>
+          <div>
+            <div style="font-size:12px; font-weight:700; margin-bottom:4px;">KT-PJT-001 · 설계·Sprint 계획</div>
+            <div style="font-size:12px; color:var(--gray-600)">진행 PRB 타 시스템 결과 확인 대기 · DataOps 설계서 미완료 · High Risk 2건</div>
+            <button class="btn btn-secondary btn-sm" style="margin-top:8px" onclick="openProject('KT-PJT-001')">플레이북 보기</button>
+          </div>
+        </div>
+        <div class="alert-item info">
+          <span>🔵</span>
+          <div>
+            <div style="font-size:12px; font-weight:700; margin-bottom:4px;">KT-PJT-003 · 착수준비</div>
+            <div style="font-size:12px; color:var(--gray-600)">착수 PRB 타 시스템 처리 중 · 정상 진행</div>
+            <button class="btn btn-secondary btn-sm" style="margin-top:8px" onclick="openProject('KT-PJT-003')">플레이북 보기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRB 상태 참고 Board -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">📌 PRB 상태 참고</span>
+        <span style="font-size:11px; color:var(--gray-400)">타 시스템 처리 상태 확인</span>
+      </div>
+      <div class="card-body" style="padding:12px 16px;">
+        <div class="prb-status-notice" style="margin-bottom:12px;">
+          ℹ️ PRB 요청·검토·회의·심의결과 입력은 타 시스템(Easy ERP/PRB 시스템)에서 처리합니다. 여기서는 처리 여부와 결과 상태만 확인합니다.
+        </div>
+        <table class="data-table" style="font-size:11px;">
+          <thead>
+            <tr>
+              <th>프로젝트</th>
+              <th>PRB 유형</th>
+              <th>처리 상태</th>
+              <th>Gate 영향</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>KT-PJT-001</td>
+              <td>진행 PRB</td>
+              <td><span class="badge badge-needcheck">확인필요</span></td>
+              <td><span style="color:var(--status-caution);font-weight:600">조건부</span></td>
+            </tr>
+            <tr>
+              <td>KT-PJT-002</td>
+              <td>진행 PRB</td>
+              <td><span class="badge badge-ext-processing">타시스템처리중</span></td>
+              <td><span style="color:var(--status-danger);font-weight:600">필수확인</span></td>
+            </tr>
+            <tr>
+              <td>KT-PJT-003</td>
+              <td>착수 PRB</td>
+              <td><span class="badge badge-ext-processing">타시스템처리중</span></td>
+              <td><span style="color:var(--status-caution);font-weight:600">조건부</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Project List ── -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">프로젝트 현황</span>
+      <div class="filter-bar">
+        <button class="filter-chip active" onclick="filterStatus('all', this)">전체</button>
+        <button class="filter-chip" onclick="filterStatus('normal', this)">정상</button>
+        <button class="filter-chip" onclick="filterStatus('caution', this)">주의</button>
+        <button class="filter-chip" onclick="filterStatus('danger', this)">위험</button>
+        <select style="font-size:11px; border:1px solid var(--gray-200); border-radius:6px; padding:4px 8px; color:var(--gray-600);">
+          <option>전체 단계</option>
+          <option>착수준비</option>
+          <option>Discovery</option>
+          <option>설계</option>
+          <option>구축</option>
+          <option>평가</option>
+          <option>전환</option>
+          <option>종료</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Table Header -->
+    <div class="project-row header">
+      <span>프로젝트명 / 고객</span>
+      <span>현재 단계</span>
+      <span>수행 상태</span>
+      <span>Gate</span>
+      <span>수행율</span>
+      <span>행정율</span>
+      <span>Risk</span>
+      <span>PRB</span>
+      <span>PM</span>
+    </div>
+
+    <!-- Project Rows -->
+    <div id="project-list">
+
+      <div class="project-row" onclick="openProject('KT-PJT-001')">
+        <div>
+          <div style="font-size:13px; font-weight:700; color:var(--gray-900)">Agent AI 기반 고객 상담 자동화 구축</div>
+          <div style="font-size:11px; color:var(--gray-500); margin-top:2px">KT 고객서비스사업본부 · KT-PJT-001</div>
+        </div>
+        <div>
+          <div class="phase-indicator">
+            <div class="phase-dot-sm" style="background:#6A1B9A"></div>
+            <span style="font-size:11px;">설계·Sprint 계획</span>
+          </div>
+        </div>
+        <div><span class="badge badge-caution">주의</span></div>
+        <div><span class="badge badge-gate-conditional">조건부</span></div>
+        <div style="min-width:80px">
+          <div class="progress-bar"><div class="progress-bar-fill caution" style="width:58%"></div></div>
+          <div style="font-size:10px;text-align:right;color:var(--gray-500);margin-top:2px">58%</div>
+        </div>
+        <div style="min-width:80px">
+          <div class="progress-bar"><div class="progress-bar-fill danger" style="width:45%"></div></div>
+          <div style="font-size:10px;text-align:right;color:var(--gray-500);margin-top:2px">45%</div>
+        </div>
+        <div><span class="badge badge-danger">High 2건</span></div>
+        <div><span class="badge badge-needcheck">확인필요</span></div>
+        <div style="font-size:11px; color:var(--gray-600)">이수행 PM</div>
+      </div>
+
+      <div class="project-row" onclick="openProject('KT-PJT-002')">
+        <div>
+          <div style="font-size:13px; font-weight:700; color:var(--gray-900)">DataOps 파이프라인 구축 및 AI 모델 운영</div>
+          <div style="font-size:11px; color:var(--gray-500); margin-top:2px">KT AI2X TF · KT-PJT-002</div>
+        </div>
+        <div>
+          <div class="phase-indicator">
+            <div class="phase-dot-sm" style="background:#E65100"></div>
+            <span style="font-size:11px;">구축·실험·통합</span>
+          </div>
+        </div>
+        <div><span class="badge badge-danger">위험</span></div>
+        <div><span class="badge badge-gate-fail">미통과</span></div>
+        <div style="min-width:80px">
+          <div class="progress-bar"><div class="progress-bar-fill normal" style="width:72%"></div></div>
+          <div style="font-size:10px;text-align:right;color:var(--gray-500);margin-top:2px">72%</div>
+        </div>
+        <div style="min-width:80px">
+          <div class="progress-bar"><div class="progress-bar-fill caution" style="width:61%"></div></div>
+          <div style="font-size:10px;text-align:right;color:var(--gray-500);margin-top:2px">61%</div>
+        </div>
+        <div><span class="badge badge-danger">High 4건</span></div>
+        <div><span class="badge badge-ext-processing">처리중</span></div>
+        <div style="font-size:11px; color:var(--gray-600)">김수행 PM</div>
+      </div>
+
+      <div class="project-row" onclick="openProject('KT-PJT-003')">
+        <div>
+          <div style="font-size:13px; font-weight:700; color:var(--gray-900)">AgentOps 운영 자동화 플랫폼</div>
+          <div style="font-size:11px; color:var(--gray-500); margin-top:2px">KT Cloud 사업단 · KT-PJT-003</div>
+        </div>
+        <div>
+          <div class="phase-indicator">
+            <div class="phase-dot-sm" style="background:#546E7A"></div>
+            <span style="font-size:11px;">착수준비</span>
+          </div>
+        </div>
+        <div><span class="badge badge-normal">정상</span></div>
+        <div><span class="badge badge-gate-pass">통과</span></div>
+        <div style="min-width:80px">
+          <div class="progress-bar"><div class="progress-bar-fill danger" style="width:18%"></div></div>
+          <div style="font-size:10px;text-align:right;color:var(--gray-500);margin-top:2px">18%</div>
+        </div>
+        <div style="min-width:80px">
+          <div class="progress-bar"><div class="progress-bar-fill danger" style="width:32%"></div></div>
+          <div style="font-size:10px;text-align:right;color:var(--gray-500);margin-top:2px">32%</div>
+        </div>
+        <div><span class="badge badge-normal">Low</span></div>
+        <div><span class="badge badge-ext-processing">처리중</span></div>
+        <div style="font-size:11px; color:var(--gray-600)">박수행 PM</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- New Project Modal -->
+<div id="new-project-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:999; align-items:center; justify-content:center;">
+  <div style="background:white; border-radius:16px; width:540px; max-height:85vh; overflow-y:auto; box-shadow:var(--shadow-lg);">
+    <div style="padding:20px 24px; border-bottom:1px solid var(--gray-200); display:flex; justify-content:space-between; align-items:center;">
+      <span style="font-size:16px; font-weight:800;">새 프로젝트 플레이북 생성</span>
+      <button onclick="document.getElementById('new-project-modal').style.display='none'" style="font-size:20px; color:var(--gray-400);">×</button>
+    </div>
+    <div style="padding:24px; display:flex; flex-direction:column; gap:16px;">
+      <div>
+        <label style="font-size:12px; font-weight:700; color:var(--gray-600); display:block; margin-bottom:6px;">프로젝트명 *</label>
+        <input type="text" placeholder="예: Agent AI 기반 XX 자동화 구축" style="width:100%; padding:10px 14px; border:1px solid var(--gray-200); border-radius:8px; font-size:13px;">
+      </div>
+      <div class="grid-2">
+        <div>
+          <label style="font-size:12px; font-weight:700; color:var(--gray-600); display:block; margin-bottom:6px;">고객사 *</label>
+          <input type="text" placeholder="고객사명" style="width:100%; padding:10px 14px; border:1px solid var(--gray-200); border-radius:8px; font-size:13px;">
+        </div>
+        <div>
+          <label style="font-size:12px; font-weight:700; color:var(--gray-600); display:block; margin-bottom:6px;">프로젝트 유형 *</label>
+          <select style="width:100%; padding:10px 14px; border:1px solid var(--gray-200); border-radius:8px; font-size:13px;">
+            <option>AI Agent 구축</option>
+            <option>AI/Data 플랫폼</option>
+            <option>컨설팅</option>
+            <option>유지운영</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div>
+          <label style="font-size:12px; font-weight:700; color:var(--gray-600); display:block; margin-bottom:6px;">수행PM *</label>
+          <input type="text" placeholder="수행PM 이름" style="width:100%; padding:10px 14px; border:1px solid var(--gray-200); border-radius:8px; font-size:13px;">
+        </div>
+        <div>
+          <label style="font-size:12px; font-weight:700; color:var(--gray-600); display:block; margin-bottom:6px;">영업대표 *</label>
+          <input type="text" placeholder="영업대표 이름" style="width:100%; padding:10px 14px; border:1px solid var(--gray-200); border-radius:8px; font-size:13px;">
+        </div>
+      </div>
+      <div class="grid-2">
+        <div>
+          <label style="font-size:12px; font-weight:700; color:var(--gray-600); display:block; margin-bottom:6px;">착수일 *</label>
+          <input type="date" style="width:100%; padding:10px 14px; border:1px solid var(--gray-200); border-radius:8px; font-size:13px;">
+        </div>
+        <div>
+          <label style="font-size:12px; font-weight:700; color:var(--gray-600); display:block; margin-bottom:6px;">종료예정일 *</label>
+          <input type="date" style="width:100%; padding:10px 14px; border:1px solid var(--gray-200); border-radius:8px; font-size:13px;">
+        </div>
+      </div>
+      <div>
+        <label style="font-size:12px; font-weight:700; color:var(--gray-600); display:block; margin-bottom:6px;">VDC 유형</label>
+        <div style="display:flex; gap:12px;">
+          <label style="display:flex; align-items:center; gap:6px; font-size:12px; cursor:pointer;">
+            <input type="checkbox"> VDC-A
+          </label>
+          <label style="display:flex; align-items:center; gap:6px; font-size:12px; cursor:pointer;">
+            <input type="checkbox"> VDC-B
+          </label>
+          <label style="display:flex; align-items:center; gap:6px; font-size:12px; cursor:pointer;">
+            <input type="checkbox"> VDC-C
+          </label>
+        </div>
+      </div>
+      <div style="display:flex; gap:12px; padding-top:8px;">
+        <button class="btn btn-secondary" style="flex:1" onclick="document.getElementById('new-project-modal').style.display='none'">취소</button>
+        <button class="btn btn-primary" style="flex:2">✨ KT Delivery Way 플레이북 자동 생성</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function filterStatus(status, btn) {
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function openProject(id) {
+  const pages = { 'KT-PJT-001': '../playbook/index.html', 'KT-PJT-002': '../playbook/index.html', 'KT-PJT-003': '../playbook/index.html' };
+  if (window.parent && window.parent.document.getElementById('app-content')) {
+    window.parent.document.getElementById('app-content').src = pages[id] || '../playbook/index.html';
+  } else {
+    window.location.href = pages[id] || '../playbook/index.html';
+  }
+}
+</script>
+</body>
+</html>

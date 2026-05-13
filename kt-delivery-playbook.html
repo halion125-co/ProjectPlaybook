@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KT Delivery Way – 방법론 플레이북</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'IBM Plex Sans','Noto Sans KR',sans-serif;
+  background:#F7F7F2;color:#1A1A18;font-size:14px;line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* ── Topbar ── */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;padding:0 40px;height:54px;
+  background:rgba(247,247,242,0.95);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(26,26,24,0.07);
+}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand-kt{
+  background:#E3001B;color:#fff;font-size:11px;font-weight:700;
+  padding:2px 7px;border-radius:3px;letter-spacing:.06em;
+  font-family:'IBM Plex Mono',monospace;
+}
+.brand-name{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;color:#1A1A18;letter-spacing:-.01em;}
+.brand-ver{font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(26,26,24,.3);border:1px solid rgba(26,26,24,.12);padding:1px 7px;border-radius:20px;}
+.nav-pills{display:flex;align-items:center;gap:1px;margin-left:28px;}
+.nav-pills a{
+  text-decoration:none;font-size:11.5px;font-weight:500;
+  color:rgba(26,26,24,.45);padding:4px 11px;border-radius:20px;
+  display:flex;align-items:center;gap:5px;transition:all .18s;
+  font-family:'IBM Plex Sans','Noto Sans KR',sans-serif;
+}
+.nav-pills a:hover{background:rgba(26,26,24,.06);color:#1A1A18;}
+.nav-pills a .num{font-family:'IBM Plex Mono',monospace;font-size:9.5px;opacity:.7;}
+.c0 .num{color:#6B7280;}.c1 .num{color:#8A8680;}.c2 .num{color:#5B8FD4;}
+.c3 .num{color:#8472C4;}.c4 .num{color:#D4895A;}.c5 .num{color:#4FA882;}.c6 .num{color:#D4001A;}
+.topbar-right{margin-left:auto;}
+.back-link{
+  font-size:12px;color:rgba(26,26,24,.4);text-decoration:none;
+  padding:5px 14px;border:1px solid rgba(26,26,24,.1);border-radius:20px;
+  transition:all .18s;display:flex;align-items:center;gap:5px;
+}
+.back-link:hover{background:rgba(26,26,24,.04);color:#1A1A18;}
+
+/* ── Hero ── */
+.hero{padding:72px 64px 40px;max-width:1360px;margin:0 auto;}
+.hero-eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+  color:rgba(26,26,24,.35);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;
+}
+.hero-h1{
+  font-size:44px;font-weight:300;line-height:1.15;letter-spacing:-.03em;color:#1A1A18;margin-bottom:18px;
+}
+.hero-h1 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;}
+.hero-sub{font-size:15px;color:rgba(26,26,24,.5);max-width:600px;line-height:1.75;font-weight:300;}
+.hero-stats{display:flex;gap:20px;margin-top:28px;flex-wrap:wrap;}
+.stat-pill{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(26,26,24,.4);
+  background:rgba(26,26,24,.05);border:1px solid rgba(26,26,24,.08);
+  padding:4px 12px;border-radius:20px;letter-spacing:.04em;
+}
+
+/* ── Lifecycle Map ── */
+.lifecycle-wrap{padding:0 40px 40px;max-width:1360px;margin:0 auto;}
+.lifecycle-box{
+  background:#fff;border:1px solid rgba(26,26,24,.07);border-radius:20px;
+  padding:40px 40px 44px;overflow:visible;
+}
+
+/* Phase row (horizontal timeline) */
+.phase-timeline{
+  display:flex;align-items:flex-start;gap:0;position:relative;
+  overflow-x:auto;padding-bottom:4px;
+}
+
+/* connector line between phases */
+.phase-col{display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
+.phase-connector{
+  height:2px;flex:1;min-width:24px;margin-top:22px;flex-shrink:0;
+}
+
+/* Phase badge + activities */
+.phase-node{display:flex;flex-direction:column;align-items:center;width:148px;}
+.phase-badge{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  margin-bottom:16px;cursor:pointer;
+}
+.phase-circle{
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;color:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,.12);transition:transform .2s;
+}
+.phase-badge:hover .phase-circle{transform:scale(1.08);}
+.phase-num-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(26,26,24,.35);letter-spacing:.06em;}
+.phase-name-label{font-size:11px;font-weight:600;color:#1A1A18;text-align:center;line-height:1.3;max-width:130px;}
+.phase-sub-label{font-size:10px;color:rgba(26,26,24,.4);text-align:center;line-height:1.3;max-width:130px;margin-top:1px;}
+
+/* Activity pills under each phase */
+.act-list{display:flex;flex-direction:column;gap:6px;width:136px;margin-top:4px;}
+.act-pill{
+  padding:7px 10px;border-radius:8px;border-width:1px;border-style:solid;
+  background:#fff;cursor:pointer;transition:all .16s;
+  display:flex;align-items:center;gap:7px;
+}
+.act-pill:hover{transform:translateY(-1px);box-shadow:0 3px 12px rgba(0,0,0,.08);}
+.act-pill-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.act-pill-text{font-size:11px;font-weight:500;color:#1A1A18;line-height:1.35;}
+
+/* Phase-specific colors */
+.ph0 .phase-circle{background:#6B7280;}
+.ph1 .phase-circle{background:#8A8680;}
+.ph2 .phase-circle{background:#5B8FD4;}
+.ph3 .phase-circle{background:#8472C4;}
+.ph4 .phase-circle{background:#D4895A;}
+.ph5 .phase-circle{background:#4FA882;}
+.ph6 .phase-circle{background:#D4001A;}
+
+.ph0 .phase-connector{background:linear-gradient(to right,#6B7280,#8A8680);}
+.ph1 .phase-connector{background:linear-gradient(to right,#8A8680,#5B8FD4);}
+.ph2 .phase-connector{background:linear-gradient(to right,#5B8FD4,#8472C4);}
+.ph3 .phase-connector{background:linear-gradient(to right,#8472C4,#D4895A);}
+.ph4 .phase-connector{background:linear-gradient(to right,#D4895A,#4FA882);}
+.ph5 .phase-connector{background:linear-gradient(to right,#4FA882,#D4001A);}
+
+.ph0 .act-pill{border-color:rgba(107,114,128,.25);}.ph0 .act-pill:hover{border-color:#6B7280;background:rgba(107,114,128,.04);}
+.ph0 .act-pill-dot{background:#6B7280;}
+.ph1 .act-pill{border-color:rgba(138,134,128,.25);}.ph1 .act-pill:hover{border-color:#8A8680;background:rgba(138,134,128,.04);}
+.ph1 .act-pill-dot{background:#8A8680;}
+.ph2 .act-pill{border-color:rgba(91,143,212,.25);}.ph2 .act-pill:hover{border-color:#5B8FD4;background:rgba(91,143,212,.04);}
+.ph2 .act-pill-dot{background:#5B8FD4;}
+.ph3 .act-pill{border-color:rgba(132,114,196,.25);}.ph3 .act-pill:hover{border-color:#8472C4;background:rgba(132,114,196,.04);}
+.ph3 .act-pill-dot{background:#8472C4;}
+.ph4 .act-pill{border-color:rgba(212,137,90,.25);}.ph4 .act-pill:hover{border-color:#D4895A;background:rgba(212,137,90,.04);}
+.ph4 .act-pill-dot{background:#D4895A;}
+.ph5 .act-pill{border-color:rgba(79,168,130,.25);}.ph5 .act-pill:hover{border-color:#4FA882;background:rgba(79,168,130,.04);}
+.ph5 .act-pill-dot{background:#4FA882;}
+.ph6 .act-pill{border-color:rgba(212,0,26,.2);}.ph6 .act-pill:hover{border-color:#D4001A;background:rgba(212,0,26,.04);}
+.ph6 .act-pill-dot{background:#D4001A;}
+
+/* Gate labels */
+.gate-row{
+  display:flex;align-items:center;gap:0;
+  margin-top:24px;padding:0 2px;
+}
+.gate-spacer{flex:1;}
+.gate-mark{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(26,26,24,.3);
+  letter-spacing:.05em;text-align:center;width:148px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;gap:4px;
+}
+.gate-dot{width:6px;height:6px;border-radius:50%;border:1.5px solid currentColor;}
+
+/* ── ADM Strip ── */
+.adm-section{padding:0 64px 28px;max-width:1360px;margin:0 auto;}
+.adm-label{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(26,26,24,.3);margin-bottom:10px;
+}
+.adm-chips{display:flex;flex-wrap:wrap;gap:5px;}
+.adm-chip{
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;
+  padding:3px 9px;border-radius:20px;border:1px solid rgba(26,26,24,.1);
+  color:rgba(26,26,24,.45);transition:all .15s;cursor:default;
+}
+.adm-chip:hover{border-color:rgba(26,26,24,.25);color:#1A1A18;background:rgba(26,26,24,.03);}
+
+/* ── Phase Detail Sections ── */
+.phases-section{padding:0 64px 80px;max-width:1360px;margin:0 auto;display:flex;flex-direction:column;gap:48px;}
+.phase-detail{}
+.phase-detail-header{
+  display:flex;align-items:flex-start;gap:20px;
+  margin-bottom:24px;padding-bottom:20px;
+  border-bottom:1px solid rgba(26,26,24,.07);
+}
+.phase-detail-num{
+  font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:300;line-height:1;flex-shrink:0;
+}
+.ph0 .phase-detail-num{color:#6B7280;}.ph1 .phase-detail-num{color:#8A8680;}
+.ph2 .phase-detail-num{color:#5B8FD4;}.ph3 .phase-detail-num{color:#8472C4;}
+.ph4 .phase-detail-num{color:#D4895A;}.ph5 .phase-detail-num{color:#4FA882;}
+.ph6 .phase-detail-num{color:#D4001A;}
+.phase-detail-info{}
+.phase-detail-name{font-size:20px;font-weight:300;letter-spacing:-.02em;line-height:1.3;}
+.phase-detail-name em{font-family:'Instrument Serif',serif;font-style:italic;}
+.phase-detail-desc{font-size:12.5px;color:rgba(26,26,24,.5);margin-top:5px;line-height:1.65;font-weight:300;max-width:680px;}
+.phase-detail-gate{
+  margin-left:auto;flex-shrink:0;align-self:flex-start;
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(26,26,24,.35);
+  border:1px solid rgba(26,26,24,.1);padding:4px 11px;border-radius:20px;white-space:nowrap;margin-top:3px;
+}
+.activities-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(256px,1fr));gap:10px;}
+
+/* Activity Card */
+.activity-card{
+  display:flex;flex-direction:column;padding:16px 18px;
+  background:#fff;border:1px solid rgba(26,26,24,.07);border-radius:10px;
+  cursor:pointer;transition:all .16s;gap:7px;
+}
+.activity-card:hover{border-color:rgba(26,26,24,.18);box-shadow:0 4px 18px rgba(0,0,0,.06);transform:translateY(-1px);}
+.act-card-id{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(26,26,24,.3);letter-spacing:.04em;}
+.act-card-title{font-size:13.5px;font-weight:500;line-height:1.3;color:#1A1A18;}
+.act-card-ko{font-size:11.5px;color:rgba(26,26,24,.4);margin-top:0px;}
+.act-card-preview{font-size:11.5px;color:rgba(26,26,24,.4);line-height:1.6;font-weight:300;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.act-card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:2px;}
+.act-card-tag{font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.07em;padding:2px 8px;border-radius:20px;}
+.ph0 .act-card-tag{background:rgba(107,114,128,.09);color:#6B7280;}
+.ph1 .act-card-tag{background:rgba(138,134,128,.09);color:#8A8680;}
+.ph2 .act-card-tag{background:rgba(91,143,212,.1);color:#5B8FD4;}
+.ph3 .act-card-tag{background:rgba(132,114,196,.1);color:#8472C4;}
+.ph4 .act-card-tag{background:rgba(212,137,90,.1);color:#D4895A;}
+.ph5 .act-card-tag{background:rgba(79,168,130,.1);color:#4FA882;}
+.ph6 .act-card-tag{background:rgba(212,0,26,.07);color:#D4001A;}
+.act-card-arrow{font-size:13px;color:rgba(26,26,24,.18);transition:all .16s;}
+.activity-card:hover .act-card-arrow{color:rgba(26,26,24,.5);transform:translateX(2px);}
+
+/* ── Side Panel ── */
+.panel-backdrop{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(26,26,24,.2);backdrop-filter:blur(3px);
+  opacity:0;pointer-events:none;transition:opacity .28s;
+}
+.panel-backdrop.open{opacity:1;pointer-events:all;}
+.side-panel{
+  position:fixed;top:0;right:0;bottom:0;z-index:201;
+  width:500px;max-width:92vw;background:#fff;
+  border-left:1px solid rgba(26,26,24,.09);
+  display:flex;flex-direction:column;
+  transform:translateX(100%);
+  transition:transform .3s cubic-bezier(.32,.72,0,1);
+  overflow:hidden;
+  box-shadow:-8px 0 40px rgba(0,0,0,.08);
+}
+.side-panel.open{transform:translateX(0);}
+.panel-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;border-bottom:1px solid rgba(26,26,24,.07);flex-shrink:0;
+  background:#fff;
+}
+.panel-header-left{display:flex;align-items:center;gap:10px;}
+.panel-phase-badge{
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.07em;
+  padding:3px 10px;border-radius:20px;border:1px solid currentColor;
+}
+.panel-id{font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(26,26,24,.45);}
+.panel-close{
+  width:30px;height:30px;background:none;border:1px solid rgba(26,26,24,.1);
+  border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:15px;color:rgba(26,26,24,.45);transition:all .16s;line-height:1;
+}
+.panel-close:hover{background:rgba(26,26,24,.05);color:#1A1A18;}
+.panel-body{flex:1;overflow-y:auto;padding:24px 28px 36px;}
+.panel-title{font-size:20px;font-weight:400;letter-spacing:-.02em;color:#1A1A18;margin-bottom:3px;}
+.panel-ko{font-size:13px;color:rgba(26,26,24,.4);margin-bottom:22px;}
+.panel-sec{margin-bottom:24px;}
+.panel-sec-title{
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(26,26,24,.3);margin-bottom:9px;padding-bottom:7px;border-bottom:1px solid rgba(26,26,24,.05);
+}
+.panel-def{font-size:12.5px;color:rgba(26,26,24,.65);line-height:1.8;font-weight:300;}
+.deliv-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.deliv-list li{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;color:rgba(26,26,24,.65);line-height:1.5;}
+.deliv-list li::before{content:'→';flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(26,26,24,.22);margin-top:2px;}
+.checklist{display:flex;flex-direction:column;gap:5px;}
+.chk-item{display:flex;align-items:flex-start;gap:9px;cursor:pointer;padding:5px 7px;border-radius:6px;transition:background .13s;}
+.chk-item:hover{background:rgba(26,26,24,.03);}
+.chk-item input[type=checkbox]{margin-top:2px;flex-shrink:0;accent-color:#1A1A18;cursor:pointer;}
+.chk-item span{font-size:12.5px;color:rgba(26,26,24,.65);line-height:1.5;cursor:pointer;}
+.chk-item.done span{text-decoration:line-through;color:rgba(26,26,24,.3);}
+.raci-tbl{width:100%;border-collapse:collapse;font-size:11.5px;}
+.raci-tbl th{
+  font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;
+  color:rgba(26,26,24,.35);text-align:left;padding:5px 7px;border-bottom:1px solid rgba(26,26,24,.07);font-weight:400;
+}
+.raci-tbl td{padding:7px 7px;color:rgba(26,26,24,.65);border-bottom:1px solid rgba(26,26,24,.04);vertical-align:middle;}
+.rb{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:500;padding:2px 7px;border-radius:4px;}
+.rb-R{background:rgba(26,26,24,.07);color:#1A1A18;}
+.rb-A{background:rgba(212,0,26,.07);color:#D4001A;}
+.rb-C{background:rgba(91,143,212,.09);color:#5B8FD4;}
+.rb-I{background:rgba(26,26,24,.04);color:rgba(26,26,24,.4);}
+.panel-nav{display:flex;justify-content:space-between;margin-top:28px;padding-top:18px;border-top:1px solid rgba(26,26,24,.07);}
+.pnav-btn{
+  display:flex;align-items:center;gap:7px;font-size:11.5px;color:rgba(26,26,24,.4);
+  background:none;border:1px solid rgba(26,26,24,.09);padding:5px 13px;border-radius:20px;
+  cursor:pointer;transition:all .16s;font-family:'IBM Plex Sans','Noto Sans KR',sans-serif;
+}
+.pnav-btn:hover:not(:disabled){border-color:rgba(26,26,24,.25);color:#1A1A18;}
+.pnav-btn:disabled{opacity:.28;cursor:not-allowed;}
+
+/* ── AXE inline row (inside lifecycle-box) ── */
+.framework-divider{
+  display:flex;align-items:center;gap:12px;
+  margin:28px 0 16px;padding-top:20px;
+  border-top:1px dashed rgba(26,26,24,.1);
+}
+.framework-divider-label{
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(26,26,24,.28);white-space:nowrap;
+}
+.framework-divider-line{flex:1;height:1px;background:transparent;}
+
+/* AXE row mirrors the KT phase-timeline layout */
+.axe-timeline{
+  display:flex;align-items:flex-start;gap:0;
+  overflow-x:auto;padding-bottom:4px;
+}
+/* Each AXE column aligns to its KT phase width (148px) */
+.axe-col{
+  display:flex;flex-direction:column;align-items:center;
+  flex-shrink:0;width:148px;
+}
+.axe-col-spacer{flex:1;flex-shrink:0;min-width:24px;}/* mirrors phase-connector width */
+
+.axe-phase-header{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  margin-bottom:8px;
+}
+.axe-phase-label{
+  font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:rgba(26,26,24,.28);text-align:center;
+}
+.axe-phase-name{
+  font-size:10px;font-weight:600;color:rgba(26,26,24,.55);text-align:center;
+  line-height:1.25;max-width:130px;
+}
+
+.axe-pill-list{display:flex;flex-direction:column;gap:4px;width:136px;}
+.axe-pill{
+  padding:5px 8px;border-radius:6px;border:1px dashed rgba(26,26,24,.13);
+  background:rgba(26,26,24,.02);display:flex;align-items:flex-start;gap:6px;
+}
+.axe-pill-id{
+  font-family:'IBM Plex Mono',monospace;font-size:8.5px;color:rgba(26,26,24,.3);
+  flex-shrink:0;white-space:nowrap;line-height:1.5;
+}
+.axe-pill-text{font-size:10px;color:rgba(26,26,24,.5);line-height:1.4;}
+
+/* AXE panel section */
+.axe-panel-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
+.axe-panel-chip{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.06em;
+  padding:2px 8px;border-radius:12px;border:1px dashed rgba(26,26,24,.2);
+  color:rgba(26,26,24,.5);background:rgba(26,26,24,.02);
+  cursor:pointer;transition:all .14s;
+}
+.axe-panel-chip:hover{border-color:rgba(26,26,24,.4);color:#1A1A18;background:rgba(26,26,24,.05);}
+
+/* AXE detail panel (second layer) */
+.axe-detail-panel{
+  position:fixed;top:0;right:0;bottom:0;z-index:210;
+  width:480px;max-width:90vw;background:#fff;
+  border-left:1px solid rgba(26,26,24,.07);
+  display:flex;flex-direction:column;
+  transform:translateX(100%);
+  transition:transform .3s cubic-bezier(.32,.72,0,1);
+  box-shadow:-8px 0 40px rgba(0,0,0,.08);
+  overflow:hidden;
+}
+.axe-detail-panel.open{transform:translateX(0);}
+.axe-detail-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;border-bottom:1px solid rgba(26,26,24,.07);flex-shrink:0;
+  background:#fff;
+}
+.axe-detail-header-left{display:flex;align-items:center;gap:10px;}
+.axe-detail-phase-badge{
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.07em;
+  padding:3px 10px;border-radius:20px;border:1px solid currentColor;text-transform:uppercase;
+}
+.axe-detail-id{font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(26,26,24,.45);}
+.axe-detail-close{
+  width:30px;height:30px;background:none;border:1px solid rgba(26,26,24,.1);
+  border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:15px;color:rgba(26,26,24,.45);transition:all .16s;line-height:1;
+}
+.axe-detail-close:hover{background:rgba(26,26,24,.05);color:#1A1A18;}
+.axe-detail-body{flex:1;overflow-y:auto;padding:24px 28px 36px;}
+.axe-detail-title{font-size:20px;font-weight:400;letter-spacing:-.02em;color:#1A1A18;margin-bottom:3px;}
+.axe-detail-korean{font-size:13px;color:rgba(26,26,24,.4);margin-bottom:22px;}
+.axe-detail-sec{margin-bottom:24px;}
+.axe-detail-sec-title{
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(26,26,24,.3);margin-bottom:9px;padding-bottom:7px;
+  border-bottom:1px solid rgba(26,26,24,.05);
+}
+.axe-detail-def{font-size:12.5px;color:rgba(26,26,24,.65);line-height:1.8;font-weight:300;}
+.axe-detail-purpose{
+  font-size:12px;color:rgba(26,26,24,.5);font-style:italic;
+  margin-top:8px;padding:8px 12px;border-left:2px solid rgba(107,141,214,.3);
+  background:rgba(107,141,214,.04);border-radius:0 6px 6px 0;line-height:1.65;
+}
+.axe-deliv-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.axe-deliv-list li{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:rgba(26,26,24,.6);line-height:1.5;}
+.axe-deliv-list li .dn{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  color:#6B8DD6;flex-shrink:0;margin-top:2px;
+  background:rgba(107,141,214,.09);padding:1px 6px;border-radius:3px;
+}
+.axe-chk-list{list-style:none;display:flex;flex-direction:column;gap:0;}
+.axe-chk-item{display:flex;align-items:flex-start;gap:9px;cursor:pointer;padding:5px 7px;border-radius:6px;transition:background .13s;}
+.axe-chk-item:hover{background:rgba(26,26,24,.03);}
+.axe-chk-item input[type=checkbox]{margin-top:2px;flex-shrink:0;accent-color:#1A1A18;cursor:pointer;}
+.axe-chk-item span{font-size:12.5px;color:rgba(26,26,24,.65);line-height:1.5;cursor:pointer;}
+.axe-chk-item.done span{text-decoration:line-through;color:rgba(26,26,24,.3);}
+.axe-raci-tbl{width:100%;border-collapse:collapse;font-size:11.5px;}
+.axe-raci-tbl th{
+  font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;
+  color:rgba(26,26,24,.35);text-align:left;padding:5px 7px;
+  border-bottom:1px solid rgba(26,26,24,.07);font-weight:400;
+}
+.axe-raci-tbl td{padding:7px 7px;color:rgba(26,26,24,.65);border-bottom:1px solid rgba(26,26,24,.04);vertical-align:middle;}
+.arc{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:500;
+  padding:2px 7px;border-radius:4px;}
+.arc-R{background:rgba(26,26,24,.07);color:#1A1A18;}
+.arc-A{background:rgba(212,0,26,.07);color:#D4001A;}
+.arc-C{background:rgba(91,143,212,.09);color:#5B8FD4;}
+.arc-I{background:rgba(26,26,24,.04);color:rgba(26,26,24,.4);}
+.axe-kt-ref{
+  display:flex;align-items:center;gap:8px;padding:10px 14px;
+  background:rgba(26,26,24,.03);border-radius:8px;border:1px solid rgba(26,26,24,.07);
+}
+.axe-kt-ref-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(26,26,24,.35);letter-spacing:.07em;}
+.axe-kt-ref-chips{display:flex;flex-wrap:wrap;gap:5px;}
+
+/* ── Footer ── */
+footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 64px;border-top:1px solid rgba(26,26,24,.07);margin-top:12px;
+}
+.foot-left{font-size:11.5px;color:rgba(26,26,24,.28);font-style:italic;font-family:'Instrument Serif',serif;}
+.foot-right{display:flex;gap:18px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(26,26,24,.22);letter-spacing:.04em;}
+
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(26,26,24,.1);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-kt">KT</span>
+    <span class="brand-name">Delivery Way</span>
+    <span class="brand-ver">v1.0</span>
+  </div>
+  <nav class="nav-pills">
+    <a href="#ph0" class="c0"><span class="num">00</span> 착수준비</a>
+    <a href="#ph1" class="c1"><span class="num">01</span> Discovery</a>
+    <a href="#ph2" class="c2"><span class="num">02</span> 설계</a>
+    <a href="#ph3" class="c3"><span class="num">03</span> 구축</a>
+    <a href="#ph4" class="c4"><span class="num">04</span> 평가</a>
+    <a href="#ph5" class="c5"><span class="num">05</span> 전환</a>
+    <a href="#ph6" class="c6"><span class="num">06</span> 준공</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="index.html" class="back-link">← Platform</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">KT Delivery Way · 방법론 레퍼런스</div>
+  <h1 class="hero-h1"><em>Delivery Way</em><br>수행 방법론 플레이북</h1>
+  <p class="hero-sub">AXD 개발 방법론, KT 행정 프로세스, 수행PM 운영 활동을 통합한 표준 프레임워크. 착수준비(KTDW-00)부터 준공·종료(KTDW-06)까지 7단계를 안내합니다.</p>
+  <div class="hero-stats">
+    <span class="stat-pill">7 단계</span>
+    <span class="stat-pill">44 행정 Control</span>
+    <span class="stat-pill">4 Gate 유형</span>
+    <span class="stat-pill">AXE 4-Phase 매핑</span>
+    <span class="stat-pill">PRD v0.3</span>
+  </div>
+</div>
+
+<!-- LIFECYCLE MAP -->
+<div class="lifecycle-wrap">
+  <div class="lifecycle-box">
+
+    <!-- Timeline row -->
+    <div class="phase-timeline" id="timeline">
+
+      <!-- PH00 -->
+      <div class="phase-col ph0">
+        <div class="phase-node">
+          <div class="phase-badge" onclick="scrollToPhase('ph0')">
+            <div class="phase-circle">00</div>
+            <div class="phase-num-label">KTDW-00</div>
+            <div class="phase-name-label">착수준비</div>
+            <div class="phase-sub-label">사업·발주·환경구성</div>
+          </div>
+          <div class="act-list">
+            <div class="act-pill" data-act="a-00-01">
+              <div class="act-pill-dot"></div>
+              <div class="act-pill-text">사업·발주 확인</div>
+            </div>
+            <div class="act-pill" data-act="a-00-02">
+              <div class="act-pill-dot"></div>
+              <div class="act-pill-text">수행 조직 구성</div>
+            </div>
+            <div class="act-pill" data-act="a-00-03">
+              <div class="act-pill-dot"></div>
+              <div class="act-pill-text">착수 신고·보고</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-connector ph0" style="margin-top:22px;"></div>
+
+      <!-- PH01 -->
+      <div class="phase-col ph1">
+        <div class="phase-node">
+          <div class="phase-badge" onclick="scrollToPhase('ph1')">
+            <div class="phase-circle">01</div>
+            <div class="phase-num-label">KTDW-01</div>
+            <div class="phase-name-label">Discovery</div>
+            <div class="phase-sub-label">요구사항·AI 시나리오</div>
+          </div>
+          <div class="act-list">
+            <div class="act-pill" data-act="a-01-01"><div class="act-pill-dot"></div><div class="act-pill-text">킥오프·착수 준비</div></div>
+            <div class="act-pill" data-act="a-01-02"><div class="act-pill-dot"></div><div class="act-pill-text">요구사항 정의</div></div>
+            <div class="act-pill" data-act="a-01-03"><div class="act-pill-dot"></div><div class="act-pill-text">AI 시나리오 정의</div></div>
+            <div class="act-pill" data-act="a-01-04"><div class="act-pill-dot"></div><div class="act-pill-text">As-Is/To-Be 분석</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-connector ph1" style="margin-top:22px;"></div>
+
+      <!-- PH02 -->
+      <div class="phase-col ph2">
+        <div class="phase-node">
+          <div class="phase-badge" onclick="scrollToPhase('ph2')">
+            <div class="phase-circle">02</div>
+            <div class="phase-num-label">KTDW-02</div>
+            <div class="phase-name-label">설계·Sprint</div>
+            <div class="phase-sub-label">아키텍처·UI·데이터</div>
+          </div>
+          <div class="act-list">
+            <div class="act-pill" data-act="a-02-01"><div class="act-pill-dot"></div><div class="act-pill-text">아키텍처 설계</div></div>
+            <div class="act-pill" data-act="a-02-02"><div class="act-pill-dot"></div><div class="act-pill-text">UI/UX 설계</div></div>
+            <div class="act-pill" data-act="a-02-03"><div class="act-pill-dot"></div><div class="act-pill-text">데이터 모델 설계</div></div>
+            <div class="act-pill" data-act="a-02-04"><div class="act-pill-dot"></div><div class="act-pill-text">Sprint 계획 수립</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-connector ph2" style="margin-top:22px;"></div>
+
+      <!-- PH03 -->
+      <div class="phase-col ph3">
+        <div class="phase-node">
+          <div class="phase-badge" onclick="scrollToPhase('ph3')">
+            <div class="phase-circle">03</div>
+            <div class="phase-num-label">KTDW-03</div>
+            <div class="phase-name-label">구축·통합</div>
+            <div class="phase-sub-label">Sprint 개발·AI 실험</div>
+          </div>
+          <div class="act-list">
+            <div class="act-pill" data-act="a-03-01"><div class="act-pill-dot"></div><div class="act-pill-text">Sprint 개발</div></div>
+            <div class="act-pill" data-act="a-03-02"><div class="act-pill-dot"></div><div class="act-pill-text">AI 모델 실험·튜닝</div></div>
+            <div class="act-pill" data-act="a-03-03"><div class="act-pill-dot"></div><div class="act-pill-text">통합·연계 개발</div></div>
+            <div class="act-pill" data-act="a-03-04"><div class="act-pill-dot"></div><div class="act-pill-text">중간 보고</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-connector ph3" style="margin-top:22px;"></div>
+
+      <!-- PH04 -->
+      <div class="phase-col ph4">
+        <div class="phase-node">
+          <div class="phase-badge" onclick="scrollToPhase('ph4')">
+            <div class="phase-circle">04</div>
+            <div class="phase-num-label">KTDW-04</div>
+            <div class="phase-name-label">평가·검증</div>
+            <div class="phase-sub-label">테스트·보안·UAT</div>
+          </div>
+          <div class="act-list">
+            <div class="act-pill" data-act="a-04-01"><div class="act-pill-dot"></div><div class="act-pill-text">기능·성능 테스트</div></div>
+            <div class="act-pill" data-act="a-04-02"><div class="act-pill-dot"></div><div class="act-pill-text">AI 모델 검증</div></div>
+            <div class="act-pill" data-act="a-04-03"><div class="act-pill-dot"></div><div class="act-pill-text">보안점검</div></div>
+            <div class="act-pill" data-act="a-04-04"><div class="act-pill-dot"></div><div class="act-pill-text">UAT / 사용자 수락</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-connector ph4" style="margin-top:22px;"></div>
+
+      <!-- PH05 -->
+      <div class="phase-col ph5">
+        <div class="phase-node">
+          <div class="phase-badge" onclick="scrollToPhase('ph5')">
+            <div class="phase-circle">05</div>
+            <div class="phase-num-label">KTDW-05</div>
+            <div class="phase-name-label">전환·오픈</div>
+            <div class="phase-sub-label">Go-Live·안정화</div>
+          </div>
+          <div class="act-list">
+            <div class="act-pill" data-act="a-05-01"><div class="act-pill-dot"></div><div class="act-pill-text">전환·이행 계획</div></div>
+            <div class="act-pill" data-act="a-05-02"><div class="act-pill-dot"></div><div class="act-pill-text">시스템 오픈</div></div>
+            <div class="act-pill" data-act="a-05-03"><div class="act-pill-dot"></div><div class="act-pill-text">사용자 교육</div></div>
+            <div class="act-pill" data-act="a-05-04"><div class="act-pill-dot"></div><div class="act-pill-text">인수인계</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-connector ph5" style="margin-top:22px;"></div>
+
+      <!-- PH06 -->
+      <div class="phase-col ph6">
+        <div class="phase-node">
+          <div class="phase-badge" onclick="scrollToPhase('ph6')">
+            <div class="phase-circle">06</div>
+            <div class="phase-num-label">KTDW-06</div>
+            <div class="phase-name-label">준공·종료</div>
+            <div class="phase-sub-label">정산·사후관리</div>
+          </div>
+          <div class="act-list">
+            <div class="act-pill" data-act="a-06-01"><div class="act-pill-dot"></div><div class="act-pill-text">준공 처리</div></div>
+            <div class="act-pill" data-act="a-06-02"><div class="act-pill-dot"></div><div class="act-pill-text">최종 정산·종료</div></div>
+            <div class="act-pill" data-act="a-06-03"><div class="act-pill-dot"></div><div class="act-pill-text">사후관리 계획</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /phase-timeline -->
+
+    <!-- Gate markers -->
+    <div class="gate-row">
+      <div class="gate-mark" style="color:#6B7280"><div class="gate-dot"></div>Gate 0</div>
+      <div class="gate-spacer"></div>
+      <div class="gate-mark" style="color:#8A8680"><div class="gate-dot"></div>Gate 1</div>
+      <div class="gate-spacer"></div>
+      <div class="gate-mark" style="color:#5B8FD4"><div class="gate-dot"></div>Gate 2</div>
+      <div class="gate-spacer"></div>
+      <div class="gate-mark" style="color:#8472C4"><div class="gate-dot"></div>Gate 3</div>
+      <div class="gate-spacer"></div>
+      <div class="gate-mark" style="color:#D4895A"><div class="gate-dot"></div>Gate 4</div>
+      <div class="gate-spacer"></div>
+      <div class="gate-mark" style="color:#4FA882"><div class="gate-dot"></div>Gate 5</div>
+      <div class="gate-spacer"></div>
+      <div class="gate-mark" style="color:#D4001A"><div class="gate-dot"></div>Gate 6</div>
+    </div>
+
+    <!-- AXE Framework row -->
+    <div class="framework-divider">
+      <span class="framework-divider-label">AXE Delivery Framework 매핑</span>
+      <span class="framework-divider-line"></span>
+    </div>
+
+    <div class="axe-timeline">
+
+      <!-- AXE → KTDW-00 : A-01 Opportunity, A-04 Team Structure, A-05 Contract, A-06 Launch, A-07.3 Onboarding -->
+      <div class="axe-col">
+        <div class="axe-phase-header">
+          <div class="axe-phase-label">Phase 01 Sell + 02 Init</div>
+          <div class="axe-phase-name">영업·계약·착수</div>
+        </div>
+        <div class="axe-pill-list">
+          <div class="axe-pill" data-axe="A-01"><span class="axe-pill-id">A-01</span><span class="axe-pill-text">Opportunity 기회 발굴</span></div>
+          <div class="axe-pill" data-axe="A-04"><span class="axe-pill-id">A-04</span><span class="axe-pill-text">Team Structure</span></div>
+          <div class="axe-pill" data-axe="A-05"><span class="axe-pill-id">A-05</span><span class="axe-pill-text">Contract Signature</span></div>
+          <div class="axe-pill" data-axe="A-06"><span class="axe-pill-id">A-06</span><span class="axe-pill-text">Launch 착수</span></div>
+          <div class="axe-pill" data-axe="A-07.3"><span class="axe-pill-id">A-07.3</span><span class="axe-pill-text">Team Onboarding</span></div>
+        </div>
+      </div>
+
+      <div class="axe-col-spacer"></div>
+
+      <!-- AXE → KTDW-01 : A-02 CBO, A-03 Readiness, A-07.1/2/5, A-08.2/3 -->
+      <div class="axe-col">
+        <div class="axe-phase-header">
+          <div class="axe-phase-label">Phase 01–02 Initiate</div>
+          <div class="axe-phase-name">요구사항·킥오프</div>
+        </div>
+        <div class="axe-pill-list">
+          <div class="axe-pill" data-axe="A-02"><span class="axe-pill-id">A-02</span><span class="axe-pill-text">Customer Business Outcomes</span></div>
+          <div class="axe-pill" data-axe="A-03"><span class="axe-pill-id">A-03</span><span class="axe-pill-text">Customer Maturity Readiness</span></div>
+          <div class="axe-pill" data-axe="A-07.1"><span class="axe-pill-id">A-07.1</span><span class="axe-pill-text">Communication Mgmt</span></div>
+          <div class="axe-pill" data-axe="A-07.2"><span class="axe-pill-id">A-07.2</span><span class="axe-pill-text">Deliverable Acceptance</span></div>
+          <div class="axe-pill" data-axe="A-07.5"><span class="axe-pill-id">A-07.5</span><span class="axe-pill-text">Ways of Working</span></div>
+          <div class="axe-pill" data-axe="A-08.2"><span class="axe-pill-id">A-08.2</span><span class="axe-pill-text">Maturity Assessment</span></div>
+          <div class="axe-pill" data-axe="A-08.3"><span class="axe-pill-id">A-08.3</span><span class="axe-pill-text">Kick Off</span></div>
+        </div>
+      </div>
+
+      <div class="axe-col-spacer"></div>
+
+      <!-- AXE → KTDW-02 : A-07.4 Tooling, A-07.6 Program Cadence, A-08.1 Launch Ready -->
+      <div class="axe-col">
+        <div class="axe-phase-header">
+          <div class="axe-phase-label">Phase 02 Sprint 0</div>
+          <div class="axe-phase-name">환경·Sprint 계획</div>
+        </div>
+        <div class="axe-pill-list">
+          <div class="axe-pill" data-axe="A-07.4"><span class="axe-pill-id">A-07.4</span><span class="axe-pill-text">Tooling &amp; Access</span></div>
+          <div class="axe-pill" data-axe="A-07.6"><span class="axe-pill-id">A-07.6</span><span class="axe-pill-text">Program Cadence</span></div>
+          <div class="axe-pill" data-axe="A-08.1"><span class="axe-pill-id">A-08.1</span><span class="axe-pill-text">Launch Ready Planning</span></div>
+        </div>
+      </div>
+
+      <div class="axe-col-spacer"></div>
+
+      <!-- AXE → KTDW-03 : A-09 Manage, A-10.2~4/7 -->
+      <div class="axe-col">
+        <div class="axe-phase-header">
+          <div class="axe-phase-label">Phase 03 Deliver</div>
+          <div class="axe-phase-name">구축·반복·보고</div>
+        </div>
+        <div class="axe-pill-list">
+          <div class="axe-pill" data-axe="A-09"><span class="axe-pill-id">A-09</span><span class="axe-pill-text">Manage &amp; Inspect</span></div>
+          <div class="axe-pill" data-axe="A-10.2"><span class="axe-pill-id">A-10.2</span><span class="axe-pill-text">Outcome Tracking</span></div>
+          <div class="axe-pill" data-axe="A-10.3"><span class="axe-pill-id">A-10.3</span><span class="axe-pill-text">Risk &amp; Decision</span></div>
+          <div class="axe-pill" data-axe="A-10.4"><span class="axe-pill-id">A-10.4</span><span class="axe-pill-text">Status Reporting</span></div>
+          <div class="axe-pill" data-axe="A-10.7"><span class="axe-pill-id">A-10.7</span><span class="axe-pill-text">Steering Committee</span></div>
+        </div>
+      </div>
+
+      <div class="axe-col-spacer"></div>
+
+      <!-- AXE → KTDW-04 : A-10.5/6/8 -->
+      <div class="axe-col">
+        <div class="axe-phase-header">
+          <div class="axe-phase-label">Phase 03 Deliver</div>
+          <div class="axe-phase-name">검증·품질·UAT</div>
+        </div>
+        <div class="axe-pill-list">
+          <div class="axe-pill" data-axe="A-10.5"><span class="axe-pill-id">A-10.5</span><span class="axe-pill-text">Deliverable Maturity Review</span></div>
+          <div class="axe-pill" data-axe="A-10.6"><span class="axe-pill-id">A-10.6</span><span class="axe-pill-text">Customer Feedback Survey</span></div>
+          <div class="axe-pill" data-axe="A-10.8"><span class="axe-pill-id">A-10.8</span><span class="axe-pill-text">Delivery Quality Inspection</span></div>
+        </div>
+      </div>
+
+      <div class="axe-col-spacer"></div>
+
+      <!-- AXE → KTDW-05 : A-10.1 Launch Ready (Go-Live) -->
+      <div class="axe-col">
+        <div class="axe-phase-header">
+          <div class="axe-phase-label">Phase 03 → Close</div>
+          <div class="axe-phase-name">Go-Live·전환</div>
+        </div>
+        <div class="axe-pill-list">
+          <div class="axe-pill" data-axe="A-10.1"><span class="axe-pill-id">A-10.1</span><span class="axe-pill-text">Launch Ready Planning (ongoing)</span></div>
+          <div class="axe-pill" data-axe="A-14"><span class="axe-pill-id">A-14</span><span class="axe-pill-text">Team Offboarding</span></div>
+        </div>
+      </div>
+
+      <div class="axe-col-spacer"></div>
+
+      <!-- AXE → KTDW-06 : A-11 Close, A-12 Lesson, A-13 CSAT -->
+      <div class="axe-col">
+        <div class="axe-phase-header">
+          <div class="axe-phase-label">Phase 04 Close</div>
+          <div class="axe-phase-name">종료·레슨런</div>
+        </div>
+        <div class="axe-pill-list">
+          <div class="axe-pill" data-axe="A-11"><span class="axe-pill-id">A-11</span><span class="axe-pill-text">Close 종료</span></div>
+          <div class="axe-pill" data-axe="A-12"><span class="axe-pill-id">A-12</span><span class="axe-pill-text">Lesson Learned</span></div>
+          <div class="axe-pill" data-axe="A-13"><span class="axe-pill-id">A-13</span><span class="axe-pill-text">CSAT 고객만족도</span></div>
+        </div>
+      </div>
+
+    </div><!-- /axe-timeline -->
+
+  </div><!-- /lifecycle-box -->
+</div><!-- /lifecycle-wrap -->
+
+<!-- ADM STRIP -->
+<div class="adm-section">
+  <div class="adm-label">행정 Control Catalog — ADM-001 ~ ADM-044</div>
+  <div class="adm-chips" id="admChips"></div>
+</div>
+
+<!-- PHASE DETAIL SECTIONS -->
+<div class="phases-section">
+
+  <div class="phase-detail ph0" id="ph0">
+    <div class="phase-detail-header">
+      <div class="phase-detail-num">00</div>
+      <div class="phase-detail-info">
+        <div class="phase-detail-name"><em>착수준비</em> · 사업·발주 및 수행환경 구성</div>
+        <div class="phase-detail-desc">계약 완료 후 공식 착수 전까지의 준비 단계. 수행 조직 구성, 착수 신고, 착수 보고를 완료하고 수행 환경을 구성합니다.</div>
+      </div>
+      <div class="phase-detail-gate">Gate 0 — 착수 게이트</div>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card ph0" data-activity="a-00-01"><div class="act-card-id">A-00-01</div><div><div class="act-card-title">사업·발주 확인</div><div class="act-card-ko">계약 및 발주 검토</div></div><div class="act-card-preview">계약서, 제안서, 과업지시서를 검토하고 사업 범위와 조건을 확인합니다.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-00</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph0" data-activity="a-00-02"><div class="act-card-id">A-00-02</div><div><div class="act-card-title">수행 조직 구성</div><div class="act-card-ko">PM·팀원 배치 및 역할 정의</div></div><div class="act-card-preview">수행PM, 기술PM, 팀원 배치. VDC 인력 투입 계획 수립. 하도급 업체 선정.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-00</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph0" data-activity="a-00-03"><div class="act-card-id">A-00-03</div><div><div class="act-card-title">착수 신고·보고</div><div class="act-card-ko">PRB 착수 처리 (타 시스템)</div></div><div class="act-card-preview">착수 신고는 PRB 시스템에서 처리. 본 플랫폼에서는 처리 상태 확인만 지원합니다.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-00</span><span class="act-card-arrow">→</span></div></div>
+    </div>
+  </div>
+
+  <div class="phase-detail ph1" id="ph1">
+    <div class="phase-detail-header">
+      <div class="phase-detail-num">01</div>
+      <div class="phase-detail-info">
+        <div class="phase-detail-name"><em>Discovery</em> · 요구사항·AI 시나리오 정의</div>
+        <div class="phase-detail-desc">사용자 요구사항, 비즈니스 목표, AI 활용 시나리오를 정의하는 단계. 현업 인터뷰, 워크숍, As-Is 분석을 통해 To-Be를 설계합니다.</div>
+      </div>
+      <div class="phase-detail-gate">Gate 1 — Discovery 검토 게이트</div>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card ph1" data-activity="a-01-01"><div class="act-card-id">A-01-01</div><div><div class="act-card-title">킥오프·착수 준비</div><div class="act-card-ko">프로젝트 공식 시작</div></div><div class="act-card-preview">킥오프 미팅 개최, 수행 계획서 작성, WBS 초안 수립.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-01</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph1" data-activity="a-01-02"><div class="act-card-id">A-01-02</div><div><div class="act-card-title">요구사항 정의</div><div class="act-card-ko">기능·비기능 요구사항 수집</div></div><div class="act-card-preview">현업 인터뷰, 워크숍을 통한 요구사항 수집 및 정의서(RD) 작성.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-01</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph1" data-activity="a-01-03"><div class="act-card-id">A-01-03</div><div><div class="act-card-title">AI 시나리오 정의</div><div class="act-card-ko">AI·LLM 활용 방안 수립</div></div><div class="act-card-preview">AI 유스케이스 도출, 모델 선정 기준 정의, 성능 KPI 설정.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-01</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph1" data-activity="a-01-04"><div class="act-card-id">A-01-04</div><div><div class="act-card-title">As-Is / To-Be 분석</div><div class="act-card-ko">현황 분석 및 개선 방향</div></div><div class="act-card-preview">현행 업무 프로세스 분석, 개선 방향 도출, 갭 분석 수행.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-01</span><span class="act-card-arrow">→</span></div></div>
+    </div>
+  </div>
+
+  <div class="phase-detail ph2" id="ph2">
+    <div class="phase-detail-header">
+      <div class="phase-detail-num">02</div>
+      <div class="phase-detail-info">
+        <div class="phase-detail-name"><em>설계·Sprint</em> 계획</div>
+        <div class="phase-detail-desc">시스템 아키텍처, UI/UX, 데이터 모델을 설계하고 Sprint 계획을 수립합니다. 설계 산출물 검토 및 승인 후 구축 단계로 진입합니다.</div>
+      </div>
+      <div class="phase-detail-gate">Gate 2 — 설계 승인 게이트</div>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card ph2" data-activity="a-02-01"><div class="act-card-id">A-02-01</div><div><div class="act-card-title">아키텍처 설계</div><div class="act-card-ko">시스템·인프라 설계</div></div><div class="act-card-preview">시스템 아키텍처 설계, 인프라 구성, 보안 아키텍처, 인터페이스 정의.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-02</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph2" data-activity="a-02-02"><div class="act-card-id">A-02-02</div><div><div class="act-card-title">UI/UX 설계</div><div class="act-card-ko">화면 설계 및 프로토타입</div></div><div class="act-card-preview">화면 설계서, 와이어프레임, UI 프로토타입 제작 및 접근성 검토.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-02</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph2" data-activity="a-02-03"><div class="act-card-id">A-02-03</div><div><div class="act-card-title">데이터 모델 설계</div><div class="act-card-ko">DB·AI 데이터 구조 설계</div></div><div class="act-card-preview">데이터베이스 설계, AI 학습 데이터 파이프라인, 데이터 거버넌스 계획.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-02</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph2" data-activity="a-02-04"><div class="act-card-id">A-02-04</div><div><div class="act-card-title">Sprint 계획 수립</div><div class="act-card-ko">애자일 Sprint 로드맵</div></div><div class="act-card-preview">Sprint 단위 분할, 백로그 정의, 팀 역할 배분, Sprint 0 완료.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-02</span><span class="act-card-arrow">→</span></div></div>
+    </div>
+  </div>
+
+  <div class="phase-detail ph3" id="ph3">
+    <div class="phase-detail-header">
+      <div class="phase-detail-num">03</div>
+      <div class="phase-detail-info">
+        <div class="phase-detail-name"><em>구축·실험·통합</em></div>
+        <div class="phase-detail-desc">Sprint 단위 개발, AI 모델 실험 및 튜닝, 시스템 통합·연계 개발을 수행합니다. 중간 보고를 통해 진도 및 품질을 관리합니다.</div>
+      </div>
+      <div class="phase-detail-gate">Gate 3 — 중간 검토 게이트</div>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card ph3" data-activity="a-03-01"><div class="act-card-id">A-03-01</div><div><div class="act-card-title">Sprint 개발</div><div class="act-card-ko">기능별 반복 개발</div></div><div class="act-card-preview">Sprint 계획에 따른 기능 개발, 단위 테스트, Sprint Review/Retrospective.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-03</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph3" data-activity="a-03-02"><div class="act-card-id">A-03-02</div><div><div class="act-card-title">AI 모델 실험·튜닝</div><div class="act-card-ko">모델 개발 및 최적화</div></div><div class="act-card-preview">AI 모델 학습, MLflow 실험 관리, 성능 측정 및 하이퍼파라미터 튜닝.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-03</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph3" data-activity="a-03-03"><div class="act-card-id">A-03-03</div><div><div class="act-card-title">통합·연계 개발</div><div class="act-card-ko">시스템 인터페이스 구현</div></div><div class="act-card-preview">ERP, KOS-B2B 등 외부 시스템 연계 개발. API 게이트웨이 구성.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-03</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph3" data-activity="a-03-04"><div class="act-card-id">A-03-04</div><div><div class="act-card-title">중간 보고</div><div class="act-card-ko">진도 현황 및 품질 보고</div></div><div class="act-card-preview">중간 보고서 작성, 발주처 보고, Easy ERP 공정 실적 등록.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-03</span><span class="act-card-arrow">→</span></div></div>
+    </div>
+  </div>
+
+  <div class="phase-detail ph4" id="ph4">
+    <div class="phase-detail-header">
+      <div class="phase-detail-num">04</div>
+      <div class="phase-detail-info">
+        <div class="phase-detail-name"><em>평가·검증·보안점검</em></div>
+        <div class="phase-detail-desc">완료된 시스템의 기능 테스트, AI 모델 성능 검증, 보안 취약점 점검을 수행합니다. UAT를 통해 발주처 최종 승인을 획득합니다.</div>
+      </div>
+      <div class="phase-detail-gate">Gate 4 — 오픈 승인 게이트</div>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card ph4" data-activity="a-04-01"><div class="act-card-id">A-04-01</div><div><div class="act-card-title">기능·성능 테스트</div><div class="act-card-ko">통합 테스트 및 부하 테스트</div></div><div class="act-card-preview">시스템 통합 테스트, 성능/부하 테스트, 회귀 테스트, 결함 관리.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-04</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph4" data-activity="a-04-02"><div class="act-card-id">A-04-02</div><div><div class="act-card-title">AI 모델 검증</div><div class="act-card-ko">모델 성능·공정성 검증</div></div><div class="act-card-preview">KPI 기준 검증, 편향성 테스트, XAI 설명 가능성 검토, 모델 승인.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-04</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph4" data-activity="a-04-03"><div class="act-card-id">A-04-03</div><div><div class="act-card-title">보안점검</div><div class="act-card-ko">보안 취약점 진단 및 조치</div></div><div class="act-card-preview">취약점 스캔, 모의 침투 테스트, PIA 수행, 보안 조치 및 재점검.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-04</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph4" data-activity="a-04-04"><div class="act-card-id">A-04-04</div><div><div class="act-card-title">UAT / 사용자 수락</div><div class="act-card-ko">발주처 최종 승인</div></div><div class="act-card-preview">사용자 수락 테스트(UAT) 수행, 발주처 확인 및 검수 확인서 수령.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-04</span><span class="act-card-arrow">→</span></div></div>
+    </div>
+  </div>
+
+  <div class="phase-detail ph5" id="ph5">
+    <div class="phase-detail-header">
+      <div class="phase-detail-num">05</div>
+      <div class="phase-detail-info">
+        <div class="phase-detail-name"><em>전환·오픈·안정화</em></div>
+        <div class="phase-detail-desc">운영 환경 전환, 시스템 오픈, 안정화 기간을 관리합니다. 사용자 교육, 운영 인수인계, 하자보수 계획을 수립합니다.</div>
+      </div>
+      <div class="phase-detail-gate">Gate 5 — 안정화 완료 게이트</div>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card ph5" data-activity="a-05-01"><div class="act-card-id">A-05-01</div><div><div class="act-card-title">전환·이행 계획</div><div class="act-card-ko">운영 환경 전환 준비</div></div><div class="act-card-preview">데이터 마이그레이션 계획, 운영 환경 배포, 롤백 계획, 전환 리허설.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-05</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph5" data-activity="a-05-02"><div class="act-card-id">A-05-02</div><div><div class="act-card-title">시스템 오픈</div><div class="act-card-ko">Go-Live 및 모니터링</div></div><div class="act-card-preview">Go-Live 실행, 실시간 모니터링, 긴급 대응팀 운영, 안정화 현황 보고.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-05</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph5" data-activity="a-05-03"><div class="act-card-id">A-05-03</div><div><div class="act-card-title">사용자 교육</div><div class="act-card-ko">운영자·사용자 교육</div></div><div class="act-card-preview">운영자 교육, 최종 사용자 교육, 매뉴얼 배포, 헬프데스크 지원.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-05</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph5" data-activity="a-05-04"><div class="act-card-id">A-05-04</div><div><div class="act-card-title">인수인계</div><div class="act-card-ko">운영 조직 이관</div></div><div class="act-card-preview">운영 조직 인수인계, 소스코드·문서 이관, 하자보수 계획 확정.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-05</span><span class="act-card-arrow">→</span></div></div>
+    </div>
+  </div>
+
+  <div class="phase-detail ph6" id="ph6">
+    <div class="phase-detail-header">
+      <div class="phase-detail-num">06</div>
+      <div class="phase-detail-info">
+        <div class="phase-detail-name"><em>준공·종료·사후관리</em></div>
+        <div class="phase-detail-desc">프로젝트 공식 준공 처리, 최종 정산, 사후관리 계획을 수립합니다. 준공은 PRB 시스템에서 처리하며, 본 플랫폼에서는 상태 확인 및 종료 보고를 지원합니다.</div>
+      </div>
+      <div class="phase-detail-gate">Gate 6 — 준공 승인 게이트</div>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card ph6" data-activity="a-06-01"><div class="act-card-id">A-06-01</div><div><div class="act-card-title">준공 처리</div><div class="act-card-ko">PRB 준공 확인 (타 시스템)</div></div><div class="act-card-preview">준공 신고는 PRB 시스템에서 처리. 본 플랫폼에서는 처리 상태 확인만 지원합니다.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-06</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph6" data-activity="a-06-02"><div class="act-card-id">A-06-02</div><div><div class="act-card-title">최종 정산·종료</div><div class="act-card-ko">매출인식·하도급 정산</div></div><div class="act-card-preview">최종 매출인식 처리(Easy ERP), 하도급 대금 지급, 종료보고 작성.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-06</span><span class="act-card-arrow">→</span></div></div>
+      <div class="activity-card ph6" data-activity="a-06-03"><div class="act-card-id">A-06-03</div><div><div class="act-card-title">사후관리 계획</div><div class="act-card-ko">하자보수·성과 측정</div></div><div class="act-card-preview">하자보수 기간 모니터링, AI 모델 드리프트 감지, KPI 측정, 레슨런 정리.</div><div class="act-card-footer"><span class="act-card-tag">KTDW-06</span><span class="act-card-arrow">→</span></div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-left">"좋은 의도만으로는 충분하지 않습니다. 메커니즘이 필요합니다."</div>
+  <div class="foot-right">
+    <span>KT · Delivery Way</span>
+    <span>Framework v1.0 · 2026</span>
+    <span>내부 참조용 전용</span>
+  </div>
+</footer>
+
+<!-- AXE DETAIL PANEL -->
+<aside class="axe-detail-panel" id="axe-panel">
+  <div class="axe-detail-header">
+    <div class="axe-detail-header-left">
+      <span class="axe-detail-phase-badge" id="axe-panel-phase">Phase 01</span>
+      <span class="axe-detail-id" id="axe-panel-id">A-01</span>
+    </div>
+    <button class="axe-detail-close" id="axe-panel-close">×</button>
+  </div>
+  <div class="axe-detail-body" id="axe-panel-body"></div>
+</aside>
+
+<!-- SIDE PANEL -->
+<div class="panel-backdrop" id="backdrop"></div>
+<aside class="side-panel" id="panel">
+  <div class="panel-header">
+    <div class="panel-header-left">
+      <span class="panel-phase-badge" id="panel-phase">PHASE 00</span>
+      <span class="panel-id" id="panel-id">A-00-01</span>
+    </div>
+    <button class="panel-close" id="panel-close">×</button>
+  </div>
+  <div class="panel-body" id="panel-body"></div>
+</aside>
+
+<script>
+/* ─── AXE Activity Data (원본 AXE Delivery Framework 상세) ─── */
+const AXE_PHASE_COLORS = {'1':'#8A8680','2':'#6B8DD6','3':'#8976C7','4':'#E89A5C'};
+const AXE_PHASE_LABELS = {'1':'Phase 01 · Sell','2':'Phase 02 · Initiate','3':'Phase 03 · Deliver','4':'Phase 04 · Close'};
+
+const AXE_DATA = {
+'A-01':{ph:'1',id:'A-01',title:'Opportunity',ko:'기회 발굴',
+  def:'영업 파이프라인에 들어온 초기 기회. 고객 니즈와 AXE의 가치 가설을 수립한다.',
+  purpose:'어떤 고객에게, 어떤 가치를, 어떤 방식으로 제공할지를 사전 정의한다.',
+  deliv:[{n:'D01',t:'Opportunity Brief'},{n:'D02',t:'Value Hypothesis'},{n:'D03',t:'고객 Pain Point 정리'}],
+  chk:['고객 Pain Point가 명확히 기술되었는가','AXE 제공 가치와 연결 근거가 있는가','내부 Go/No-Go 검토 완료','담당 Engagement Lead 배정'],
+  raci:[{role:'Sales',r:'R',a:'A',c:'',i:''},{role:'Delivery Head',r:'',a:'A',c:'C',i:''},{role:'Engagement Lead',r:'C',a:'',c:'C',i:'I'}],
+  ktRef:'KTDW-00'},
+'A-02':{ph:'1',id:'A-02',title:'Customer Business Outcomes',ko:'CBO · 고객 비즈니스 성과 정의',
+  def:'이 프레임워크의 북극성. 고객이 얻을 비즈니스 성과를 정량 지표로 합의한다.',
+  purpose:'산출물이 아닌 outcome에서 출발하는 것이 이 프레임워크 철학의 핵심.',
+  deliv:[{n:'D01',t:'CBO Statement (정량 목표)'},{n:'D02',t:'Success Metrics 정의서'},{n:'D03',t:'Baseline 측정값'},{n:'D04',t:'CBO 추적 대시보드 설계'}],
+  chk:['CBO가 고객 임원 레벨과 합의되었는가','측정 가능한 수치 목표가 포함되었는가','Baseline 데이터 확보 완료','추적 주기 및 방법 확정'],
+  raci:[{role:'Engagement Lead',r:'R',a:'A',c:'',i:''},{role:'고객 Executive',r:'C',a:'A',c:'C',i:''},{role:'Delivery Head',r:'',a:'',c:'C',i:'I'}],
+  ktRef:'KTDW-01'},
+'A-03':{ph:'1',id:'A-03',title:'Customerurity Readiness',ko:'고객 성숙도 사전 평가',
+  def:'Azure CAF 기반 고객의 기술적·조직적 성숙도를 평가한다.',
+  purpose:'성숙도 Gap을 사전에 파악하여 팀 구성 및 범위 결정에 반영한다.',
+  deliv:[{n:'D01',t:'Readiness Assessment 보고서'},{n:'D02',t:'Gap 분석 매트릭스'},{n:'D03',t:'개입 수준(Intervention Level) 정의'}],
+  chk:['기술 성숙도(인프라/개발/데이터) 평가 완료','조직 성숙도(의사결정/변화관리) 평가 완료','Critical Gap 식별 및 대응 방안 수립','고객 담당자와 결과 공유'],
+  raci:[{role:'Engagement Lead',r:'R',a:'A',c:'',i:''},{role:'Practice Lead',r:'C',a:'',c:'C',i:''},{role:'고객 PM',r:'C',a:'',c:'C',i:'I'}],
+  ktRef:'KTDW-01'},
+'A-04':{ph:'1',id:'A-04',title:'Team Structure',ko:'팀 구조 설계',
+  def:'CBO 달성에 필요한 역량과 Readiness Gap을 메울 개입 수준을 바탕으로, 필요한 역할과 시니어리티를 설계한다. AXE 4개 practice 간 cross-practice 협업 구조도 이 단계에서 확정된다.',
+  purpose:'"누가 무엇을 책임지는가"를 계약 전에 명확히 한다. 실행 단계에서의 R&R 혼선을 예방한다.',
+  deliv:[{n:'D01',t:'Engagement Org Chart'},{n:'D02',t:'Role Description (역할별 책임, 기대 산출물)'},{n:'D03',t:'Staffing Plan (누가, 언제, 몇 % allocation)'},{n:'D04',t:'Cross-practice Collaboration Map'},{n:'D05',t:'Ramp-up Schedule'},{n:'D06',t:'Backup / Contingency Plan'}],
+  chk:['각 역할별 SLA와 기대 산출물이 정의되었는가','AE1/AE2/DATA/SVC practice 간 overlap 영역이 명확한가','시니어 : 미드 : 주니어 비율이 합리적인가','현장 : 원격 구성이 고객 요구와 일치하는가','예비 인력(backup)이 확보되었는가','Ramp-up 및 ramp-down 일정이 현실적인가'],
+  raci:[{role:'Delivery Head',r:'',a:'A',c:'',i:''},{role:'Practice Lead',r:'R',a:'',c:'',i:''},{role:'Engagement Lead',r:'R',a:'',c:'',i:''},{role:'HR / TA',r:'C',a:'',c:'C',i:''},{role:'PM',r:'I',a:'',c:'',i:''}],
+  ktRef:'KTDW-00'},
+'A-05':{ph:'1',id:'A-05',title:'Contract Signature',ko:'계약 체결',
+  def:'SOW/계약 체결. 법무·컴플라이언스 검토 완료 후 공식 서명.',
+  purpose:'범위, 납기, 책임 경계를 문서화하여 실행 기반을 마련한다.',
+  deliv:[{n:'D01',t:'서명된 SOW / 계약서'},{n:'D02',t:'컴플라이언스 검토 완료 확인'},{n:'D03',t:'계약 요약 브리핑 자료'}],
+  chk:['SOW 범위가 CBO 및 팀 구성과 일치하는가','법무 검토 완료','고객 서명 획득','내부 계약 등록 완료'],
+  raci:[{role:'Sales',r:'R',a:'A',c:'',i:''},{role:'Legal',r:'C',a:'',c:'C',i:''},{role:'Delivery Head',r:'C',a:'',c:'',i:'I'},{role:'Engagement Lead',r:'I',a:'',c:'',i:''}],
+  ktRef:'KTDW-00'},
+'A-06':{ph:'2',id:'A-06',title:'Launch',ko:'론치 선언',
+  def:'Phase 2 진입을 선언하는 이정표. Sprint 0 준비 공식 시작.',
+  purpose:'계약 → 실제 시작 사이의 모멘텀을 유지하고 팀 전체가 같은 출발선에 서게 한다.',
+  deliv:[{n:'D01',t:'Launch 선언 커뮤니케이션'},{n:'D02',t:'Sprint 0 킥오프 일정'},{n:'D03',t:'팀 연락처 목록'}],
+  chk:['고객 측 Launch 선언 완료','Sprint 0 일정 확정','전체 팀 초대 및 공지 완료'],
+  raci:[{role:'Engagement Lead',r:'R',a:'A',c:'',i:''},{role:'고객 PM',r:'C',a:'',c:'C',i:'I'},{role:'PM',r:'R',a:'',c:'',i:''}],
+  ktRef:'KTDW-00'},
+'A-07.1':{ph:'2',id:'A-07.1',title:'Communication Management',ko:'커뮤니케이션 관리 체계',
+  def:'보고 라인, 미팅 cadence, 채널, 에스컬레이션 경로 정의.',
+  purpose:'정보 흐름의 투명성을 확보하여 신뢰를 구축한다.',
+  deliv:[{n:'D01',t:'Communication Plan'},{n:'D02',t:'미팅 Cadence 캘린더'},{n:'D03',t:'에스컬레이션 매트릭스'},{n:'D04',t:'채널 정의 (Slack/Teams 등)'}],
+  chk:['주간 상태 보고 채널 확정','Steering Committee 주기 확정','에스컬레이션 경로 문서화','고객 측 커뮤니케이션 담당자 확정'],
+  raci:[{role:'PM',r:'R',a:'A',c:'',i:''},{role:'Engagement Lead',r:'C',a:'',c:'C',i:''},{role:'고객 PM',r:'C',a:'',c:'C',i:'I'}],
+  ktRef:'KTDW-01'},
+'A-07.2':{ph:'2',id:'A-07.2',title:'Deliverable Acceptance',ko:'산출물 검수 기준',
+  def:'산출물 목록과 각 산출물의 DoD(Definition of Done) 정의. 한국 SI 문화에서 특히 중요.',
+  purpose:'기대 수준의 불일치로 인한 분쟁을 사전에 방지한다.',
+  deliv:[{n:'D01',t:'산출물 목록 (Deliverable Register)'},{n:'D02',t:'각 산출물별 DoD 정의'},{n:'D03',t:'검수 프로세스 정의'},{n:'D04',t:'고객 승인 워크플로'}],
+  chk:['전체 산출물 목록 고객 확인 완료','각 산출물 DoD 고객 합의','검수 기간 및 피드백 사이클 합의','최종 승인 권한자 확정'],
+  raci:[{role:'PM',r:'R',a:'A',c:'',i:''},{role:'고객 PM',r:'C',a:'A',c:'C',i:''},{role:'Engagement Lead',r:'C',a:'',c:'C',i:'I'}],
+  ktRef:'KTDW-01'},
+'A-07.3':{ph:'2',id:'A-07.3',title:'Team Onboarding',ko:'팀 온보딩',
+  def:'팀원 합류 프로세스 — 계정, 교육, 컨텍스트 공유.',
+  purpose:'새 팀원이 빠르게 기여할 수 있는 환경을 만든다.',
+  deliv:[{n:'D01',t:'온보딩 체크리스트'},{n:'D02',t:'계정·권한 설정 완료 확인'},{n:'D03',t:'컨텍스트 공유 자료 (CBO, Readiness, 계약 요약)'}],
+  chk:['전체 팀원 계정(AWS/Azure/GitHub 등) 활성화','CBO 및 프로젝트 컨텍스트 공유','역할별 기대 산출물 브리핑','보안 교육 완료'],
+  raci:[{role:'PM',r:'R',a:'A',c:'',i:''},{role:'Engagement Lead',r:'C',a:'',c:'C',i:''},{role:'HR / TA',r:'C',a:'',c:'C',i:'I'}],
+  ktRef:'KTDW-00'},
+'A-07.4':{ph:'2',id:'A-07.4',title:'Tooling & Access',ko:'툴 및 접근 권한',
+  def:'개발/협업 툴 세팅. "첫날 코드 한 줄 커밋할 수 있는 상태" 만들기.',
+  purpose:'환경 미비로 인한 첫 Sprint 지연을 방지한다.',
+  deliv:[{n:'D01',t:'툴 목록 및 접근 권한 매트릭스'},{n:'D02',t:'개발 환경 구성 완료 확인'},{n:'D03',t:'CI/CD 파이프라인 초기 설정'},{n:'D04',t:'코드 저장소 초기화'}],
+  chk:['Git 저장소 생성 및 브랜치 전략 확정','CI/CD 파이프라인 기본 설정','개발/스테이징/운영 환경 접근 권한 배분','협업 툴(Jira/Confluence 등) 프로젝트 생성','보안 정책 적용 완료'],
+  raci:[{role:'기술 Lead',r:'R',a:'A',c:'',i:''},{role:'PM',r:'C',a:'',c:'C',i:''},{role:'고객 인프라팀',r:'C',a:'',c:'C',i:'I'}],
+  ktRef:'KTDW-02'},
+'A-07.5':{ph:'2',id:'A-07.5',title:'Ways of Working',ko:'작업 방식',
+  def:'애자일 의식, DoR/DoD, 브랜치 전략, 코드 리뷰 정책 수립.',
+  purpose:'팀이 일관된 방식으로 협업하여 품질과 예측 가능성을 높인다.',
+  deliv:[{n:'D01',t:'Ways of Working 문서'},{n:'D02',t:'DoR / DoD 정의서'},{n:'D03',t:'브랜치 전략 문서'},{n:'D04',t:'코드 리뷰 정책'}],
+  chk:['Sprint 주기 및 세레모니 일정 확정','DoR/DoD 팀 합의 완료','브랜치 전략 문서화 및 공유','코드 리뷰 기준 및 Approver 지정'],
+  raci:[{role:'기술 Lead',r:'R',a:'A',c:'',i:''},{role:'PM',r:'C',a:'',c:'C',i:''},{role:'Engagement Lead',r:'C',a:'',c:'',i:'I'}],
+  ktRef:'KTDW-01'},
+'A-07.6':{ph:'2',id:'A-07.6',title:'Program Cadence',ko:'프로그램 리듬',
+  def:'스프린트, Steering, 고객 보고의 리듬 정의.',
+  purpose:'모든 이해관계자가 언제 어떤 정보를 받는지 예측 가능하게 한다.',
+  deliv:[{n:'D01',t:'전체 일정 캘린더'},{n:'D02',t:'Sprint 계획·리뷰·회고 일정'},{n:'D03',t:'Steering Committee 일정'},{n:'D04',t:'고객 보고 주기 및 양식'}],
+  chk:['Sprint 일정 전체 기간 확정','Steering 일정 고객 합의','고객 보고 양식 및 주기 확정','전체 팀 캘린더 공유'],
+  raci:[{role:'PM',r:'R',a:'A',c:'',i:''},{role:'Engagement Lead',r:'C',a:'',c:'C',i:''},{role:'고객 PM',r:'C',a:'',c:'C',i:'I'}],
+  ktRef:'KTDW-02'},
+'A-08.1':{ph:'2',id:'A-08.1',title:'Launch Ready Planning (Day 1)',ko:'론치 레디 플래닝',
+  def:'Sprint 0 이후 첫 실행 계획 확정. 마일스톤, 리스크, 의존성 총점검.',
+  purpose:'Day 1부터 실질적인 deliverable이 생산될 수 있도록 준비한다.',
+  deliv:[{n:'D01',t:'Launch Ready 체크리스트'},{n:'D02',t:'마일스톤 계획서'},{n:'D03',t:'리스크 Register 초안'},{n:'D04',t:'의존성 Map'}],
+  chk:['마일스톤 고객 합의 완료','리스크 Register 작성 및 공유','의존성 항목 모두 식별','Go/No-Go 기준 확정'],
+  raci:[{role:'PM',r:'R',a:'A',c:'',i:''},{role:'Engagement Lead',r:'C',a:'',c:'C',i:''},{role:'고객 PM',r:'C',a:'A',c:'',i:'I'}],
+  ktRef:'KTDW-02'},
+'A-08.2':{ph:'2',id:'A-08.2',title:'Customerurity Assessment (Day 1)',ko:'고객 성숙도 재평가',
+  def:'착수 시점 고객 성숙도 재확인. Phase 1 Readiness 대비 갭 점검.',
+  purpose:'계약 이후 변화된 고객 환경을 반영하여 실행 계획을 보정한다.',
+  deliv:[{n:'D01',t:'Day 1 Readiness 재평가 보고서'},{n:'D02',t:'갭 보정 계획'}],
+  chk:['Phase 1 Readiness와 현재 상태 비교 완료','신규 갭 항목 식별 및 대응 계획 수립','고객 담당자 확인 완료'],
+  raci:[{role:'Engagement Lead',r:'R',a:'A',c:'',i:''},{role:'Practice Lead',r:'C',a:'',c:'C',i:''},{role:'고객 PM',r:'C',a:'',c:'',i:'I'}],
+  ktRef:'KTDW-01'},
+'A-08.3':{ph:'2',id:'A-08.3',title:'Kick Off',ko:'공식 킥오프',
+  def:'고객 포함 전체 공식 킥오프. 팀/목표/계획 공유.',
+  purpose:'모든 이해관계자가 같은 목표와 계획을 공유하는 정렬 이벤트.',
+  deliv:[{n:'D01',t:'킥오프 발표 자료'},{n:'D02',t:'킥오프 미팅 의사록'},{n:'D03',t:'Action Item 목록'}],
+  chk:['킥오프 발표 자료 작성 완료','고객 임원급 참석 확인','전체 팀원 참석 완료','Action Item 및 담당자 확정','의사록 배포 완료'],
+  raci:[{role:'Engagement Lead',r:'R',a:'A',c:'',i:''},{role:'PM',r:'R',a:'',c:'',i:''},{role:'고객 Executive',r:'C',a:'',c:'',i:'I'},{role:'고객 PM',r:'C',a:'',c:'C',i:'I'}],
+  ktRef:'KTDW-01'},
+'A-09':{ph:'3',id:'A-09',title:'Manage & Inspect',ko:'실행과 점검',
+  def:'실행(Manage)과 점검(Inspect)의 이중 축. Phase 3의 철학. AWS LP "Dive Deep" 원칙에 따라 실행과 점검을 동시에 수행한다. 8개 ongoing activity가 반복되는 메커니즘.',
+  purpose:'Delivery health를 유지하면서 CBO 달성 방향으로 지속 조정한다.',
+  deliv:[{n:'D01',t:'Sprint 완료 기능 데모'},{n:'D02',t:'Sprint 회고 결과'},{n:'D03',t:'다음 Sprint 백로그 업데이트'}],
+  chk:['일일 스탠드업 수행','Sprint 계획 회의 완료','Sprint Review 고객 참석','Sprint 회고 수행 및 개선 항목 도출','백로그 업데이트'],
+  raci:[{role:'Engagement Lead',r:'R',a:'A',c:'',i:''},{role:'개발팀',r:'R',a:'',c:'',i:''},{role:'PM',r:'C',a:'',c:'C',i:''},{role:'고객 PM',r:'C',a:'',c:'',i:'I'}],
+  ktRef:'KTDW-03'},
+'A-10.1':{ph:'3',id:'A-10.1',title:'Launch Ready Planning (Ongoing)',ko:'반복 론치 레디 플래닝',
+  def:'후속 릴리즈/마일스톤마다 반복되는 실행 준비. Go-Live 전 최종 체크리스트.',
+  purpose:'각 릴리즈가 운영 환경에서 안정적으로 작동할 수 있도록 사전 검증한다.',
+  deliv:[{n:'D01',t:'Go-Live 체크리스트'},{n:'D02',t:'롤백 계획'},{n:'D03',t:'운영 환경 검증 결과'}],
+  chk:['Go-Live 기준(성능/보안/기능) 충족 확인','롤백 절차 문서화 및 테스트','운영팀 인수 준비 완료','모니터링 알림 설정','고객 Go-Live 승인'],
+  raci:[{role:'기술 Lead',r:'R',a:'A',c:'',i:''},{role:'PM',r:'C',a:'',c:'C',i:''},{role:'고객 PM',r:'C',a:'A',c:'',i:'I'}],
+  ktRef:'KTDW-05'},
+'A-10.2':{ph:'3',id:'A-10.2',title:'Outcome Tracking',ko:'성과 추적',
+  def:'CBO가 실제로 달성되고 있는지 지표 추적. 가장 중요한 activity.',
+  purpose:'산출물 생산이 아닌 CBO 달성에 집중하도록 팀을 정렬한다.',
+  deliv:[{n:'D01',t:'CBO 추적 보고서 (주간)'},{n:'D02',t:'지표 대시보드'},{n:'D03',t:'트렌드 분석 및 대응 계획'}],
+  chk:['CBO 지표 측정 완료 (주간)','목표 대비 실적 분석','이탈 지표에 대한 원인 분석','대응 액션 플랜 수립'],
+  raci:[{role:'Engagement Lead',r:'R',a:'A',c:'',i:''},{role:'PM',r:'C',a:'',c:'C',i:''},{role:'고객 Executive',r:'I',a:'',c:'',i:'I'}],
+  ktRef:'KTDW-03'},
+'A-10.3':{ph:'3',id:'A-10.3',title:'Risk & Decision Tracking',ko:'RAID 로그 관리',
+  def:'RAID Log 관리 — Risks, Assumptions, Issues, Decisions.',
+  purpose:'리스크와 의사결정을 투명하게 관리하여 프로젝트 예측 가능성을 높인다.',
+  deliv:[{n:'D01',t:'RAID Log (주간 업데이트)'},{n:'D02',t:'의사결정 이력'},{n:'D03',t:'리스크 완화 계획'}],
+  chk:['신규 리스크 식별 및 등록','기존 리스크 상태 업데이트','주요 의사결정 사항 기록','이슈 해소 진행 상황 확인'],
+  raci:[{role:'PM',r:'R',a:'A',c:'',i:''},{role:'Engagement Lead',r:'C',a:'',c:'C',i:''},{role:'고객 PM',r:'C',a:'',c:'C',i:'I'}],
+  ktRef:'KTDW-03'},
+'A-10.4':{ph:'3',id:'A-10.4',title:'Status Reporting',ko:'상태 보고',
+  def:'주간 상태 보고. RAG 상태, 진척, 리스크, 의사결정 사항.',
+  purpose:'이해관계자가 언제든 프로젝트 상태를 파악할 수 있게 한다.',
+  deliv:[{n:'D01',t:'주간 상태 보고서 (RAG 포함)'},{n:'D02',t:'임원 요약 대시보드'}],
+  chk:['RAG 상태 정확히 반영','주요 이슈 및 리스크 기재','다음 주 계획 포함','고객 PM 검토 완료','배포 완료'],
+  raci:[{role:'PM',r:'R',a:'A',c:'',i:''},{role:'Engagement Lead',r:'C',a:'',c:'C',i:''},{role:'고객 PM',r:'I',a:'',c:'',i:'I'}],
+  ktRef:'KTDW-03'},
+'A-10.5':{ph:'3',id:'A-10.5',title:'Deliverable Customerurity Review',ko:'산출물·수용도 리뷰',
+  def:'산출물이 고객 조직이 수용할 수 있는 수준인지 검토.',
+  purpose:'완성도와 고객 수용 가능성을 동시에 점검하여 검수 리스크를 줄인다.',
+  deliv:[{n:'D01',t:'산출물 리뷰 보고서'},{n:'D02',t:'수용도 평가 결과'},{n:'D03',t:'개선 사항 목록'}],
+  chk:['DoD 기준 충족 여부 확인','고객 측 리뷰어 참여','피드백 수집 및 반영 계획 수립','최종 수락 여부 결정'],
+  raci:[{role:'Engagement Lead',r:'R',a:'A',c:'',i:''},{role:'고객 담당자',r:'C',a:'A',c:'C',i:''},{role:'PM',r:'C',a:'',c:'C',i:'I'}],
+  ktRef:'KTDW-04'},
+'A-10.6':{ph:'3',id:'A-10.6',title:'Customer Feedback Survey',ko:'고객 피드백 설문',
+  def:'상시 피드백 루프. Pulse survey 형태.',
+  purpose:'문제가 커지기 전에 고객 불만족 신호를 조기에 포착한다.',
+  deliv:[{n:'D01',t:'설문 결과 보고'},{n:'D02',t:'트렌드 분석'},{n:'D03',t:'개선 액션 플랜'}],
+  chk:['격주 이상 주기로 설문 실시','응답률 70% 이상 달성','주요 불만 항목 즉시 대응','결과를 Steering에 보고'],
+  raci:[{role:'PM',r:'R',a:'A',c:'',i:''},{role:'Engagement Lead',r:'C',a:'',c:'C',i:''},{role:'고객 담당자',r:'I',a:'',c:'',i:'I'}],
+  ktRef:'KTDW-04'},
+'A-10.7':{ph:'3',id:'A-10.7',title:'Steering Committee',ko:'스티어링 커미티',
+  def:'상위 의사결정 기구. 범위 변경, 리소스 조정, 전략적 의사결정.',
+  purpose:'실행 레벨에서 해결 안 되는 이슈를 신속하게 의사결정한다.',
+  deliv:[{n:'D01',t:'Steering 자료'},{n:'D02',t:'의사결정 기록'},{n:'D03',t:'Action Item 목록'}],
+  chk:['Steering 자료 3일 전 배포','CBO 추적 현황 포함','의사결정 필요 사항 명확히 기술','Action Item 담당자·기한 확정','의사록 당일 배포'],
+  raci:[{role:'Delivery Head',r:'R',a:'A',c:'',i:''},{role:'고객 Executive',r:'C',a:'A',c:'C',i:''},{role:'Engagement Lead',r:'R',a:'',c:'',i:''},{role:'PM',r:'C',a:'',c:'C',i:'I'}],
+  ktRef:'KTDW-03'},
+'A-10.8':{ph:'3',id:'A-10.8',title:'Delivery Quality Inspection',ko:'딜리버리 품질 점검',
+  def:'AXE 내부 품질 점검. AWS Bar Raiser 개념에 가까운 메커니즘.',
+  purpose:'외부 고객 검수 전 내부 기준으로 품질을 자체 검증한다.',
+  deliv:[{n:'D01',t:'품질 점검 체크리스트'},{n:'D02',t:'품질 점검 보고서'},{n:'D03',t:'개선 사항 및 조치 계획'}],
+  chk:['기능/성능/보안 기준 충족 확인','코드 품질 리뷰 완료','문서 완성도 점검','고객 검수 준비 완료 선언'],
+  raci:[{role:'Practice Lead',r:'R',a:'A',c:'',i:''},{role:'기술 Lead',r:'R',a:'',c:'',i:''},{role:'Engagement Lead',r:'C',a:'',c:'C',i:''},{role:'PM',r:'I',a:'',c:'',i:''}],
+  ktRef:'KTDW-04'},
+'A-11':{ph:'4',id:'A-11',title:'Close',ko:'프로젝트 종료',
+  def:'프로젝트 공식 종료 선언.',
+  purpose:'깔끔한 종료를 통해 다음 Opportunity로 이어지는 관계를 구축한다.',
+  deliv:[{n:'D01',t:'종료 보고서'},{n:'D02',t:'최종 산출물 인수인계 확인서'},{n:'D03',t:'고객 서명 종료 확인'}],
+  chk:['전체 산출물 인수인계 완료','미해결 이슈 없음 확인','고객 최종 서명 획득','내부 프로젝트 종결 처리'],
+  raci:[{role:'Engagement Lead',r:'R',a:'A',c:'',i:''},{role:'고객 PM',r:'C',a:'A',c:'',i:'I'},{role:'PM',r:'R',a:'',c:'C',i:''}],
+  ktRef:'KTDW-06'},
+'A-12':{ph:'4',id:'A-12',title:'Lesson Learned',ko:'레슨 런드',
+  def:'회고. 조직 학습 자산으로 전환.',
+  purpose:'이번 프로젝트의 경험이 다음 프로젝트 Sprint 0에 반영되는 학습 루프.',
+  deliv:[{n:'D01',t:'Lesson Learned 보고서'},{n:'D02',t:'Best Practice 목록'},{n:'D03',t:'개선 제안 사항 (방법론 반영용)'}],
+  chk:['전체 팀 회고 세션 완료','잘된 점 / 개선점 문서화','방법론 업데이트 제안 제출','고객과 공유 여부 결정'],
+  raci:[{role:'Engagement Lead',r:'R',a:'A',c:'',i:''},{role:'PM',r:'R',a:'',c:'',i:''},{role:'Delivery Head',r:'C',a:'',c:'C',i:'I'}],
+  ktRef:'KTDW-06'},
+'A-13':{ph:'4',id:'A-13',title:'CSAT',ko:'고객 만족도 조사',
+  def:'Customer Satisfaction Score. 정량 만족도 조사.',
+  purpose:'고객 관계의 현재 온도를 측정하고 추가 Opportunity를 포착한다.',
+  deliv:[{n:'D01',t:'CSAT 설문 결과'},{n:'D02',t:'분석 보고서'},{n:'D03',t:'후속 조치 계획'}],
+  chk:['설문 완료율 80% 이상','결과 분석 및 보고서 작성','낮은 항목 원인 분석','개선 액션 플랜 수립','Delivery Head 보고'],
+  raci:[{role:'PM',r:'R',a:'A',c:'',i:''},{role:'Engagement Lead',r:'C',a:'',c:'C',i:''},{role:'고객 PM',r:'I',a:'',c:'',i:'I'}],
+  ktRef:'KTDW-06'},
+'A-14':{ph:'4',id:'A-14',title:'Team Offboarding',ko:'팀 해제',
+  def:'팀원 해제, 지식 이관, 핸드오버 문서화.',
+  purpose:'팀원이 다음 프로젝트로 원활하게 전환되고 지식이 조직에 남도록 한다.',
+  deliv:[{n:'D01',t:'핸드오버 문서'},{n:'D02',t:'지식 이관 확인서'},{n:'D03',t:'계정·권한 해제 확인'}],
+  chk:['운영팀 인수인계 완료','소스코드·문서 최종 이관 확인','계정 및 권한 해제','팀원 피드백 수집','다음 배치 계획 확정'],
+  raci:[{role:'PM',r:'R',a:'A',c:'',i:''},{role:'Engagement Lead',r:'C',a:'',c:'C',i:''},{role:'HR / TA',r:'C',a:'',c:'C',i:''},{role:'고객 PM',r:'I',a:'',c:'',i:'I'}],
+  ktRef:'KTDW-05'},
+};
+
+const AXE_KEYS = Object.keys(AXE_DATA);
+
+/* ─── KT Activity Panel ─── */
+const PH_COLORS = ['#6B7280','#8A8680','#5B8FD4','#8472C4','#D4895A','#4FA882','#D4001A'];
+const PH_LABELS = ['PHASE 00','PHASE 01','PHASE 02','PHASE 03','PHASE 04','PHASE 05','PHASE 06'];
+
+const DATA = {
+'a-00-01':{ph:0,id:'A-00-01',title:'사업·발주 확인',ko:'계약 및 발주 검토',axe:'A-01, A-05',def:'계약 완료 후 계약서, 제안서, 과업지시서를 상세 검토하여 사업 범위, 납기, 조건을 명확히 합니다. KOS-B2B 계약 문서 등록 상태를 확인하고 발주처 담당자와 초기 미팅을 진행합니다.',deliv:['계약서·과업지시서 검토 메모','발주처 담당자 연락처 목록','KOS-B2B 계약 문서 등록 확인'],chk:['계약서 전문 검토 완료','과업지시서 범위 확인','납기·마일스톤 일정 확인','KOS-B2B 계약 등록 상태 확인','발주처 PM 첫 미팅 완료'],raci:[{role:'수행PM',r:'R',a:'A',c:'',i:''},{role:'기술PM',r:'C',a:'',c:'C',i:''},{role:'영업담당',r:'',a:'',c:'C',i:'I'}]},
+'a-00-02':{ph:0,id:'A-00-02',title:'수행 조직 구성',ko:'PM·팀원 배치 및 역할 정의',axe:'A-04, A-07.3',def:'프로젝트 수행 조직을 구성합니다. 수행PM, 기술PM, 개발자, AI 엔지니어 등 역할별 담당자를 배치하고 RACI를 확정합니다. VDC 인력 투입 계획을 수립하고 하도급 업체 선정을 준비합니다.',deliv:['수행 조직도','RACI 매트릭스','VDC 인력 투입 계획','하도급 계획서'],chk:['수행PM·기술PM 배치 확정','팀원 역할 배분 완료','RACI 초안 작성','VDC 투입 계획 승인','하도급 업체 후보 선정'],raci:[{role:'수행PM',r:'R',a:'A',c:'',i:''},{role:'사업부장',r:'',a:'A',c:'',i:'I'},{role:'HR/인사',r:'',a:'',c:'C',i:''}]},
+'a-00-03':{ph:0,id:'A-00-03',title:'착수 신고·보고',ko:'PRB 착수 처리 확인',axe:'A-06',def:'착수 신고는 PRB 시스템에서 처리합니다. 본 플랫폼에서는 PRB 착수 신고 처리 상태를 확인하고, 내부 착수 보고서 작성을 지원합니다. 착수 보고회를 개최하여 발주처에 수행 계획을 공유합니다.',deliv:['PRB 착수 신고 처리 확인서','착수 보고서','수행 계획 발표 자료'],chk:['PRB 착수 신고 처리 완료 확인','착수 보고서 작성 완료','착수 보고회 개최','발주처 착수 확인 수령'],raci:[{role:'수행PM',r:'R',a:'A',c:'',i:''},{role:'발주처PM',r:'',a:'A',c:'',i:'I'},{role:'PRB 담당',r:'',a:'',c:'C',i:''}]},
+'a-01-01':{ph:1,id:'A-01-01',title:'킥오프·착수 준비',ko:'프로젝트 공식 시작',axe:'A-07.1, A-07.5, A-08.3',def:'프로젝트를 공식적으로 시작합니다. 전체 팀 킥오프 미팅을 개최하고 수행 계획서, WBS, 의사소통 계획, 리스크 관리 계획을 수립합니다. 개발 환경(Git, CI/CD 등)을 구성합니다.',deliv:['수행 계획서','WBS (Work Breakdown Structure)','의사소통 계획서','개발 환경 구성 완료 보고'],chk:['킥오프 미팅 개최 완료','수행 계획서 작성 및 승인','WBS 확정','의사소통 계획 수립','개발 환경(Git/CI) 구성 완료','리스크 관리 대장 초안 작성'],raci:[{role:'수행PM',r:'R',a:'A',c:'',i:''},{role:'기술PM',r:'R',a:'',c:'',i:''},{role:'발주처PM',r:'',a:'A',c:'C',i:'I'}]},
+'a-01-02':{ph:1,id:'A-01-02',title:'요구사항 정의',ko:'기능·비기능 요구사항 수집',axe:'A-02, A-07.2',def:'현업 인터뷰, 워크숍, 설문 등을 통해 기능 및 비기능 요구사항을 수집하고 요구사항 정의서(RD)를 작성합니다. 발주처와 함께 우선순위를 설정하고 요구사항 추적 매트릭스(RTM)를 작성합니다.',deliv:['요구사항 정의서(RD)','요구사항 추적 매트릭스(RTM)','인터뷰 결과 보고서'],chk:['현업 인터뷰 완료 (핵심 이해관계자 5인 이상)','기능 요구사항 목록 작성','비기능 요구사항 정의','요구사항 우선순위 설정','RTM 초안 작성','발주처 요구사항 확인 및 서명'],raci:[{role:'수행PM',r:'R',a:'A',c:'',i:''},{role:'BA/분석가',r:'R',a:'',c:'',i:''},{role:'발주처PM',r:'C',a:'A',c:'C',i:''},{role:'현업 담당자',r:'C',a:'',c:'C',i:''}]},
+'a-01-03':{ph:1,id:'A-01-03',title:'AI 시나리오 정의',ko:'AI·LLM 활용 방안 수립',axe:'A-03, A-08.2',def:'AI를 적용할 유스케이스를 도출하고 적합한 모델 유형(LLM/ML/DL)을 선정합니다. 학습 데이터 요건, 성능 기준(KPI), 운영 모니터링 기준을 정의합니다. AI 윤리·편향성 검토 계획을 수립합니다.',deliv:['AI 유스케이스 정의서','AI 모델 선정 기준서','학습 데이터 요건 정의서','AI KPI 정의서'],chk:['AI 유스케이스 도출 (최소 3개)','AI 모델 유형 선정 근거 작성','학습 데이터 가용성 확인','AI 성능 KPI 설정','AI 윤리·편향성 검토 체크리스트 작성','데이터 보안·개인정보 처리 계획 수립'],raci:[{role:'AI 엔지니어',r:'R',a:'',c:'',i:''},{role:'기술PM',r:'R',a:'A',c:'',i:''},{role:'수행PM',r:'',a:'A',c:'C',i:'I'}]},
+'a-01-04':{ph:1,id:'A-01-04',title:'As-Is / To-Be 분석',ko:'현황 분석 및 개선 방향',axe:'A-02',def:'현행 업무 프로세스(As-Is)를 분석하고 개선 방향(To-Be)을 설계합니다. 갭 분석을 통해 변화 관리 계획을 수립합니다.',deliv:['As-Is 현황 분석서','To-Be 프로세스 설계서','갭 분석 보고서'],chk:['현행 프로세스 인터뷰 및 관찰 완료','As-Is 프로세스 문서화','To-Be 프로세스 설계','갭 분석 및 우선순위 도출','발주처 확인 완료'],raci:[{role:'BA/분석가',r:'R',a:'',c:'',i:''},{role:'수행PM',r:'',a:'A',c:'C',i:''},{role:'현업 담당자',r:'C',a:'',c:'C',i:''}]},
+'a-02-01':{ph:2,id:'A-02-01',title:'아키텍처 설계',ko:'시스템·인프라 설계',axe:'A-07.4, A-08.1',def:'요구사항 기반으로 시스템 아키텍처를 설계합니다. 클라우드 또는 온프레미스 인프라 구성, 마이크로서비스 구조, 보안 아키텍처, 외부 인터페이스를 정의합니다.',deliv:['시스템 아키텍처 설계서','인프라 구성도','인터페이스 정의서(IDD)','보안 아키텍처 문서'],chk:['시스템 아키텍처 설계 완료','인프라 구성 계획 수립','IDD 작성','보안 아키텍처 검토','아키텍처 검토 회의 완료'],raci:[{role:'기술PM',r:'R',a:'A',c:'',i:''},{role:'시스템 아키텍트',r:'R',a:'',c:'',i:''},{role:'보안 담당',r:'C',a:'',c:'C',i:''}]},
+'a-02-02':{ph:2,id:'A-02-02',title:'UI/UX 설계',ko:'화면 설계 및 프로토타입',axe:'A-07.4',def:'사용자 경험(UX) 설계 원칙에 따라 화면 흐름, 와이어프레임, UI 프로토타입을 제작합니다. 접근성 및 반응형 디자인을 반영합니다.',deliv:['화면 설계서','와이어프레임','UI 프로토타입','UX 가이드라인'],chk:['화면 흐름도 작성','주요 화면 와이어프레임 완성','UI 프로토타입 제작','사용자 테스트(UT) 수행','웹 접근성 검토','발주처 UI 확인 및 승인'],raci:[{role:'UX 디자이너',r:'R',a:'',c:'',i:''},{role:'기술PM',r:'',a:'A',c:'C',i:''},{role:'발주처PM',r:'C',a:'',c:'C',i:'I'}]},
+'a-02-03':{ph:2,id:'A-02-03',title:'데이터 모델 설계',ko:'DB·AI 데이터 구조 설계',axe:'A-07.4',def:'논리·물리 데이터 모델을 설계하고 AI 학습 데이터 파이프라인을 설계합니다. 데이터 품질 관리 계획과 데이터 거버넌스 정책을 수립합니다.',deliv:['논리/물리 데이터 모델','데이터 파이프라인 설계서','데이터 사전','데이터 거버넌스 계획서'],chk:['논리 데이터 모델 완성','물리 데이터 모델 완성','AI 학습 데이터 파이프라인 설계','데이터 사전 작성','개인정보 처리 항목 확인'],raci:[{role:'DBA',r:'R',a:'',c:'',i:''},{role:'AI 엔지니어',r:'R',a:'',c:'',i:''},{role:'기술PM',r:'',a:'A',c:'C',i:''}]},
+'a-02-04':{ph:2,id:'A-02-04',title:'Sprint 계획 수립',ko:'애자일 Sprint 로드맵',axe:'A-07.6',def:'Sprint 단위로 개발 범위를 분할하고 백로그를 정의합니다. 팀 역할별 작업을 배분하고 Sprint 0(환경 구성)을 완료합니다.',deliv:['Sprint 로드맵','제품 백로그','Sprint 0 완료 보고'],chk:['제품 백로그 작성 완료','Sprint 단위 분할 (2주 기준)','Sprint 0 (환경 구성) 완료','팀 역량 기반 작업 배분','Sprint 속도(velocity) 초기값 설정'],raci:[{role:'기술PM',r:'R',a:'A',c:'',i:''},{role:'개발팀',r:'C',a:'',c:'C',i:''},{role:'수행PM',r:'',a:'A',c:'C',i:''}]},
+'a-03-01':{ph:3,id:'A-03-01',title:'Sprint 개발',ko:'기능별 반복 개발',axe:'A-09, A-10.2',def:'Sprint 계획에 따라 기능을 개발하고 단위 테스트를 수행합니다. Sprint Review와 Retrospective를 통해 진도를 관리하고 품질을 개선합니다.',deliv:['Sprint 개발 완료 기능','단위 테스트 결과서','Sprint Review 결과'],chk:['Sprint 계획 회의 완료','일일 스탠드업 수행','완료 기준(DoD) 기반 기능 검증','Sprint Review 발표','Sprint Retrospective 수행','다음 Sprint 백로그 업데이트'],raci:[{role:'개발팀',r:'R',a:'',c:'',i:''},{role:'기술PM',r:'',a:'A',c:'C',i:''},{role:'발주처PM',r:'C',a:'',c:'',i:'I'}]},
+'a-03-02':{ph:3,id:'A-03-02',title:'AI 모델 실험·튜닝',ko:'모델 개발 및 최적화',axe:'A-09',def:'AI 모델을 학습하고 성능을 측정합니다. MLflow 등 실험 관리 도구로 실험 결과를 추적하고 하이퍼파라미터 튜닝을 수행합니다.',deliv:['AI 모델 실험 결과서','최적 모델 선정 보고서','모델 성능 측정 결과'],chk:['학습 데이터 전처리 완료','베이스라인 모델 학습','하이퍼파라미터 튜닝 수행','KPI 기준 성능 달성 여부 확인','모델 버전 관리 체계 수립','모델 서빙 파이프라인 구성'],raci:[{role:'AI 엔지니어',r:'R',a:'',c:'',i:''},{role:'기술PM',r:'',a:'A',c:'C',i:''},{role:'데이터 엔지니어',r:'C',a:'',c:'C',i:''}]},
+'a-03-03':{ph:3,id:'A-03-03',title:'통합·연계 개발',ko:'시스템 인터페이스 구현',axe:'A-09',def:'Easy ERP, KOS-B2B 등 외부 시스템과의 인터페이스를 개발합니다. API 게이트웨이를 구성하고 연계 테스트를 수행합니다.',deliv:['인터페이스 구현 결과서','연계 테스트 결과서','API 명세서'],chk:['인터페이스 목록 확정','외부 시스템 연계 개발 완료','연계 테스트(stub/mock) 완료','실제 시스템 연계 테스트 완료','API 명세서 업데이트'],raci:[{role:'개발팀',r:'R',a:'',c:'',i:''},{role:'기술PM',r:'',a:'A',c:'C',i:''},{role:'외부 시스템 담당',r:'C',a:'',c:'C',i:''}]},
+'a-03-04':{ph:3,id:'A-03-04',title:'중간 보고',ko:'진도 현황 및 품질 보고',axe:'A-10.3, A-10.4, A-10.7',def:'프로젝트 중간 시점에 진도 현황, 품질 현황, 리스크 현황을 발주처에 보고합니다. Easy ERP에 공정 실적을 등록하고 PRB 상태를 확인합니다.',deliv:['중간 보고서','공정 실적 보고(Easy ERP)','리스크·이슈 현황'],chk:['중간 보고서 작성 완료','Easy ERP 공정 실적 등록','발주처 중간 보고 완료','PRB 처리 상태 확인','리스크·이슈 업데이트'],raci:[{role:'수행PM',r:'R',a:'A',c:'',i:''},{role:'발주처PM',r:'',a:'A',c:'',i:'I'},{role:'기술PM',r:'C',a:'',c:'C',i:''}]},
+'a-04-01':{ph:4,id:'A-04-01',title:'기능·성능 테스트',ko:'통합 테스트 및 부하 테스트',axe:'A-10.8',def:'시스템 통합 테스트, 성능 테스트, 부하 테스트를 수행합니다. 결함을 추적하고 재테스트를 수행하여 품질 기준을 충족합니다.',deliv:['통합 테스트 계획서','테스트 결과 보고서','결함 추적 목록'],chk:['통합 테스트 계획 수립','통합 테스트 수행 완료','성능/부하 테스트 수행','결함 해소율 95% 이상 달성','회귀 테스트 완료','테스트 결과 보고서 작성'],raci:[{role:'테스트 엔지니어',r:'R',a:'',c:'',i:''},{role:'기술PM',r:'',a:'A',c:'C',i:''},{role:'개발팀',r:'C',a:'',c:'C',i:''},{role:'발주처PM',r:'C',a:'',c:'',i:'I'}]},
+'a-04-02':{ph:4,id:'A-04-02',title:'AI 모델 검증',ko:'모델 성능·공정성 검증',axe:'A-10.5, A-10.8',def:'정의된 KPI 기준으로 AI 모델 성능을 검증합니다. 편향성 테스트, 설명 가능성(XAI) 검토, 모델 승인 절차를 수행합니다.',deliv:['AI 모델 검증 보고서','AI 편향성 검토 보고서','모델 승인서'],chk:['AI KPI 달성 여부 검증','편향성/공정성 테스트 완료','XAI 설명 가능성 검토','모델 승인 절차 완료','모델 모니터링 체계 구성'],raci:[{role:'AI 엔지니어',r:'R',a:'',c:'',i:''},{role:'기술PM',r:'',a:'A',c:'C',i:''},{role:'발주처PM',r:'C',a:'A',c:'',i:'I'}]},
+'a-04-03':{ph:4,id:'A-04-03',title:'보안점검',ko:'보안 취약점 진단 및 조치',axe:'A-10.8',def:'보안 취약점 스캔, 모의 침투 테스트(Pentest)를 수행합니다. 개인정보보호 영향평가(PIA)를 진행하고 보안 조치 후 재점검합니다.',deliv:['보안 취약점 진단 보고서','PIA 결과 보고서','보안 조치 완료 확인서'],chk:['취약점 스캔 도구 수행','모의 침투 테스트 완료','PIA 수행 완료','발견 취약점 100% 조치','보안 재점검 완료'],raci:[{role:'보안 담당',r:'R',a:'A',c:'',i:''},{role:'기술PM',r:'C',a:'',c:'C',i:''},{role:'개발팀',r:'C',a:'',c:'C',i:''}]},
+'a-04-04':{ph:4,id:'A-04-04',title:'UAT / 사용자 수락',ko:'발주처 최종 승인',axe:'A-10.5, A-10.6',def:'발주처 담당자가 직접 시스템을 검수하는 사용자 수락 테스트(UAT)를 수행합니다. 결함 조치 후 발주처 확인서를 수령합니다.',deliv:['UAT 시나리오','UAT 결과 보고서','발주처 검수 확인서'],chk:['UAT 시나리오 작성 및 발주처 확인','UAT 수행 (현업 참여)','UAT 결함 조치 완료','발주처 검수 확인서 수령','완료보고 준비 착수'],raci:[{role:'발주처PM',r:'R',a:'A',c:'',i:''},{role:'현업 담당자',r:'R',a:'',c:'',i:''},{role:'수행PM',r:'C',a:'',c:'C',i:''},{role:'기술PM',r:'C',a:'',c:'C',i:''}]},
+'a-05-01':{ph:5,id:'A-05-01',title:'전환·이행 계획',ko:'운영 환경 전환 준비',axe:'A-10.1',def:'개발·테스트 환경에서 운영 환경으로 전환하는 계획을 수립합니다. 데이터 마이그레이션 계획, 롤백 계획, 전환 리허설을 수행합니다.',deliv:['전환 계획서','데이터 마이그레이션 계획서','롤백 계획서','전환 리허설 결과'],chk:['전환 계획서 작성 완료','데이터 마이그레이션 계획 수립','롤백 시나리오 작성','전환 리허설 수행','운영 환경 검증 완료','전환 승인 획득'],raci:[{role:'기술PM',r:'R',a:'A',c:'',i:''},{role:'인프라 담당',r:'R',a:'',c:'',i:''},{role:'수행PM',r:'',a:'A',c:'C',i:''},{role:'발주처PM',r:'C',a:'',c:'',i:'I'}]},
+'a-05-02':{ph:5,id:'A-05-02',title:'시스템 오픈',ko:'Go-Live 및 모니터링',axe:'A-10.1',def:'시스템을 공식 오픈(Go-Live)합니다. 실시간 모니터링을 수행하고 긴급 대응팀을 운영합니다. 오픈 후 안정화 현황을 주기적으로 보고합니다.',deliv:['Go-Live 완료 보고','오픈 후 모니터링 보고서','장애 대응 이력'],chk:['Go-Live 당일 체크리스트 완료','실시간 모니터링 구성 확인','긴급 대응팀 운영 (최소 2주)','일일 안정화 보고 수행','임계 오류 0건 확인'],raci:[{role:'수행PM',r:'R',a:'A',c:'',i:''},{role:'기술PM',r:'R',a:'',c:'',i:''},{role:'인프라 담당',r:'R',a:'',c:'',i:''},{role:'발주처PM',r:'',a:'A',c:'',i:'I'}]},
+'a-05-03':{ph:5,id:'A-05-03',title:'사용자 교육',ko:'운영자·사용자 교육',axe:'A-10.1',def:'시스템 운영자와 최종 사용자를 대상으로 교육을 실시합니다. 사용자 매뉴얼과 운영 매뉴얼을 배포합니다.',deliv:['사용자 교육 교재','운영 매뉴얼','교육 이수 확인서'],chk:['교육 교재 작성 완료','운영자 교육 수행','최종 사용자 교육 수행','교육 만족도 조사','매뉴얼 배포 완료'],raci:[{role:'수행PM',r:'R',a:'A',c:'',i:''},{role:'개발팀',r:'C',a:'',c:'C',i:''},{role:'발주처PM',r:'',a:'',c:'',i:'I'}]},
+'a-05-04':{ph:5,id:'A-05-04',title:'인수인계',ko:'운영 조직 이관',axe:'A-14',def:'운영 조직에 시스템을 인수인계합니다. 소스코드, 문서, 설정 정보를 이관하고 하자보수 계획을 확정합니다.',deliv:['인수인계 완료 확인서','소스코드·문서 이관 목록','하자보수 계획서'],chk:['소스코드 이관 완료','설계·운영 문서 이관 완료','운영 조직 인수인계 미팅','하자보수 범위 및 기간 확정','인수인계 확인서 수령'],raci:[{role:'수행PM',r:'R',a:'A',c:'',i:''},{role:'운영 조직',r:'C',a:'A',c:'C',i:''},{role:'발주처PM',r:'',a:'A',c:'',i:'I'}]},
+'a-06-01':{ph:6,id:'A-06-01',title:'준공 처리',ko:'PRB 준공 확인 (타 시스템)',axe:'A-11',def:'준공 신고는 PRB 시스템에서 처리합니다. 본 플랫폼에서는 PRB 준공 처리 상태를 확인하고 관련 행정 Control 완료 여부를 점검합니다.',deliv:['PRB 준공 처리 확인','행정 Control 완료 체크리스트'],chk:['PRB 준공 신고 제출 (타 시스템에서 처리)','PRB 준공 심의 결과 확인','행정 Control 전체 완료 여부 확인','준공 완료 내부 공지'],raci:[{role:'수행PM',r:'R',a:'A',c:'',i:''},{role:'PRB 담당',r:'R',a:'A',c:'',i:''},{role:'발주처PM',r:'',a:'A',c:'',i:'I'}]},
+'a-06-02':{ph:6,id:'A-06-02',title:'최종 정산·종료',ko:'매출인식·하도급 정산',axe:'A-11, A-13',def:'최종 매출인식을 Easy ERP에서 처리합니다. 하도급 대금을 지급하고 자재·장비를 정산합니다. 종료 보고서를 작성합니다.',deliv:['종료 보고서','최종 정산 내역서','하도급 대금 지급 확인서'],chk:['최종 매출인식 처리 (Easy ERP)','하도급 대금 최종 지급','자재·장비 정산 완료','종료 보고서 작성','발주처 종료 보고 완료'],raci:[{role:'수행PM',r:'R',a:'A',c:'',i:''},{role:'경영지원',r:'R',a:'',c:'C',i:''},{role:'발주처PM',r:'',a:'A',c:'',i:'I'}]},
+'a-06-03':{ph:6,id:'A-06-03',title:'사후관리 계획',ko:'하자보수·성과 측정',axe:'A-12, A-13, A-14',def:'하자보수 기간 동안 시스템을 모니터링하고 AI 모델 드리프트를 감지합니다. 비즈니스 KPI를 측정하고 레슨런(Lesson Learned)을 정리합니다.',deliv:['사후관리 보고서','AI 모델 모니터링 결과','레슨런 보고서'],chk:['하자보수 기간 모니터링 체계 구성','AI 모델 드리프트 감지 알림 설정','비즈니스 KPI 측정 (3개월 후)','레슨런 정리 및 공유','최종 프로젝트 종결 처리'],raci:[{role:'수행PM',r:'R',a:'A',c:'',i:''},{role:'운영 조직',r:'R',a:'',c:'C',i:''},{role:'발주처PM',r:'C',a:'',c:'',i:'I'}]},
+};
+
+/* ADM chips */
+const ADM=['ADM-001 착수신고','ADM-002 착수보고','ADM-003 계약검토','ADM-004 수행계획','ADM-005 WBS','ADM-006 하도급계약','ADM-007 인원배치','ADM-008 환경구성','ADM-009 요구사항정의','ADM-010 AI시나리오','ADM-011 킥오프','ADM-012 의사소통계획','ADM-013 리스크관리','ADM-014 아키텍처설계','ADM-015 UI/UX설계','ADM-016 DB설계','ADM-017 Sprint계획','ADM-018 보안계획','ADM-019 데이터거버넌스','ADM-020 Sprint리뷰','ADM-021 통합테스트','ADM-022 AI모델실험','ADM-023 중간보고','ADM-024 공정실적','ADM-025 이슈관리','ADM-026 변경관리','ADM-027 품질관리','ADM-028 협력사관리','ADM-029 기능테스트','ADM-030 성능테스트','ADM-031 보안점검','ADM-032 PIA','ADM-033 AI모델검증','ADM-034 UAT','ADM-035 완료보고','ADM-036 전환계획','ADM-037 Go-Live','ADM-038 사용자교육','ADM-039 운영매뉴얼','ADM-040 인수인계','ADM-041 준공신고','ADM-042 최종정산','ADM-043 하도급정산','ADM-044 레슨런'];
+const chips=document.getElementById('admChips');
+ADM.forEach(l=>{const c=document.createElement('span');c.className='adm-chip';c.textContent=l;chips.appendChild(c);});
+
+/* Panel */
+let cur=null;
+const keys=Object.keys(DATA);
+const backdrop=document.getElementById('backdrop');
+const panel=document.getElementById('panel');
+
+function openPanel(key){
+  const d=DATA[key];if(!d)return;
+  cur=key;
+  const col=PH_COLORS[d.ph];
+  document.getElementById('panel-phase').textContent=PH_LABELS[d.ph];
+  document.getElementById('panel-phase').style.color=col;
+  document.getElementById('panel-phase').style.borderColor=col+'38';
+  document.getElementById('panel-id').textContent=d.id;
+  const sv=JSON.parse(localStorage.getItem('kt-chk')||'{}');
+  const ck=sv[key]||{};
+  document.getElementById('panel-body').innerHTML=`
+    <div class="panel-title">${d.title}</div>
+    <div class="panel-ko">${d.ko}</div>
+    ${d.axe?`<div class="panel-sec" style="margin-bottom:18px;">
+      <div class="panel-sec-title">AXE Framework 참조</div>
+      <div class="axe-panel-chips">${d.axe.split(',').map(a=>`<span class="axe-panel-chip">${a.trim()}</span>`).join('')}</div>
+    </div>`:''}
+    <div class="panel-sec">
+      <div class="panel-sec-title">정의 (Definition)</div>
+      <div class="panel-def">${d.def}</div>
+    </div>
+    <div class="panel-sec">
+      <div class="panel-sec-title">주요 산출물 (Deliverables)</div>
+      <ul class="deliv-list">${d.deliv.map(x=>`<li>${x}</li>`).join('')}</ul>
+    </div>
+    <div class="panel-sec">
+      <div class="panel-sec-title">체크리스트 (Checklist)</div>
+      <div class="checklist">${d.chk.map((c,i)=>`<label class="chk-item${ck[i]?' done':''}"><input type="checkbox" data-idx="${i}"${ck[i]?' checked':''}><span>${c}</span></label>`).join('')}</div>
+    </div>
+    <div class="panel-sec">
+      <div class="panel-sec-title">R&R (RACI)</div>
+      <table class="raci-tbl">
+        <thead><tr><th>역할</th><th><span class="rb rb-R">R</span> Responsible</th><th><span class="rb rb-A">A</span> Accountable</th><th><span class="rb rb-C">C</span> Consulted</th><th><span class="rb rb-I">I</span> Informed</th></tr></thead>
+        <tbody>${d.raci.map(r=>`<tr><td>${r.role}</td><td>${r.r?`<span class="rb rb-R">${r.r}</span>`:'—'}</td><td>${r.a?`<span class="rb rb-A">${r.a}</span>`:'—'}</td><td>${r.c?`<span class="rb rb-C">${r.c}</span>`:'—'}</td><td>${r.i?`<span class="rb rb-I">${r.i}</span>`:'—'}</td></tr>`).join('')}</tbody>
+      </table>
+    </div>
+    <div class="panel-nav">
+      <button class="pnav-btn" id="btn-p" onclick="nav(-1)">← 이전</button>
+      <button class="pnav-btn" id="btn-n" onclick="nav(1)">다음 →</button>
+    </div>`;
+  updateNav();
+  document.querySelectorAll('.chk-item input').forEach(cb=>{
+    cb.addEventListener('change',()=>{
+      const s=JSON.parse(localStorage.getItem('kt-chk')||'{}');
+      if(!s[cur])s[cur]={};
+      s[cur][cb.dataset.idx]=cb.checked;
+      localStorage.setItem('kt-chk',JSON.stringify(s));
+      cb.closest('.chk-item').classList.toggle('done',cb.checked);
+    });
+  });
+  backdrop.classList.add('open');
+  panel.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closePanel(){
+  backdrop.classList.remove('open');
+  panel.classList.remove('open');
+  document.body.style.overflow='';
+  cur=null;
+}
+
+function updateNav(){
+  const i=keys.indexOf(cur);
+  const bp=document.getElementById('btn-p');
+  const bn=document.getElementById('btn-n');
+  if(bp)bp.disabled=i<=0;
+  if(bn)bn.disabled=i>=keys.length-1;
+}
+
+function nav(d){
+  const i=keys.indexOf(cur)+d;
+  if(i>=0&&i<keys.length)openPanel(keys[i]);
+}
+
+function scrollToPhase(id){
+  const el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+document.getElementById('panel-close').addEventListener('click',closePanel);
+backdrop.addEventListener('click',closePanel);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel();});
+
+document.querySelectorAll('.activity-card').forEach(c=>{
+  c.addEventListener('click',()=>openPanel(c.dataset.activity));
+});
+document.querySelectorAll('.act-pill').forEach(p=>{
+  p.addEventListener('click',()=>openPanel(p.dataset.act));
+});
+
+/* ─── AXE Detail Panel ─── */
+let axeCur = null;
+const axePanel = document.getElementById('axe-panel');
+const axePanelClose = document.getElementById('axe-panel-close');
+
+const KT_PHASE_COLORS = {'KTDW-00':'#6B7280','KTDW-01':'#8A8680','KTDW-02':'#5B8FD4','KTDW-03':'#8472C4','KTDW-04':'#D4895A','KTDW-05':'#4FA882','KTDW-06':'#D4001A'};
+
+function openAxePanel(axeId) {
+  const d = AXE_DATA[axeId]; if(!d) return;
+  axeCur = axeId;
+  const phaseCol = AXE_PHASE_COLORS[d.ph] || '#6B8DD6';
+  const phaseLbl = AXE_PHASE_LABELS[d.ph] || '';
+  const badge = document.getElementById('axe-panel-phase');
+  badge.textContent = phaseLbl;
+  badge.style.color = phaseCol;
+  badge.style.borderColor = phaseCol + '40';
+  document.getElementById('axe-panel-id').textContent = d.id;
+  const sv = JSON.parse(localStorage.getItem('axe-chk')||'{}');
+  const ck = sv[axeId]||{};
+  const ktCol = KT_PHASE_COLORS[d.ktRef] || '#1A1A18';
+  document.getElementById('axe-panel-body').innerHTML = `
+    <div class="panel-title">${d.title}</div>
+    <div class="panel-ko">${d.ko}</div>
+
+    <div class="panel-sec" style="margin-bottom:18px;">
+      <div class="panel-sec-title">KT Delivery Way 매핑</div>
+      <div style="margin-top:4px;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;padding:3px 10px;border-radius:20px;border:1px solid ${ktCol}40;color:${ktCol};background:${ktCol}10;">${d.ktRef}</span>
+      </div>
+    </div>
+
+    <div class="panel-sec">
+      <div class="panel-sec-title">Definition · 정의</div>
+      <div class="panel-def">${d.def}</div>
+      ${d.purpose?`<div class="axe-detail-purpose">${d.purpose}</div>`:''}
+    </div>
+
+    <div class="panel-sec">
+      <div class="panel-sec-title">Deliverables · 산출물</div>
+      <ul class="axe-deliv-list">${d.deliv.map(x=>`<li><span class="dn">${x.n}</span><span>${x.t}</span></li>`).join('')}</ul>
+    </div>
+
+    <div class="panel-sec">
+      <div class="panel-sec-title">Checklist · 체크리스트</div>
+      <div class="checklist">${d.chk.map((c,i)=>`<label class="axe-chk-item${ck[i]?' done':''}" data-idx="${i}"><input type="checkbox" ${ck[i]?'checked':''}><span>${c}</span></label>`).join('')}</div>
+    </div>
+
+    <div class="panel-sec">
+      <div class="panel-sec-title">R&R · RACI</div>
+      <table class="axe-raci-tbl">
+        <thead><tr><th>역할</th><th><span class="arc arc-R">R</span> Responsible</th><th><span class="arc arc-A">A</span> Accountable</th><th><span class="arc arc-C">C</span> Consulted</th><th><span class="arc arc-I">I</span> Informed</th></tr></thead>
+        <tbody>${d.raci.map(r=>`<tr><td>${r.role}</td><td>${r.r?`<span class="arc arc-R">${r.r}</span>`:'—'}</td><td>${r.a?`<span class="arc arc-A">${r.a}</span>`:'—'}</td><td>${r.c?`<span class="arc arc-C">${r.c}</span>`:'—'}</td><td>${r.i?`<span class="arc arc-I">${r.i}</span>`:'—'}</td></tr>`).join('')}</tbody>
+      </table>
+    </div>
+
+    <div class="panel-nav">
+      <button class="pnav-btn" id="axe-btn-p" onclick="axeNav(-1)">← 이전</button>
+      <button class="pnav-btn" id="axe-btn-n" onclick="axeNav(1)">다음 →</button>
+    </div>`;
+
+  document.querySelectorAll('.axe-chk-item').forEach(lbl=>{
+    lbl.querySelector('input').addEventListener('change', e=>{
+      const cb = e.target;
+      const s = JSON.parse(localStorage.getItem('axe-chk')||'{}');
+      if(!s[axeCur]) s[axeCur]={};
+      s[axeCur][lbl.dataset.idx] = cb.checked;
+      localStorage.setItem('axe-chk', JSON.stringify(s));
+      lbl.classList.toggle('done', cb.checked);
+    });
+  });
+
+  updateAxeNav();
+  axePanel.classList.add('open');
+  document.getElementById('panel').style.right = '480px';
+}
+
+function closeAxePanel() {
+  axePanel.classList.remove('open');
+  document.getElementById('panel').style.right = '0';
+  axeCur = null;
+}
+
+function updateAxeNav() {
+  const i = AXE_KEYS.indexOf(axeCur);
+  const bp = document.getElementById('axe-btn-p');
+  const bn = document.getElementById('axe-btn-n');
+  if(bp){ bp.disabled = i<=0; bp.style.opacity = i<=0?'.3':'1'; }
+  if(bn){ bn.disabled = i>=AXE_KEYS.length-1; bn.style.opacity = i>=AXE_KEYS.length-1?'.3':'1'; }
+}
+
+function axeNav(dir) {
+  const i = AXE_KEYS.indexOf(axeCur) + dir;
+  if(i>=0 && i<AXE_KEYS.length) openAxePanel(AXE_KEYS[i]);
+}
+
+axePanelClose.addEventListener('click', closeAxePanel);
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closePanel(); closeAxePanel(); } });
+
+/* KT panel 닫힐 때 AXE panel 위치 복구 */
+document.getElementById('panel-close').addEventListener('click', ()=>{ document.getElementById('panel').style.right='0'; });
+
+/* Wire up AXE pills in timeline — data-axe 속성으로 연결 */
+document.querySelectorAll('.axe-pill[data-axe]').forEach(pill=>{
+  pill.addEventListener('click', ()=>{ const id=pill.dataset.axe; if(id && AXE_DATA[id]) openAxePanel(id); });
+});
+
+/* AXE chips in KT side panel 클릭 */
+document.addEventListener('click', e=>{
+  if(e.target.classList.contains('axe-panel-chip')){
+    const id = e.target.textContent.trim();
+    if(AXE_DATA[id]) openAxePanel(id);
+  }
+});
+
+</script>
+</body>
+</html>
