@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Module 01 요구사항 수집 — AXE Requirement Playbook</title>
+  <style>
+:root{
+  --bg:#0b1020;--ink:#eff5ff;--muted:#aebbd7;--line:rgba(255,255,255,.14);
+  --blue:#6ca8ff;--cyan:#42d7d6;--green:#63d297;--orange:#ffbf69;--red:#ff7a7a;--purple:#b794f6;
+  --dark:#172033;--softline:#dfe7f3;--shadow:0 24px 70px rgba(0,0,0,.24);--radius:22px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif;
+  color:var(--ink);background:radial-gradient(circle at 8% -8%,rgba(66,215,214,.22),transparent 34%),
+  radial-gradient(circle at 94% 0%,rgba(108,168,255,.24),transparent 30%),
+  linear-gradient(180deg,var(--bg) 0%,#101936 40%,#f4f7fb 40%,#f4f7fb 100%);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1400px;margin:0 auto;padding:28px 28px 80px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:-.02em}
+.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--blue));box-shadow:0 12px 30px rgba(66,215,214,.22)}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav a{padding:7px 13px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px;background:rgba(255,255,255,.04)}
+.nav a:hover{color:#fff;border-color:rgba(255,255,255,.3)}
+.nav a.active{color:var(--cyan);border-color:rgba(66,215,214,.5)}
+
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;margin-bottom:28px}
+.hero-card{background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.045));
+  border:1px solid var(--line);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow);backdrop-filter:blur(12px)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#dbe8ff;background:rgba(255,255,255,.08);
+  border:1px solid var(--line);padding:7px 13px;border-radius:999px;font-size:12px;margin-bottom:18px}
+h1{font-size:36px;line-height:1.1;margin:0 0 14px;letter-spacing:-.04em}
+h2{font-size:23px;line-height:1.2;margin:4px 0 10px;letter-spacing:-.03em;color:var(--dark)}
+h3{font-size:16px;margin:0 0 8px;letter-spacing:-.02em;color:var(--dark)}
+p{margin:0}.lead{font-size:16px;color:#d7e4ff;margin:0 0 18px}
+.chip{font-size:12px;color:#dce9ff;background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.section{margin:28px 0;color:var(--dark)}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:16px}
+.kicker{color:#2656d9;font-weight:850;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.desc{color:#667085;font-size:14px}
+.panel{background:#fff;border:1px solid var(--softline);border-radius:22px;box-shadow:0 12px 36px rgba(23,32,51,.07);overflow:hidden;color:var(--dark)}
+.panel-head{padding:18px 22px;border-bottom:1px solid var(--softline);background:linear-gradient(180deg,#fff,#f9fbff)}
+.panel-body{padding:22px}
+.grid{display:grid;gap:14px}.grid.two{grid-template-columns:repeat(2,1fr)}.grid.three{grid-template-columns:repeat(3,1fr)}
+.card{background:#fff;border:1px solid var(--softline);border-radius:18px;padding:18px;color:var(--dark);box-shadow:0 8px 24px rgba(23,32,51,.05)}
+.card.blue{border-left:4px solid var(--blue)}.card.cyan{border-left:4px solid var(--cyan)}
+.card.green{border-left:4px solid var(--green)}.card.orange{border-left:4px solid var(--orange)}
+.card.purple{border-left:4px solid var(--purple)}.card.red{border-left:4px solid var(--red)}
+.card p,.card li{font-size:13px;color:#475467}.card ul{margin:8px 0 0;padding-left:16px}.card li{margin:5px 0}
+.badge{display:inline-flex;align-items:center;border-radius:999px;padding:4px 10px;font-size:11px;font-weight:800;white-space:nowrap}
+.badge.ok{background:#e7f8ee;color:#067647}.badge.draft{background:#fff2df;color:#b54708}
+.badge.partial{background:#eef3ff;color:#2656d9}.badge.warn{background:#ffe8e5;color:#b42318}
+.badge.dark{background:#172033;color:#fff}.badge.cyan{background:#eafafa;color:#087d7d}
+.map-table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;border:1px solid var(--softline);border-radius:16px;overflow:hidden}
+.map-table th{background:#172033;color:#fff;text-align:left;padding:11px 14px;font-size:12px;vertical-align:top}
+.map-table td{padding:11px 14px;border-top:1px solid var(--softline);vertical-align:top;background:#fff;color:#344054}
+.map-table tr:nth-child(even) td{background:#f9fbff}.map-table strong{color:#172033}
+.callout{border-left:5px solid var(--cyan);background:#f5fbff;border-radius:14px;padding:16px 20px;color:#344054}
+.callout strong{color:#172033}.callout.warn{border-color:var(--orange);background:#fffbf0}.callout.tip{border-color:var(--green);background:#f3fdf7}.callout.danger{border-color:var(--red);background:#fff5f5}
+.nextprev{display:flex;justify-content:space-between;gap:12px;margin-top:28px}
+.nextprev a{background:#172033;color:#fff;border-radius:14px;padding:12px 18px;font-size:14px;font-weight:800}
+.nextprev a.sec{background:#fff;color:#172033;border:1px solid var(--softline)}
+.footer{margin-top:32px;color:#667085;font-size:12px;border-top:1px solid #dde5f2;padding-top:16px}
+
+/* source tabs */
+.tab-bar{display:flex;gap:4px;border-bottom:2px solid var(--softline);margin-bottom:22px;flex-wrap:wrap}
+.tab-btn{padding:9px 16px;font-size:13px;font-weight:800;color:#667085;cursor:pointer;
+  border-bottom:3px solid transparent;margin-bottom:-2px;background:none;border-top:none;border-left:none;border-right:none;transition:all .15s}
+.tab-btn:hover{color:#172033}.tab-btn.active{color:#2656d9;border-bottom-color:#2656d9}
+.tab-content{display:none}.tab-content.active{display:block}
+
+/* play card */
+.play-card{background:#f6f9ff;border:1.5px solid #dde8f8;border-radius:18px;padding:20px;margin-bottom:14px}
+.play-card-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.play-icon{font-size:22px}
+.play-title{font-size:15px;font-weight:850;color:var(--dark)}
+.play-owner{font-size:12px;color:#667085;margin-top:3px}
+.step-list{counter-reset:step;display:flex;flex-direction:column;gap:10px}
+.step-item{display:flex;align-items:flex-start;gap:12px;font-size:13px;color:#344054}
+.step-num{counter-increment:step;content:counter(step);min-width:26px;height:26px;border-radius:9px;
+  background:#172033;color:#fff;font-weight:900;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* keyword cloud */
+.keyword-cloud{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.kw{background:#eef3ff;color:#2656d9;border-radius:8px;padding:5px 12px;font-size:12px;font-weight:700;border:1px solid #c7d7f8}
+.kw.warn{background:#fff2df;color:#b54708;border-color:#fdd7a0}
+.kw.ok{background:#e7f8ee;color:#067647;border-color:#b3e8c9}
+
+/* interview q */
+.q-card{background:#fff;border:1px solid var(--softline);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.q-domain{font-size:10px;font-weight:900;color:#2656d9;letter-spacing:.07em;text-transform:uppercase;margin-bottom:6px}
+.q-list{display:flex;flex-direction:column;gap:6px}
+.q-item{font-size:13px;color:#344054;display:flex;align-items:flex-start;gap:8px}
+.q-item::before{content:"Q";min-width:20px;height:20px;border-radius:6px;background:#eef3ff;color:#2656d9;
+  font-weight:900;font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+
+/* bad/good example */
+.example-box{border-radius:16px;padding:18px 20px;margin-bottom:12px}
+.example-box.bad{background:#fff5f5;border:1.5px solid #fdd;}.example-box.bad .ex-label{color:#b42318}
+.example-box.good{background:#f3fdf7;border:1.5px solid #b3e8c9;}.example-box.good .ex-label{color:#067647}
+.ex-label{font-size:11px;font-weight:900;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px}
+.ex-text{font-size:14px;color:#344054;font-style:italic;margin-bottom:8px}
+.ex-problems{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ex-problem{font-size:11px;background:rgba(180,35,24,.1);color:#b42318;border-radius:6px;padding:3px 8px}
+.ex-good{font-size:11px;background:rgba(6,118,71,.1);color:#067647;border-radius:6px;padding:3px 8px}
+
+@media(max-width:1100px){.hero{grid-template-columns:1fr}.grid.three{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.wrap{padding:18px 16px 60px}h1{font-size:26px}.grid.two,.grid.three{grid-template-columns:1fr}.nextprev{flex-direction:column}.hero-card{padding:22px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <a class="brand" href="../sprint0-activities/index.html"><div class="logo"></div><div>AXE Delivery Way <span style="color:var(--muted);font-weight:600">Playbook</span></div></a>
+    <nav class="nav">
+      <a href="../sprint0-activities/index.html">Sprint 0</a>
+      <a href="index.html">Requirement Playbook</a>
+      <a href="01_discovery.html" class="active">01 요구사항 수집</a>
+      <a href="02_classification.html">02 분류·작성</a>
+      <a href="03_execution.html">03 수행전략·추적</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-card">
+      <div class="eyebrow">Module 01 — 요구사항 수집</div>
+      <h1>어디서, 어떻게 요구사항을 찾는가</h1>
+      <p class="lead">PM이 RFP·제안서·기술협상서·인터뷰·현행분석에서 요구사항 후보를 발견하는 Source별 추출 가이드와 Play 방식입니다.</p>
+      <div class="chips">
+        <span class="chip">9가지 Source 유형</span>
+        <span class="chip">Source별 추출 키워드</span>
+        <span class="chip">인터뷰 질문지 10개 영역</span>
+        <span class="chip">요구사항이 아닌 표현 변환법</span>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="eyebrow">핵심 원칙</div>
+      <div style="font-size:19px;font-weight:850;color:#fff;line-height:1.4;margin-bottom:14px">"요구사항을 적으세요"가 아니라<br><span style="color:var(--cyan)">어디서 찾고, 어떻게 꺼내는지</span>를 알려줘야 합니다.</div>
+      <div style="background:rgba(255,255,255,.08);border-radius:14px;padding:16px;font-size:13px;color:#d7e4ff;line-height:1.7">
+        고객은 요구사항을 완성된 문장으로 말하지 않습니다.<br>
+        RFP의 한 줄, 인터뷰의 불평, 현행 화면의 불편함 안에 숨어 있습니다.<br>
+        <strong style="color:#fff">PM의 역할은 이것을 발견하고 문장화하는 것입니다.</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- 이것은 요구사항이다 / 아니다 -->
+  <section class="section">
+    <div class="section-head"><div><div class="kicker">식별 기준</div><h2>이것은 요구사항이다 / 아니다</h2></div></div>
+    <div class="grid two">
+      <div class="panel">
+        <div class="panel-head"><h3 style="color:#067647">✓ 이것은 요구사항이다</h3><p style="font-size:13px;color:#667085">아래 중 하나라도 해당하면 요구사항 후보로 등록합니다</p></div>
+        <div class="panel-body">
+          <table class="map-table">
+            <thead><tr><th>식별 기준</th><th>예시</th></tr></thead>
+            <tbody>
+              <tr><td><strong>고객이 시스템에 원하는 기능</strong></td><td>"담당자는 고객 정보를 조회할 수 있어야 한다."</td></tr>
+              <tr><td><strong>업무 절차 변경</strong></td><td>"승인 절차는 팀장 → 부서장 순으로 변경한다."</td></tr>
+              <tr><td><strong>데이터 처리 필요</strong></td><td>"최근 3년 거래 데이터를 이관해야 한다."</td></tr>
+              <tr><td><strong>시스템 연계 필요</strong></td><td>"회원 정보를 고객정보시스템과 API로 연계해야 한다."</td></tr>
+              <tr><td><strong>품질/성능 조건</strong></td><td>"대시보드는 3초 이내 조회되어야 한다."</td></tr>
+              <tr><td><strong>보안 조건</strong></td><td>"개인정보는 권한에 따라 마스킹 처리되어야 한다."</td></tr>
+              <tr><td><strong>운영 조건</strong></td><td>"배치 실패 시 운영자에게 알림이 발송되어야 한다."</td></tr>
+              <tr><td><strong>검증 조건</strong></td><td>"인수테스트에서 핵심 시나리오 20건이 통과되어야 한다."</td></tr>
+              <tr><td><strong>제약 조건</strong></td><td>"고객사 망분리 정책을 준수해야 한다."</td></tr>
+              <tr><td><strong>AI/자동화 조건</strong></td><td>"AI 추천 결과는 사용자 피드백을 반영해 개선되어야 한다."</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3 style="color:#b42318">✗ 이것은 요구사항이 아니다 — 변환이 필요합니다</h3><p style="font-size:13px;color:#667085">그대로 등록하지 말고 질문으로 요구사항으로 바꾸세요</p></div>
+        <div class="panel-body">
+          <table class="map-table">
+            <thead><tr><th>부족한 표현</th><th>왜 부족한가</th><th>바꾸는 질문</th></tr></thead>
+            <tbody>
+              <tr><td>"편하게 해주세요."</td><td>기준 없음</td><td>무엇이 편해져야 하나? 클릭 수? 처리 시간?</td></tr>
+              <tr><td>"빠르게 조회되면 좋겠습니다."</td><td>성능 기준 없음</td><td>몇 초 이내? 동시 사용자는?</td></tr>
+              <tr><td>"AI를 적용해주세요."</td><td>적용 대상 없음</td><td>어떤 업무에? 추천·분류·요약·검색 중 무엇?</td></tr>
+              <tr><td>"보안 잘 해주세요."</td><td>보안 항목 없음</td><td>인증·권한·암호화·로그·개인정보 중 무엇?</td></tr>
+              <tr><td>"기존처럼 해주세요."</td><td>기준 불명확</td><td>기존 시스템의 어떤 기능/화면/규칙?</td></tr>
+              <tr><td>"자동화해주세요."</td><td>범위 없음</td><td>어떤 수작업을 어떤 조건에서 자동 처리?</td></tr>
+              <tr><td>"대시보드가 필요합니다."</td><td>사용자·지표 없음</td><td>누가 어떤 지표를 어떤 주기로?</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Source별 추출 가이드 탭 -->
+  <section class="section">
+    <div class="section-head"><div><div class="kicker">Source별 가이드</div><h2>어디서 요구사항을 찾는가 — Source 유형별 추출 방법</h2></div></div>
+    <div class="panel">
+      <div class="panel-body">
+        <div class="tab-bar">
+          <button class="tab-btn active" onclick="switchTab(this,'src-rfp')">📄 RFP</button>
+          <button class="tab-btn" onclick="switchTab(this,'src-proposal')">📋 제안서</button>
+          <button class="tab-btn" onclick="switchTab(this,'src-negotiation')">🤝 기술협상서</button>
+          <button class="tab-btn" onclick="switchTab(this,'src-interview')">🎤 인터뷰·회의</button>
+          <button class="tab-btn" onclick="switchTab(this,'src-system')">🖥 현행 시스템</button>
+          <button class="tab-btn" onclick="switchTab(this,'src-security')">🔒 보안·규정</button>
+          <button class="tab-btn" onclick="switchTab(this,'src-infra')">🏗 인프라</button>
+          <button class="tab-btn" onclick="switchTab(this,'src-test')">✅ 품질·테스트</button>
+          <button class="tab-btn" onclick="switchTab(this,'src-ops')">⚙️ 운영 자료</button>
+        </div>
+
+        <!-- RFP -->
+        <div class="tab-content active" id="src-rfp">
+          <div class="play-card">
+            <div class="play-card-head"><div class="play-icon">📄</div><div><div class="play-title">제안요청서 / RFP 분석</div><div class="play-owner">담당: BA, PM, PL — 반드시 수행해야 하는 핵심 Source</div></div></div>
+            <p style="font-size:13px;color:#475467;margin-bottom:14px">RFP는 고객이 공식 요구를 담은 문서입니다. 아래 표현을 찾아 문장 단위로 요구사항 후보를 등록합니다.</p>
+            <div class="keyword-cloud">
+              <span class="kw">~해야 한다</span><span class="kw">~을 제공한다</span><span class="kw">~을 지원한다</span>
+              <span class="kw">~을 준수한다</span><span class="kw">~와 연계한다</span><span class="kw warn">~ 이내</span>
+              <span class="kw warn">~ 이상</span><span class="kw warn">권한</span><span class="kw warn">인증</span><span class="kw warn">암호화</span>
+              <span class="kw ok">백업</span><span class="kw ok">복구</span><span class="kw ok">모니터링</span><span class="kw ok">교육</span><span class="kw ok">인수인계</span>
+            </div>
+          </div>
+          <table class="map-table" style="margin-top:4px">
+            <thead><tr><th>Task</th><th>수행 행동</th></tr></thead>
+            <tbody>
+              <tr><td><strong>문서 목차 확인</strong></td><td>업무, 기능, 기술, 보안, 품질, 운영, 교육 장(Chapter)을 먼저 표시합니다</td></tr>
+              <tr><td><strong>의무 표현 표시</strong></td><td>"해야 한다", "필수", "준수" 문장을 하이라이트합니다</td></tr>
+              <tr><td><strong>요구사항 후보 등록</strong></td><td>문장 단위로 Requirement Registry에 등록하고 RFP 페이지·절 번호를 기록합니다</td></tr>
+              <tr><td><strong>유형 1차 분류</strong></td><td>기능/비기능/보안/인프라/운영 등 태그를 부여합니다</td></tr>
+              <tr><td><strong>확인 질문 작성</strong></td><td>모호한 문장은 고객 확인 질문으로 등록합니다 (Open Item)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 제안서 -->
+        <div class="tab-content" id="src-proposal">
+          <div class="play-card">
+            <div class="play-card-head"><div class="play-icon">📋</div><div><div class="play-title">제안서 분석</div><div class="play-owner">담당: PM, BA — 수행사가 약속한 내용을 확인합니다</div></div></div>
+            <p style="font-size:13px;color:#475467;margin-bottom:14px">제안서는 고객 요구뿐 아니라 수행사가 약속한 내용이 들어 있습니다. RFP 요구와 비교하면서 누락·과잉 약속을 확인합니다.</p>
+          </div>
+          <table class="map-table">
+            <thead><tr><th>제안서 항목</th><th>요구사항 후보</th><th>확인 포인트</th></tr></thead>
+            <tbody>
+              <tr><td><strong>제안 범위</strong></td><td>계약상 수행해야 할 범위</td><td>RFP 요구와 일치하는가?</td></tr>
+              <tr><td><strong>구현 방안</strong></td><td>개발/패키지/인프라/보안 작업 후보</td><td>실현 가능한 약속인가?</td></tr>
+              <tr><td><strong>일정/단계</strong></td><td>WBS 후보</td><td>현실적인 일정인가?</td></tr>
+              <tr><td><strong>산출물 목록</strong></td><td>Deliverable 요구사항</td><td>계약에 명시된 산출물과 일치하는가?</td></tr>
+              <tr><td><strong>기술 아키텍처</strong></td><td>기술/인프라 요구사항</td><td>고객 환경과 맞는가?</td></tr>
+              <tr><td><strong>품질보증 방안</strong></td><td>품질/테스트 요구사항</td><td>검증 기준이 구체적인가?</td></tr>
+              <tr><td><strong>교육/운영 방안</strong></td><td>운영전환/교육 요구사항</td><td>교육 대상과 시점이 명확한가?</td></tr>
+            </tbody>
+          </table>
+          <div class="callout warn" style="margin-top:14px"><strong>주의:</strong> "제공", "구축", "지원" 표현 중 계약 범위가 불명확한 항목은 즉시 Open Item으로 등록하세요. 나중에 범위 분쟁이 됩니다.</div>
+        </div>
+
+        <!-- 기술협상서 -->
+        <div class="tab-content" id="src-negotiation">
+          <div class="play-card">
+            <div class="play-card-head"><div class="play-icon">🤝</div><div><div class="play-title">기술협상서 분석</div><div class="play-owner">담당: PM — 여기서 바뀐 내용이 실제 수행 범위에 영향을 줍니다</div></div></div>
+          </div>
+          <table class="map-table">
+            <thead><tr><th>기술협상 결과</th><th>요구사항 처리</th><th>다음 Action</th></tr></thead>
+            <tbody>
+              <tr><td><strong>수용</strong></td><td>요구사항으로 반영</td><td>Requirement Registry 등록</td></tr>
+              <tr><td><strong>조건부 수용</strong></td><td>조건과 제약을 함께 등록</td><td>조건, Owner, Due Date 지정</td></tr>
+              <tr><td><strong>불수용</strong></td><td>Scope Out 또는 Risk 등록</td><td>RAID Log에 기록</td></tr>
+              <tr><td><strong>추가 협의</strong></td><td>Open Item 등록</td><td>결정 기한과 결정자 지정</td></tr>
+              <tr><td><strong>일정/인프라 조건</strong></td><td>환경·인프라·운영 요구사항 등록</td><td>착수 영향 판단</td></tr>
+            </tbody>
+          </table>
+          <div class="callout" style="margin-top:14px"><strong>Play:</strong> 협상 전/후 문구를 비교하고 무엇이 변경되었는지 표시합니다. 변경된 내용은 사업 범위·일정·산출물·위험관리 계획에 연결합니다.</div>
+        </div>
+
+        <!-- 인터뷰·회의 -->
+        <div class="tab-content" id="src-interview">
+          <div class="play-card">
+            <div class="play-card-head"><div class="play-icon">🎤</div><div><div class="play-title">고객 인터뷰 / 업무 워크숍</div><div class="play-owner">담당: BA, PO, 업무 PL — 문서에 없는 암묵적 요구를 발견합니다</div></div></div>
+            <p style="font-size:13px;color:#475467;margin-bottom:14px">고객이 말하는 불평·불편함을 요구사항으로 변환하는 것이 PM의 핵심 역량입니다.</p>
+          </div>
+          <div style="margin-bottom:16px">
+            <h3>고객 발언 → 요구사항 변환</h3>
+            <table class="map-table">
+              <thead><tr><th>고객 발언</th><th>요구사항 후보</th></tr></thead>
+              <tbody>
+                <tr><td>"이거 매번 엑셀로 하고 있어요."</td><td>해당 업무 자동화 요구사항</td></tr>
+                <tr><td>"승인자가 자주 바뀝니다."</td><td>권한/승인 라우팅 요구사항</td></tr>
+                <tr><td>"마감일에 느려집니다."</td><td>성능/동시사용/처리량 요구사항</td></tr>
+                <tr><td>"운영팀이 원인을 못 찾습니다."</td><td>로그/모니터링/추적 요구사항</td></tr>
+                <tr><td>"개인정보 때문에 조심해야 합니다."</td><td>개인정보 마스킹/암호화/접근통제 요구사항</td></tr>
+                <tr><td>"기존 시스템과 맞아야 합니다."</td><td>인터페이스/데이터 호환 요구사항</td></tr>
+                <tr><td>"AI가 추천해주면 좋겠습니다."</td><td>AI 추천/분류/검색/요약 요구사항 후보</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3 style="color:var(--dark);margin-bottom:12px">인터뷰 질문지 — 10개 영역</h3>
+          <div class="grid two">
+            <div class="q-card"><div class="q-domain">업무 흐름</div><div class="q-list"><div class="q-item">현재 어떤 업무를 어떤 순서로 처리하나요?</div><div class="q-item">어떤 부서와 어떻게 협력하나요?</div></div></div>
+            <div class="q-card"><div class="q-domain">Pain Point</div><div class="q-list"><div class="q-item">가장 시간이 많이 걸리거나 오류가 많은 부분은?</div><div class="q-item">반복적인 수작업이 있나요?</div></div></div>
+            <div class="q-card"><div class="q-domain">사용자</div><div class="q-list"><div class="q-item">누가 이 기능을 사용하나요?</div><div class="q-item">권한은 어떻게 다른가요? (관리자/일반/운영자)</div></div></div>
+            <div class="q-card"><div class="q-domain">데이터</div><div class="q-list"><div class="q-item">어떤 데이터를 입력·조회·수정·삭제하나요?</div><div class="q-item">개인정보나 민감정보가 포함되나요?</div></div></div>
+            <div class="q-card"><div class="q-domain">예외·오류</div><div class="q-list"><div class="q-item">업무가 실패하거나 반려되는 경우는 언제인가요?</div><div class="q-item">예외 상황에서 어떻게 처리하나요?</div></div></div>
+            <div class="q-card"><div class="q-domain">빈도·규모</div><div class="q-list"><div class="q-item">하루/월/분기 기준 얼마나 자주 발생하나요?</div><div class="q-item">동시에 사용하는 사람은 몇 명인가요?</div></div></div>
+            <div class="q-card"><div class="q-domain">성능</div><div class="q-list"><div class="q-item">언제 느려지나요?</div><div class="q-item">처리 시간 기준이 있나요?</div></div></div>
+            <div class="q-card"><div class="q-domain">보안</div><div class="q-list"><div class="q-item">개인정보나 민감정보가 포함되나요?</div><div class="q-item">누가 어떤 데이터를 볼 수 있어야 하나요?</div></div></div>
+            <div class="q-card"><div class="q-domain">연계</div><div class="q-list"><div class="q-item">다른 시스템과 주고받는 정보가 있나요?</div><div class="q-item">실시간인가요, 배치인가요?</div></div></div>
+            <div class="q-card"><div class="q-domain">완료 기준</div><div class="q-list"><div class="q-item">완료되었다고 판단할 기준은 무엇인가요?</div><div class="q-item">어떻게 테스트하면 확인할 수 있나요?</div></div></div>
+          </div>
+        </div>
+
+        <!-- 현행 시스템 -->
+        <div class="tab-content" id="src-system">
+          <div class="play-card">
+            <div class="play-card-head"><div class="play-icon">🖥</div><div><div class="play-title">현행 시스템 Walkthrough</div><div class="play-owner">담당: PL, Architect — 실제 화면과 데이터 흐름을 눈으로 확인합니다</div></div></div>
+          </div>
+          <table class="map-table">
+            <thead><tr><th>확인 항목</th><th>요구사항 후보</th><th>확인 방법</th></tr></thead>
+            <tbody>
+              <tr><td><strong>화면 목록</strong></td><td>이관·유지·변경·신규 화면 분류</td><td>메뉴 구조 캡처 후 As-Is/To-Be 비교</td></tr>
+              <tr><td><strong>업무 프로세스</strong></td><td>As-Is 프로세스 → To-Be 개선 요구</td><td>업무 담당자와 함께 흐름 추적</td></tr>
+              <tr><td><strong>데이터 흐름</strong></td><td>데이터 모델, 이관 대상, 정합성 요구</td><td>DB 구조 확인, 데이터 Profile</td></tr>
+              <tr><td><strong>배치/스케줄러</strong></td><td>배치 유지·변경·신규 요구</td><td>배치 목록과 스케줄 확인</td></tr>
+              <tr><td><strong>인터페이스</strong></td><td>내부/외부 연계 유지·변경 요구</td><td>인터페이스 목록 확인</td></tr>
+              <tr><td><strong>오류·장애 이력</strong></td><td>운영 개선, 로그, 모니터링 요구</td><td>장애 이력과 운영 불편사항 수집</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 보안·규정 -->
+        <div class="tab-content" id="src-security">
+          <div class="play-card">
+            <div class="play-card-head"><div class="play-icon">🔒</div><div><div class="play-title">보안·규정 자료 검토</div><div class="play-owner">담당: 보안 담당자, PM — 기능 요구사항과 병렬로 반드시 수행</div></div></div>
+          </div>
+          <div class="keyword-cloud" style="margin-bottom:14px">
+            <span class="kw warn">인증</span><span class="kw warn">권한</span><span class="kw warn">SSO</span><span class="kw warn">MFA</span>
+            <span class="kw warn">암호화</span><span class="kw warn">개인정보</span><span class="kw warn">마스킹</span><span class="kw warn">로그</span>
+            <span class="kw warn">감사</span><span class="kw warn">취약점</span><span class="kw warn">보안성 검토</span><span class="kw warn">자료 반출</span><span class="kw warn">계정 회수</span>
+          </div>
+          <table class="map-table">
+            <thead><tr><th>확인 항목</th><th>요구사항 유형</th></tr></thead>
+            <tbody>
+              <tr><td><strong>고객 보안정책·내부 규정·법규</strong></td><td>보안/컴플라이언스 요구사항</td></tr>
+              <tr><td><strong>개인정보 수집·저장·마스킹·파기 기준</strong></td><td>개인정보 보호 요구사항</td></tr>
+              <tr><td><strong>사용자별 Role, 접근권한, 승인 구조</strong></td><td>인증/권한 요구사항</td></tr>
+              <tr><td><strong>누가 무엇을 했는지 추적 항목</strong></td><td>감사 로그 요구사항</td></tr>
+              <tr><td><strong>취약점 점검·모의해킹·보안성 심의 일정</strong></td><td>보안 Gate 요구사항</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 인프라 -->
+        <div class="tab-content" id="src-infra">
+          <div class="play-card">
+            <div class="play-card-head"><div class="play-icon">🏗</div><div><div class="play-title">인프라 Assessment</div><div class="play-owner">담당: Infra Lead, Architect — Sprint 1 착수 선결조건 확인</div></div></div>
+          </div>
+          <div class="keyword-cloud" style="margin-bottom:14px">
+            <span class="kw">서버</span><span class="kw">네트워크</span><span class="kw">클라우드</span><span class="kw">개발환경</span>
+            <span class="kw">검증환경</span><span class="kw">운영환경</span><span class="kw">계정</span><span class="kw">권한</span>
+            <span class="kw warn">용량</span><span class="kw warn">성능</span><span class="kw warn">백업</span><span class="kw warn">모니터링</span>
+            <span class="kw warn">방화벽</span><span class="kw warn">VPN</span><span class="kw warn">VDI</span><span class="kw warn">망분리</span>
+          </div>
+          <div class="callout warn"><strong>착수 판단:</strong> 환경 준비가 Sprint 1에 필수인가요? → "예"면 본수행 착수점검 조건부 착수 항목으로 등록합니다.</div>
+        </div>
+
+        <!-- 품질·테스트 -->
+        <div class="tab-content" id="src-test">
+          <div class="play-card">
+            <div class="play-card-head"><div class="play-icon">✅</div><div><div class="play-title">테스트 관점 Review</div><div class="play-owner">담당: QA, PL, PO — 요구사항별 검증 가능성을 확인합니다</div></div></div>
+          </div>
+          <table class="map-table">
+            <thead><tr><th>확인 질문</th><th>목적</th></tr></thead>
+            <tbody>
+              <tr><td>이 요구사항은 어떻게 테스트하나요?</td><td>검증 가능성 — 테스트 불가능한 요구사항은 재작성</td></tr>
+              <tr><td>테스트 데이터가 필요한가요?</td><td>테스트 준비 — 데이터 마스킹·샘플 데이터 계획</td></tr>
+              <tr><td>인수 기준은 무엇인가요?</td><td>고객 승인 기준 — Acceptance Criteria 필수</td></tr>
+              <tr><td>결함 등급은 어떻게 나누나요?</td><td>결함관리 — Critical/Major/Minor 기준 정의</td></tr>
+              <tr><td>성능 기준이 있나요?</td><td>비기능 테스트 — 응답시간·처리량·동시사용자</td></tr>
+              <tr><td>테스트 환경은 언제 준비되나요?</td><td>일정 의존성 — 환경 지연은 RAID 등록</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 운영 자료 -->
+        <div class="tab-content" id="src-ops">
+          <div class="play-card">
+            <div class="play-card-head"><div class="play-icon">⚙️</div><div><div class="play-title">운영 자료 분석</div><div class="play-owner">담당: Ops Lead, PM — 운영 요구사항과 개선 포인트를 발굴합니다</div></div></div>
+          </div>
+          <div class="keyword-cloud" style="margin-bottom:14px">
+            <span class="kw">운영</span><span class="kw">모니터링</span><span class="kw">장애</span><span class="kw">알림</span>
+            <span class="kw">백업</span><span class="kw">복구</span><span class="kw">Runbook</span><span class="kw ok">교육</span>
+            <span class="kw ok">인수인계</span><span class="kw ok">안정화</span><span class="kw ok">하자보수</span><span class="kw ok">유지보수</span>
+          </div>
+          <table class="map-table">
+            <thead><tr><th>운영 자료</th><th>발굴 요구사항</th></tr></thead>
+            <tbody>
+              <tr><td><strong>장애 이력</strong></td><td>모니터링·알림·로그 요구사항</td></tr>
+              <tr><td><strong>운영 Runbook</strong></td><td>운영전환·인수인계 요구사항</td></tr>
+              <tr><td><strong>배치 현황</strong></td><td>배치 유지·변경·모니터링 요구사항</td></tr>
+              <tr><td><strong>민원·문의 내역</strong></td><td>사용성 개선·자동화 요구사항</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9가지 수집 Play -->
+  <section class="section">
+    <div class="section-head"><div><div class="kicker">수집 Play</div><h2>9가지 요구사항 수집 Play 방식</h2><p class="desc">프로젝트 규모와 특성에 따라 필요한 Play를 선택하세요.</p></div></div>
+    <div class="grid three">
+      <div class="card blue"><h3>📄 문서 분석 Play</h3><p>RFP, 제안서, 기술협상서, 계약서를 읽고 요구사항 후보를 추출합니다.</p><ul><li>담당: BA, PM, PL</li><li>산출물: 요구사항 후보 목록</li><li>모든 프로젝트 필수</li></ul></div>
+      <div class="card cyan"><h3>🎤 업무 인터뷰 Play</h3><p>고객 업무 담당자와 1:1 또는 그룹 인터뷰를 수행합니다.</p><ul><li>담당: BA, PO, 업무 PL</li><li>산출물: 인터뷰 기록, 업무 요구사항</li><li>중형 이상 필수</li></ul></div>
+      <div class="card green"><h3>🗺 업무 워크숍 Play</h3><p>부서별 As-Is/To-Be 업무 흐름을 함께 정리합니다.</p><ul><li>담당: BA, PO, Scrum Master</li><li>산출물: 업무 프로세스, 개선 요구사항</li><li>중형 이상 권장</li></ul></div>
+      <div class="card orange"><h3>🖥 시스템 Walkthrough Play</h3><p>현행 화면, 배치, 인터페이스, 데이터 흐름을 실제로 확인합니다.</p><ul><li>담당: PL, Architect</li><li>산출물: 시스템 요구사항, 영향도 목록</li><li>시스템 교체/개선 시 필수</li></ul></div>
+      <div class="card purple"><h3>📦 Fit-Gap Play</h3><p>패키지/솔루션 기능과 고객 요구를 비교합니다.</p><ul><li>담당: Package Lead, BA, PO</li><li>산출물: Fit-Gap 목록, Customizing 요구</li><li>패키지 프로젝트 필수</li></ul></div>
+      <div class="card red"><h3>🔒 보안성 검토 Play</h3><p>개인정보, 접근권한, 감사, 망분리 요구를 확인합니다.</p><ul><li>담당: 보안 담당자, PM</li><li>산출물: 보안 요구사항</li><li>모든 프로젝트 필수</li></ul></div>
+      <div class="card blue"><h3>🏗 인프라 Assessment Play</h3><p>서버, 네트워크, 클라우드, 성능, 용량을 확인합니다.</p><ul><li>담당: Infra Lead, Architect</li><li>산출물: 인프라 요구사항</li><li>중형 이상 필수</li></ul></div>
+      <div class="card cyan"><h3>✅ 테스트 관점 Review Play</h3><p>요구사항별 검증 가능성과 테스트 유형을 확인합니다.</p><ul><li>담당: QA, PL, PO</li><li>산출물: 테스트 요구사항, 검증 기준</li><li>중형 이상 권장</li></ul></div>
+      <div class="card green"><h3>⚙️ 운영전환 Review Play</h3><p>운영자, 모니터링, 장애대응, 교육, 유지보수 요구를 확인합니다.</p><ul><li>담당: Ops Lead, PM</li><li>산출물: 운영/전환 요구사항</li><li>오픈 포함 프로젝트 필수</li></ul></div>
+    </div>
+  </section>
+
+  <div class="callout tip" style="margin-bottom:8px">
+    <strong>다음 단계:</strong> 수집한 요구사항 후보를 <a href="02_classification.html" style="color:#067647;text-decoration:underline">Module 02 분류·작성 →</a>에서 정확한 문장으로 작성하고 AX 영역별로 분류합니다.
+  </div>
+
+  <div class="nextprev">
+    <a class="sec" href="index.html">&larr; Requirement Playbook 개요</a>
+    <a href="02_classification.html">02 분류·작성 가이드 &rarr;</a>
+  </div>
+
+  <footer class="footer">
+    AXE Delivery Way — Requirement &amp; Execution Playbook | Module 01 요구사항 수집
+  </footer>
+</div>
+<script>
+function switchTab(btn, tabId) {
+  btn.closest('.panel-body').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.closest('.panel-body').querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+</script>
+</body>
+</html>

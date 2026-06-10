@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KT AXD Methodology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF5;
+    --ink: #1A1917;
+    --ink-2: #5A5650;
+    --ink-3: #8A8680;
+    --rule: #E0DED8;
+    --surface: #FFFFFF;
+
+    /* Phase colors */
+    --p1: #2E7D52;
+    --p1-soft: #E8F4EE;
+    --p1-mid: #A8D5BC;
+    --p2: #1565C0;
+    --p2-soft: #E3EDF9;
+    --p2-mid: #90B8E8;
+    --p3: #6A1B9A;
+    --p3-soft: #F3E8FB;
+    --p3-mid: #C48FE0;
+    --p4: #BF5A00;
+    --p4-soft: #FEF0E3;
+    --p4-mid: #E8A96A;
+
+    --radius: 10px;
+    --font-body: "IBM Plex Sans", "Noto Sans KR", sans-serif;
+    --font-mono: "IBM Plex Mono", monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--ink);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 56px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .brand { display: flex; align-items: baseline; gap: 12px; }
+  .brand-logo { font-size: 15px; font-weight: 600; letter-spacing: .04em; }
+  .brand-mark {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: rgba(255,255,255,.4);
+    border: 1px solid rgba(255,255,255,.15);
+    padding: 1px 7px;
+    border-radius: 3px;
+  }
+  .nav-phases { display: flex; gap: 2px; }
+  .nav-phases a {
+    color: rgba(255,255,255,.55);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 5px;
+    transition: background .15s, color .15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nav-phases a:hover { background: rgba(255,255,255,.08); color: #fff; }
+  .nav-phases .num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    opacity: .5;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 72px 40px 56px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    margin-bottom: 20px;
+  }
+  .hero-title em { font-style: italic; font-weight: 400; }
+  .hero-subtitle {
+    font-size: 16px;
+    color: var(--ink-2);
+    max-width: 640px;
+    line-height: 1.7;
+  }
+
+  /* ── LIFECYCLE DIAGRAM ── */
+  .diagram-section {
+    padding: 0 40px 64px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .diagram-wrap {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 32px 40px 40px;
+  }
+  .diagram-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .diagram-hint {
+    font-size: 12px;
+    color: var(--ink-3);
+    margin-bottom: 28px;
+  }
+
+  /* Vertical flow diagram */
+  .flow-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  /* Phase block in diagram */
+  .flow-phase {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .flow-phase-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity .15s;
+  }
+  .flow-phase-header:hover { opacity: .85; }
+
+  .flow-phase-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .flow-phase-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .flow-phase-sublabel {
+    font-size: 11px;
+    font-weight: 400;
+    opacity: .7;
+    margin-top: 1px;
+  }
+
+  .flow-phase-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 20px 20px 76px;
+  }
+
+  .flow-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform .12s, box-shadow .12s;
+    border: 1px solid transparent;
+  }
+  .flow-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+  }
+
+  /* Sub-group boxes inside phase 2 */
+  .flow-subgroups {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 0 20px 20px 76px;
+  }
+  .flow-subgroup {
+    border-radius: 8px;
+    padding: 12px 16px;
+    min-width: 160px;
+  }
+  .flow-subgroup-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .flow-subgroup-items { display: flex; flex-direction: column; gap: 4px; }
+  .flow-subgroup-item {
+    font-size: 12px;
+    font-weight: 400;
+    padding: 3px 0;
+  }
+
+  /* Arrow connector */
+  .flow-arrow {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 38px;
+    margin: 4px 0;
+  }
+  .flow-arrow-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .flow-arrow-stem {
+    width: 2px;
+    height: 28px;
+    background: var(--rule);
+  }
+  .flow-arrow-head {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--rule);
+  }
+
+  /* Phase colors */
+  .p1 .flow-phase-num { background: var(--p1); }
+  .p1 .flow-phase-header { background: var(--p1-soft); }
+  .p1 .flow-phase-label { color: var(--p1); }
+  .p1 .flow-item { background: var(--p1-soft); color: var(--p1); border-color: var(--p1-mid); }
+  .p1 .flow-subgroup { background: var(--p1-soft); border: 1px solid var(--p1-mid); }
+  .p1 .flow-subgroup-title { color: var(--p1); }
+
+  .p2 .flow-phase-num { background: var(--p2); }
+  .p2 .flow-phase-header { background: var(--p2-soft); }
+  .p2 .flow-phase-label { color: var(--p2); }
+  .p2 .flow-item { background: var(--p2-soft); color: var(--p2); border-color: var(--p2-mid); }
+  .p2 .flow-subgroup { background: var(--p2-soft); border: 1px solid var(--p2-mid); }
+  .p2 .flow-subgroup-title { color: var(--p2); }
+  .p2 .flow-subgroup-item { color: var(--ink-2); }
+
+  .p3 .flow-phase-num { background: var(--p3); }
+  .p3 .flow-phase-header { background: var(--p3-soft); }
+  .p3 .flow-phase-label { color: var(--p3); }
+  .p3 .flow-item { background: var(--p3-soft); color: var(--p3); border-color: var(--p3-mid); }
+
+  .p4 .flow-phase-num { background: var(--p4); }
+  .p4 .flow-phase-header { background: var(--p4-soft); }
+  .p4 .flow-phase-label { color: var(--p4); }
+  .p4 .flow-item { background: var(--p4-soft); color: var(--p4); border-color: var(--p4-mid); }
+
+  /* ── PHASES DETAIL SECTION ── */
+  .phases-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .phase {
+    border-radius: var(--radius);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 32px 36px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .phase-number-block {
+    flex-shrink: 0;
+    text-align: center;
+  }
+  .phase-number {
+    font-family: var(--font-mono);
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .phase-stage {
+    font-size: 10px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-top: 4px;
+  }
+  .phase-name {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .phase-name em { font-style: italic; }
+  .phase-desc { font-size: 14px; color: var(--ink-2); line-height: 1.7; max-width: 580px; }
+
+  /* Phase color accents */
+  .phase[data-phase="1"] .phase-number { color: var(--p1); }
+  .phase[data-phase="1"] .phase-header { border-left: 4px solid var(--p1); }
+  .phase[data-phase="2"] .phase-number { color: var(--p2); }
+  .phase[data-phase="2"] .phase-header { border-left: 4px solid var(--p2); }
+  .phase[data-phase="3"] .phase-number { color: var(--p3); }
+  .phase[data-phase="3"] .phase-header { border-left: 4px solid var(--p3); }
+  .phase[data-phase="4"] .phase-number { color: var(--p4); }
+  .phase[data-phase="4"] .phase-header { border-left: 4px solid var(--p4); }
+
+  /* Activity cards grid */
+  .activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+  }
+
+  .activity-card {
+    background: var(--surface);
+    padding: 24px 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    transition: background .12s;
+    position: relative;
+  }
+  .activity-card:hover { background: #F5F5F0; }
+
+  .activity-id {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: .06em;
+  }
+  .activity-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 2px;
+  }
+  .activity-korean {
+    font-size: 12px;
+    color: var(--ink-2);
+    margin-bottom: 4px;
+  }
+  .activity-preview {
+    font-size: 12px;
+    color: var(--ink-3);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .activity-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  .activity-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+  .activity-arrow { font-size: 14px; color: var(--ink-3); }
+
+  /* Phase card tag colors */
+  .phase[data-phase="1"] .activity-tag { background: var(--p1-soft); color: var(--p1); }
+  .phase[data-phase="2"] .activity-tag { background: var(--p2-soft); color: var(--p2); }
+  .phase[data-phase="3"] .activity-tag { background: var(--p3-soft); color: var(--p3); }
+  .phase[data-phase="4"] .activity-tag { background: var(--p4-soft); color: var(--p4); }
+
+  /* Sub-group cards inside phase 2 */
+  .subgroup-section {
+    padding: 24px 36px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .subgroup-section-title {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 16px;
+  }
+  .subgroups-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .subgroup-card {
+    flex: 1;
+    min-width: 180px;
+    border-radius: 8px;
+    padding: 16px 20px;
+    border: 1px solid var(--rule);
+  }
+  .subgroup-card-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .subgroup-card-items { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .subgroup-card-items li {
+    font-size: 12px;
+    color: var(--ink-2);
+    padding: 3px 0;
+    padding-left: 12px;
+    position: relative;
+  }
+  .subgroup-card-items li::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    color: var(--ink-3);
+  }
+
+  .phase[data-phase="2"] .subgroup-card { background: var(--p2-soft); border-color: var(--p2-mid); }
+  .phase[data-phase="2"] .subgroup-card-title { color: var(--p2); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--ink-3);
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .footer-right { text-align: right; line-height: 1.8; }
+
+  /* ── SIDE PANEL ── */
+  .panel-backdrop {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(26,25,23,.35);
+    z-index: 200;
+    backdrop-filter: blur(2px);
+  }
+  .panel-backdrop.open { display: block; }
+
+  .side-panel {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: min(480px, 92vw);
+    background: var(--surface);
+    z-index: 201;
+    transform: translateX(100%);
+    transition: transform .28s cubic-bezier(.4,0,.2,1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-left: 1px solid var(--rule);
+  }
+  .side-panel.open { transform: translateX(0); }
+
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--rule);
+    flex-shrink: 0;
+  }
+  .panel-header-left { display: flex; align-items: center; gap: 10px; }
+  .panel-phase-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    padding: 3px 10px;
+    border-radius: 3px;
+  }
+  .panel-id {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+  .panel-close {
+    width: 32px; height: 32px;
+    border: none; background: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 18px;
+    color: var(--ink-2);
+    display: flex; align-items: center; justify-content: center;
+    transition: background .12s;
+  }
+  .panel-close:hover { background: var(--rule); }
+
+  .panel-body {
+    overflow-y: auto;
+    padding: 28px 28px 40px;
+    flex: 1;
+  }
+  .panel-title { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+  .panel-korean { font-size: 14px; color: var(--ink-2); margin-bottom: 24px; }
+
+  .panel-section { margin-bottom: 28px; }
+  .panel-section-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .panel-section-label::after {
+    content: attr(data-count);
+    font-size: 10px;
+    background: var(--rule);
+    padding: 1px 6px;
+    border-radius: 3px;
+    color: var(--ink-2);
+  }
+  .panel-definition {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .panel-purpose {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.6;
+    border-left: 3px solid var(--rule);
+    padding-left: 14px;
+    margin-top: 10px;
+  }
+
+  .panel-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .panel-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    background: var(--bg);
+  }
+  .panel-list .num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-3);
+    flex-shrink: 0;
+    min-width: 28px;
+  }
+
+  /* checklist */
+  .panel-checklist li { cursor: pointer; transition: background .1s; }
+  .panel-checklist li:hover { background: #EFEFE8; }
+  .panel-checklist .check {
+    width: 16px; height: 16px;
+    border: 1.5px solid var(--ink-3);
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .panel-checklist li.done .check {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .panel-checklist li.done .check::after {
+    content: "";
+    width: 9px; height: 5px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(-45deg) translate(1px, -1px);
+    display: block;
+  }
+  .panel-checklist li.done span:last-child { text-decoration: line-through; color: var(--ink-3); }
+
+  /* RACI table */
+  .rr-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  .rr-table th { text-align: left; padding: 6px 12px; font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); border-bottom: 1px solid var(--rule); }
+  .rr-table td { padding: 8px 12px; border-bottom: 1px solid var(--rule); }
+  .raci { font-family: var(--font-mono); font-weight: 700; font-size: 13px; text-align: center; }
+  .raci-R { color: #1565C0; } .raci-A { color: #2E7D52; } .raci-C { color: #6A1B9A; } .raci-I { color: #BF5A00; }
+  .raci-legend { display: flex; gap: 16px; margin-top: 12px; font-size: 11px; color: var(--ink-3); flex-wrap: wrap; }
+  .raci-legend b { font-family: var(--font-mono); }
+
+  @media (max-width: 600px) {
+    .topbar { padding: 0 20px; }
+    .hero, .diagram-section, .phases-section { padding-left: 20px; padding-right: 20px; }
+    .nav-phases { display: none; }
+    .flow-phase-items, .flow-subgroups { padding-left: 56px; }
+    .subgroups-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-logo">KT AXD Methodology</div>
+    <div class="brand-mark">v1.0</div>
+  </div>
+  <nav class="nav-phases">
+    <a href="#phase-1"><span class="num">01</span> Discovery</a>
+    <a href="#phase-2"><span class="num">02</span> Design · Build · Evaluate</a>
+    <a href="#phase-3"><span class="num">03</span> Release &amp; Operate</a>
+    <a href="#phase-4"><span class="num">04</span> Continuous Improvement</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">KT Internal Methodology · AI-Driven Delivery Lifecycle</div>
+  <h1 class="hero-title">AI-Driven Delivery, <em>the AXD way</em>.</h1>
+  <p class="hero-subtitle">
+    Agent AI를 중심에 둔 4단계 딜리버리 라이프사이클. Discovery에서 Continuous Improvement까지,
+    AI 모델 정책·평가·운영 데이터를 기반으로 지속 고도화되는 KT AXD 방법론입니다.
+  </p>
+</section>
+
+<!-- ── LIFECYCLE DIAGRAM ── -->
+<section class="diagram-section">
+  <div class="diagram-wrap">
+    <div class="diagram-label">Fig. 01 · AI-Driven Delivery Lifecycle Flow</div>
+    <div class="diagram-hint">Click any phase to scroll to detail</div>
+
+    <div class="flow-vertical">
+
+      <!-- Phase 1: DISCOVERY -->
+      <div class="flow-phase p1" id="diag-1">
+        <a href="#phase-1" style="text-decoration:none">
+          <div class="flow-phase-header">
+            <div class="flow-phase-num">①</div>
+            <div>
+              <div class="flow-phase-label">Discovery</div>
+              <div class="flow-phase-sublabel">현행 분석 · 요구사항 · Agent AI 정의</div>
+            </div>
+          </div>
+        </a>
+        <div class="flow-phase-items">
+          <span class="flow-item p1">현행시스템 리뷰</span>
+          <span class="flow-item p1">유저스토리 매핑</span>
+          <span class="flow-item p1">Agent AI 활용 시나리오 정의</span>
+          <span class="flow-item p1">Agent AI 서비스 정의</span>
+          <span class="flow-item p1">Agent AI 모델 정책 명세</span>
+          <span class="flow-item p1">평가 전략 수립</span>
+          <span class="flow-item p1">요구사항 추적</span>
+          <span class="flow-item p1">Discovery 단계 점검</span>
+        </div>
+      </div>
+
+      <div class="flow-arrow"><div class="flow-arrow-line"><div class="flow-arrow-stem"></div><div class="flow-arrow-head"></div></div></div>
+
+      <!-- Phase 2: DESIGN SPRINT · BUILD & EXPERIMENT · EVALUATE & VALIDATE -->
+      <div class="flow-phase p2" id="diag-2">
+        <a href="#phase-2" style="text-decoration:none">
+          <div class="flow-phase-header">
+            <div class="flow-phase-num">②</div>
+            <div>
+              <div class="flow-phase-label">Design Sprint · Build &amp; Experiment · Evaluate &amp; Validate</div>
+              <div class="flow-phase-sublabel">아키텍처 설계 · 구현 · 테스트 · 평가</div>
+            </div>
+          </div>
+        </a>
+        <div class="flow-phase-items">
+          <span class="flow-item p2">Agent 아키텍처 설계</span>
+          <span class="flow-item p2">평가기준 정의</span>
+          <span class="flow-item p2">PI 및 Sprint 계획 수립</span>
+          <span class="flow-item p2">단계별 품질 점검</span>
+          <span class="flow-item p2">Agent AI 평가</span>
+          <span class="flow-item p2">통합·회귀 테스트</span>
+          <span class="flow-item p2">E2E 시스템 테스트</span>
+          <span class="flow-item p2">보안 취약점 점검</span>
+        </div>
+        <div class="flow-subgroups">
+          <div class="flow-subgroup p2">
+            <div class="flow-subgroup-title">DataOps</div>
+            <div class="flow-subgroup-items">
+              <div class="flow-subgroup-item">· 플랫폼 설계</div>
+              <div class="flow-subgroup-item">· 구현 및 테스트</div>
+            </div>
+          </div>
+          <div class="flow-subgroup p2">
+            <div class="flow-subgroup-title">AgentOps</div>
+            <div class="flow-subgroup-items">
+              <div class="flow-subgroup-item">· 플랫폼 설계</div>
+              <div class="flow-subgroup-item">· 구현 및 테스트</div>
+            </div>
+          </div>
+          <div class="flow-subgroup p2">
+            <div class="flow-subgroup-title">서비스 관리도구</div>
+            <div class="flow-subgroup-items">
+              <div class="flow-subgroup-item">· 설계</div>
+              <div class="flow-subgroup-item">· 구현 및 테스트</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-arrow"><div class="flow-arrow-line"><div class="flow-arrow-stem"></div><div class="flow-arrow-head"></div></div></div>
+
+      <!-- Phase 3: RELEASE & OPERATE -->
+      <div class="flow-phase p3" id="diag-3">
+        <a href="#phase-3" style="text-decoration:none">
+          <div class="flow-phase-header">
+            <div class="flow-phase-num">③</div>
+            <div>
+              <div class="flow-phase-label">Release &amp; Operate</div>
+              <div class="flow-phase-sublabel">릴리즈 · 전환 · 안정화</div>
+            </div>
+          </div>
+        </a>
+        <div class="flow-phase-items">
+          <span class="flow-item p3">사용자 교육</span>
+          <span class="flow-item p3">인수 및 검증 테스트</span>
+          <span class="flow-item p3">릴리즈 준비·환경 계획</span>
+          <span class="flow-item p3">시스템 전환·오픈</span>
+          <span class="flow-item p3">안정화 및 인수인계</span>
+        </div>
+      </div>
+
+      <div class="flow-arrow"><div class="flow-arrow-line"><div class="flow-arrow-stem"></div><div class="flow-arrow-head"></div></div></div>
+
+      <!-- Phase 4: CONTINUOUS IMPROVEMENT / AIDD LOOP -->
+      <div class="flow-phase p4" id="diag-4">
+        <a href="#phase-4" style="text-decoration:none">
+          <div class="flow-phase-header">
+            <div class="flow-phase-num">④</div>
+            <div>
+              <div class="flow-phase-label">Continuous Improvement / AIDD Loop</div>
+              <div class="flow-phase-sublabel">운영 데이터 기반 지속 개선</div>
+            </div>
+          </div>
+        </a>
+        <div class="flow-phase-items">
+          <span class="flow-item p4">Lessons Learned</span>
+          <span class="flow-item p4">AI 모델 성능 개선</span>
+          <span class="flow-item p4">Prompt / 정책 개선</span>
+          <span class="flow-item p4">운영 데이터 기반 재학습</span>
+          <span class="flow-item p4">AIDD 기반 산출물·품질·개발 자동화 고도화</span>
+        </div>
+      </div>
+
+    </div><!-- /.flow-vertical -->
+  </div>
+</section>
+
+<!-- ── PHASE DETAIL SECTIONS ── -->
+<section class="phases-section">
+
+  <!-- Phase 1: Discovery -->
+  <div class="phase" data-phase="1" id="phase-1">
+    <div class="phase-header">
+      <div class="phase-number-block">
+        <div class="phase-number">01</div>
+        <div class="phase-stage">Phase / Stage</div>
+      </div>
+      <div>
+        <div class="phase-name"><em>Discovery</em> · 현행 분석 &amp; 요구사항</div>
+        <div class="phase-desc">
+          현행 시스템을 분석하고 유저스토리를 매핑하며 Agent AI의 활용 시나리오와 모델 정책을 명세하는 단계.
+          이 단계에서 <strong>평가 전략</strong>과 요구사항 추적 체계를 확립하여 이후 Sprint의 품질 기준을 세운다.
+        </div>
+      </div>
+    </div>
+    <div class="activities-grid">
+
+      <div class="activity-card" data-activity="current-system-review" data-phase="1">
+        <div class="activity-id">D-01</div>
+        <div>
+          <div class="activity-title">현행시스템 리뷰</div>
+          <div class="activity-korean">As-Is System Review</div>
+        </div>
+        <div class="activity-preview">기존 시스템의 아키텍처·데이터·인터페이스를 분석하여 Agent AI 도입 영향 범위를 파악한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 01</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="user-story-mapping" data-phase="1">
+        <div class="activity-id">D-02</div>
+        <div>
+          <div class="activity-title">유저스토리 매핑</div>
+          <div class="activity-korean">User Story Mapping</div>
+        </div>
+        <div class="activity-preview">사용자 여정을 기반으로 에픽·스토리를 구조화하여 Agent AI 서비스와 연결한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 01</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="agent-ai-scenario" data-phase="1">
+        <div class="activity-id">D-03</div>
+        <div>
+          <div class="activity-title">Agent AI 활용 시나리오 정의</div>
+          <div class="activity-korean">Agent AI Use Case Scenario</div>
+        </div>
+        <div class="activity-preview">업무 도메인별 Agent AI 적용 시나리오를 정의하고 우선순위를 결정한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 01</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="agent-ai-service" data-phase="1">
+        <div class="activity-id">D-04</div>
+        <div>
+          <div class="activity-title">Agent AI 서비스 정의</div>
+          <div class="activity-korean">Agent AI Service Definition</div>
+        </div>
+        <div class="activity-preview">제공할 Agent AI 서비스의 범위·기능·인터페이스를 명세한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 01</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="agent-ai-model-policy" data-phase="1">
+        <div class="activity-id">D-05</div>
+        <div>
+          <div class="activity-title">Agent AI 모델 정책 명세</div>
+          <div class="activity-korean">Model Policy Specification</div>
+        </div>
+        <div class="activity-preview">모델 선택 기준, 버전 관리, 안전 정책, 할루시네이션 대응 가이드라인을 수립한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 01</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="eval-strategy" data-phase="1">
+        <div class="activity-id">D-06</div>
+        <div>
+          <div class="activity-title">평가 전략 수립</div>
+          <div class="activity-korean">Evaluation Strategy</div>
+        </div>
+        <div class="activity-preview">Agent AI 품질 평가 지표(정확도·응답시간·안전성)와 평가 주기를 정의한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 01</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="req-tracing" data-phase="1">
+        <div class="activity-id">D-07</div>
+        <div>
+          <div class="activity-title">요구사항 추적</div>
+          <div class="activity-korean">Requirements Traceability</div>
+        </div>
+        <div class="activity-preview">요구사항–설계–구현–테스트 간 추적 매트릭스를 수립하여 누락·변경을 관리한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 01</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="discovery-gate" data-phase="1">
+        <div class="activity-id">D-08</div>
+        <div>
+          <div class="activity-title">Discovery 단계 점검</div>
+          <div class="activity-korean">Discovery Gate Review</div>
+        </div>
+        <div class="activity-preview">Discovery 단계 완료 기준(DoD)을 점검하고 Phase 2 진입을 승인한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 01</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 2: Design Sprint · Build & Experiment · Evaluate & Validate -->
+  <div class="phase" data-phase="2" id="phase-2">
+    <div class="phase-header">
+      <div class="phase-number-block">
+        <div class="phase-number">02</div>
+        <div class="phase-stage">Phase / Stage</div>
+      </div>
+      <div>
+        <div class="phase-name"><em>Design Sprint · Build &amp; Experiment · Evaluate &amp; Validate</em></div>
+        <div class="phase-desc">
+          Agent 아키텍처를 설계하고 DataOps·AgentOps·서비스 관리도구를 Sprint 단위로 구현·실험·검증하는 핵심 단계.
+          <strong>PI 계획 기반</strong>으로 반복적 빌드와 평가를 수행하며 품질 게이트를 통과해 나간다.
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-group: DataOps / AgentOps / 서비스 관리도구 -->
+    <div class="subgroup-section">
+      <div class="subgroup-section-title">Platform Workstreams</div>
+      <div class="subgroups-row">
+        <div class="subgroup-card">
+          <div class="subgroup-card-title">DataOps</div>
+          <ul class="subgroup-card-items">
+            <li>플랫폼 설계</li>
+            <li>구현 및 테스트</li>
+          </ul>
+        </div>
+        <div class="subgroup-card">
+          <div class="subgroup-card-title">AgentOps</div>
+          <ul class="subgroup-card-items">
+            <li>플랫폼 설계</li>
+            <li>구현 및 테스트</li>
+          </ul>
+        </div>
+        <div class="subgroup-card">
+          <div class="subgroup-card-title">서비스 관리도구</div>
+          <ul class="subgroup-card-items">
+            <li>설계</li>
+            <li>구현 및 테스트</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="activities-grid">
+
+      <div class="activity-card" data-activity="agent-arch" data-phase="2">
+        <div class="activity-id">B-01</div>
+        <div>
+          <div class="activity-title">Agent 아키텍처 설계</div>
+          <div class="activity-korean">Agent Architecture Design</div>
+        </div>
+        <div class="activity-preview">Agent 오케스트레이션·도구·메모리·프롬프트 체계를 설계한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 02</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="eval-criteria" data-phase="2">
+        <div class="activity-id">B-02</div>
+        <div>
+          <div class="activity-title">평가기준 정의</div>
+          <div class="activity-korean">Evaluation Criteria Definition</div>
+        </div>
+        <div class="activity-preview">Sprint별 Agent 출력 품질 기준과 자동화 평가 파이프라인 설계.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 02</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="pi-sprint-plan" data-phase="2">
+        <div class="activity-id">B-03</div>
+        <div>
+          <div class="activity-title">PI 및 Sprint 계획 수립</div>
+          <div class="activity-korean">PI &amp; Sprint Planning</div>
+        </div>
+        <div class="activity-preview">Program Increment 단위로 목표를 설정하고 Sprint 백로그를 계획한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 02</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="quality-gate" data-phase="2">
+        <div class="activity-id">B-04</div>
+        <div>
+          <div class="activity-title">단계별 품질 점검</div>
+          <div class="activity-korean">Stage Quality Gate</div>
+        </div>
+        <div class="activity-preview">각 Sprint 종료 시 DoD 충족 여부와 품질 지표를 검토한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 02</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="agent-eval" data-phase="2">
+        <div class="activity-id">B-05</div>
+        <div>
+          <div class="activity-title">Agent AI 평가</div>
+          <div class="activity-korean">Agent AI Evaluation</div>
+        </div>
+        <div class="activity-preview">정의된 평가 기준에 따라 Agent 응답 품질·안전성·성능을 측정한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 02</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="integration-test" data-phase="2">
+        <div class="activity-id">B-06</div>
+        <div>
+          <div class="activity-title">통합·회귀 테스트</div>
+          <div class="activity-korean">Integration &amp; Regression Test</div>
+        </div>
+        <div class="activity-preview">컴포넌트 간 통합 및 기존 기능 회귀 여부를 자동화 테스트로 검증한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 02</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="e2e-test" data-phase="2">
+        <div class="activity-id">B-07</div>
+        <div>
+          <div class="activity-title">E2E 시스템 테스트</div>
+          <div class="activity-korean">End-to-End System Test</div>
+        </div>
+        <div class="activity-preview">실제 사용자 시나리오 기반으로 전체 흐름을 검증한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 02</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="security-check" data-phase="2">
+        <div class="activity-id">B-08</div>
+        <div>
+          <div class="activity-title">보안 취약점 점검</div>
+          <div class="activity-korean">Security Vulnerability Assessment</div>
+        </div>
+        <div class="activity-preview">Prompt Injection·데이터 유출·접근 제어 등 AI 특화 보안 위협을 점검한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 02</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 3: Release & Operate -->
+  <div class="phase" data-phase="3" id="phase-3">
+    <div class="phase-header">
+      <div class="phase-number-block">
+        <div class="phase-number">03</div>
+        <div class="phase-stage">Phase / Stage</div>
+      </div>
+      <div>
+        <div class="phase-name"><em>Release &amp; Operate</em> · 릴리즈 &amp; 운영</div>
+        <div class="phase-desc">
+          사용자 교육부터 시스템 전환·오픈까지. 인수 검증을 완료하고 안정화 기간을 거쳐
+          <strong>운영팀으로 인수인계</strong>하며 서비스를 공식 오픈한다.
+        </div>
+      </div>
+    </div>
+    <div class="activities-grid">
+
+      <div class="activity-card" data-activity="user-training" data-phase="3">
+        <div class="activity-id">R-01</div>
+        <div>
+          <div class="activity-title">사용자 교육</div>
+          <div class="activity-korean">User Training</div>
+        </div>
+        <div class="activity-preview">최종 사용자 대상 Agent AI 서비스 사용 교육 및 매뉴얼을 제공한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 03</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="uat" data-phase="3">
+        <div class="activity-id">R-02</div>
+        <div>
+          <div class="activity-title">인수 및 검증 테스트</div>
+          <div class="activity-korean">User Acceptance Test (UAT)</div>
+        </div>
+        <div class="activity-preview">고객이 직접 비즈니스 시나리오를 검증하며 최종 인수 승인을 수행한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 03</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="release-plan" data-phase="3">
+        <div class="activity-id">R-03</div>
+        <div>
+          <div class="activity-title">릴리즈 준비·환경 계획</div>
+          <div class="activity-korean">Release Readiness &amp; Environment Plan</div>
+        </div>
+        <div class="activity-preview">운영 환경 구성, 롤백 계획, 릴리즈 체크리스트를 완비한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 03</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="system-open" data-phase="3">
+        <div class="activity-id">R-04</div>
+        <div>
+          <div class="activity-title">시스템 전환·오픈</div>
+          <div class="activity-korean">System Cutover &amp; Go-Live</div>
+        </div>
+        <div class="activity-preview">기존 시스템에서 새 Agent AI 서비스로 전환하고 공식 오픈을 선언한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 03</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="stabilization" data-phase="3">
+        <div class="activity-id">R-05</div>
+        <div>
+          <div class="activity-title">안정화 및 인수인계</div>
+          <div class="activity-korean">Stabilization &amp; Handover</div>
+        </div>
+        <div class="activity-preview">오픈 후 안정화 기간 동안 이슈를 신속 대응하고 운영팀에 지식·문서를 이관한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 03</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 4: Continuous Improvement / AIDD Loop -->
+  <div class="phase" data-phase="4" id="phase-4">
+    <div class="phase-header">
+      <div class="phase-number-block">
+        <div class="phase-number">04</div>
+        <div class="phase-stage">Phase / Stage</div>
+      </div>
+      <div>
+        <div class="phase-name"><em>Continuous Improvement</em> · AIDD Loop</div>
+        <div class="phase-desc">
+          단순 종료가 아닌, 운영 데이터를 기반으로 AI 모델·프롬프트·정책을 지속 개선하는 선순환 루프.
+          <strong>AIDD(AI-Driven Development)</strong> 기반으로 산출물·품질·개발 자동화를 고도화하며 다음 Discovery 사이클로 연결된다.
+        </div>
+      </div>
+    </div>
+    <div class="activities-grid">
+
+      <div class="activity-card" data-activity="lessons-learned" data-phase="4">
+        <div class="activity-id">C-01</div>
+        <div>
+          <div class="activity-title">Lessons Learned</div>
+          <div class="activity-korean">회고 및 교훈 도출</div>
+        </div>
+        <div class="activity-preview">프로젝트 전반의 성공·실패 요인을 분석하고 조직 학습 자산으로 전환한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 04</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="model-improvement" data-phase="4">
+        <div class="activity-id">C-02</div>
+        <div>
+          <div class="activity-title">AI 모델 성능 개선</div>
+          <div class="activity-korean">AI Model Performance Improvement</div>
+        </div>
+        <div class="activity-preview">운영 지표를 기반으로 모델 버전 업그레이드·파인튜닝 계획을 수립한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 04</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="prompt-improvement" data-phase="4">
+        <div class="activity-id">C-03</div>
+        <div>
+          <div class="activity-title">Prompt / 정책 개선</div>
+          <div class="activity-korean">Prompt &amp; Policy Optimization</div>
+        </div>
+        <div class="activity-preview">실사용 피드백·에러 케이스를 분석하여 프롬프트와 운영 정책을 최적화한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 04</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="retraining" data-phase="4">
+        <div class="activity-id">C-04</div>
+        <div>
+          <div class="activity-title">운영 데이터 기반 재학습</div>
+          <div class="activity-korean">Operational Data Re-training</div>
+        </div>
+        <div class="activity-preview">축적된 운영 데이터를 활용해 모델을 재학습하거나 RAG 지식베이스를 갱신한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 04</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="activity-card" data-activity="aidd-automation" data-phase="4">
+        <div class="activity-id">C-05</div>
+        <div>
+          <div class="activity-title">AIDD 기반 자동화 고도화</div>
+          <div class="activity-korean">AIDD Automation Enhancement</div>
+        </div>
+        <div class="activity-preview">AI-Driven Development 기반으로 산출물·품질·개발 자동화 수준을 지속 향상한다.</div>
+        <div class="activity-footer">
+          <span class="activity-tag">Phase 04</span>
+          <span class="activity-arrow">→</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-left">"AI가 만드는 것이 아니라, AI를 설계하는 방법론이다."</div>
+  <div class="footer-right">
+    <div>KT · AXD Methodology</div>
+    <div>v1.0 · 2026</div>
+    <div>Internal Reference Only</div>
+  </div>
+</footer>
+
+<!-- Side Panel -->
+<div class="panel-backdrop" id="backdrop"></div>
+<aside class="side-panel" id="panel">
+  <div class="panel-header">
+    <div class="panel-header-left">
+      <span class="panel-phase-badge" id="panel-phase" style="background: var(--p1-soft); color: var(--p1);">PHASE 01</span>
+      <span class="panel-id" id="panel-id">D-01</span>
+    </div>
+    <button class="panel-close" id="panel-close" aria-label="Close">×</button>
+  </div>
+  <div class="panel-body" id="panel-body">
+    <h2 class="panel-title" id="panel-title">현행시스템 리뷰</h2>
+    <div class="panel-korean" id="panel-korean">As-Is System Review</div>
+
+    <div class="panel-section">
+      <div class="panel-section-label">Definition · 정의</div>
+      <div class="panel-definition" id="panel-definition">
+        기존 시스템의 아키텍처·데이터·인터페이스를 분석하여 Agent AI 도입 영향 범위를 파악한다.
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <div class="panel-section-label" data-count="클릭하여 열기">Checklist · 체크리스트</div>
+      <ul class="panel-list panel-checklist" id="panel-checklist"></ul>
+    </div>
+  </div>
+</aside>
+
+<script>
+(function() {
+  const activities = {
+    'current-system-review': {
+      id: 'D-01', phase: 1,
+      title: '현행시스템 리뷰', korean: 'As-Is System Review',
+      definition: '기존 시스템의 아키텍처·데이터·인터페이스를 분석하여 Agent AI 도입 영향 범위와 기술 부채를 파악한다.',
+      checklist: ['현행 시스템 아키텍처 다이어그램이 최신화되어 있는가', '데이터 흐름 및 인터페이스 목록이 작성되었는가', 'Agent AI 도입 시 영향 받는 컴포넌트가 식별되었는가', '기술 부채 및 리팩토링 대상이 문서화되었는가']
+    },
+    'user-story-mapping': {
+      id: 'D-02', phase: 1,
+      title: '유저스토리 매핑', korean: 'User Story Mapping',
+      definition: '사용자 여정을 기반으로 에픽·스토리를 구조화하여 Agent AI 서비스와 연결하고 우선순위를 정의한다.',
+      checklist: ['사용자 페르소나와 여정이 정의되었는가', '에픽·스토리·태스크 계층이 구성되었는가', 'Agent AI 적용 스토리가 식별되었는가', 'MoSCoW 우선순위가 합의되었는가']
+    },
+    'agent-ai-scenario': {
+      id: 'D-03', phase: 1,
+      title: 'Agent AI 활용 시나리오 정의', korean: 'Agent AI Use Case Scenario',
+      definition: '업무 도메인별 Agent AI 적용 시나리오를 정의하고, 비즈니스 가치와 실현 가능성을 기준으로 우선순위를 결정한다.',
+      checklist: ['도메인별 Agent AI 시나리오가 작성되었는가', '각 시나리오의 비즈니스 가치가 수치화되었는가', '기술 실현 가능성 검토가 완료되었는가', '파일럿 시나리오가 선정되었는가']
+    },
+    'agent-ai-service': {
+      id: 'D-04', phase: 1,
+      title: 'Agent AI 서비스 정의', korean: 'Agent AI Service Definition',
+      definition: '제공할 Agent AI 서비스의 범위·기능·인터페이스를 명세하고 SLA를 정의한다.',
+      checklist: ['서비스 범위(in/out scope)가 명세되었는가', '기능 목록과 API 인터페이스가 정의되었는가', 'SLA(응답 시간, 가용성)가 합의되었는가', '서비스 거버넌스 체계가 정의되었는가']
+    },
+    'agent-ai-model-policy': {
+      id: 'D-05', phase: 1,
+      title: 'Agent AI 모델 정책 명세', korean: 'Model Policy Specification',
+      definition: '모델 선택 기준, 버전 관리, 안전 정책, 할루시네이션 대응 가이드라인을 수립한다.',
+      checklist: ['모델 선택 기준이 문서화되었는가', '버전 관리 및 롤백 정책이 정의되었는가', '할루시네이션 대응 가이드라인이 수립되었는가', '개인정보 보호 및 데이터 처리 정책이 반영되었는가']
+    },
+    'eval-strategy': {
+      id: 'D-06', phase: 1,
+      title: '평가 전략 수립', korean: 'Evaluation Strategy',
+      definition: 'Agent AI 품질 평가 지표(정확도·응답시간·안전성)와 평가 주기, 자동화 평가 파이프라인 방향을 정의한다.',
+      checklist: ['핵심 평가 지표(KPI)가 정의되었는가', '평가 데이터셋 구성 계획이 수립되었는가', '자동화 평가 도구가 선정되었는가', '평가 주기 및 리뷰 프로세스가 정의되었는가']
+    },
+    'req-tracing': {
+      id: 'D-07', phase: 1,
+      title: '요구사항 추적', korean: 'Requirements Traceability',
+      definition: '요구사항–설계–구현–테스트 간 추적 매트릭스를 수립하여 누락·변경을 체계적으로 관리한다.',
+      checklist: ['요구사항 추적 매트릭스(RTM)가 작성되었는가', '요구사항 변경 관리 프로세스가 정의되었는가', '각 요구사항에 담당자가 할당되었는가', 'RTM이 스프린트 계획과 연동되는가']
+    },
+    'discovery-gate': {
+      id: 'D-08', phase: 1,
+      title: 'Discovery 단계 점검', korean: 'Discovery Gate Review',
+      definition: 'Discovery 단계 완료 기준(DoD)을 점검하고 이해관계자 승인을 받아 Phase 2 진입을 확정한다.',
+      checklist: ['모든 D-0x 산출물이 완성되었는가', '이해관계자 리뷰가 완료되었는가', 'Phase 2 진입 승인이 이루어졌는가', 'Phase 2 킥오프 일정이 확정되었는가']
+    },
+    'agent-arch': {
+      id: 'B-01', phase: 2,
+      title: 'Agent 아키텍처 설계', korean: 'Agent Architecture Design',
+      definition: 'Agent 오케스트레이션·도구(Tool)·메모리·프롬프트 체계와 DataOps·AgentOps 플랫폼 아키텍처를 설계한다.',
+      checklist: ['Agent 오케스트레이션 패턴이 결정되었는가', 'Tool 목록과 인터페이스가 설계되었는가', 'Memory 전략(단기/장기)이 정의되었는가', 'DataOps·AgentOps 플랫폼 아키텍처가 리뷰되었는가']
+    },
+    'eval-criteria': {
+      id: 'B-02', phase: 2,
+      title: '평가기준 정의', korean: 'Evaluation Criteria Definition',
+      definition: 'Sprint별 Agent 출력 품질 기준과 자동화 평가 파이프라인을 설계하여 지속 측정 체계를 마련한다.',
+      checklist: ['Sprint별 품질 기준이 정의되었는가', '자동화 평가 파이프라인이 구성되었는가', '골든 데이터셋이 준비되었는가', '평가 결과 대시보드가 구성되었는가']
+    },
+    'pi-sprint-plan': {
+      id: 'B-03', phase: 2,
+      title: 'PI 및 Sprint 계획 수립', korean: 'PI & Sprint Planning',
+      definition: 'Program Increment 단위로 목표를 설정하고 Sprint 백로그를 우선순위화하여 팀 역량 기반으로 계획한다.',
+      checklist: ['PI 목표와 성공 기준이 정의되었는가', 'Sprint 백로그가 우선순위화되었는가', '팀 역량(Velocity) 기반 계획이 수립되었는가', '의존성과 리스크가 식별되었는가']
+    },
+    'quality-gate': {
+      id: 'B-04', phase: 2,
+      title: '단계별 품질 점검', korean: 'Stage Quality Gate',
+      definition: '각 Sprint 종료 시 DoD 충족 여부와 품질 지표를 검토하여 다음 Sprint 또는 Phase 진입을 결정한다.',
+      checklist: ['Sprint DoD 체크리스트가 충족되었는가', '코드 품질 지표(커버리지, 린트)가 기준을 충족하는가', 'Agent 품질 평가 결과가 기준 이상인가', '미결 이슈가 다음 Sprint로 이관되었는가']
+    },
+    'agent-eval': {
+      id: 'B-05', phase: 2,
+      title: 'Agent AI 평가', korean: 'Agent AI Evaluation',
+      definition: '정의된 평가 기준에 따라 Agent 응답 품질·안전성·성능을 측정하고 개선 포인트를 도출한다.',
+      checklist: ['정확도·완결성·안전성 지표가 측정되었는가', '할루시네이션 발생 케이스가 분석되었는가', '응답 속도와 처리량이 SLA를 충족하는가', '평가 결과가 다음 Sprint 개선에 반영되었는가']
+    },
+    'integration-test': {
+      id: 'B-06', phase: 2,
+      title: '통합·회귀 테스트', korean: 'Integration & Regression Test',
+      definition: '컴포넌트 간 통합 및 기존 기능 회귀 여부를 자동화 테스트 스위트로 지속 검증한다.',
+      checklist: ['통합 테스트 시나리오가 작성되었는가', '자동화 테스트 스위트가 CI/CD에 연동되었는가', '회귀 테스트 커버리지가 목표를 충족하는가', '테스트 실패 시 알림 체계가 동작하는가']
+    },
+    'e2e-test': {
+      id: 'B-07', phase: 2,
+      title: 'E2E 시스템 테스트', korean: 'End-to-End System Test',
+      definition: '실제 사용자 시나리오 기반으로 시스템 전체 흐름을 검증하여 릴리즈 준비 상태를 확인한다.',
+      checklist: ['E2E 테스트 시나리오가 비즈니스 요구사항을 커버하는가', 'E2E 테스트 환경이 운영 환경과 동등한가', '모든 주요 시나리오가 PASS 되었는가', '성능·부하 테스트 결과가 기준을 충족하는가']
+    },
+    'security-check': {
+      id: 'B-08', phase: 2,
+      title: '보안 취약점 점검', korean: 'Security Vulnerability Assessment',
+      definition: 'Prompt Injection·데이터 유출·접근 제어 등 AI 특화 보안 위협과 일반 보안 취약점을 점검한다.',
+      checklist: ['Prompt Injection 취약점이 검토되었는가', '데이터 유출 방지 메커니즘이 검증되었는가', '접근 제어 및 인증 체계가 점검되었는가', '발견된 취약점이 수정되거나 수용 리스크로 등록되었는가']
+    },
+    'user-training': {
+      id: 'R-01', phase: 3,
+      title: '사용자 교육', korean: 'User Training',
+      definition: '최종 사용자 대상 Agent AI 서비스 사용 방법, 주의사항, 피드백 채널을 교육하고 매뉴얼을 제공한다.',
+      checklist: ['사용자 역할별 교육 커리큘럼이 준비되었는가', '교육 자료(매뉴얼, 동영상)가 완성되었는가', '교육 일정과 참여자 목록이 확정되었는가', '교육 이해도 평가가 완료되었는가']
+    },
+    'uat': {
+      id: 'R-02', phase: 3,
+      title: '인수 및 검증 테스트', korean: 'User Acceptance Test (UAT)',
+      definition: '고객이 직접 실제 업무 시나리오로 시스템을 검증하고, 인수 기준 충족 여부를 확인하여 공식 승인한다.',
+      checklist: ['UAT 시나리오가 비즈니스 요구사항을 반영하는가', 'UAT 참여자 목록과 일정이 확정되었는가', '모든 UAT 시나리오가 PASS 되었는가', '고객 승인 서명이 완료되었는가']
+    },
+    'release-plan': {
+      id: 'R-03', phase: 3,
+      title: '릴리즈 준비·환경 계획', korean: 'Release Readiness & Environment Plan',
+      definition: '운영 환경 구성, 배포 절차, 롤백 계획, 모니터링 체계, 릴리즈 체크리스트를 완비한다.',
+      checklist: ['운영 환경 인프라가 준비되었는가', '배포 및 롤백 절차가 문서화되었는가', '모니터링·알림 체계가 구성되었는가', '릴리즈 체크리스트가 완성되었는가']
+    },
+    'system-open': {
+      id: 'R-04', phase: 3,
+      title: '시스템 전환·오픈', korean: 'System Cutover & Go-Live',
+      definition: '기존 시스템에서 새 Agent AI 서비스로 순단 없이 전환하고 공식 서비스 오픈을 선언한다.',
+      checklist: ['전환 계획에 따른 순서가 준수되었는가', '데이터 마이그레이션이 완료되었는가', '오픈 후 핵심 기능이 정상 동작하는가', '비상 대응(War Room) 체계가 가동 중인가']
+    },
+    'stabilization': {
+      id: 'R-05', phase: 3,
+      title: '안정화 및 인수인계', korean: 'Stabilization & Handover',
+      definition: '오픈 후 안정화 기간 동안 이슈를 신속 대응하고, 운영팀에 지식·문서·모니터링 권한을 이관한다.',
+      checklist: ['안정화 기간(기간 정의)이 설정되었는가', '운영 이관 문서가 완성되었는가', '운영팀 대상 인수인계 교육이 완료되었는가', '공식 인수인계 서명이 완료되었는가']
+    },
+    'lessons-learned': {
+      id: 'C-01', phase: 4,
+      title: 'Lessons Learned', korean: '회고 및 교훈 도출',
+      definition: '프로젝트 전반의 성공·실패 요인을 구조화하여 분석하고 조직 학습 자산으로 전환한다.',
+      checklist: ['프로젝트 회고 미팅이 진행되었는가', '성공 요인과 개선 요인이 정리되었는가', '교훈이 지식 베이스에 등록되었는가', '다음 프로젝트 적용 계획이 수립되었는가']
+    },
+    'model-improvement': {
+      id: 'C-02', phase: 4,
+      title: 'AI 모델 성능 개선', korean: 'AI Model Performance Improvement',
+      definition: '운영 지표와 사용자 피드백을 기반으로 모델 버전 업그레이드·파인튜닝 계획을 수립하고 실행한다.',
+      checklist: ['운영 지표 분석이 완료되었는가', '모델 개선 목표와 기준이 설정되었는가', '파인튜닝 또는 업그레이드 계획이 수립되었는가', '개선 결과 검증 방법이 정의되었는가']
+    },
+    'prompt-improvement': {
+      id: 'C-03', phase: 4,
+      title: 'Prompt / 정책 개선', korean: 'Prompt & Policy Optimization',
+      definition: '실사용 피드백·에러 케이스를 분석하여 프롬프트 효과성과 운영 정책의 완결성을 지속 최적화한다.',
+      checklist: ['에러 케이스 패턴이 분석되었는가', '프롬프트 개선안이 도출되었는가', 'A/B 테스트 또는 평가로 효과가 검증되었는가', '개선된 프롬프트가 운영에 반영되었는가']
+    },
+    'retraining': {
+      id: 'C-04', phase: 4,
+      title: '운영 데이터 기반 재학습', korean: 'Operational Data Re-training',
+      definition: '축적된 운영 데이터를 정제하여 모델을 재학습하거나 RAG 지식베이스를 갱신하고 품질을 재검증한다.',
+      checklist: ['운영 데이터 수집·정제 파이프라인이 동작하는가', '재학습 또는 RAG 업데이트 주기가 정의되었는가', '재학습 전후 품질 비교 평가가 수행되었는가', '갱신된 모델/지식베이스가 배포되었는가']
+    },
+    'aidd-automation': {
+      id: 'C-05', phase: 4,
+      title: 'AIDD 기반 자동화 고도화', korean: 'AIDD Automation Enhancement',
+      definition: 'AI-Driven Development 기반으로 산출물 자동 생성·품질 자동화·개발 보조 AI 수준을 지속 향상한다.',
+      checklist: ['AIDD 자동화 현황이 측정되었는가', '고도화 목표와 로드맵이 수립되었는가', '자동화 도입에 따른 생산성 지표가 측정되었는가', '다음 Discovery 사이클에 반영할 인사이트가 정리되었는가']
+    }
+  };
+
+  const phaseColors = {
+    1: { bg: 'var(--p1-soft)', color: 'var(--p1)' },
+    2: { bg: 'var(--p2-soft)', color: 'var(--p2)' },
+    3: { bg: 'var(--p3-soft)', color: 'var(--p3)' },
+    4: { bg: 'var(--p4-soft)', color: 'var(--p4)' }
+  };
+
+  const panel = document.getElementById('panel');
+  const backdrop = document.getElementById('backdrop');
+  const panelClose = document.getElementById('panel-close');
+  const panelPhase = document.getElementById('panel-phase');
+  const panelId = document.getElementById('panel-id');
+  const panelTitle = document.getElementById('panel-title');
+  const panelKorean = document.getElementById('panel-korean');
+  const panelDefinition = document.getElementById('panel-definition');
+  const panelChecklist = document.getElementById('panel-checklist');
+
+  const checkState = {};
+
+  function openPanel(activityKey) {
+    const a = activities[activityKey];
+    if (!a) return;
+
+    const c = phaseColors[a.phase];
+    panelPhase.style.background = c.bg;
+    panelPhase.style.color = c.color;
+    panelPhase.textContent = 'PHASE 0' + a.phase;
+    panelId.textContent = a.id;
+    panelTitle.textContent = a.title;
+    panelKorean.textContent = a.korean;
+    panelDefinition.textContent = a.definition;
+
+    if (!checkState[activityKey]) checkState[activityKey] = {};
+
+    panelChecklist.innerHTML = '';
+    (a.checklist || []).forEach(function(item, idx) {
+      const li = document.createElement('li');
+      li.dataset.idx = idx;
+      if (checkState[activityKey][idx]) li.classList.add('done');
+      li.innerHTML = '<span class="check"></span><span>' + item + '</span>';
+      li.addEventListener('click', function() {
+        checkState[activityKey][idx] = !checkState[activityKey][idx];
+        li.classList.toggle('done', checkState[activityKey][idx]);
+      });
+      panelChecklist.appendChild(li);
+    });
+
+    panel.classList.add('open');
+    backdrop.classList.add('open');
+  }
+
+  function closePanel() {
+    panel.classList.remove('open');
+    backdrop.classList.remove('open');
+  }
+
+  panelClose.addEventListener('click', closePanel);
+  backdrop.addEventListener('click', closePanel);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePanel();
+  });
+
+  document.querySelectorAll('.activity-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      openPanel(card.dataset.activity);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

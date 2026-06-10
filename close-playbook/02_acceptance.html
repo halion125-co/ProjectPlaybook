@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>02 수락·전환·Offboarding — Close Playbook</title>
+  <style>
+:root{
+  --bg:#0b1020;--ink:#eff5ff;--muted:#aebbd7;--line:rgba(255,255,255,.14);
+  --blue:#6ca8ff;--cyan:#42d7d6;--green:#63d297;--orange:#ffbf69;--red:#ff7a7a;--purple:#b794f6;
+  --dark:#172033;--softline:#dfe7f3;--shadow:0 24px 70px rgba(0,0,0,.24);--radius:22px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif;
+  color:var(--ink);background:radial-gradient(circle at 8% -8%,rgba(66,215,214,.22),transparent 34%),
+  radial-gradient(circle at 94% 0%,rgba(108,168,255,.24),transparent 30%),
+  linear-gradient(180deg,var(--bg) 0%,#101936 40%,#f4f7fb 40%,#f4f7fb 100%);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1400px;margin:0 auto;padding:28px 28px 80px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:-.02em}
+.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--blue));box-shadow:0 12px 30px rgba(66,215,214,.22)}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav a{padding:7px 13px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px;background:rgba(255,255,255,.04)}
+.nav a:hover{color:#fff;border-color:rgba(255,255,255,.3)}
+.nav a.active{color:var(--cyan);border-color:rgba(66,215,214,.5)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;margin-bottom:28px}
+.hero-card{background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.045));
+  border:1px solid var(--line);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow);backdrop-filter:blur(12px)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#dbe8ff;background:rgba(255,255,255,.08);
+  border:1px solid var(--line);padding:7px 13px;border-radius:999px;font-size:12px;margin-bottom:18px}
+h1{font-size:34px;line-height:1.1;margin:0 0 14px;letter-spacing:-.04em}
+h2{font-size:22px;line-height:1.2;margin:4px 0 10px;letter-spacing:-.03em;color:var(--dark)}
+h3{font-size:16px;margin:0 0 8px;letter-spacing:-.02em;color:var(--dark)}
+p{margin:0}.lead{font-size:16px;color:#d7e4ff;margin:0 0 18px}
+.section{margin:28px 0;color:var(--dark)}
+.section-head{margin-bottom:16px}
+.kicker{color:#2656d9;font-weight:850;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.desc{color:#667085;font-size:14px}
+.panel{background:#fff;border:1px solid var(--softline);border-radius:22px;box-shadow:0 12px 36px rgba(23,32,51,.07);overflow:hidden;color:var(--dark)}
+.panel-head{padding:18px 22px;border-bottom:1px solid var(--softline);background:linear-gradient(180deg,#fff,#f9fbff)}
+.panel-body{padding:22px}
+.grid{display:grid;gap:14px}.grid.two{grid-template-columns:repeat(2,1fr)}.grid.three{grid-template-columns:repeat(3,1fr)}
+.card{background:#fff;border:1px solid var(--softline);border-radius:18px;padding:18px;color:var(--dark);box-shadow:0 8px 24px rgba(23,32,51,.05)}
+.card.blue{border-left:4px solid var(--blue)}.card.green{border-left:4px solid var(--green)}
+.card.orange{border-left:4px solid var(--orange)}.card.red{border-left:4px solid var(--red)}
+.card p,.card li{font-size:13px;color:#475467}.card ul{margin:8px 0 0;padding-left:16px}.card li{margin:5px 0}
+.badge{display:inline-flex;align-items:center;border-radius:999px;padding:4px 10px;font-size:11px;font-weight:800;white-space:nowrap}
+.badge.ok{background:#e7f8ee;color:#067647}.badge.draft{background:#fff2df;color:#b54708}
+.badge.partial{background:#eef3ff;color:#2656d9}.badge.warn{background:#ffe8e5;color:#b42318}
+.badge.dark{background:#172033;color:#fff}
+.map-table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;border:1px solid var(--softline);border-radius:16px;overflow:hidden}
+.map-table th{background:#172033;color:#fff;text-align:left;padding:11px 14px;font-size:12px;vertical-align:top}
+.map-table td{padding:11px 14px;border-top:1px solid var(--softline);vertical-align:top;background:#fff;color:#344054}
+.map-table tr:nth-child(even) td{background:#f9fbff}.map-table strong{color:#172033}
+.callout{border-left:5px solid var(--cyan);background:#f5fbff;border-radius:14px;padding:16px 20px;color:#344054}
+.callout strong{color:#172033}.callout.warn{border-color:var(--orange);background:#fffbf0}
+.callout.tip{border-color:var(--green);background:#f3fdf7}
+.callout.danger{border-color:var(--red);background:#fff5f5}
+.nextprev{display:flex;justify-content:space-between;gap:12px;margin-top:28px}
+.nextprev a{background:#172033;color:#fff;border-radius:14px;padding:12px 18px;font-size:14px;font-weight:800}
+.nextprev a.sec{background:#fff;color:#172033;border:1px solid var(--softline)}
+.footer{margin-top:32px;color:#667085;font-size:12px;border-top:1px solid #dde5f2;padding-top:16px}
+.act-block{background:#f6f9ff;border:1.5px solid #dde8f8;border-radius:20px;padding:24px;margin-bottom:24px}
+.ab-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
+.ab-badge{min-width:52px;height:52px;border-radius:16px;background:#172033;color:#fff;
+  font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-align:center;line-height:1.3}
+.ab-title{font-size:18px;font-weight:900;color:var(--dark);margin-bottom:4px;letter-spacing:-.02em}
+.ab-question{font-size:14px;color:#667085;font-style:italic}
+.ab-meta{display:flex;gap:20px;flex-wrap:wrap;background:#fff;border:1px solid var(--softline);border-radius:12px;padding:12px 16px;margin-bottom:16px}
+.am-item{display:flex;flex-direction:column;gap:2px}
+.am-label{font-size:10px;font-weight:900;color:#98a2b3;letter-spacing:.07em;text-transform:uppercase}
+.am-value{font-size:13px;font-weight:700;color:var(--dark)}
+
+/* deliverable register */
+.del-table{width:100%;border-collapse:separate;border-spacing:0;font-size:12px;border:1px solid var(--softline);border-radius:14px;overflow:hidden}
+.del-table th{background:#172033;color:#fff;padding:9px 11px;text-align:left;font-size:11px}
+.del-table td{padding:9px 11px;border-top:1px solid var(--softline);background:#fff;color:#344054;vertical-align:top}
+.del-table tr:nth-child(even) td{background:#f9fbff}
+
+/* test summary */
+.test-summary{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
+.ts-card{background:#fff;border:1px solid var(--softline);border-radius:14px;padding:14px;text-align:center}
+.ts-type{font-size:11px;font-weight:800;color:#667085;margin-bottom:6px}
+.ts-num{font-size:22px;font-weight:900;letter-spacing:-.04em;margin-bottom:2px}
+.ts-sub{font-size:10px;color:#98a2b3}
+
+/* handover checklist */
+.hc-list{display:flex;flex-direction:column;gap:8px}
+.hc-item{display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid var(--softline);border-radius:12px;padding:12px 14px}
+.hc-check{width:22px;height:22px;border-radius:7px;border:2px solid var(--softline);flex-shrink:0;margin-top:1px}
+.hc-title{font-size:13px;font-weight:800;color:var(--dark);margin-bottom:2px}
+.hc-desc{font-size:12px;color:#667085}
+
+/* offboarding */
+.ob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ob-card{background:#fff5f5;border:1px solid #fdd;border-radius:14px;padding:14px 16px}
+.ob-icon{font-size:20px;margin-bottom:6px}
+.ob-title{font-size:13px;font-weight:800;color:#b42318;margin-bottom:4px}
+.ob-items{font-size:12px;color:#344054;display:flex;flex-direction:column;gap:3px}
+.ob-item::before{content:"· "}
+
+/* ongoing backlog */
+.ob-table{font-size:12px;width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--softline);border-radius:14px;overflow:hidden}
+.ob-table th{background:#172033;color:#fff;padding:9px 11px;text-align:left;font-size:11px}
+.ob-table td{padding:9px 11px;border-top:1px solid var(--softline);background:#fff;color:#344054;vertical-align:top}
+.ob-table tr:nth-child(even) td{background:#f9fbff}
+
+@media(max-width:1100px){.hero{grid-template-columns:1fr}.grid.three{grid-template-columns:repeat(2,1fr)}.test-summary{grid-template-columns:repeat(3,1fr)}.ob-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.wrap{padding:18px 16px 60px}h1{font-size:26px}.grid.two,.grid.three{grid-template-columns:1fr}.nextprev{flex-direction:column}.hero-card{padding:22px}.test-summary{grid-template-columns:repeat(2,1fr)}.ob-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <a class="brand" href="../sprint0-activities/index.html"><div class="logo"></div><div>AXE Delivery Way <span style="color:var(--muted);font-weight:600">Playbook</span></div></a>
+    <nav class="nav">
+      <a href="../sprint0-activities/index.html">Sprint 0</a>
+      <a href="../requirement-playbook/index.html">Requirement</a>
+      <a href="index.html">Close &amp; Loop</a>
+      <a href="01_readiness.html">01 종료 준비</a>
+      <a href="02_acceptance.html" class="active">02 수락·전환</a>
+      <a href="03_lessons.html">03 교훈·Loop</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-card">
+      <div class="eyebrow">Activity 4·5·6·7 — 수락·전환·Offboarding</div>
+      <h1>고객이 수락하고<br>운영할 수 있는 상태인가</h1>
+      <p class="lead">산출물·품질·테스트 수락 점검(A4), 운영전환·교육·유지보수 준비(A5), Risk/Issue/Open Item 정리(A6), 팀 Offboarding·보안·권한 회수(A7)를 다룹니다.</p>
+    </div>
+    <div class="hero-card">
+      <div class="eyebrow">이 단계의 종료 판단 기준</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+        <div style="background:rgba(99,210,151,.12);border-radius:10px;padding:10px 14px;font-size:13px;color:#d7e4ff"><strong style="color:var(--green)">✓</strong> 필수 산출물이 모두 승인 완료 상태</div>
+        <div style="background:rgba(99,210,151,.12);border-radius:10px;padding:10px 14px;font-size:13px;color:#d7e4ff"><strong style="color:var(--green)">✓</strong> 중대 결함 없음 또는 고객 수락 근거 확보</div>
+        <div style="background:rgba(99,210,151,.12);border-radius:10px;padding:10px 14px;font-size:13px;color:#d7e4ff"><strong style="color:var(--green)">✓</strong> Runbook·매뉴얼·교육결과서 인계 완료</div>
+        <div style="background:rgba(99,210,151,.12);border-radius:10px;padding:10px 14px;font-size:13px;color:#d7e4ff"><strong style="color:var(--green)">✓</strong> 잔여 Risk/Issue에 Owner·Due Date 지정</div>
+        <div style="background:rgba(99,210,151,.12);border-radius:10px;padding:10px 14px;font-size:13px;color:#d7e4ff"><strong style="color:var(--green)">✓</strong> 계정 회수 및 자료 정리 완료</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Activity 4: 산출물·품질·테스트 -->
+  <section class="section" id="deliverable">
+    <div class="act-block">
+      <div class="ab-head">
+        <div class="ab-badge">A4</div>
+        <div><div class="ab-title">산출물·품질·테스트 수락 점검</div><div class="ab-question">산출물과 테스트 결과가 고객 수락 가능한 상태인가?</div></div>
+      </div>
+      <div class="ab-meta">
+        <div class="am-item"><div class="am-label">언제</div><div class="am-value">T-2주</div></div>
+        <div class="am-item"><div class="am-label">주관</div><div class="am-value">QA</div></div>
+        <div class="am-item"><div class="am-label">참여</div><div class="am-value">PM, PL, 고객 PM, 고객 검토자</div></div>
+        <div class="am-item"><div class="am-label">출력</div><div class="am-value">Deliverable Acceptance Register · Test &amp; Defect Closure Report</div></div>
+      </div>
+
+      <h3>Deliverable Acceptance Register</h3>
+      <div class="panel" style="margin-bottom:16px">
+        <div class="panel-body">
+          <table class="del-table">
+            <thead><tr><th>산출물</th><th>작성자</th><th>검토자</th><th>승인자</th><th>제출일</th><th>승인일</th><th>상태</th><th>비고</th></tr></thead>
+            <tbody>
+              <tr><td>요구사항정의서</td><td>BA</td><td>PL/QA</td><td>고객 PM</td><td>—</td><td>—</td><td><span class="badge ok" style="font-size:10px">승인완료</span></td><td></td></tr>
+              <tr><td>아키텍처정의서</td><td>Architect</td><td>PL</td><td>고객 IT</td><td>—</td><td>—</td><td><span class="badge ok" style="font-size:10px">승인완료</span></td><td></td></tr>
+              <tr><td>UI설계서</td><td>PL</td><td>QA</td><td>PO</td><td>—</td><td>—</td><td><span class="badge ok" style="font-size:10px">승인완료</span></td><td></td></tr>
+              <tr><td>ERD</td><td>DBA</td><td>PL</td><td>고객 IT</td><td>—</td><td>—</td><td><span class="badge ok" style="font-size:10px">승인완료</span></td><td></td></tr>
+              <tr><td>인터페이스설계서</td><td>PL</td><td>QA</td><td>고객 PM</td><td>—</td><td>—</td><td><span class="badge partial" style="font-size:10px">검토중</span></td><td>외부기관 확인 대기</td></tr>
+              <tr><td>인수테스트결과서</td><td>QA</td><td>PM</td><td>고객 PM</td><td>—</td><td>—</td><td><span class="badge draft" style="font-size:10px">보완필요</span></td><td>시나리오 3건 재확인</td></tr>
+              <tr><td>운영자 매뉴얼</td><td>Ops</td><td>PL</td><td>고객 운영팀</td><td>—</td><td>—</td><td><span class="badge draft" style="font-size:10px">보완필요</span></td><td>운영팀 피드백 반영 필요</td></tr>
+              <tr><td>유지보수계획서</td><td>PM</td><td>고객 PM</td><td>Sponsor</td><td>—</td><td>—</td><td><span class="badge partial" style="font-size:10px">검토중</span></td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3>Test &amp; Defect Closure Report</h3>
+      <div class="test-summary">
+        <div class="ts-card"><div class="ts-type">단위 테스트</div><div class="ts-num" style="color:#067647">완료</div><div class="ts-sub">Sprint 내 수행</div></div>
+        <div class="ts-card"><div class="ts-type">통합 테스트</div><div class="ts-num" style="color:#067647">완료</div><div class="ts-sub">결함 0건 잔존</div></div>
+        <div class="ts-card"><div class="ts-type">시스템 테스트</div><div class="ts-num" style="color:#b54708">조건부</div><div class="ts-sub">Minor 2건 이관</div></div>
+        <div class="ts-card"><div class="ts-type">인수 테스트</div><div class="ts-num" style="color:#b54708">진행중</div><div class="ts-sub">고객 확인 대기</div></div>
+        <div class="ts-card"><div class="ts-type">보안 테스트</div><div class="ts-num" style="color:#067647">완료</div><div class="ts-sub">취약점 0건</div></div>
+      </div>
+      <div class="callout warn">
+        <strong>결함 처리 원칙:</strong> Critical·Major 결함은 종료 전 반드시 해결해야 합니다. Minor 결함은 고객 합의 + Owner + Due Date가 있을 경우 Ongoing Activity로 이관 후 조건부 종료 가능합니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- Activity 5: 운영전환 -->
+  <section class="section" id="handover">
+    <div class="act-block">
+      <div class="ab-head">
+        <div class="ab-badge">A5</div>
+        <div><div class="ab-title">운영전환·교육·유지보수 준비 점검</div><div class="ab-question">고객이 실제 운영할 수 있는 상태인가?</div></div>
+      </div>
+      <div class="ab-meta">
+        <div class="am-item"><div class="am-label">언제</div><div class="am-value">T-2주 ~ T-1주</div></div>
+        <div class="am-item"><div class="am-label">주관</div><div class="am-value">Ops Lead / PM</div></div>
+        <div class="am-item"><div class="am-label">참여</div><div class="am-value">운영팀, 고객 IT, 교육담당, PL</div></div>
+        <div class="am-item"><div class="am-label">출력</div><div class="am-value">Handover Checklist · Ongoing Activity Backlog</div></div>
+      </div>
+
+      <div class="grid two">
+        <div>
+          <h3>Handover Checklist</h3>
+          <div class="hc-list">
+            <div class="hc-item"><div class="hc-check"></div><div><div class="hc-title">운영 인수자 지정</div><div class="hc-desc">운영 담당자 실명, 연락처, 역할 확인</div></div></div>
+            <div class="hc-item"><div class="hc-check"></div><div><div class="hc-title">운영 Runbook 인계</div><div class="hc-desc">장애, 배포, 백업, 모니터링 절차 문서화</div></div></div>
+            <div class="hc-item"><div class="hc-check"></div><div><div class="hc-title">사용자 교육 완료</div><div class="hc-desc">교육계획서, 교육결과서, 참석자 서명</div></div></div>
+            <div class="hc-item"><div class="hc-check"></div><div><div class="hc-title">운영자 교육 완료</div><div class="hc-desc">시스템 관리, 모니터링, 배포 교육</div></div></div>
+            <div class="hc-item"><div class="hc-check"></div><div><div class="hc-title">사용자·운영자 매뉴얼 제공</div><div class="hc-desc">최신 버전 확인, 접근 위치 공유</div></div></div>
+            <div class="hc-item"><div class="hc-check"></div><div><div class="hc-title">유지보수 범위 확인</div><div class="hc-desc">무상/유상 범위, 지원시간, 장애등급 기준</div></div></div>
+            <div class="hc-item"><div class="hc-check"></div><div><div class="hc-title">안정화 기간 정의</div><div class="hc-desc">기간, 지원 체계, 비상연락망</div></div></div>
+            <div class="hc-item"><div class="hc-check"></div><div><div class="hc-title">업무·데이터 전환 확인</div><div class="hc-desc">전환 체크리스트 서명, 데이터 정합성 확인</div></div></div>
+          </div>
+        </div>
+        <div>
+          <h3>Ongoing Activity Backlog</h3>
+          <table class="ob-table">
+            <thead><tr><th>ID</th><th>후속 항목</th><th>유형</th><th>Owner</th><th>완료예정</th><th>고객합의</th></tr></thead>
+            <tbody>
+              <tr><td>OA-001</td><td>성능 추가 튜닝</td><td>개선</td><td>PL</td><td>—</td><td>Y</td></tr>
+              <tr><td>OA-002</td><td>외부기관 연계 재시험</td><td>이슈</td><td>고객 PM</td><td>—</td><td>Y</td></tr>
+              <tr><td>OA-003</td><td>운영자 매뉴얼 보완</td><td>산출물</td><td>Ops</td><td>—</td><td>Y</td></tr>
+            </tbody>
+          </table>
+          <div class="callout" style="margin-top:14px">
+            <strong>원칙:</strong> 모든 Ongoing Activity에는 <strong>Owner, 완료 예정일, 고객 합의 여부</strong>가 필수입니다. 미정 항목은 종료 보류 조건입니다.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Activity 6: RAID 정리 -->
+  <section class="section" id="raid">
+    <div class="act-block">
+      <div class="ab-head">
+        <div class="ab-badge">A6</div>
+        <div><div class="ab-title">Risk·Issue·Decision·Open Item 정리</div><div class="ab-question">남은 항목의 종료/이관/제외가 합의되었는가?</div></div>
+      </div>
+      <div class="ab-meta">
+        <div class="am-item"><div class="am-label">언제</div><div class="am-value">T-1주</div></div>
+        <div class="am-item"><div class="am-label">주관</div><div class="am-value">PM / Risk Manager</div></div>
+        <div class="am-item"><div class="am-label">참여</div><div class="am-value">PL, QA, 고객 PM, Risk Owner</div></div>
+        <div class="am-item"><div class="am-label">출력</div><div class="am-value">Closure RAID Log · Residual Risk Acceptance Form</div></div>
+      </div>
+      <table class="map-table">
+        <thead><tr><th>항목 유형</th><th>종료 기준</th><th>종료 불가 시 처리</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Risk</strong></td><td>발생 가능성이 해소되었거나 고객이 수용했는가?</td><td>Residual Risk Acceptance Form으로 고객 수락 확보</td></tr>
+          <tr><td><strong>Issue</strong></td><td>조치 완료 또는 후속조치 Owner 지정</td><td>Ongoing Activity Backlog로 이관, Owner·Due Date 필수</td></tr>
+          <tr><td><strong>Decision</strong></td><td>결정 완료 또는 후속 의사결정 회의 이관</td><td>이관 회의체·일정·결정자 지정</td></tr>
+          <tr><td><strong>Open Item</strong></td><td>완료 / Deferred / Waived 중 하나로 분류</td><td>분류 없는 Open Item은 종료 보류 조건</td></tr>
+          <tr><td><strong>조건부 수락 항목</strong></td><td>고객 합의와 완료 예정일 존재</td><td>서면 합의 확보 후 Ongoing Activity로 이관</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Activity 7: Offboarding -->
+  <section class="section" id="offboarding">
+    <div class="act-block">
+      <div class="ab-head">
+        <div class="ab-badge">A7</div>
+        <div><div class="ab-title">팀 Offboarding·보안·권한 회수</div><div class="ab-question">계정·자료·접근권한이 안전하게 정리되었는가?</div></div>
+      </div>
+      <div class="ab-meta">
+        <div class="am-item"><div class="am-label">언제</div><div class="am-value">종료일 전후 1주</div></div>
+        <div class="am-item"><div class="am-label">주관</div><div class="am-value">PM / 보안담당</div></div>
+        <div class="am-item"><div class="am-label">참여</div><div class="am-value">사업관리, 고객 IT, 인프라 담당, 각 파트 PL</div></div>
+        <div class="am-item"><div class="am-label">출력</div><div class="am-value">Team Offboarding Checklist · Access Revocation Evidence</div></div>
+      </div>
+      <div class="ob-grid">
+        <div class="ob-card">
+          <div class="ob-icon">🔑</div>
+          <div class="ob-title">계정·접근권한 회수</div>
+          <div class="ob-items">
+            <div class="ob-item">고객사 시스템 계정 회수</div>
+            <div class="ob-item">협업도구 계정 정리</div>
+            <div class="ob-item">소스·문서 저장소 권한 회수</div>
+            <div class="ob-item">VPN·VDI·보안 접속 해제</div>
+            <div class="ob-item">권한 회수 증적 보관</div>
+          </div>
+        </div>
+        <div class="ob-card">
+          <div class="ob-icon">📁</div>
+          <div class="ob-title">자료·저장소 정리</div>
+          <div class="ob-items">
+            <div class="ob-item">고객 자료·비공개자료 반납/삭제</div>
+            <div class="ob-item">로컬 저장 자료 정리</div>
+            <div class="ob-item">최종 산출물 Repository 정리</div>
+            <div class="ob-item">저장 위치·접근권한 인계</div>
+            <div class="ob-item">Final Repository Index 작성</div>
+          </div>
+        </div>
+        <div class="ob-card">
+          <div class="ob-icon">👥</div>
+          <div class="ob-title">인력 철수·인수인계</div>
+          <div class="ob-items">
+            <div class="ob-item">철수자·철수일 확인</div>
+            <div class="ob-item">인수인계 완료 여부</div>
+            <div class="ob-item">PC 보안 점검</div>
+            <div class="ob-item">저장매체 처리</div>
+            <div class="ob-item">비상연락망 유지보수 체계로 전환</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout danger" style="margin-top:16px">
+        <strong>보안 필수:</strong> 권한 회수 없이 종료하면 정보 유출 사고로 이어질 수 있습니다. 계정 회수 증적(스크린샷·시스템 로그)은 반드시 보관합니다.
+      </div>
+    </div>
+  </section>
+
+  <div class="callout tip" style="margin-bottom:8px">
+    <strong>다음:</strong> <a href="03_lessons.html" style="color:#067647;text-decoration:underline">03 CSAT·Lessons·Loop →</a> 고객 만족도 확인과 교훈을 다음 Sprint 0에 반영합니다.
+  </div>
+
+  <div class="nextprev">
+    <a class="sec" href="01_readiness.html">&larr; 01 종료 준비</a>
+    <a href="03_lessons.html">03 교훈·Loop &rarr;</a>
+  </div>
+  <footer class="footer">AXE Delivery Way — Close · Lessons &amp; Loop Playbook | 02 수락·전환·Offboarding</footer>
+</div>
+</body>
+</html>

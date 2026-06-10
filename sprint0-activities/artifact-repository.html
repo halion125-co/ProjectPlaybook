@@ -1,0 +1,1006 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Artifact Repository — Sprint 0 산출물 조회</title>
+  <style>
+:root{
+  --bg:#0b1020; --bg2:#111936; --panel:#151f3f; --card:#ffffff; --ink:#eff5ff;
+  --muted:#aebbd7; --line:rgba(255,255,255,.14); --blue:#6ca8ff; --cyan:#42d7d6;
+  --green:#63d297; --orange:#ffbf69; --red:#ff7a7a; --purple:#b794f6;
+  --dark:#172033; --soft:#f6f8fc; --softline:#dfe7f3; --shadow:0 24px 70px rgba(0,0,0,.24);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 8% -8%,rgba(66,215,214,.22),transparent 34%),radial-gradient(circle at 94% 0%,rgba(108,168,255,.24),transparent 30%),linear-gradient(180deg,var(--bg) 0%,#101936 38%,#f4f7fb 38%,#f4f7fb 100%);line-height:1.58}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1440px;margin:0 auto;padding:28px 28px 72px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:-.02em}
+.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--blue));box-shadow:0 12px 30px rgba(66,215,214,.22)}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav a{padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px;background:rgba(255,255,255,.04)}
+.nav a:hover{color:#fff;border-color:rgba(255,255,255,.35)}
+.nav a.active{color:#fff;border-color:var(--cyan);background:rgba(66,215,214,.12)}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:24px;margin-bottom:28px}
+.hero-card{background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.045));border:1px solid var(--line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);backdrop-filter:blur(12px)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#dbe8ff;background:rgba(255,255,255,.08);border:1px solid var(--line);padding:8px 12px;border-radius:999px;font-size:13px;margin-bottom:16px}
+h1{font-size:38px;line-height:1.12;margin:0 0 16px;letter-spacing:-.04em}
+h2{font-size:24px;line-height:1.2;margin:4px 0 8px;letter-spacing:-.03em;color:var(--dark)}
+h3{font-size:17px;margin:0 0 8px;letter-spacing:-.02em;color:var(--dark)}
+p{margin:0}
+.lead{font-size:16px;color:#d7e4ff;margin:0 0 20px}
+
+/* Summary Cards */
+.summary-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:24px}
+.sum-card{background:#fff;border:1px solid var(--softline);border-radius:20px;padding:18px 16px;text-align:center;box-shadow:0 8px 24px rgba(23,32,51,.05)}
+.sum-num{font-size:32px;font-weight:900;letter-spacing:-.04em;line-height:1;margin-bottom:4px}
+.sum-label{font-size:12px;color:#667085;font-weight:700}
+.sum-card.total .sum-num{color:#172033}
+.sum-card.done .sum-num{color:#067647}
+.sum-card.partial .sum-num{color:#2656d9}
+.sum-card.warn .sum-num{color:#b54708}
+.sum-card.block .sum-num{color:#b42318}
+
+/* Filter Bar */
+.filter-bar{background:#fff;border:1px solid var(--softline);border-radius:20px;padding:18px 20px;margin-bottom:20px;box-shadow:0 8px 24px rgba(23,32,51,.05);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.filter-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.filter-label{font-size:12px;font-weight:800;color:#172033;white-space:nowrap}
+.filter-select{border:1px solid var(--softline);border-radius:10px;padding:7px 10px;font-size:13px;color:#172033;background:#f6f8fc;cursor:pointer;outline:none}
+.filter-select:focus{border-color:#6ca8ff}
+.search-input{border:1px solid var(--softline);border-radius:10px;padding:7px 12px;font-size:13px;color:#172033;background:#f6f8fc;width:200px;outline:none}
+.search-input:focus{border-color:#6ca8ff}
+.filter-reset{padding:7px 14px;border-radius:10px;background:#172033;color:#fff;font-size:12px;font-weight:800;border:none;cursor:pointer}
+
+/* Main Layout: list + detail */
+.repo-layout{display:grid;grid-template-columns:1fr 420px;gap:20px;align-items:start}
+
+/* Artifact Grid */
+.artifact-list{background:#fff;border:1px solid var(--softline);border-radius:24px;overflow:hidden;box-shadow:0 16px 42px rgba(23,32,51,.07)}
+.list-head{padding:16px 20px;border-bottom:1px solid var(--softline);background:linear-gradient(180deg,#fff,#f9fbff);display:flex;justify-content:space-between;align-items:center}
+.list-title{font-size:14px;font-weight:800;color:#172033}
+.list-count{font-size:12px;color:#667085}
+.artifact-row{padding:14px 20px;border-bottom:1px solid #f0f3fa;cursor:pointer;transition:background .14s;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start}
+.artifact-row:last-child{border-bottom:none}
+.artifact-row:hover{background:#f6f9ff}
+.artifact-row.selected{background:#eef4ff;border-left:4px solid var(--blue)}
+.artifact-row.selected{padding-left:16px}
+.art-name{font-size:14px;font-weight:800;color:#172033;margin-bottom:3px}
+.art-meta{font-size:12px;color:#667085;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.art-badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-size:11px;font-weight:800;white-space:nowrap;gap:4px}
+.badge.ok{background:#e7f8ee;color:#067647}
+.badge.draft{background:#fff2df;color:#b54708}
+.badge.partial{background:#eef3ff;color:#2656d9}
+.badge.warn{background:#ffe8e5;color:#b42318}
+.badge.dark{background:#172033;color:#fff}
+.badge.gray{background:#f2f4f7;color:#667085}
+.badge.cyan{background:#eafafa;color:#087d7d}
+.badge.purple{background:#f5f0ff;color:#6b21a8}
+.badge.block{background:#ffe8e5;color:#b42318}
+.badge.cond{background:#fff2df;color:#b54708}
+.badge.go{background:#e7f8ee;color:#067647}
+
+/* Detail Panel */
+.detail-panel{background:#fff;border:1px solid var(--softline);border-radius:24px;box-shadow:0 16px 42px rgba(23,32,51,.07);position:sticky;top:24px;max-height:calc(100vh - 48px);overflow-y:auto}
+.detail-empty{padding:48px 24px;text-align:center;color:#98a2b3}
+.detail-empty .icon{font-size:36px;margin-bottom:12px}
+.detail-content{padding:24px}
+.detail-header{margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--softline)}
+.detail-title{font-size:18px;font-weight:900;color:#172033;margin-bottom:8px;letter-spacing:-.02em}
+.detail-desc{font-size:13px;color:#667085;line-height:1.6}
+.detail-section{margin-bottom:20px}
+.detail-section-title{font-size:11px;font-weight:900;color:#2656d9;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.detail-kv{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:13px;margin-bottom:6px}
+.detail-kv dt{color:#667085;font-weight:700;white-space:nowrap}
+.detail-kv dd{color:#172033;margin:0}
+.detail-pill{display:inline-flex;align-items:center;gap:5px;background:#f0f4ff;color:#2656d9;border-radius:8px;padding:4px 10px;font-size:12px;font-weight:700;cursor:pointer;border:none;margin:2px}
+.detail-pill:hover{background:#dce8ff}
+.detail-pill.chapter{background:#f0faf4;color:#067647}
+.detail-pill.chapter:hover{background:#d4f0e0}
+.open-item{background:#fff8ed;border:1px solid #fdd7a0;border-radius:12px;padding:12px 14px;margin-bottom:8px}
+.open-item .oi-title{font-size:13px;font-weight:800;color:#172033;margin-bottom:4px}
+.open-item .oi-meta{font-size:12px;color:#b54708}
+.version-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f0f3fa;font-size:13px}
+.version-row:last-child{border-bottom:none}
+.version-no{font-weight:800;color:#2656d9;min-width:40px}
+.version-date{color:#667085;min-width:80px}
+.version-note{color:#172033;flex:1}
+.export-row{display:flex;gap:8px;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--softline)}
+.btn-export{padding:9px 16px;border-radius:12px;font-size:13px;font-weight:800;border:none;cursor:pointer}
+.btn-export.primary{background:#172033;color:#fff}
+.btn-export.secondary{background:#f0f4ff;color:#2656d9}
+.btn-export.ghost{background:#f6f8fc;color:#475467;border:1px solid var(--softline)}
+
+/* No results */
+.no-results{padding:40px;text-align:center;color:#98a2b3;font-size:14px}
+
+/* Kicker + section */
+.kicker{color:#2656d9;font-weight:850;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.section{margin:32px 0;color:var(--dark)}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:16px}
+.desc{color:#667085}
+
+/* Impact indicator dot */
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px;flex-shrink:0}
+.dot.go{background:#067647}
+.dot.cond{background:#b54708}
+.dot.block{background:#b42318}
+.dot.none{background:#667085}
+
+/* chips */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.chip{font-size:13px;color:#dce9ff;background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:999px;padding:8px 12px}
+
+/* Traceability path */
+.trace-path{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12px;color:#475467;background:#f6f8fc;border-radius:12px;padding:10px 14px}
+.trace-step{background:#fff;border:1px solid var(--softline);border-radius:8px;padding:4px 10px;font-weight:700;color:#172033}
+.trace-arrow{color:#98a2b3;font-weight:900}
+
+/* Placeholder note */
+.placeholder-note{background:#fff8ed;border-left:4px solid var(--orange);border-radius:12px;padding:12px 14px;font-size:13px;color:#b54708;margin-bottom:8px}
+
+@media(max-width:1200px){.repo-layout{grid-template-columns:1fr}.detail-panel{position:static;max-height:none}.summary-strip{grid-template-columns:repeat(3,1fr)}.hero{grid-template-columns:1fr}}
+@media(max-width:720px){.wrap{padding:20px 16px 60px}h1{font-size:28px}.summary-strip{grid-template-columns:repeat(2,1fr)}.filter-bar{flex-direction:column;align-items:flex-start}.search-input{width:100%}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <a class="brand" href="index.html"><div class="logo"></div><div>Sprint 0 Playbook <span style="color:var(--muted);font-weight:650">AXD Hybrid</span></div></a>
+    <nav class="nav" aria-label="activity navigation">
+      <a href="index.html">Sprint 0 Overview</a>
+      <a href="01_way-of-working.html">A1 수행방식 합의</a>
+      <a href="02_team-raci.html">A2 R&R 정렬</a>
+      <a href="03_communication-cadence.html">A3 의사소통관리</a>
+      <a href="04_deliverable-acceptance.html">A4 산출물 기준</a>
+      <a href="05_environment-access.html">A5 환경·권한</a>
+      <a href="06_readiness-raid.html">A6 준비·리스크</a>
+      <a href="07_transition-day1.html">A7 착수점검</a>
+      <a href="artifact-repository.html" class="active">산출물 조회</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-card">
+      <div class="eyebrow">Artifact Repository</div>
+      <h1>Sprint 0 산출물 조회</h1>
+      <p class="lead">Sprint 0 Activity 수행으로 생성된 모든 산출물을 한 곳에서 조회하고, 입력 출처·반영 Chapter·착수 영향·버전 이력을 추적합니다.</p>
+      <div class="chips">
+        <span class="chip">Activity → Artifact → Chapter 추적</span>
+        <span class="chip">본수행 착수 영향 필터</span>
+        <span class="chip">상태·버전 관리</span>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="eyebrow">Repository 흐름</div>
+      <div style="font-size:22px;font-weight:850;letter-spacing:-.04em;line-height:1.3;color:#fff">Activity 입력 → Artifact 생성 → Repository 저장 → 조회·추적·재사용</div>
+      <p style="font-size:14px;color:var(--muted);margin-top:14px">생성된 산출물은 사업수행계획서 Chapter에 매핑되고, 보완 필요 항목은 Open Item으로 관리됩니다.</p>
+    </div>
+  </section>
+
+  <!-- Summary Strip -->
+  <div class="summary-strip" id="summaryStrip">
+    <div class="sum-card total"><div class="sum-num" id="cnt-total">19</div><div class="sum-label">전체 산출물</div></div>
+    <div class="sum-card done"><div class="sum-num" id="cnt-done">0</div><div class="sum-label">생성완료</div></div>
+    <div class="sum-card partial"><div class="sum-num" id="cnt-partial">0</div><div class="sum-label">일부생성</div></div>
+    <div class="sum-card warn"><div class="sum-num" id="cnt-warn">0</div><div class="sum-label">보완필요</div></div>
+    <div class="sum-card block"><div class="sum-num" id="cnt-block">0</div><div class="sum-label">착수 영향</div></div>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <div class="filter-group">
+      <span class="filter-label">키워드</span>
+      <input class="search-input" id="searchInput" type="text" placeholder="산출물명 검색…" oninput="applyFilters()">
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Activity</span>
+      <select class="filter-select" id="filterActivity" onchange="applyFilters()">
+        <option value="">전체</option>
+        <option value="core">Sprint 0 Core</option>
+        <option value="A1">A1 수행방식 합의</option>
+        <option value="A2">A2 R&R 정렬</option>
+        <option value="A3">A3 의사소통관리</option>
+        <option value="A4">A4 산출물 기준</option>
+        <option value="A5">A5 환경·권한</option>
+        <option value="A6">A6 준비·리스크</option>
+        <option value="A7">A7 착수점검</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">상태</span>
+      <select class="filter-select" id="filterStatus" onchange="applyFilters()">
+        <option value="">전체</option>
+        <option value="생성완료">생성완료</option>
+        <option value="일부생성">일부생성</option>
+        <option value="보완필요">보완필요</option>
+        <option value="작성중">작성중</option>
+        <option value="승인완료">승인완료</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">착수 영향</span>
+      <select class="filter-select" id="filterImpact" onchange="applyFilters()">
+        <option value="">전체</option>
+        <option value="착수 영향 없음">착수 영향 없음</option>
+        <option value="조건부 착수 영향">조건부 착수 영향</option>
+        <option value="착수 보류 영향">착수 보류 영향</option>
+      </select>
+    </div>
+    <button class="filter-reset" onclick="resetFilters()">필터 초기화</button>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="repo-layout">
+    <!-- Artifact List -->
+    <div class="artifact-list">
+      <div class="list-head">
+        <span class="list-title">산출물 목록</span>
+        <span class="list-count" id="listCount">19개 산출물</span>
+      </div>
+      <div id="artifactListBody"></div>
+    </div>
+
+    <!-- Detail Panel -->
+    <div class="detail-panel" id="detailPanel">
+      <div class="detail-empty">
+        <div class="icon">📋</div>
+        <div style="font-weight:800;color:#475467;margin-bottom:6px">산출물을 선택하세요</div>
+        <div style="font-size:13px">목록에서 산출물을 클릭하면<br>상세 정보와 추적 경로가 표시됩니다.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ARTIFACTS = [
+  {
+    id: "sprint0plan",
+    name: "Sprint 0 수행계획",
+    type: "Plan",
+    activity: "core",
+    activityLabel: "Sprint 0 Core",
+    activityFile: "index.html",
+    status: "생성완료",
+    owner: "PM",
+    reviewer: "고객 PM",
+    approver: "고객 PM",
+    chapters: ["1. 사업명", "2. 사업기간", "8. 일정 계획"],
+    impact: "착수 영향 없음",
+    description: "Sprint 0 기간, 참석자, 수행 Activity, 준비 항목을 정의한 착수 준비계획입니다.",
+    tasks: ["Sprint 0 수행계획 수립"],
+    inputs: ["사업명, 고객사명, 사업기간", "Sprint 0 기간", "참석자 목록"],
+    decisions: [{ item: "Sprint 0 기간", content: "시작일·종료일 확정" }],
+    openItems: [],
+    versions: [
+      { no: "v0.1", date: "2026-06-01", note: "초안 작성", status: "작성중" },
+      { no: "v0.5", date: "2026-06-03", note: "PM 검토 반영", status: "생성완료" }
+    ],
+    placeholders: []
+  },
+  {
+    id: "brief-scope",
+    name: "Project Brief / Scope Matrix",
+    type: "Brief",
+    activity: "core",
+    activityLabel: "Sprint 0 Core",
+    activityFile: "index.html",
+    status: "일부생성",
+    owner: "PM",
+    reviewer: "PL",
+    approver: "고객 PM",
+    chapters: ["3. 추진 배경 및 목적", "4. 사업 범위"],
+    impact: "조건부 착수 영향",
+    description: "프로젝트 개요, 추진 배경, 목적, Scope In/Out을 정리한 핵심 정의 문서입니다.",
+    tasks: ["Project Brief 작성", "Scope 기준선 작성"],
+    inputs: ["RFP/제안서", "계약서/SOW", "기술협상 내역"],
+    decisions: [{ item: "Scope In/Out 경계", content: "구축 대상 업무 범위 확정" }],
+    openItems: [
+      { title: "[보완필요] 고객 기대성과 미확정", owner: "고객 PM", due: "2026-06-15", impact: "조건부" }
+    ],
+    versions: [
+      { no: "v0.1", date: "2026-06-01", note: "제안서 기반 초안", status: "작성중" },
+      { no: "v0.3", date: "2026-06-04", note: "Scope 기준선 추가", status: "일부생성" }
+    ],
+    placeholders: ["[보완필요: 고객 기대성과 미확정]", "[보완필요: 성공 기준 미입력]"]
+  },
+  {
+    id: "bp-transfer",
+    name: "BP Transfer Map (사업수행계획서 반영현황)",
+    type: "Tracking",
+    activity: "core",
+    activityLabel: "Sprint 0 Core",
+    activityFile: "index.html",
+    status: "작성중",
+    owner: "PM",
+    reviewer: "QA",
+    approver: "PM",
+    chapters: ["1~21 전체 Chapter"],
+    impact: "착수 영향 없음",
+    description: "Sprint 0 Activity 입력값이 사업수행계획서 21개 Chapter 중 어느 Chapter에 반영되는지 추적하는 현황표입니다.",
+    tasks: ["Open Item 초기 등록"],
+    inputs: ["모든 Activity 산출물"],
+    decisions: [{ item: "Chapter 자동생성 범위", content: "자동생성/일부생성/수동보완 분류" }],
+    openItems: [],
+    versions: [
+      { no: "v0.1", date: "2026-06-05", note: "초기 매핑 작성", status: "작성중" }
+    ],
+    placeholders: []
+  },
+  {
+    id: "wow-dor-dod",
+    name: "WoW / DoR / DoD (프로젝트 수행방식 합의서)",
+    type: "Agreement",
+    activity: "A1",
+    activityLabel: "A1 수행방식 합의",
+    activityFile: "01_way-of-working.html",
+    status: "생성완료",
+    owner: "Scrum Master",
+    reviewer: "PM, PO",
+    approver: "PM",
+    chapters: ["6. 사업 추진 절차", "10. 변경관리 계획", "11. 품질관리 계획"],
+    impact: "착수 영향 없음",
+    description: "Hybrid 수행방식, Sprint 운영 기준, DoR/DoD, Acceptance Criteria 작성 원칙을 정의한 합의서입니다.",
+    tasks: ["Hybrid 적용 범위 결정", "Sprint 운영 기준 정의", "DoR/DoD/Acceptance Criteria 합의"],
+    inputs: ["계약서/SOW", "AXD 방법론 표준", "Sprint 길이 결정"],
+    decisions: [
+      { item: "Sprint 길이", content: "2주 Sprint 적용" },
+      { item: "Backlog 관리 도구", content: "Jira 사용 결정" },
+      { item: "DoR 기준", content: "User Story 완성 + 추정치 있음" }
+    ],
+    openItems: [],
+    versions: [
+      { no: "v0.1", date: "2026-06-02", note: "Workshop 초안", status: "작성중" },
+      { no: "v0.9", date: "2026-06-04", note: "PM, PO 검토 완료", status: "생성완료" }
+    ],
+    placeholders: []
+  },
+  {
+    id: "initial-backlog",
+    name: "Initial Backlog / Sprint 1 후보 Backlog",
+    type: "Backlog",
+    activity: "A1",
+    activityLabel: "A1 수행방식 합의",
+    activityFile: "01_way-of-working.html",
+    status: "일부생성",
+    owner: "Product Owner",
+    reviewer: "Scrum Master",
+    approver: "PM",
+    chapters: ["4. 사업 범위", "6. 사업 추진 절차"],
+    impact: "조건부 착수 영향",
+    description: "초기 Epic/Feature/User Story 목록과 Sprint 1에 투입할 후보 Backlog입니다.",
+    tasks: ["Backlog 관리 방식 정의"],
+    inputs: ["RFP 요구사항", "고객 인터뷰 결과", "Scope In 목록"],
+    decisions: [
+      { item: "Backlog 상태값", content: "Draft > Ready > In Progress > Review > Done" },
+      { item: "Sprint 1 진입 기준", content: "DoR 충족 항목만 투입" }
+    ],
+    openItems: [
+      { title: "[보완필요] 고객 PO 우선순위 미입력", owner: "Product Owner", due: "2026-06-12", impact: "조건부" }
+    ],
+    versions: [
+      { no: "v0.1", date: "2026-06-03", note: "제안서 기반 Epic 초안", status: "작성중" },
+      { no: "v0.3", date: "2026-06-05", note: "User Story 추가", status: "일부생성" }
+    ],
+    placeholders: ["[보완필요: 고객 PO 우선순위 검토 필요]"]
+  },
+  {
+    id: "raci",
+    name: "RACI / Stakeholder Map / Contact List",
+    type: "RACI",
+    activity: "A2",
+    activityLabel: "A2 R&R 정렬",
+    activityFile: "02_team-raci.html",
+    status: "생성완료",
+    owner: "PM",
+    reviewer: "고객 PM",
+    approver: "고객 PM",
+    chapters: ["5. 사업 추진 체계", "12. 인력관리 계획", "13. 의사소통관리 계획"],
+    impact: "착수 영향 없음",
+    description: "이해관계자 목록, 역할·책임 Matrix, 비상연락망, Escalation 경로를 포함한 종합 R&R 문서입니다.",
+    tasks: ["이해관계자 식별", "RACI 작성", "승인자·결정권자 확정"],
+    inputs: ["제안서 투입 조직", "고객 조직도", "산출물 목록"],
+    decisions: [
+      { item: "고객 Product Owner", content: "홍길동 부장 확정" },
+      { item: "산출물 승인자", content: "고객 PM (이순신 차장)" }
+    ],
+    openItems: [],
+    versions: [
+      { no: "v0.1", date: "2026-06-02", note: "수행팀 R&R 초안", status: "작성중" },
+      { no: "v1.0", date: "2026-06-05", note: "고객 PM 승인 완료", status: "승인완료" }
+    ],
+    placeholders: []
+  },
+  {
+    id: "onboarding-checklist",
+    name: "Onboarding Checklist / Escalation Path",
+    type: "Checklist",
+    activity: "A2",
+    activityLabel: "A2 R&R 정렬",
+    activityFile: "02_team-raci.html",
+    status: "일부생성",
+    owner: "PM",
+    reviewer: "보안 담당자",
+    approver: "PM",
+    chapters: ["18. 보안 대책", "20. 교육 계획"],
+    impact: "조건부 착수 영향",
+    description: "착수교육, 보안서약, 접근권한 투입 준비 체크리스트와 이슈 상위 보고 경로 정의서입니다.",
+    tasks: ["온보딩 항목 점검", "Escalation 경로 정의"],
+    inputs: ["보안교육 여부", "보안서약 완료 여부", "접근권한 목록"],
+    decisions: [{ item: "Escalation 단계", content: "7일 이상 지연 시 PM → 고객 Sponsor 상위 보고" }],
+    openItems: [
+      { title: "[보완필요] 보안교육 일정 미확정", owner: "보안 담당자", due: "2026-06-14", impact: "조건부" }
+    ],
+    versions: [
+      { no: "v0.1", date: "2026-06-04", note: "투입 준비 항목 초안", status: "작성중" },
+      { no: "v0.5", date: "2026-06-06", note: "Escalation Path 추가", status: "일부생성" }
+    ],
+    placeholders: ["[보완필요: 보안교육 일정 미확정]"]
+  },
+  {
+    id: "comm-plan",
+    name: "Communication Plan / Meeting Calendar",
+    type: "Plan",
+    activity: "A3",
+    activityLabel: "A3 의사소통관리",
+    activityFile: "03_communication-cadence.html",
+    status: "생성완료",
+    owner: "사업관리 담당",
+    reviewer: "PM, Scrum Master",
+    approver: "고객 PM",
+    chapters: ["8. 일정 계획", "13. 의사소통관리 계획"],
+    impact: "착수 영향 없음",
+    description: "보고체계, 회의체 운영 주기, Agile Ceremony 배치, Action Item 관리 기준을 정의한 의사소통관리 계획입니다.",
+    tasks: ["보고체계 정의", "Agile Ceremony 배치", "의사결정 회의체 정의"],
+    inputs: ["고객 보고 요구사항", "Sprint 일정", "회의 참석자 목록"],
+    decisions: [
+      { item: "주간보고 요일", content: "매주 금요일 오후 2시" },
+      { item: "Sprint Review 참석자", content: "고객 PO, 고객 PM, PL, QA" },
+      { item: "RAG 기준", content: "일정/범위/품질/리스크 기준 확정" }
+    ],
+    openItems: [],
+    versions: [
+      { no: "v0.1", date: "2026-06-03", note: "의사소통 계획 초안", status: "작성중" },
+      { no: "v1.0", date: "2026-06-06", note: "고객 PM 승인 완료", status: "승인완료" }
+    ],
+    placeholders: []
+  },
+  {
+    id: "action-item-rule",
+    name: "Action Item Rule / Decision Meeting Rule",
+    type: "Rule",
+    activity: "A3",
+    activityLabel: "A3 의사소통관리",
+    activityFile: "03_communication-cadence.html",
+    status: "생성완료",
+    owner: "PMO / 사업관리",
+    reviewer: "PM",
+    approver: "PM",
+    chapters: ["13. 의사소통관리 계획", "14. 위험관리 계획"],
+    impact: "착수 영향 없음",
+    description: "조치사항 담당자·완료일·상태값 기준과 의사결정 회의체 운영 규칙입니다.",
+    tasks: ["회의록·Action Item 관리 기준 정의"],
+    inputs: ["의사결정 필요 항목", "회의 목적 목록"],
+    decisions: [{ item: "Action Item 관리 주체", content: "사업관리 담당자" }],
+    openItems: [],
+    versions: [
+      { no: "v0.1", date: "2026-06-04", note: "규칙 초안", status: "작성중" },
+      { no: "v0.8", date: "2026-06-06", note: "PM 승인", status: "생성완료" }
+    ],
+    placeholders: []
+  },
+  {
+    id: "deliverable-matrix",
+    name: "Deliverable Acceptance Matrix",
+    type: "Matrix",
+    activity: "A4",
+    activityLabel: "A4 산출물 기준",
+    activityFile: "04_deliverable-acceptance.html",
+    status: "일부생성",
+    owner: "QA",
+    reviewer: "PM, PL",
+    approver: "고객 PM",
+    chapters: ["7. 산출물 계획", "11. 품질관리 계획", "15. 형상관리 계획"],
+    impact: "조건부 착수 영향",
+    description: "사업관리·개발·Agile 산출물 목록, 검토·승인자, Acceptance Criteria를 정의한 종합 기준표입니다.",
+    tasks: ["산출물 목록 테일러링", "작성·검토·승인자 지정", "Acceptance Criteria 정의"],
+    inputs: ["AXD 표준 산출물 목록", "계약/SOW 필수 산출물", "고객 승인 절차"],
+    decisions: [
+      { item: "필수 산출물", content: "사업수행계획서, 요구사항정의서, 설계서, 테스트결과서" },
+      { item: "제출 시점", content: "Sprint 종료 / Gate 기준 이원화" }
+    ],
+    openItems: [
+      { title: "[보완필요] 요구사항정의서 승인자 미정", owner: "고객 PM", due: "2026-06-13", impact: "조건부" }
+    ],
+    versions: [
+      { no: "v0.1", date: "2026-06-04", note: "표준 목록 기반 초안", status: "작성중" },
+      { no: "v0.5", date: "2026-06-06", note: "Tailoring 완료", status: "일부생성" }
+    ],
+    placeholders: ["[보완필요: 요구사항정의서 승인자 미지정]", "[보완필요: 설계서 검토 기한 미입력]"]
+  },
+  {
+    id: "approval-workflow",
+    name: "Approval Workflow / Deliverable Acceptance Criteria",
+    type: "Criteria",
+    activity: "A4",
+    activityLabel: "A4 산출물 기준",
+    activityFile: "04_deliverable-acceptance.html",
+    status: "보완필요",
+    owner: "QA",
+    reviewer: "PM",
+    approver: "고객 PM",
+    chapters: ["7. 산출물 계획", "11. 품질관리 계획"],
+    impact: "착수 보류 영향",
+    description: "산출물별 검토·승인 흐름과 수락 기준, 반려 시 처리 절차를 정의한 품질 기준 문서입니다.",
+    tasks: ["Acceptance Criteria 정의", "형상관리 연결"],
+    inputs: ["산출물 목록", "품질검토 기준", "감리 대상 산출물"],
+    decisions: [{ item: "반려 처리 방식", content: "보완 후 재검토, 2주 내 완료" }],
+    openItems: [
+      { title: "[착수 보류] 산출물 승인자 전체 미확정", owner: "고객 PM", due: "2026-06-10", impact: "보류" }
+    ],
+    versions: [
+      { no: "v0.1", date: "2026-06-05", note: "초안 작성", status: "보완필요" }
+    ],
+    placeholders: ["[보완필요: 전체 산출물 승인자 미지정]", "[보완필요: Acceptance Criteria 세부 기준 미입력]"]
+  },
+  {
+    id: "env-access-matrix",
+    name: "Environment & Access Matrix",
+    type: "Matrix",
+    activity: "A5",
+    activityLabel: "A5 환경·권한",
+    activityFile: "05_environment-access.html",
+    status: "일부생성",
+    owner: "Tech Lead",
+    reviewer: "고객 IT",
+    approver: "보안 담당자",
+    chapters: ["8. 일정 계획", "15. 형상관리 계획", "16. 백업관리 계획", "18. 보안 대책"],
+    impact: "조건부 착수 영향",
+    description: "협업도구, 저장소, 고객사 시스템, 개발/검증 환경, 접근권한 준비 상태를 기록한 점검표입니다.",
+    tasks: ["도구 목록 확정", "계정·권한 점검", "환경 준비상태 확인"],
+    inputs: ["목표시스템 구성도", "고객 IT 보안정책", "사용자 목록"],
+    decisions: [
+      { item: "Sprint 1 필수 권한", content: "개발환경 조회권한, Git 저장소 접근" },
+      { item: "개발환경 사용 가능일", content: "2026-06-20 예정" }
+    ],
+    openItems: [
+      { title: "[조건부] 개발환경 준비 지연 (2주 지연)", owner: "고객 IT", due: "2026-06-20", impact: "조건부" }
+    ],
+    versions: [
+      { no: "v0.1", date: "2026-06-05", note: "도구 목록 초안", status: "작성중" },
+      { no: "v0.4", date: "2026-06-07", note: "권한 점검 결과 반영", status: "일부생성" }
+    ],
+    placeholders: ["[보완필요: 검증환경 제공 예정일 미입력]", "[보완필요: VPN 신청 완료 여부 확인 필요]"]
+  },
+  {
+    id: "access-request",
+    name: "Access Request List / Repository Rule",
+    type: "Checklist",
+    activity: "A5",
+    activityLabel: "A5 환경·권한",
+    activityFile: "05_environment-access.html",
+    status: "생성완료",
+    owner: "DevOps / 형상관리",
+    reviewer: "PM",
+    approver: "보안 담당자",
+    chapters: ["15. 형상관리 계획", "18. 보안 대책"],
+    impact: "착수 영향 없음",
+    description: "계정 및 권한 신청 목록, 문서/소스 저장소 관리 기준, 접근권한 회수 기준입니다.",
+    tasks: ["저장소·형상관리 기준 정의", "권한 회수 기준 정의"],
+    inputs: ["사용자 목록", "역할별 권한 수준"],
+    decisions: [
+      { item: "저장소 위치", content: "사내 GitLab + SharePoint" },
+      { item: "접근권한 수준", content: "Developer: Read/Write, Viewer: Read only" }
+    ],
+    openItems: [],
+    versions: [
+      { no: "v0.1", date: "2026-06-05", note: "신청 목록 초안", status: "작성중" },
+      { no: "v0.8", date: "2026-06-07", note: "저장소 기준 확정", status: "생성완료" }
+    ],
+    placeholders: []
+  },
+  {
+    id: "customer-readiness",
+    name: "Customer Readiness Checklist",
+    type: "Checklist",
+    activity: "A6",
+    activityLabel: "A6 준비·리스크",
+    activityFile: "06_readiness-raid.html",
+    status: "일부생성",
+    owner: "PM",
+    reviewer: "고객 PM",
+    approver: "고객 PM",
+    chapters: ["4. 사업 범위", "8. 일정 계획"],
+    impact: "조건부 착수 영향",
+    description: "고객 PM, PO, 업무 담당자 지정 여부와 참여 일정, 데이터 준비 상태를 확인한 고객 준비 점검표입니다.",
+    tasks: ["고객 준비 점검", "데이터 준비 점검"],
+    inputs: ["고객 담당자 목록", "업무 담당자 참여 일정", "데이터 제공 계획"],
+    decisions: [{ item: "고객 준비 상태", content: "담당자 지정 완료, 데이터 제공 일정 미확정" }],
+    openItems: [
+      { title: "[조건부] 샘플 데이터 제공 지연", owner: "고객 PM", due: "2026-06-18", impact: "조건부" }
+    ],
+    versions: [
+      { no: "v0.1", date: "2026-06-06", note: "점검 초안", status: "작성중" },
+      { no: "v0.4", date: "2026-06-07", note: "담당자 확인 반영", status: "일부생성" }
+    ],
+    placeholders: ["[보완필요: 데이터 마스킹 기준 미입력]", "[보완필요: 데이터 제공 일정 확정 필요]"]
+  },
+  {
+    id: "security-readiness",
+    name: "Security Readiness Checklist",
+    type: "Checklist",
+    activity: "A6",
+    activityLabel: "A6 준비·리스크",
+    activityFile: "06_readiness-raid.html",
+    status: "생성완료",
+    owner: "보안 담당자",
+    reviewer: "PM",
+    approver: "PM",
+    chapters: ["18. 보안 대책"],
+    impact: "착수 영향 없음",
+    description: "보안교육, 보안서약, 자료 반출입 기준, 개인정보 처리 기준을 확인한 보안성 점검표입니다.",
+    tasks: ["보안성 점검"],
+    inputs: ["보안교육 여부", "보안서약 여부", "자료반출입 기준"],
+    decisions: [{ item: "보안교육", content: "착수일 기준 3일 내 완료 기준" }],
+    openItems: [],
+    versions: [
+      { no: "v0.1", date: "2026-06-06", note: "보안 점검 초안", status: "작성중" },
+      { no: "v0.9", date: "2026-06-07", note: "보안 담당자 확인", status: "생성완료" }
+    ],
+    placeholders: []
+  },
+  {
+    id: "raid-log",
+    name: "RAID Log / Decision Log",
+    type: "RAID",
+    activity: "A6",
+    activityLabel: "A6 준비·리스크",
+    activityFile: "06_readiness-raid.html",
+    status: "일부생성",
+    owner: "PM",
+    reviewer: "QA",
+    approver: "PM",
+    chapters: ["14. 위험관리 계획"],
+    impact: "조건부 착수 영향",
+    description: "Risk, Assumption, Issue, Dependency, Decision 항목을 Owner·Due Date·착수 영향과 함께 관리하는 로그입니다.",
+    tasks: ["Risk/Issue/Decision 등록", "본수행 착수점검 차단요소 판단"],
+    inputs: ["환경 점검 결과", "고객 준비 미완료 항목", "과거 Lessons Learned"],
+    decisions: [
+      { item: "Risk 등급 기준", content: "영향도 × 발생가능성 3×3 Matrix" },
+      { item: "Owner", content: "모든 RAID 항목에 Owner, Due Date 필수" }
+    ],
+    openItems: [
+      { title: "R001 개발환경 준비 지연", owner: "고객 IT", due: "2026-06-20", impact: "조건부" },
+      { title: "I001 데이터 제공 미확정", owner: "고객 PM", due: "2026-06-18", impact: "조건부" }
+    ],
+    versions: [
+      { no: "v0.1", date: "2026-06-06", note: "초기 RAID 등록", status: "작성중" },
+      { no: "v0.5", date: "2026-06-07", note: "Risk 등급 평가 완료", status: "일부생성" }
+    ],
+    placeholders: ["[보완필요: Dependency 항목 추가 확인 필요]"]
+  },
+  {
+    id: "day1-check",
+    name: "본수행 착수점검표",
+    type: "Checklist",
+    activity: "A7",
+    activityLabel: "A7 착수점검",
+    activityFile: "07_transition-day1.html",
+    status: "작성중",
+    owner: "PM",
+    reviewer: "고객 PM",
+    approver: "고객 PM, Sponsor",
+    chapters: ["부록: 본수행 착수점검 결과"],
+    impact: "조건부 착수 영향",
+    description: "목표·범위·Backlog·역할·승인·환경·권한·리스크 등 필수 착수 조건 10개 영역을 점검한 준비 체크리스트입니다.",
+    tasks: ["본수행 착수 준비 Review", "Open Item 이관"],
+    inputs: ["모든 Activity 산출물 상태", "RAID Log", "Open Item 목록"],
+    decisions: [{ item: "본수행 착수 판단", content: "조건부 착수 (개발환경, 데이터 제공 조건)" }],
+    openItems: [
+      { title: "[조건부] 개발환경 준비 2026-06-20까지", owner: "고객 IT", due: "2026-06-20", impact: "조건부" },
+      { title: "[조건부] 샘플 데이터 제공 2026-06-18까지", owner: "고객 PM", due: "2026-06-18", impact: "조건부" }
+    ],
+    versions: [
+      { no: "v0.1", date: "2026-06-07", note: "착수점검 초안", status: "작성중" }
+    ],
+    placeholders: ["[보완필요: 산출물 승인자 전체 확정 후 재평가 필요]"]
+  },
+  {
+    id: "day1-result",
+    name: "본수행 착수점검 결과서",
+    type: "Report",
+    activity: "A7",
+    activityLabel: "A7 착수점검",
+    activityFile: "07_transition-day1.html",
+    status: "작성중",
+    owner: "PM",
+    reviewer: "고객 PM",
+    approver: "고객 PM, Sponsor",
+    chapters: ["부록: 본수행 착수점검 결과"],
+    impact: "조건부 착수 영향",
+    description: "착수 준비 종합 평가 결과, 착수 가능/조건부 착수/착수 보류 판정 근거와 권고사항을 담은 결과 보고서입니다.",
+    tasks: ["본수행 착수 준비 Review"],
+    inputs: ["착수점검표 결과", "Open Item 목록", "RAID Log"],
+    decisions: [{ item: "종합 판정", content: "조건부 착수 — 2개 조건 해결 필요" }],
+    openItems: [
+      { title: "[조건부] 개발환경 준비", owner: "고객 IT", due: "2026-06-20", impact: "조건부" }
+    ],
+    versions: [
+      { no: "v0.1", date: "2026-06-07", note: "결과서 초안", status: "작성중" }
+    ],
+    placeholders: ["[보완필요: Sponsor 최종 서명 필요]"]
+  },
+  {
+    id: "open-item-list",
+    name: "Open Item 이관 목록",
+    type: "OpenItem",
+    activity: "A7",
+    activityLabel: "A7 착수점검",
+    activityFile: "07_transition-day1.html",
+    status: "작성중",
+    owner: "PM",
+    reviewer: "Scrum Master",
+    approver: "PM",
+    chapters: ["8. 일정 계획", "14. 위험관리 계획"],
+    impact: "조건부 착수 영향",
+    description: "Sprint 0 미결사항 중 Sprint 1 또는 후속 단계로 이관할 항목 목록입니다. 각 항목에 Owner, Due Date, 이관처를 지정합니다.",
+    tasks: ["Open Item 이관"],
+    inputs: ["전 Activity Open Item", "RAID Log"],
+    decisions: [{ item: "Open Item 이관처", content: "Sprint 1 Backlog 또는 RAID 지속 추적" }],
+    openItems: [
+      { title: "데이터 제공 일정 확정", owner: "고객 PM", due: "2026-06-18", impact: "조건부" },
+      { title: "개발환경 준비 완료", owner: "고객 IT", due: "2026-06-20", impact: "조건부" },
+      { title: "산출물 승인자 확정", owner: "고객 PM", due: "2026-06-10", impact: "보류" }
+    ],
+    versions: [
+      { no: "v0.1", date: "2026-06-07", note: "이관 목록 초안", status: "작성중" }
+    ],
+    placeholders: []
+  }
+];
+
+const STATUS_BADGE = {
+  "생성완료": "ok",
+  "일부생성": "partial",
+  "보완필요": "warn",
+  "작성중": "draft",
+  "승인완료": "dark"
+};
+
+const IMPACT_BADGE = {
+  "착수 영향 없음": "go",
+  "조건부 착수 영향": "cond",
+  "착수 보류 영향": "block"
+};
+
+const IMPACT_DOT = {
+  "착수 영향 없음": "go",
+  "조건부 착수 영향": "cond",
+  "착수 보류 영향": "block"
+};
+
+const OPEN_IMPACT_BADGE = {
+  "조건부": "cond",
+  "보류": "block"
+};
+
+let selectedId = null;
+let filteredArtifacts = [...ARTIFACTS];
+
+function badgeHtml(cls, text) {
+  return `<span class="badge ${cls}">${text}</span>`;
+}
+
+function renderList(artifacts) {
+  const body = document.getElementById("artifactListBody");
+  document.getElementById("listCount").textContent = artifacts.length + "개 산출물";
+  if (artifacts.length === 0) {
+    body.innerHTML = '<div class="no-results">검색 결과가 없습니다.</div>';
+    return;
+  }
+  body.innerHTML = artifacts.map(a => {
+    const selected = a.id === selectedId ? " selected" : "";
+    const impactDot = IMPACT_DOT[a.impact] || "none";
+    return `<div class="artifact-row${selected}" onclick="selectArtifact('${a.id}')">
+      <div>
+        <div class="art-name">${a.name}</div>
+        <div class="art-meta">
+          <span>${a.activityLabel}</span>
+          <span>·</span>
+          <span>${a.type}</span>
+          <span>·</span>
+          <span>${a.owner}</span>
+        </div>
+      </div>
+      <div class="art-badges">
+        ${badgeHtml(STATUS_BADGE[a.status] || "gray", a.status)}
+        <span class="badge ${IMPACT_BADGE[a.impact] || 'gray'}"><span class="dot ${impactDot}"></span>${a.impact}</span>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function renderSummary(artifacts) {
+  const total = artifacts.length;
+  const done = artifacts.filter(a => a.status === "생성완료" || a.status === "승인완료").length;
+  const partial = artifacts.filter(a => a.status === "일부생성").length;
+  const warn = artifacts.filter(a => a.status === "보완필요").length;
+  const block = artifacts.filter(a => a.impact !== "착수 영향 없음").length;
+  document.getElementById("cnt-total").textContent = total;
+  document.getElementById("cnt-done").textContent = done;
+  document.getElementById("cnt-partial").textContent = partial;
+  document.getElementById("cnt-warn").textContent = warn;
+  document.getElementById("cnt-block").textContent = block;
+}
+
+function selectArtifact(id) {
+  selectedId = id;
+  renderList(filteredArtifacts);
+  const a = ARTIFACTS.find(x => x.id === id);
+  if (!a) return;
+  renderDetail(a);
+}
+
+function renderDetail(a) {
+  const panel = document.getElementById("detailPanel");
+
+  const openItemsHtml = a.openItems.length === 0
+    ? '<div style="font-size:13px;color:#98a2b3;">미결 항목 없음</div>'
+    : a.openItems.map(o => `
+        <div class="open-item">
+          <div class="oi-title">${o.title}</div>
+          <div class="oi-meta">Owner: ${o.owner} · Due: ${o.due} · ${badgeHtml(OPEN_IMPACT_BADGE[o.impact] || 'gray', o.impact)}</div>
+        </div>`).join("");
+
+  const placeholdersHtml = a.placeholders.length === 0
+    ? ''
+    : a.placeholders.map(p => `<div class="placeholder-note">${p}</div>`).join("");
+
+  const decisionsHtml = a.decisions.map(d =>
+    `<div class="detail-kv"><dt>${d.item}</dt><dd>${d.content}</dd></div>`).join("");
+
+  const chaptersHtml = a.chapters.map(c =>
+    `<button class="detail-pill chapter" onclick="void(0)">${c}</button>`).join("");
+
+  const inputsHtml = a.inputs.map(i =>
+    `<button class="detail-pill" onclick="void(0)">${i}</button>`).join("");
+
+  const tasksHtml = a.tasks.map(t =>
+    `<div style="font-size:13px;color:#344054;padding:4px 0;border-bottom:1px solid #f0f3fa">· ${t}</div>`).join("");
+
+  const versionsHtml = a.versions.map(v =>
+    `<div class="version-row">
+      <span class="version-no">${v.no}</span>
+      <span class="version-date">${v.date}</span>
+      <span class="version-note">${v.note}</span>
+      ${badgeHtml(STATUS_BADGE[v.status] || "gray", v.status)}
+    </div>`).join("");
+
+  const traceHtml = `
+    <div class="trace-path">
+      <span class="trace-step">${a.activityLabel}</span>
+      <span class="trace-arrow">→</span>
+      <span class="trace-step">${a.tasks[0] || "Task"}</span>
+      <span class="trace-arrow">→</span>
+      <span class="trace-step">${a.name}</span>
+      <span class="trace-arrow">→</span>
+      <span class="trace-step">${a.chapters[0]}</span>
+    </div>`;
+
+  panel.innerHTML = `
+    <div class="detail-content">
+      <div class="detail-header">
+        <div class="detail-title">${a.name}</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+          ${badgeHtml(STATUS_BADGE[a.status] || "gray", a.status)}
+          ${badgeHtml(IMPACT_BADGE[a.impact] || "gray", a.impact)}
+          ${badgeHtml("gray", a.type)}
+        </div>
+        <div class="detail-desc">${a.description}</div>
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-section-title">입력 출처 추적</div>
+        ${traceHtml}
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-section-title">생성 Activity / Task</div>
+        <div style="margin-bottom:8px">${badgeHtml("dark", a.activityLabel)} <a href="${a.activityFile}" style="font-size:12px;color:#2656d9;text-decoration:underline;margin-left:6px">Activity 페이지 이동 →</a></div>
+        ${tasksHtml}
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-section-title">사업수행계획서 반영 Chapter</div>
+        ${chaptersHtml}
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-section-title">주요 입력 데이터</div>
+        ${inputsHtml}
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-section-title">의사결정 항목</div>
+        ${decisionsHtml || '<div style="font-size:13px;color:#98a2b3">없음</div>'}
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-section-title">담당자</div>
+        <div class="detail-kv">
+          <dt>작성자</dt><dd>${a.owner}</dd>
+          <dt>검토자</dt><dd>${a.reviewer}</dd>
+          <dt>승인자</dt><dd>${a.approver}</dd>
+        </div>
+      </div>
+
+      ${a.placeholders.length > 0 ? `<div class="detail-section"><div class="detail-section-title">보완 필요 항목</div>${placeholdersHtml}</div>` : ""}
+
+      <div class="detail-section">
+        <div class="detail-section-title">Open Item / 미결사항</div>
+        ${openItemsHtml}
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-section-title">버전 이력</div>
+        ${versionsHtml}
+      </div>
+
+      <div class="export-row">
+        <button class="btn-export primary" onclick="alert('HTML Export 기능은 MVP 이후 구현됩니다.')">HTML Export</button>
+        <button class="btn-export secondary" onclick="alert('Markdown Copy 기능은 MVP 이후 구현됩니다.')">Markdown Copy</button>
+        <button class="btn-export ghost" onclick="alert('편집 기능은 MVP 이후 구현됩니다.')">편집</button>
+      </div>
+    </div>`;
+}
+
+function applyFilters() {
+  const kw = document.getElementById("searchInput").value.toLowerCase();
+  const act = document.getElementById("filterActivity").value;
+  const sta = document.getElementById("filterStatus").value;
+  const imp = document.getElementById("filterImpact").value;
+
+  filteredArtifacts = ARTIFACTS.filter(a => {
+    const matchKw = !kw || a.name.toLowerCase().includes(kw) || a.description.toLowerCase().includes(kw);
+    const matchAct = !act || a.activity === act;
+    const matchSta = !sta || a.status === sta;
+    const matchImp = !imp || a.impact === imp;
+    return matchKw && matchAct && matchSta && matchImp;
+  });
+
+  renderList(filteredArtifacts);
+  renderSummary(filteredArtifacts);
+
+  if (selectedId && !filteredArtifacts.find(a => a.id === selectedId)) {
+    selectedId = null;
+    document.getElementById("detailPanel").innerHTML = `
+      <div class="detail-empty">
+        <div class="icon">📋</div>
+        <div style="font-weight:800;color:#475467;margin-bottom:6px">산출물을 선택하세요</div>
+        <div style="font-size:13px">목록에서 산출물을 클릭하면<br>상세 정보와 추적 경로가 표시됩니다.</div>
+      </div>`;
+  }
+}
+
+function resetFilters() {
+  document.getElementById("searchInput").value = "";
+  document.getElementById("filterActivity").value = "";
+  document.getElementById("filterStatus").value = "";
+  document.getElementById("filterImpact").value = "";
+  applyFilters();
+}
+
+// Init
+filteredArtifacts = [...ARTIFACTS];
+renderList(filteredArtifacts);
+renderSummary(filteredArtifacts);
+</script>
+</body>
+</html>
