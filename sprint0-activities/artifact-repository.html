@@ -156,13 +156,13 @@ p{margin:0}
     <a class="brand" href="index.html"><div class="logo"></div><div>Sprint 0 Playbook <span style="color:var(--muted);font-weight:650">AXD Hybrid</span></div></a>
     <nav class="nav" aria-label="activity navigation">
       <a href="index.html">Sprint 0 Overview</a>
-      <a href="01_way-of-working.html">A1 수행방식 합의</a>
-      <a href="02_team-raci.html">A2 R&R 정렬</a>
-      <a href="03_communication-cadence.html">A3 의사소통관리</a>
-      <a href="04_deliverable-acceptance.html">A4 산출물 기준</a>
-      <a href="05_environment-access.html">A5 환경·권한</a>
-      <a href="06_readiness-raid.html">A6 준비·리스크</a>
-      <a href="07_transition-day1.html">A7 착수점검</a>
+      <a href="01_way-of-working.html">A1 Sprint 운영기준 정렬</a>
+      <a href="02_team-raci.html">A2 책임구조 확인</a>
+      <a href="03_communication-cadence.html">A3 운영 리듬 수립</a>
+      <a href="04_deliverable-acceptance.html">A4 산출물 기준 정렬</a>
+      <a href="05_environment-access.html">A5 환경·권한 준비확인</a>
+      <a href="06_readiness-raid.html">A6 준비도·리스크 점검</a>
+      <a href="07_transition-day1.html">A7 착수점검·이관</a>
       <a href="artifact-repository.html" class="active">산출물 조회</a>
     </nav>
   </header>
@@ -205,13 +205,13 @@ p{margin:0}
       <select class="filter-select" id="filterActivity" onchange="applyFilters()">
         <option value="">전체</option>
         <option value="core">Sprint 0 Core</option>
-        <option value="A1">A1 수행방식 합의</option>
-        <option value="A2">A2 R&R 정렬</option>
-        <option value="A3">A3 의사소통관리</option>
-        <option value="A4">A4 산출물 기준</option>
-        <option value="A5">A5 환경·권한</option>
-        <option value="A6">A6 준비·리스크</option>
-        <option value="A7">A7 착수점검</option>
+        <option value="A1">A1 Sprint 운영기준 정렬</option>
+        <option value="A2">A2 책임구조 확인</option>
+        <option value="A3">A3 운영 리듬 수립</option>
+        <option value="A4">A4 산출물 기준 정렬</option>
+        <option value="A5">A5 환경·권한 준비확인</option>
+        <option value="A6">A6 준비도·리스크 점검</option>
+        <option value="A7">A7 착수점검·이관</option>
       </select>
     </div>
     <div class="filter-group">
@@ -339,7 +339,7 @@ const ARTIFACTS = [
     name: "WoW / DoR / DoD (프로젝트 수행방식 합의서)",
     type: "Agreement",
     activity: "A1",
-    activityLabel: "A1 수행방식 합의",
+    activityLabel: "A1 Sprint 운영기준 정렬",
     activityFile: "01_way-of-working.html",
     status: "생성완료",
     owner: "Scrum Master",
@@ -367,7 +367,7 @@ const ARTIFACTS = [
     name: "Initial Backlog / Sprint 1 후보 Backlog",
     type: "Backlog",
     activity: "A1",
-    activityLabel: "A1 수행방식 합의",
+    activityLabel: "A1 Sprint 운영기준 정렬",
     activityFile: "01_way-of-working.html",
     status: "일부생성",
     owner: "Product Owner",
@@ -396,7 +396,7 @@ const ARTIFACTS = [
     name: "RACI / Stakeholder Map / Contact List",
     type: "RACI",
     activity: "A2",
-    activityLabel: "A2 R&R 정렬",
+    activityLabel: "A2 책임구조 확인",
     activityFile: "02_team-raci.html",
     status: "생성완료",
     owner: "PM",
@@ -423,7 +423,7 @@ const ARTIFACTS = [
     name: "Onboarding Checklist / Escalation Path",
     type: "Checklist",
     activity: "A2",
-    activityLabel: "A2 R&R 정렬",
+    activityLabel: "A2 책임구조 확인",
     activityFile: "02_team-raci.html",
     status: "일부생성",
     owner: "PM",
@@ -449,7 +449,7 @@ const ARTIFACTS = [
     name: "Communication Plan / Meeting Calendar",
     type: "Plan",
     activity: "A3",
-    activityLabel: "A3 의사소통관리",
+    activityLabel: "A3 운영 리듬 수립",
     activityFile: "03_communication-cadence.html",
     status: "생성완료",
     owner: "사업관리 담당",
@@ -477,7 +477,7 @@ const ARTIFACTS = [
     name: "Action Item Rule / Decision Meeting Rule",
     type: "Rule",
     activity: "A3",
-    activityLabel: "A3 의사소통관리",
+    activityLabel: "A3 운영 리듬 수립",
     activityFile: "03_communication-cadence.html",
     status: "생성완료",
     owner: "PMO / 사업관리",
@@ -501,7 +501,7 @@ const ARTIFACTS = [
     name: "Deliverable Acceptance Matrix",
     type: "Matrix",
     activity: "A4",
-    activityLabel: "A4 산출물 기준",
+    activityLabel: "A4 산출물 기준 정렬",
     activityFile: "04_deliverable-acceptance.html",
     status: "일부생성",
     owner: "QA",
@@ -530,7 +530,7 @@ const ARTIFACTS = [
     name: "Approval Workflow / Deliverable Acceptance Criteria",
     type: "Criteria",
     activity: "A4",
-    activityLabel: "A4 산출물 기준",
+    activityLabel: "A4 산출물 기준 정렬",
     activityFile: "04_deliverable-acceptance.html",
     status: "보완필요",
     owner: "QA",
@@ -555,7 +555,7 @@ const ARTIFACTS = [
     name: "Environment & Access Matrix",
     type: "Matrix",
     activity: "A5",
-    activityLabel: "A5 환경·권한",
+    activityLabel: "A5 환경·권한 준비확인",
     activityFile: "05_environment-access.html",
     status: "일부생성",
     owner: "Tech Lead",
@@ -584,7 +584,7 @@ const ARTIFACTS = [
     name: "Access Request List / Repository Rule",
     type: "Checklist",
     activity: "A5",
-    activityLabel: "A5 환경·권한",
+    activityLabel: "A5 환경·권한 준비확인",
     activityFile: "05_environment-access.html",
     status: "생성완료",
     owner: "DevOps / 형상관리",
@@ -611,7 +611,7 @@ const ARTIFACTS = [
     name: "Customer Readiness Checklist",
     type: "Checklist",
     activity: "A6",
-    activityLabel: "A6 준비·리스크",
+    activityLabel: "A6 준비도·리스크 점검",
     activityFile: "06_readiness-raid.html",
     status: "일부생성",
     owner: "PM",
@@ -637,7 +637,7 @@ const ARTIFACTS = [
     name: "Security Readiness Checklist",
     type: "Checklist",
     activity: "A6",
-    activityLabel: "A6 준비·리스크",
+    activityLabel: "A6 준비도·리스크 점검",
     activityFile: "06_readiness-raid.html",
     status: "생성완료",
     owner: "보안 담당자",
@@ -661,7 +661,7 @@ const ARTIFACTS = [
     name: "RAID Log / Decision Log",
     type: "RAID",
     activity: "A6",
-    activityLabel: "A6 준비·리스크",
+    activityLabel: "A6 준비도·리스크 점검",
     activityFile: "06_readiness-raid.html",
     status: "일부생성",
     owner: "PM",
@@ -691,7 +691,7 @@ const ARTIFACTS = [
     name: "본수행 착수점검표",
     type: "Checklist",
     activity: "A7",
-    activityLabel: "A7 착수점검",
+    activityLabel: "A7 착수점검·이관",
     activityFile: "07_transition-day1.html",
     status: "작성중",
     owner: "PM",
@@ -717,7 +717,7 @@ const ARTIFACTS = [
     name: "본수행 착수점검 결과서",
     type: "Report",
     activity: "A7",
-    activityLabel: "A7 착수점검",
+    activityLabel: "A7 착수점검·이관",
     activityFile: "07_transition-day1.html",
     status: "작성중",
     owner: "PM",
@@ -742,7 +742,7 @@ const ARTIFACTS = [
     name: "Open Item 이관 목록",
     type: "OpenItem",
     activity: "A7",
-    activityLabel: "A7 착수점검",
+    activityLabel: "A7 착수점검·이관",
     activityFile: "07_transition-day1.html",
     status: "작성중",
     owner: "PM",

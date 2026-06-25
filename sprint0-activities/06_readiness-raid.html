@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>A6 고객 준비·보안성·리스크 점검</title>
+  <title>A6 고객 준비도·보안·리스크 점검</title>
   <style>
 :root{
   --bg:#0b1020; --bg2:#111936; --panel:#151f3f; --card:#ffffff; --ink:#eff5ff;
@@ -26,17 +26,17 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
       <a class="brand" href="index.html"><div class="logo"></div><div>Sprint 0 Playbook <span style="color:var(--muted);font-weight:650">AXD Hybrid</span></div></a>
       <nav class="nav" aria-label="activity navigation">
         <a href="index.html">Sprint 0 Overview</a>
-        <a href="01_way-of-working.html">A1 프로젝트 수행방식 합의</a><a href="02_team-raci.html">A2 수행팀 투입 및 R&amp;R 정렬</a><a href="03_communication-cadence.html">A3 의사소통관리 및 운영 주기 수립</a><a href="04_deliverable-acceptance.html">A4 산출물 검토·승인 기준 정의</a><a href="05_environment-access.html">A5 환경·도구·접근권한 준비</a><a href="06_readiness-raid.html">A6 고객 준비·보안성·리스크 점검</a><a href="07_transition-day1.html">A7 오픈·전환 고려사항 및 본수행 착수 점검</a><a href="artifact-repository.html" style="border-color:rgba(66,215,214,.5);color:#42d7d6">산출물 조회</a>
+        <a href="01_way-of-working.html">A1 수행방식 및 Sprint 운영 기준 정렬</a><a href="02_team-raci.html">A2 수행체계 및 책임구조 확인</a><a href="03_communication-cadence.html">A3 커뮤니케이션 및 운영 리듬 수립</a><a href="04_deliverable-acceptance.html">A4 산출물·검토·승인 기준 정렬</a><a href="05_environment-access.html">A5 환경·도구·접근권한 준비상태 확인</a><a href="06_readiness-raid.html">A6 고객 준비도·보안·리스크 점검</a><a href="07_transition-day1.html">A7 본수행 착수점검 및 미결사항 이관</a><a href="artifact-repository.html" style="border-color:rgba(66,215,214,.5);color:#42d7d6">산출물 조회</a>
       </nav>
     </header>
 
     <section class="hero">
       <div class="hero-card">
         <div class="eyebrow">A6 Activity Detail</div>
-        <h1><span class="activity-code">A6</span>고객 준비·보안성·리스크 점검</h1>
+        <h1><span class="activity-code">A6</span>고객 준비도·보안·리스크 점검</h1>
         <p class="lead">착수 후 반복적으로 발생하는 지연 요인을 Sprint 0에서 조기에 드러내고, Owner와 Due Date를 지정하여 본수행 착수 판단에 연결합니다.</p>
         <div class="chips">
-          <span class="chip">Agile 용어 유지: Sprint 0 · Backlog · DoR · DoD · Acceptance Criteria</span>
+          <span class="chip">공통 운영 기준: Sprint 0 · 작업 목록 · 작업 시작·완료 기준 · 검수·수용 기준</span>
           <span class="chip">AXD 수행계획서 Chapter 연결</span>
           <span class="chip">본수행 착수점검 착수 판단 입력</span>
         </div>
@@ -50,24 +50,24 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
 
 <section class="section">
   <div class="grid three">
-    <div class="card cyan"><h3>생성 수준</h3><p><span class="badge draft">점검 → 등록</span></p></div>
-    <div class="card blue"><h3>주요 템플릿</h3><p>10_Readiness_RAID</p></div>
+    <div class="card cyan"><h3>진행 상태</h3><p><span class="badge draft">점검 → 등록</span></p></div>
+    <div class="card blue"><h3>정리 결과</h3><p>고객 준비도·보안 점검표, 이슈·리스크·의사결정 목록</p></div>
     <div class="card green"><h3>사업수행계획서 반영</h3><p>4. 사업 범위, 8. 일정 계획, 14. 위험관리 계획, 18. 보안 대책</p></div>
   </div>
 </section>
 <section class="section" id="tasks">
   <div class="section-head"><div><div class="kicker">Task</div><h2>수행 Task</h2><p class="desc">이 Activity를 수행할 때 실제로 처리해야 할 작업입니다.</p></div></div>
-  <div class="grid two"><div class="card blue"><h3><span class="task-no">1</span>고객 준비 점검</h3><p>고객 PM, Product Owner, 업무 담당자, 승인자 지정과 참여 가능 시간을 확인합니다.</p></div><div class="card blue"><h3><span class="task-no">2</span>데이터 준비 점검</h3><p>샘플 데이터, 마스킹 기준, 데이터 제공 방식, 원천시스템 접근 가능 여부를 확인합니다.</p></div><div class="card blue"><h3><span class="task-no">3</span>보안성 점검</h3><p>보안교육, 보안서약, 개인정보 처리, 자료반출입, 망접속 기준을 확인합니다.</p></div><div class="card blue"><h3><span class="task-no">4</span>Risk/Issue/Decision 등록</h3><p>착수 지연, 환경 지연, 결정 지연, 보안 미승인 항목을 RAID로 등록합니다.</p></div><div class="card blue"><h3><span class="task-no">5</span>본수행 착수점검 차단요소 판단</h3><p>착수 보류 또는 조건부 착수로 분류할 항목을 식별합니다.</p></div></div>
+  <div class="grid two"><div class="card blue"><h3><span class="task-no">1</span>고객 준비 점검</h3><p>고객 PM, Product Owner, 업무 담당자, 승인자 지정과 참여 가능 시간을 확인합니다.</p></div><div class="card blue"><h3><span class="task-no">2</span>데이터 준비 점검</h3><p>샘플 데이터, 마스킹 기준, 데이터 제공 방식, 원천시스템 접근 가능 여부를 확인합니다.</p></div><div class="card blue"><h3><span class="task-no">3</span>보안성 점검</h3><p>보안교육, 보안서약, 개인정보 처리, 자료반출입, 망접속 기준을 확인합니다.</p></div><div class="card blue"><h3><span class="task-no">4</span>위험·이슈·의사결정 등록</h3><p>착수 지연, 환경 지연, 결정 지연, 보안 미승인 항목을 이슈·리스크 목록으로 등록합니다.</p></div><div class="card blue"><h3><span class="task-no">5</span>본수행 착수점검 차단요소 판단</h3><p>착수 보류 또는 조건부 착수로 분류할 항목을 식별합니다.</p></div></div>
 </section>
 <section class="section" id="play">
   <div class="section-head"><div><div class="kicker">Play 방식</div><h2>어떻게 수행하는가</h2></div></div>
   <div class="panel"><div class="panel-body">
-    <ul><li>과거 Lessons Learned와 표준 위험 목록을 먼저 제시하고, 현재 프로젝트에 해당하는 항목을 빠르게 체크합니다.</li><li>발견된 리스크는 “확인 필요”로 끝내지 않고 Owner, Due Date, 대응계획을 입력합니다.</li><li>이미 발생한 문제는 Risk가 아니라 Issue로 분류합니다.</li><li>결정이 필요한 항목은 Decision Log로 분리하여 결정자와 결정 필요일을 명확히 합니다.</li></ul>
+    <ul><li>과거 Lessons Learned와 표준 위험 목록을 먼저 제시하고, 현재 프로젝트에 해당하는 항목을 빠르게 체크합니다.</li><li>발견된 리스크는 “확인 필요”로 끝내지 않고 Owner, Due Date, 대응계획을 입력합니다.</li><li>이미 발생한 문제는 위험(Risk)이 아니라 이슈(Issue)로 분류합니다.</li><li>결정이 필요한 항목은 의사결정 목록으로 분리하여 결정자와 결정 필요일을 명확히 합니다.</li></ul>
   </div></div>
 </section>
 <section class="section" id="owners">
   <div class="section-head"><div><div class="kicker">Play 담당자</div><h2>역할과 책임</h2></div></div>
-  <table class="map-table"><thead><tr><th>역할</th><th>RACI</th><th>역할 설명</th></tr></thead><tbody><tr><td><strong>PM</strong></td><td>A/R</td><td>Readiness Review 주관, 위험·이슈·의사결정 통합 관리</td></tr><tr><td><strong>고객 PM</strong></td><td>A/R</td><td>고객 조치 필요사항의 Owner 지정과 일정 확인</td></tr><tr><td><strong>QA / 위험관리 담당</strong></td><td>R/C</td><td>위험평가 기준, 위험등급, 대응계획 검토</td></tr><tr><td><strong>보안 담당자</strong></td><td>R/C</td><td>보안 준비, 개인정보, 자료반출 기준 검토</td></tr><tr><td><strong>데이터 담당자</strong></td><td>R/C</td><td>데이터 제공 일정과 마스킹 기준 확인</td></tr><tr><td><strong>인프라/환경 담당자</strong></td><td>R/C</td><td>환경·권한 준비 리스크 확인</td></tr></tbody></table>
+  <table class="map-table"><thead><tr><th>역할</th><th>역할 구분</th><th>역할 설명</th></tr></thead><tbody><tr><td><strong>PM</strong></td><td>담당·승인</td><td>Readiness Review 주관, 위험·이슈·의사결정 통합 관리</td></tr><tr><td><strong>고객 PM</strong></td><td>담당·승인</td><td>고객 조치 필요사항의 Owner 지정과 일정 확인</td></tr><tr><td><strong>QA / 위험관리 담당</strong></td><td>담당·협의</td><td>위험평가 기준, 위험등급, 대응계획 검토</td></tr><tr><td><strong>보안 담당자</strong></td><td>담당·협의</td><td>보안 준비, 개인정보, 자료반출 기준 검토</td></tr><tr><td><strong>데이터 담당자</strong></td><td>담당·협의</td><td>데이터 제공 일정과 마스킹 기준 확인</td></tr><tr><td><strong>인프라/환경 담당자</strong></td><td>담당·협의</td><td>환경·권한 준비 리스크 확인</td></tr></tbody></table>
 </section>
 <section class="section" id="info">
   <div class="section-head"><div><div class="kicker">수집 필요 정보</div><h2>입력 데이터</h2></div></div>
@@ -78,26 +78,26 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
 <section class="section" id="decisions">
   <div class="section-head"><div><div class="kicker">의사결정</div><h2>결정해야 할 항목</h2></div></div>
   <table class="map-table"><thead><tr><th>의사결정 항목</th><th>내용</th></tr></thead><tbody>
-    <tr><td><strong>고객 준비 상태</strong></td><td>각 영역을 완료/진행/지연/미완료/해당없음으로 판단</td></tr><tr><td><strong>Risk 등급</strong></td><td>영향도와 발생가능성 기준으로 High/Medium/Low 분류</td></tr><tr><td><strong>Owner와 Due Date</strong></td><td>모든 Risk/Issue/Decision에 책임자와 기한 부여</td></tr><tr><td><strong>Escalation 대상</strong></td><td>기한 내 해결 불가 항목의 상위 보고 여부 결정</td></tr><tr><td><strong>본수행 착수점검 차단 여부</strong></td><td>착수 보류, 조건부 착수, Go 영향을 분류</td></tr>
+    <tr><td><strong>고객 준비 상태</strong></td><td>각 영역을 완료/진행/지연/미완료/해당없음으로 판단</td></tr><tr><td><strong>위험 등급</strong></td><td>영향도와 발생가능성 기준으로 High/Medium/Low 분류</td></tr><tr><td><strong>Owner와 Due Date</strong></td><td>모든 위험·이슈·의사결정 항목에 책임자와 기한 부여</td></tr><tr><td><strong>상위 보고 대상</strong></td><td>기한 내 해결 불가 항목의 상위 보고 여부 결정</td></tr><tr><td><strong>본수행 착수점검 차단 여부</strong></td><td>착수 보류, 조건부 착수, 착수 가능 영향을 분류</td></tr>
   </tbody></table>
 </section>
 <section class="section" id="outputs">
-  <div class="section-head"><div><div class="kicker">생성 Artifact</div><h2>이 Activity에서 생성되는 산출물</h2></div></div>
-  <table class="map-table"><thead><tr><th>템플릿 / 산출물</th><th>설명</th></tr></thead><tbody><tr><td><strong>10_Readiness_RAID</strong></td><td>고객 준비 점검표, 보안 준비 점검표, RAID, Decision Log</td></tr><tr><td><strong>11_Day1Check</strong></td><td>본수행 착수 점검에서 착수 보류/조건부 착수 판단 입력</td></tr><tr><td><strong>06_CommCadence</strong></td><td>위험·이슈·결정 항목의 회의체 보고 주기 반영</td></tr><tr><td><strong>12_BP_Transfer</strong></td><td>위험관리 계획·보안대책 반영 현황</td></tr></tbody></table>
+  <div class="section-head"><div><div class="kicker">정리 결과</div><h2>이 Activity에서 정리되는 운영 기준</h2></div></div>
+  <table class="map-table"><thead><tr><th>구분</th><th>설명</th></tr></thead><tbody><tr><td><strong>고객 준비도·보안 점검표</strong></td><td>고객 준비 점검표, 보안 준비 점검표, 이슈·리스크·의사결정 목록</td></tr><tr><td><strong>착수점검 연계</strong></td><td>본수행 착수 점검에서 착수 보류/조건부 착수 판단 입력</td></tr><tr><td><strong>운영 주기 연계</strong></td><td>위험·이슈·결정 항목의 회의체 보고 주기 반영</td></tr><tr><td><strong>사업수행계획서 반영 현황</strong></td><td>위험관리 계획·보안대책 반영 현황</td></tr></tbody></table>
 </section>
 <section class="section" id="checklist">
   <div class="section-head"><div><div class="kicker">완료 체크리스트</div><h2>Activity 완료 여부 확인</h2></div></div>
-  <div class="grid two"><div class="card green"><p>&#10003; 고객 준비 미완료 항목이 식별되었는가?</p></div><div class="card green"><p>&#10003; 데이터·보안·권한 리스크가 RAID에 등록되었는가?</p></div><div class="card green"><p>&#10003; 모든 Risk/Issue/Decision에 Owner와 Due Date가 있는가?</p></div><div class="card green"><p>&#10003; 착수 보류 후보 항목이 명확한가?</p></div><div class="card green"><p>&#10003; 조건부 착수의 조건과 만료일이 정의되었는가?</p></div></div>
+  <div class="grid two"><div class="card green"><p>&#10003; 고객 준비 미완료 항목이 식별되었는가?</p></div><div class="card green"><p>&#10003; 데이터·보안·권한 리스크가 이슈·리스크 목록에 등록되었는가?</p></div><div class="card green"><p>&#10003; 모든 위험·이슈·의사결정 항목에 Owner와 Due Date가 있는가?</p></div><div class="card green"><p>&#10003; 착수 보류 후보 항목이 명확한가?</p></div><div class="card green"><p>&#10003; 조건부 착수의 조건과 만료일이 정의되었는가?</p></div></div>
 </section>
 <div class="callout" style="margin:24px 0">
   <strong>산출물 조회:</strong> 이 Activity에서 생성된 산출물은 <a href="artifact-repository.html" style="color:#2656d9;text-decoration:underline">Artifact Repository</a>에서 상태·버전·Chapter 반영 현황을 확인할 수 있습니다.
 </div>
 <div class="nextprev">
-  <a class="secondary" href="05_environment-access.html">&larr; A5 환경·도구·접근권한 준비</a>
-  <a href="07_transition-day1.html">A7 오픈·전환 고려사항 및 본수행 착수 점검 &rarr;</a>
+  <a class="secondary" href="05_environment-access.html">&larr; A5 환경·도구·접근권한 준비상태 확인</a>
+  <a href="07_transition-day1.html">A7 본수행 착수점검 및 미결사항 이관 &rarr;</a>
 </div>
 <footer class="footer">
-  <p>Sprint 0 Activity Playbook — AXD Hybrid | A6 고객 준비·보안성·리스크 점검</p>
+  <p>Sprint 0 Activity Playbook — AXD Hybrid | A6 고객 준비도·보안·리스크 점검</p>
 </footer>
   </div>
 </body>

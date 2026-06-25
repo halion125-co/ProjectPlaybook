@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>A1 프로젝트 수행방식 합의</title>
+  <title>A1 수행방식 및 Sprint 운영 기준 정렬</title>
   <style>
 :root{
   --bg:#0b1020; --bg2:#111936; --panel:#151f3f; --card:#ffffff; --ink:#eff5ff;
@@ -16,8 +16,26 @@
 html{scroll-behavior:smooth}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 8% -8%,rgba(66,215,214,.22),transparent 34%),radial-gradient(circle at 94% 0%,rgba(108,168,255,.24),transparent 30%),linear-gradient(180deg,var(--bg) 0%,#101936 38%,#f4f7fb 38%,#f4f7fb 100%);line-height:1.58}
 a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;padding:28px 28px 72px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px}.brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:-.02em}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--blue));box-shadow:0 12px 30px rgba(66,215,214,.22)}.nav{display:flex;gap:8px;flex-wrap:wrap}.nav a{padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px;background:rgba(255,255,255,.04)}.nav a:hover{color:#fff;border-color:rgba(255,255,255,.35)}
-.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:24px;margin-bottom:28px}.hero-card{background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.045));border:1px solid var(--line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);backdrop-filter:blur(12px)}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#dbe8ff;background:rgba(255,255,255,.08);border:1px solid var(--line);padding:8px 12px;border-radius:999px;font-size:13px;margin-bottom:16px}.activity-code{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#071125;font-weight:900;margin-right:10px}h1{font-size:40px;line-height:1.12;margin:0 0 16px;letter-spacing:-.045em}h2{font-size:26px;line-height:1.2;margin:4px 0 8px;letter-spacing:-.03em;color:var(--dark)}h3{font-size:18px;margin:0 0 8px;letter-spacing:-.02em;color:var(--dark)}p{margin:0}.lead{font-size:17px;color:#d7e4ff;margin:0 0 20px}.quote{font-size:27px;line-height:1.24;font-weight:850;letter-spacing:-.04em}.note{font-size:14px;color:var(--muted)}.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.chip{font-size:13px;color:#dce9ff;background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:999px;padding:8px 12px}.section{margin:32px 0;color:var(--dark)}.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:16px}.kicker{color:#2656d9;font-weight:850;font-size:13px;letter-spacing:.08em;text-transform:uppercase}.desc{color:#667085}.panel{background:#fff;border:1px solid var(--softline);border-radius:24px;box-shadow:0 16px 42px rgba(23,32,51,.07);overflow:hidden;color:var(--dark)}.panel-head{padding:22px 24px;border-bottom:1px solid var(--softline);background:linear-gradient(180deg,#fff,#f9fbff)}.panel-body{padding:22px 24px}.grid{display:grid;gap:16px}.grid.two{grid-template-columns:repeat(2,1fr)}.grid.three{grid-template-columns:repeat(3,1fr)}.grid.four{grid-template-columns:repeat(4,1fr)}.card{background:#fff;border:1px solid var(--softline);border-radius:20px;padding:18px;color:var(--dark);box-shadow:0 12px 30px rgba(23,32,51,.04)}.card.blue{border-left:5px solid var(--blue)}.card.cyan{border-left:5px solid var(--cyan)}.card.green{border-left:5px solid var(--green)}.card.orange{border-left:5px solid var(--orange)}.card.purple{border-left:5px solid var(--purple)}.card.red{border-left:5px solid var(--red)}.card p,.card li{font-size:14px;color:#475467}.card ul{margin:10px 0 0;padding-left:18px}.card li{margin:7px 0}.small{font-size:12px;color:#667085}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:800;white-space:nowrap}.badge.ok{background:#e7f8ee;color:#067647}.badge.draft{background:#fff2df;color:#b54708}.badge.partial{background:#eef3ff;color:#2656d9}.badge.warn{background:#ffe8e5;color:#b42318}.badge.dark{background:#172033;color:#fff}.badge.agile{background:#eefafa;color:#087d7d}.badge.doc{background:#edf2ff;color:#2656d9}.map-table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;overflow:hidden;border:1px solid var(--softline);border-radius:18px}.map-table th{background:#172033;color:#fff;text-align:left;padding:13px 14px;font-size:13px;vertical-align:top}.map-table td{padding:13px 14px;border-top:1px solid var(--softline);vertical-align:top;background:#fff;color:#344054}.map-table tr:nth-child(even) td{background:#f9fbff}.map-table strong{color:#172033}.task-no{display:inline-flex;width:28px;height:28px;border-radius:10px;background:#172033;color:#fff;align-items:center;justify-content:center;font-weight:850;font-size:12px;margin-right:8px}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.flow-step{background:#fff;border:1px solid var(--softline);border-radius:18px;padding:16px;position:relative}.flow-step:after{content:"→";position:absolute;right:-14px;top:42%;font-weight:900;color:#98a2b3}.flow-step:last-child:after{display:none}.flow-step .num{width:30px;height:30px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:#172033;color:#fff;font-weight:850;font-size:13px;margin-bottom:10px}.activity-list{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.activity-card{border:1px solid #dde5f2;border-radius:18px;padding:16px;background:#fff;display:flex;flex-direction:column;gap:10px;min-height:196px;position:relative;overflow:hidden}.activity-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--blue)}.activity-card:nth-child(2):before{background:var(--purple)}.activity-card:nth-child(3):before{background:var(--green)}.activity-card:nth-child(4):before{background:var(--cyan)}.activity-card:nth-child(5):before{background:var(--orange)}.activity-card:nth-child(6):before{background:#ff8aa4}.activity-card:nth-child(7):before{background:#50c878}.act-no{font-size:12px;color:#667085;font-weight:850}.act-title{font-size:17px;font-weight:850;line-height:1.25;color:#172033;letter-spacing:-.02em}.act-text{font-size:13px;color:#667085}.callout{border-left:5px solid var(--cyan);background:#f5fbff;border-radius:16px;padding:18px 20px;color:#344054}.callout strong{color:#172033}.footer{margin-top:34px;color:#667085;font-size:12px;border-top:1px solid #dde5f2;padding-top:18px}.source{font-size:11px;color:#77849c}.nextprev{display:flex;justify-content:space-between;gap:12px;margin-top:24px}.nextprev a{background:#172033;color:#fff;border-radius:14px;padding:12px 14px;font-size:14px;font-weight:800}.nextprev a.secondary{background:#fff;color:#172033;border:1px solid var(--softline)}
-@media(max-width:1100px){.hero{grid-template-columns:1fr}.grid.three,.grid.four,.activity-list,.flow{grid-template-columns:repeat(2,1fr)}.flow-step:after{display:none}}@media(max-width:720px){.wrap{padding:20px 16px 60px}h1{font-size:30px}.grid.two,.grid.three,.grid.four,.activity-list,.flow{grid-template-columns:1fr}.map-table{font-size:12px}.map-table th,.map-table td{padding:10px}.nextprev{flex-direction:column}.hero-card{padding:22px}}
+.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:24px;margin-bottom:28px}.hero-card{background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.045));border:1px solid var(--line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);backdrop-filter:blur(12px)}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#dbe8ff;background:rgba(255,255,255,.08);border:1px solid var(--line);padding:8px 12px;border-radius:999px;font-size:13px;margin-bottom:16px}.activity-code{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#071125;font-weight:900;margin-right:10px}h1{font-size:40px;line-height:1.12;margin:0 0 16px;letter-spacing:-.045em}h2{font-size:26px;line-height:1.2;margin:4px 0 8px;letter-spacing:-.03em;color:var(--dark)}h3{font-size:18px;margin:0 0 8px;letter-spacing:-.02em;color:var(--dark)}p{margin:0}.lead{font-size:17px;color:#d7e4ff;margin:0 0 20px}.quote{font-size:27px;line-height:1.24;font-weight:850;letter-spacing:-.04em}.note{font-size:14px;color:var(--muted)}.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.chip{font-size:13px;color:#dce9ff;background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:999px;padding:8px 12px}.section{margin:32px 0;color:var(--dark)}.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:16px}.kicker{color:#2656d9;font-weight:850;font-size:13px;letter-spacing:.08em;text-transform:uppercase}.desc{color:#667085}.panel{background:#fff;border:1px solid var(--softline);border-radius:24px;box-shadow:0 16px 42px rgba(23,32,51,.07);overflow:hidden;color:var(--dark)}.panel-head{padding:22px 24px;border-bottom:1px solid var(--softline);background:linear-gradient(180deg,#fff,#f9fbff)}.panel-body{padding:22px 24px}.grid{display:grid;gap:16px}.grid.two{grid-template-columns:repeat(2,1fr)}.grid.three{grid-template-columns:repeat(3,1fr)}.grid.four{grid-template-columns:repeat(4,1fr)}.card{background:#fff;border:1px solid var(--softline);border-radius:20px;padding:18px;color:var(--dark);box-shadow:0 12px 30px rgba(23,32,51,.04)}.card.blue{border-left:5px solid var(--blue)}.card.cyan{border-left:5px solid var(--cyan)}.card.green{border-left:5px solid var(--green)}.card.orange{border-left:5px solid var(--orange)}.card.purple{border-left:5px solid var(--purple)}.card.red{border-left:5px solid var(--red)}.card p,.card li{font-size:14px;color:#475467}.card ul{margin:10px 0 0;padding-left:18px}.card li{margin:7px 0}.small{font-size:12px;color:#667085}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:800;white-space:nowrap}.badge.ok{background:#e7f8ee;color:#067647}.badge.draft{background:#fff2df;color:#b54708}.badge.partial{background:#eef3ff;color:#2656d9}.badge.warn{background:#ffe8e5;color:#b42318}.badge.dark{background:#172033;color:#fff}.badge.agile{background:#eefafa;color:#087d7d}.badge.doc{background:#edf2ff;color:#2656d9}.map-table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;overflow:hidden;border:1px solid var(--softline);border-radius:18px}.map-table th{background:#172033;color:#fff;text-align:left;padding:13px 14px;font-size:13px;vertical-align:top}.map-table td{padding:13px 14px;border-top:1px solid var(--softline);vertical-align:top;background:#fff;color:#344054}.map-table tr:nth-child(even) td{background:#f9fbff}.map-table strong{color:#172033}.task-no{display:inline-flex;width:28px;height:28px;border-radius:10px;background:#172033;color:#fff;align-items:center;justify-content:center;font-weight:850;font-size:12px;margin-right:8px}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.flow-step{background:#fff;border:1px solid var(--softline);border-radius:18px;padding:16px;position:relative}.flow-step:after{content:"→";position:absolute;right:-14px;top:42%;font-weight:900;color:#98a2b3}.flow-step:last-child:after{display:none}.flow-step .num{width:30px;height:30px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:#172033;color:#fff;font-weight:850;font-size:13px;margin-bottom:10px}.activity-list{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.activity-card{border:1px solid #dde5f2;border-radius:18px;padding:16px;background:#fff;display:flex;flex-direction:column;gap:10px;min-height:196px;position:relative;overflow:hidden}.activity-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--blue)}.activity-card:nth-child(2):before{background:var(--purple)}.activity-card:nth-child(3):before{background:var(--green)}.activity-card:nth-child(4):before{background:var(--cyan)}.activity-card:nth-child(5):before{background:var(--orange)}.activity-card:nth-child(6):before{background:#ff8aa4}.activity-card:nth-child(7):before{background:#50c878}.act-no{font-size:12px;color:#667085;font-weight:850}.act-title{font-size:17px;font-weight:850;line-height:1.25;color:#172033;letter-spacing:-.02em}.act-text{font-size:13px;color:#667085}.callout{border-left:5px solid var(--cyan);background:#f5fbff;border-radius:16px;padding:18px 20px;color:#344054}.callout strong{color:#172033}
+#checklist .card.green{display:flex;align-items:center;min-height:0;padding:14px 18px}.footer{margin-top:34px;color:#667085;font-size:12px;border-top:1px solid #dde5f2;padding-top:18px}.source{font-size:11px;color:#77849c}.nextprev{display:flex;justify-content:space-between;gap:12px;margin-top:24px}.nextprev a{background:#172033;color:#fff;border-radius:14px;padding:12px 14px;font-size:14px;font-weight:800}.nextprev a.secondary{background:#fff;color:#172033;border:1px solid var(--softline)}
+.task-guide-card{cursor:pointer;transition:box-shadow .18s,border-color .18s,transform .12s}.task-guide-card:hover{box-shadow:0 10px 28px rgba(23,32,51,.10);border-color:#b8caed;transform:translateY(-1px)}.task-guide-card .task-click-hint{margin-top:auto;font-size:12px;color:#2656d9;font-weight:800;display:flex;align-items:center;gap:4px}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(11,16,32,.6);backdrop-filter:blur(3px);z-index:1000;align-items:center;justify-content:center;padding:24px}.modal-overlay.active{display:flex}
+.modal-box{background:#fff;border-radius:24px;max-width:760px;width:100%;max-height:86vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.35);color:var(--dark)}
+.modal-head{position:sticky;top:0;background:#172033;color:#fff;padding:20px 26px;border-radius:24px 24px 0 0;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.modal-head .mh-no{display:inline-flex;width:30px;height:30px;border-radius:10px;background:rgba(255,255,255,.14);align-items:center;justify-content:center;font-weight:850;font-size:13px;margin-right:8px}
+.modal-head h3{color:#fff;font-size:19px;margin:0;display:flex;align-items:center}
+.modal-close{background:rgba(255,255,255,.12);border:none;color:#fff;width:30px;height:30px;border-radius:10px;cursor:pointer;font-size:16px;flex-shrink:0;line-height:1}
+.modal-close:hover{background:rgba(255,255,255,.24)}
+.modal-body{padding:24px 26px}
+.mg-row{margin-bottom:18px}
+.mg-label{font-size:12px;font-weight:850;color:#2656d9;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px}
+.mg-content{font-size:14px;color:#344054;line-height:1.6}
+.mg-content ul{margin:0;padding-left:18px}
+.mg-content li{margin:4px 0}
+.mg-pills{display:flex;flex-wrap:wrap;gap:8px}
+.mg-pill{font-size:13px;background:#edf2ff;color:#2656d9;border-radius:999px;padding:6px 12px;font-weight:700}
+.mg-example{background:#f5fbff;border-left:4px solid var(--cyan);border-radius:12px;padding:14px 16px;font-size:13px;color:#344054;white-space:pre-line;line-height:1.6}
+@media(max-width:1100px){.hero{grid-template-columns:1fr}.grid.three,.grid.four,.activity-list,.flow{grid-template-columns:repeat(2,1fr)}.flow-step:after{display:none}}@media(max-width:720px){.wrap{padding:20px 16px 60px}h1{font-size:30px}.grid.two,.grid.three,.grid.four,.activity-list,.flow{grid-template-columns:1fr}.map-table{font-size:12px}.map-table th,.map-table td{padding:10px}.nextprev{flex-direction:column}.hero-card{padding:22px}.modal-box{max-height:92vh}}
 </style>
 </head>
 <body>
@@ -26,48 +44,65 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
       <a class="brand" href="index.html"><div class="logo"></div><div>Sprint 0 Playbook <span style="color:var(--muted);font-weight:650">AXD Hybrid</span></div></a>
       <nav class="nav" aria-label="activity navigation">
         <a href="index.html">Sprint 0 Overview</a>
-        <a href="01_way-of-working.html">A1 프로젝트 수행방식 합의</a><a href="02_team-raci.html">A2 수행팀 투입 및 R&amp;R 정렬</a><a href="03_communication-cadence.html">A3 의사소통관리 및 운영 주기 수립</a><a href="04_deliverable-acceptance.html">A4 산출물 검토·승인 기준 정의</a><a href="05_environment-access.html">A5 환경·도구·접근권한 준비</a><a href="06_readiness-raid.html">A6 고객 준비·보안성·리스크 점검</a><a href="07_transition-day1.html">A7 오픈·전환 고려사항 및 본수행 착수 점검</a><a href="artifact-repository.html" style="border-color:rgba(66,215,214,.5);color:#42d7d6">산출물 조회</a>
+        <a href="01_way-of-working.html">A1 수행방식 및 Sprint 운영 기준 정렬</a><a href="02_team-raci.html">A2 수행체계 및 책임구조 확인</a><a href="03_communication-cadence.html">A3 커뮤니케이션 및 운영 리듬 수립</a><a href="04_deliverable-acceptance.html">A4 산출물·검토·승인 기준 정렬</a><a href="05_environment-access.html">A5 환경·도구·접근권한 준비상태 확인</a><a href="06_readiness-raid.html">A6 고객 준비도·보안·리스크 점검</a><a href="07_transition-day1.html">A7 본수행 착수점검 및 미결사항 이관</a><a href="artifact-repository.html" style="border-color:rgba(66,215,214,.5);color:#42d7d6">산출물 조회</a>
       </nav>
     </header>
 
     <section class="hero">
       <div class="hero-card">
         <div class="eyebrow">A1 Activity Detail</div>
-        <h1><span class="activity-code">A1</span>프로젝트 수행방식 합의</h1>
-        <p class="lead">AX 프로젝트를 전통적 산출물 중심으로만 운영하지 않고, Sprint 단위의 실행·검토·보정이 가능하도록 팀의 일하는 방식을 합의합니다.</p>
+        <h1><span class="activity-code">A1</span>수행방식 및 Sprint 운영 기준 정렬</h1>
+        <p class="lead">AXD 단계형 수행과 Sprint 기반 실행 방식을 어떻게 결합할지 정리하여, 본수행 단계에서 팀이 같은 기준으로 계획·실행·검토·변경관리할 수 있도록 합니다.</p>
+        <p class="note" style="margin-top:14px"><strong style="color:#fff">핵심 질문</strong><br>이 프로젝트는 어떤 방식으로 계획하고, 어떤 기준으로 작업을 시작·완료·검토할 것인가?</p>
         <div class="chips">
-          <span class="chip">Agile 용어 유지: Sprint 0 · Backlog · DoR · DoD · Acceptance Criteria</span>
-          <span class="chip">AXD 수행계획서 Chapter 연결</span>
-          <span class="chip">본수행 착수점검 착수 판단 입력</span>
+          <span class="chip">수행모델 정렬</span>
+          <span class="chip">Sprint 운영 기준</span>
+          <span class="chip">작업 목록 관리</span>
+          <span class="chip">작업 시작·완료 기준</span>
+          <span class="chip">변경관리 연결</span>
         </div>
       </div>
       <div class="hero-card">
-        <div class="eyebrow">Playbook Output</div>
-        <div class="quote">Task를 수행하면 템플릿이 생성되고, 템플릿 상태가 본수행 착수 판단으로 연결됩니다.</div>
-        <p class="note" style="margin-top:16px">이 HTML Pack은 전통적 사업수행계획서 산출물을 대체하기보다, Sprint 0에서 Hybrid 수행에 필요한 입력값과 실행 산출물을 구조화하는 용도입니다.</p>
+        <div class="eyebrow">A1 Decision Point</div>
+        <div class="quote">A1에서 정리해야 할 결정사항</div>
+        <p class="note" style="margin-top:12px">이 Activity의 결과는 템플릿 생성이 아니라, 본수행에서 팀이 동일하게 적용할 운영 기준을 정하는 것입니다.</p>
+        <table class="map-table" style="margin-top:16px"><thead><tr><th>구분</th><th>결정해야 할 내용</th></tr></thead><tbody>
+          <tr><td><strong>수행모델</strong></td><td>AXD 단계형, Hybrid, Sprint 중심 중 어떤 방식으로 운영할지 결정</td></tr>
+          <tr><td><strong>Sprint 운영</strong></td><td>Sprint 주기, 검토 방식, Sprint 1 착수 기준 정리</td></tr>
+          <tr><td><strong>작업 목록 관리</strong></td><td>작업 목록 관리 도구, 상태값, 우선순위 기준 정의</td></tr>
+          <tr><td><strong>작업 기준</strong></td><td>작업 시작 기준, 작업 완료 기준, 검수·수용 기준 정리</td></tr>
+          <tr><td><strong>변경관리 연결</strong></td><td>작업 변경과 공식 범위·일정·비용 변경관리의 연결 기준 정의</td></tr>
+        </tbody></table>
+        <p class="note" style="margin-top:14px"><strong style="color:#fff">완료 기준</strong><br>PM, PL, QA, 고객 PM이 동일한 수행방식을 이해하고, Sprint 1 착수에 필요한 최소 운영 기준이 정리되어야 합니다. 미확정 항목은 Open Item으로 등록하여 후속 Activity와 본수행 착수점검에서 관리합니다.</p>
       </div>
     </section>
-
-<section class="section">
-  <div class="grid three">
-    <div class="card cyan"><h3>생성 수준</h3><p><span class="badge draft">초안 → 합의</span></p></div>
-    <div class="card blue"><h3>주요 템플릿</h3><p>09_WoW_DoR_DoD, 04_Backlog</p></div>
-    <div class="card green"><h3>사업수행계획서 반영</h3><p>6. 사업 추진 절차, 10. 변경관리 계획, 11. 품질관리 계획, 13. 의사소통관리 계획</p></div>
+<section class="section" id="tasks">
+  <div class="section-head"><div><div class="kicker">Task</div><h2>수행 Task별 Play Guide</h2><p class="desc">Task별로 어떻게 진행하고 무엇을 결정하는가. 카드를 클릭하면 진행 질문·결정 선택지·결정 기준·결과 기록을 확인할 수 있습니다.</p></div></div>
+  <div class="grid two">
+    <div class="card blue task-guide-card" onclick="openTaskModal(1)"><h3><span class="task-no">1</span>프로젝트 유형과 특성 Tag 확인</h3><p>이 프로젝트는 PoC인가 본사업인가, 일반AX·공공AX·금융AX 중 어디에 해당하는가를 확인합니다.</p><div class="task-click-hint">Play Guide 보기 →</div></div>
+    <div class="card blue task-guide-card" onclick="openTaskModal(2)"><h3><span class="task-no">2</span>수행모델 결정</h3><p>AXD 단계형, Hybrid, Sprint 중심 중 프로젝트를 어떤 방식으로 수행할지 결정합니다.</p><div class="task-click-hint">Play Guide 보기 →</div></div>
+    <div class="card blue task-guide-card" onclick="openTaskModal(3)"><h3><span class="task-no">3</span>Sprint 운영 기준 결정</h3><p>Sprint 주기, Review 방식, Sprint 1 착수 조건을 결정합니다.</p><div class="task-click-hint">Play Guide 보기 →</div></div>
+    <div class="card blue task-guide-card" onclick="openTaskModal(4)"><h3><span class="task-no">4</span>작업 목록 관리 방식 결정</h3><p>작업 목록 관리 도구, 상태값, 우선순위 결정자를 정합니다.</p><div class="task-click-hint">Play Guide 보기 →</div></div>
+    <div class="card blue task-guide-card" onclick="openTaskModal(5)"><h3><span class="task-no">5</span>작업 시작 기준 정의</h3><p>어떤 조건이 충족되어야 작업을 시작할 수 있는지 정리합니다.</p><div class="task-click-hint">Play Guide 보기 →</div></div>
+    <div class="card blue task-guide-card" onclick="openTaskModal(6)"><h3><span class="task-no">6</span>작업 완료·검수 기준 정의</h3><p>언제 작업을 완료로 볼지, 고객이 어떤 기준으로 결과를 수용할지 정리합니다.</p><div class="task-click-hint">Play Guide 보기 →</div></div>
+    <div class="card blue task-guide-card" onclick="openTaskModal(7)"><h3><span class="task-no">7</span>변경관리 연결 기준 정의</h3><p>작업 목록 변경과 공식 변경관리의 연결 기준을 정리합니다.</p><div class="task-click-hint">Play Guide 보기 →</div></div>
+    <div class="card blue task-guide-card" onclick="openTaskModal(8)"><h3><span class="task-no">8</span>미확정 항목 정리</h3><p>A1에서 결정되지 않은 항목을 후속 Activity나 본수행 착수점검에서 관리합니다.</p><div class="task-click-hint">Play Guide 보기 →</div></div>
   </div>
 </section>
-<section class="section" id="tasks">
-  <div class="section-head"><div><div class="kicker">Task</div><h2>수행 Task</h2><p class="desc">이 Activity를 수행할 때 실제로 처리해야 할 작업입니다.</p></div></div>
-  <div class="grid two"><div class="card blue"><h3><span class="task-no">1</span>Hybrid 적용 범위 결정</h3><p>AXD 단계·Gate는 유지하되, Sprint 운영을 적용할 업무 영역과 적용하지 않을 영역을 구분합니다.</p></div><div class="card blue"><h3><span class="task-no">2</span>Sprint 운영 기준 정의</h3><p>Sprint 길이, Sprint Planning, Daily Stand-up, Sprint Review, Retrospective 운영 여부와 주기를 정합니다.</p></div><div class="card blue"><h3><span class="task-no">3</span>Backlog 관리 방식 정의</h3><p>Initial Backlog 구조, Epic/Feature/User Story/Task 기준, 우선순위 기준, 관리 도구를 정합니다.</p></div><div class="card blue"><h3><span class="task-no">4</span>DoR/DoD/Acceptance Criteria 합의</h3><p>작업 착수 가능 기준, 완료 기준, 수락 기준을 정의하여 품질 기준으로 연결합니다.</p></div><div class="card blue"><h3><span class="task-no">5</span>변경관리 연계 기준 정의</h3><p>Backlog 변경과 공식 변경요청서 처리 기준을 구분하고 연결합니다.</p></div></div>
-</section>
-<section class="section" id="play">
-  <div class="section-head"><div><div class="kicker">Play 방식</div><h2>어떻게 수행하는가</h2></div></div>
-  <div class="panel"><div class="panel-body">
-    <ul><li>PM 또는 Scrum Master가 60~90분 Workshop을 주관합니다.</li><li>기존 AXD 방법론의 단계와 산출물 목록을 먼저 보여주고, 어떤 부분을 Sprint 방식으로 운영할지 표시합니다.</li><li>Sprint 1 후보 Backlog를 샘플로 놓고 DoR/DoD가 실제 적용 가능한지 검토합니다.</li><li>합의되지 않은 항목은 결론 없이 넘기지 않고 Decision Log 또는 RAID에 등록합니다.</li></ul>
-  </div></div>
-</section>
+
+<!-- Task별 Play Guide 모달 -->
+<div class="modal-overlay" id="task-modal-overlay" onclick="closeTaskModalOnOverlay(event)">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3><span class="mh-no" id="modal-task-no">1</span><span id="modal-task-title">제목</span></h3>
+      <button class="modal-close" onclick="closeTaskModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-task-body"></div>
+  </div>
+</div>
 <section class="section" id="owners">
   <div class="section-head"><div><div class="kicker">Play 담당자</div><h2>역할과 책임</h2></div></div>
-  <table class="map-table"><thead><tr><th>역할</th><th>RACI</th><th>역할 설명</th></tr></thead><tbody><tr><td><strong>PM</strong></td><td>A</td><td>프로젝트 수행방식 최종 승인, 사업수행계획서 반영 책임</td></tr><tr><td><strong>Scrum Master / Agile Lead</strong></td><td>R</td><td>Workshop 진행, Sprint 운영 기준, DoR/DoD 초안 작성</td></tr><tr><td><strong>Product Owner</strong></td><td>R/C</td><td>Backlog 우선순위와 Acceptance Criteria 검토</td></tr><tr><td><strong>PL / Tech Lead</strong></td><td>C/R</td><td>개발·기술 수행 가능성 검토</td></tr><tr><td><strong>QA</strong></td><td>C</td><td>품질 기준, DoD, 산출물 검토 기준 정렬</td></tr><tr><td><strong>고객 PM</strong></td><td>A/C</td><td>고객 보고·승인 체계와 충돌 여부 확인</td></tr></tbody></table>
+  <table class="map-table"><thead><tr><th>역할</th><th>역할 구분</th><th>역할 설명</th></tr></thead><tbody><tr><td><strong>PM</strong></td><td>승인</td><td>프로젝트 수행방식 최종 승인, 사업수행계획서 반영 책임</td></tr><tr><td><strong>Scrum Master / Agile Lead</strong></td><td>담당</td><td>Workshop 진행, Sprint 운영 기준, 작업 시작·완료 기준 초안 작성</td></tr><tr><td><strong>Product Owner</strong></td><td>담당·협의</td><td>작업 목록 우선순위와 검수·수용 기준 검토</td></tr><tr><td><strong>PL / Tech Lead</strong></td><td>담당·협의</td><td>개발·기술 수행 가능성 검토</td></tr><tr><td><strong>QA</strong></td><td>협의</td><td>품질 기준, 작업 완료 기준, 산출물 검토 기준 정렬</td></tr><tr><td><strong>고객 PM</strong></td><td>승인·협의</td><td>고객 보고·승인 체계와 충돌 여부 확인</td></tr></tbody></table>
 </section>
 <section class="section" id="info">
   <div class="section-head"><div><div class="kicker">수집 필요 정보</div><h2>입력 데이터</h2></div></div>
@@ -78,27 +113,147 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
 <section class="section" id="decisions">
   <div class="section-head"><div><div class="kicker">의사결정</div><h2>결정해야 할 항목</h2></div></div>
   <table class="map-table"><thead><tr><th>의사결정 항목</th><th>내용</th></tr></thead><tbody>
-    <tr><td><strong>Sprint 길이</strong></td><td>2주/3주/월 단위 등 실제 운영 가능한 주기 결정</td></tr><tr><td><strong>Backlog 관리 도구</strong></td><td>Jira, Redmine, Excel, 자체 시스템 등 단일 관리 위치 결정</td></tr><tr><td><strong>DoR/DoD 기준</strong></td><td>작업 시작·완료의 최소 조건 확정</td></tr><tr><td><strong>Backlog 변경 기준</strong></td><td>단순 우선순위 조정과 공식 변경요청의 경계 결정</td></tr><tr><td><strong>Sprint 1 진입 기준</strong></td><td>Sprint 1에 올릴 수 있는 Backlog의 최소 준비 조건 결정</td></tr>
+    <tr><td><strong>Sprint 길이</strong></td><td>2주/3주/월 단위 등 실제 운영 가능한 주기 결정</td></tr><tr><td><strong>작업 목록 관리 도구</strong></td><td>Jira, Redmine, Excel, 자체 시스템 등 단일 관리 위치 결정</td></tr><tr><td><strong>작업 시작·완료 기준</strong></td><td>작업 시작·완료의 최소 조건 확정</td></tr><tr><td><strong>작업 목록 변경 기준</strong></td><td>단순 우선순위 조정과 공식 변경요청의 경계 결정</td></tr><tr><td><strong>Sprint 1 진입 기준</strong></td><td>Sprint 1에 올릴 수 있는 작업 목록의 최소 준비 조건 결정</td></tr>
   </tbody></table>
 </section>
 <section class="section" id="outputs">
-  <div class="section-head"><div><div class="kicker">생성 Artifact</div><h2>이 Activity에서 생성되는 산출물</h2></div></div>
-  <table class="map-table"><thead><tr><th>템플릿 / 산출물</th><th>설명</th></tr></thead><tbody><tr><td><strong>09_WoW_DoR_DoD</strong></td><td>프로젝트 수행방식 합의서, DoR, DoD, Sprint 운영 규칙</td></tr><tr><td><strong>04_Backlog</strong></td><td>Initial Backlog 및 Sprint 1 후보 Backlog</td></tr><tr><td><strong>06_CommCadence</strong></td><td>Sprint Ceremony와 주간/월간 보고 주기 연결</td></tr><tr><td><strong>10_Readiness_RAID</strong></td><td>합의되지 않은 수행방식 이슈 또는 결정 필요사항 등록</td></tr></tbody></table>
+  <div class="section-head"><div><div class="kicker">정리 결과</div><h2>이 Activity에서 정리되는 운영 기준</h2></div></div>
+  <table class="map-table"><thead><tr><th>구분</th><th>설명</th></tr></thead><tbody><tr><td><strong>수행방식 합의서</strong></td><td>프로젝트 수행방식 합의 내용, 작업 시작·완료 기준, Sprint 운영 규칙</td></tr><tr><td><strong>작업 목록</strong></td><td>초기 작업 목록 및 Sprint 1 후보 작업 목록</td></tr><tr><td><strong>운영 주기 연결</strong></td><td>Sprint Ceremony와 주간/월간 보고 주기 연결</td></tr><tr><td><strong>미확정 항목 등록</strong></td><td>합의되지 않은 수행방식 이슈 또는 결정 필요사항을 Open Item으로 등록</td></tr></tbody></table>
 </section>
 <section class="section" id="checklist">
   <div class="section-head"><div><div class="kicker">완료 체크리스트</div><h2>Activity 완료 여부 확인</h2></div></div>
-  <div class="grid two"><div class="card green"><p>&#10003; Sprint 적용 범위가 명확한가?</p></div><div class="card green"><p>&#10003; Sprint 1 후보 Backlog가 있는가?</p></div><div class="card green"><p>&#10003; DoR/DoD가 과도하거나 모호하지 않은가?</p></div><div class="card green"><p>&#10003; Backlog 변경과 공식 변경요청 기준이 구분되었는가?</p></div><div class="card green"><p>&#10003; 고객 PO가 Backlog 우선순위를 결정할 수 있는가?</p></div></div>
+  <div class="grid two"><div class="card green"><p>&#10003; Sprint 적용 범위가 명확한가?</p></div><div class="card green"><p>&#10003; Sprint 1 후보 작업 목록이 있는가?</p></div><div class="card green"><p>&#10003; 작업 시작·완료 기준이 과도하거나 모호하지 않은가?</p></div><div class="card green"><p>&#10003; 작업 목록 변경과 공식 변경요청 기준이 구분되었는가?</p></div><div class="card green"><p>&#10003; 고객 PO가 작업 목록 우선순위를 결정할 수 있는가?</p></div></div>
 </section>
 <div class="callout" style="margin:24px 0">
   <strong>산출물 조회:</strong> 이 Activity에서 생성된 산출물은 <a href="artifact-repository.html" style="color:#2656d9;text-decoration:underline">Artifact Repository</a>에서 상태·버전·Chapter 반영 현황을 확인할 수 있습니다.
 </div>
 <div class="nextprev">
   <a class="secondary" href="index.html">&larr; Sprint 0 Overview</a>
-  <a href="02_team-raci.html">A2 수행팀 투입 및 R&R 정렬 &rarr;</a>
+  <a href="02_team-raci.html">A2 수행체계 및 책임구조 확인 &rarr;</a>
 </div>
 <footer class="footer">
-  <p>Sprint 0 Activity Playbook — AXD Hybrid | A1 프로젝트 수행방식 합의</p>
+  <p>Sprint 0 Activity Playbook — AXD Hybrid | A1 수행방식 및 Sprint 운영 기준 정렬</p>
 </footer>
   </div>
+
+<script>
+const TASK_GUIDE = {
+  1: {
+    title: "프로젝트 유형과 특성 Tag 확인",
+    purpose: "프로젝트 유형과 특성에 따라 Sprint 0 점검 깊이를 결정합니다.",
+    prep: ["계약서, 제안서, 과업범위", "고객사 정보"],
+    questions: ["이 프로젝트는 PoC인가, 본사업인가?", "일반AX, 공공AX, 금융AX 중 어디에 해당하는가?"],
+    options: ["프로젝트 유형: PoC / 본사업", "특성 Tag: 일반AX / 공공AX / 금융AX"],
+    criteria: ["PoC는 검증 중심, 본사업은 구축·운영전환 중심", "공공AX는 감리·인증 중심", "금융AX는 금융보안·감사·데이터 통제 중심"],
+    results: ["프로젝트 유형", "특성 Tag", "추가 점검 필요 항목"],
+    example: "이번 프로젝트는 기술 검증이 목적인가요, 실제 구축과 운영전환까지 포함하나요?\n공공 감리나 인증 대응이 필요한가요?\n금융보안, 금보원 감사, 혁신금융 관련 검토가 필요한가요?"
+  },
+  2: {
+    title: "수행모델 결정",
+    purpose: "프로젝트를 어떤 방식으로 수행할지 결정합니다.",
+    prep: ["AXD 방법론", "프로젝트 일정", "고객 업무 방식", "개발 범위"],
+    questions: ["단계형으로 관리할 것인가?", "Sprint 단위로 실행·검토할 것인가?", "두 방식을 혼합할 것인가?"],
+    options: ["AXD 단계형", "Hybrid", "Sprint 중심"],
+    criteria: ["요구사항이 명확하고 산출물 중심이면 단계형", "변경 가능성이 높고 반복 검증이 필요하면 Sprint 중심", "공식 산출물과 반복 개발이 모두 필요하면 Hybrid"],
+    results: ["선택한 수행모델", "선택 사유", "고객 합의 여부"],
+    example: "고객 산출물 제출과 검수는 단계별로 필요하지만,\n개발은 Sprint 단위로 반복 검토하는 방식이 적절해 보입니다.\n본 프로젝트는 Hybrid 방식으로 운영해도 될까요?"
+  },
+  3: {
+    title: "Sprint 운영 기준 결정",
+    purpose: "Sprint를 어떤 주기와 방식으로 운영할지 결정합니다.",
+    prep: ["전체 일정", "주요 마일스톤", "팀 투입 계획"],
+    questions: ["Sprint 주기는 몇 주가 적절한가?", "Sprint Review는 누구와 진행할 것인가?", "Sprint 1은 언제 시작할 수 있는가?"],
+    options: ["Sprint 주기: 1주 / 2주 / 기타", "Review 방식: 내부 Review / 고객 포함 Review", "Sprint 1 시작: 가능 / 조건부 / 보류"],
+    criteria: ["팀 규모가 작고 PoC면 1주도 가능", "본사업은 2주 단위 권장", "고객 피드백이 중요하면 고객 포함 Review 필요"],
+    results: ["Sprint 주기", "Review 방식", "Sprint 1 착수 조건"],
+    example: "2주 단위로 Sprint를 운영하고,\n각 Sprint 종료 시 고객 PM과 주요 업무 담당자가 결과를 확인하는 방식으로 진행하겠습니다.\nSprint 1 시작 전 필요한 조건은 무엇인가요?"
+  },
+  4: {
+    title: "작업 목록 관리 방식 결정",
+    purpose: "수행할 작업을 어떤 단위와 도구로 관리할지 결정합니다.",
+    prep: ["요구사항", "초기 작업 목록", "관리 도구 후보"],
+    questions: ["작업 목록은 어디서 관리할 것인가?", "작업 상태값은 어떻게 둘 것인가?", "우선순위는 누가 결정할 것인가?"],
+    options: ["관리 도구: Jira / Excel / Playbook / 기타", "상태값: 대기 / 준비됨 / 진행중 / 검토중 / 완료", "우선순위 결정자: 고객 PM / PO / PM / 협의체"],
+    criteria: ["고객과 공동 관리가 필요하면 Jira/Playbook", "PoC나 소규모면 Excel 가능", "변경이 많으면 상태값과 우선순위 기준 필요"],
+    results: ["작업 목록 관리 도구", "상태값", "우선순위 기준", "우선순위 결정자"],
+    example: "작업 목록은 Playbook에서 관리하고,\n상태는 대기, 준비됨, 진행중, 검토중, 완료로 운영하겠습니다.\n우선순위는 고객 PM과 수행PM이 주간 단위로 조정하는 방식이 적절할까요?"
+  },
+  5: {
+    title: "작업 시작 기준 정의",
+    purpose: "어떤 조건이 충족되어야 작업을 시작할 수 있는지 정리합니다.",
+    prep: ["초기 작업 목록", "요구사항", "환경·권한 상태"],
+    questions: ["이 작업을 시작하려면 무엇이 준비되어야 하는가?", "담당자, 요구사항, 환경, 승인자가 정해졌는가?"],
+    options: ["담당자 지정 필요", "요구사항 확인 필요", "환경·권한 준비 필요", "고객 승인자 확인 필요"],
+    criteria: ["시작 조건이 불명확하면 작업 착수 후 지연 가능성 높음", "필수 조건이 미정이면 Open Item 등록"],
+    results: ["작업 시작 기준", "시작 불가 항목", "Open Item"],
+    example: "작업을 시작하려면 최소한 담당자, 요구사항, 검토자, 필요한 환경이 정리되어야 합니다.\n이 기준을 충족하지 못한 항목은 '준비 중' 상태로 두고 Open Item으로 관리하겠습니다."
+  },
+  6: {
+    title: "작업 완료 기준 및 검수·수용 기준 정의",
+    purpose: "언제 작업을 완료로 볼지, 고객이 어떤 기준으로 결과를 수용할지 정리합니다.",
+    prep: ["산출물 목록", "요구사항", "고객 검수 기준"],
+    questions: ["작업 완료는 어떤 상태를 의미하는가?", "내부 검토만으로 완료인가, 고객 확인까지 필요한가?", "반려되면 어떻게 보완할 것인가?"],
+    options: ["내부 검토 완료", "테스트 완료", "고객 확인 완료", "산출물 승인 완료"],
+    criteria: ["고객 검수 대상 작업은 고객 확인 필요", "기술 작업은 테스트 또는 리뷰 기준 필요", "산출물은 승인 기준 필요"],
+    results: ["작업 완료 기준", "검수·수용 기준", "반려·보완 방식"],
+    example: "작업 완료는 단순 개발 완료가 아니라,\n내부 검토와 고객 확인까지 완료된 상태로 보겠습니다.\n고객 검토 후 보완이 필요한 경우에는 다시 '검토중' 상태로 되돌리는 방식으로 관리하겠습니다."
+  },
+  7: {
+    title: "변경관리 연결 기준 정의",
+    purpose: "작업 목록 변경과 공식 변경관리의 연결 기준을 정리합니다.",
+    prep: ["계약 범위", "과업 범위", "변경관리 기준"],
+    questions: ["어떤 변경은 작업 목록 내에서 처리하고, 어떤 변경은 공식 변경관리로 올릴 것인가?", "일정·비용·범위에 영향이 있으면 어떻게 할 것인가?"],
+    options: ["작업 목록 내 조정", "고객 협의 필요", "공식 변경관리 필요", "계약변경 검토 필요"],
+    criteria: ["일정/비용/범위 영향이 없으면 작업 목록 내 조정", "고객 승인 필요 항목은 협의", "계약 범위 변경은 공식 변경관리"],
+    results: ["변경관리 연결 기준", "변경 유형별 처리 방식", "고객 승인 필요 여부"],
+    example: "작업 우선순위 조정은 주간회의에서 처리하되,\n범위·일정·비용에 영향이 있는 변경은 공식 변경관리로 전환하겠습니다.\n계약 범위에 영향을 주는 항목은 별도 변경 요청으로 관리하겠습니다."
+  },
+  8: {
+    title: "미확정 항목 정리",
+    purpose: "A1에서 결정되지 않은 항목을 후속 Activity나 본수행 착수점검에서 관리합니다.",
+    prep: ["회의 결과", "미결사항", "조건부 합의 사항"],
+    questions: ["지금 확정되지 않은 항목은 무엇인가?", "누가 언제까지 확인해야 하는가?", "본수행 착수에 영향을 주는가?"],
+    options: ["즉시 확정", "후속 Activity에서 확인", "조건부 착수 항목", "착수 보류 영향 항목"],
+    criteria: ["Sprint 1 시작에 직접 영향이 있으면 조건부/보류 항목", "영향이 낮으면 후속 확인 항목"],
+    results: ["Open Item", "담당자", "기한", "본수행 착수 영향"],
+    example: "오늘 확정하지 못한 항목은 Open Item으로 등록하겠습니다.\n각 항목은 담당자와 확인 기한을 지정하고,\nSprint 1 착수에 영향이 있는지 구분하겠습니다."
+  }
+};
+
+function buildList(items) {
+  return "<ul>" + items.map(i => "<li>" + i + "</li>").join("") + "</ul>";
+}
+
+function openTaskModal(taskNo) {
+  const t = TASK_GUIDE[taskNo];
+  if (!t) return;
+  document.getElementById("modal-task-no").textContent = taskNo;
+  document.getElementById("modal-task-title").textContent = t.title;
+  document.getElementById("modal-task-body").innerHTML = `
+    <div class="mg-row"><div class="mg-label">목적</div><div class="mg-content">${t.purpose}</div></div>
+    <div class="mg-row"><div class="mg-label">준비자료</div><div class="mg-content">${buildList(t.prep)}</div></div>
+    <div class="mg-row"><div class="mg-label">진행 질문</div><div class="mg-content">${buildList(t.questions)}</div></div>
+    <div class="mg-row"><div class="mg-label">결정 선택지</div><div class="mg-content mg-pills">${t.options.map(o => `<span class="mg-pill">${o}</span>`).join("")}</div></div>
+    <div class="mg-row"><div class="mg-label">결정 기준</div><div class="mg-content">${buildList(t.criteria)}</div></div>
+    <div class="mg-row"><div class="mg-label">결과 기록</div><div class="mg-content">${buildList(t.results)}</div></div>
+    <div class="mg-row"><div class="mg-label">PM 진행 예시</div><div class="mg-example">${t.example}</div></div>
+  `;
+  document.getElementById("task-modal-overlay").classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeTaskModal() {
+  document.getElementById("task-modal-overlay").classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+function closeTaskModalOnOverlay(event) {
+  if (event.target.id === "task-modal-overlay") closeTaskModal();
+}
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") closeTaskModal();
+});
+</script>
 </body>
 </html>

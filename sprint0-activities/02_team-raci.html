@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>A2 수행팀 투입 및 책임 정렬</title>
+  <title>A2 수행체계 및 책임구조 확인</title>
   <style>
 :root{
   --bg:#0b1020; --bg2:#111936; --panel:#151f3f; --card:#ffffff; --ink:#eff5ff;
@@ -76,25 +76,25 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
       <a class="brand" href="index.html"><div class="logo"></div><div>Sprint 0 Playbook <span style="color:var(--muted);font-weight:650">AXD Hybrid</span></div></a>
       <nav class="nav" aria-label="activity navigation">
         <a href="index.html">Sprint 0 Overview</a>
-        <a href="01_way-of-working.html">A1 프로젝트 수행방식 합의</a><a href="02_team-raci.html">A2 수행팀 투입 및 책임 정렬</a><a href="03_communication-cadence.html">A3 의사소통관리 및 운영 주기 수립</a><a href="04_deliverable-acceptance.html">A4 산출물 검토·승인 기준 정의</a><a href="05_environment-access.html">A5 환경·도구·접근권한 준비</a><a href="06_readiness-raid.html">A6 고객 준비·보안성·리스크 점검</a><a href="07_transition-day1.html">A7 오픈·전환 고려사항 및 본수행 착수 점검</a><a href="artifact-repository.html" style="border-color:rgba(66,215,214,.5);color:#42d7d6">산출물 조회</a>
+        <a href="01_way-of-working.html">A1 수행방식 및 Sprint 운영 기준 정렬</a><a href="02_team-raci.html">A2 수행체계 및 책임구조 확인</a><a href="03_communication-cadence.html">A3 커뮤니케이션 및 운영 리듬 수립</a><a href="04_deliverable-acceptance.html">A4 산출물·검토·승인 기준 정렬</a><a href="05_environment-access.html">A5 환경·도구·접근권한 준비상태 확인</a><a href="06_readiness-raid.html">A6 고객 준비도·보안·리스크 점검</a><a href="07_transition-day1.html">A7 본수행 착수점검 및 미결사항 이관</a><a href="artifact-repository.html" style="border-color:rgba(66,215,214,.5);color:#42d7d6">산출물 조회</a>
       </nav>
     </header>
 
     <section class="hero">
       <div class="hero-card">
         <div class="eyebrow">A2 Activity Detail</div>
-        <h1><span class="activity-code">A2</span>수행팀 투입 및 책임 정렬</h1>
-        <p class="lead">역할·책임·의사결정 구조를 명확히 하여 본수행에서 의사결정 지연과 책임 공백을 방지합니다. RACI 대신 <strong style="color:#42d7d6">Role &amp; Accountability Map + Decision &amp; Approval Matrix</strong>를 권장합니다.</p>
+        <h1><span class="activity-code">A2</span>수행체계 및 책임구조 확인</h1>
+        <p class="lead">역할·책임·의사결정 구조를 명확히 하여 본수행에서 의사결정 지연과 책임 공백을 방지합니다. 전통적인 역할표 작성 방식 대신 <strong style="color:#42d7d6">역할별 책임 정리 + 의사결정 기준표</strong>를 권장합니다.</p>
         <div class="chips">
-          <span class="chip">RACI → Role Map + Decision Matrix</span>
+          <span class="chip">역할별 책임 정리 + 의사결정 기준표</span>
           <span class="chip">프로젝트 규모별 권장 방식 상이</span>
           <span class="chip">AXD 수행계획서 Chapter 연결</span>
         </div>
       </div>
       <div class="hero-card">
-        <div class="eyebrow">왜 RACI가 아닌가?</div>
-        <div style="font-size:18px;font-weight:850;letter-spacing:-.03em;line-height:1.4;color:#fff;margin-bottom:14px">"모든 Task에 R/A/C/I를 채워야 하나?"라는 오해를 낳는 순간, Playbook이 무거워집니다.</div>
-        <p class="note">역할·책임 정렬표 + 의사결정·승인 Matrix + Escalation Path로 나누면 목적이 명확해집니다. <em>"핵심 역할과 의사결정 구조만 정리하면 된다."</em></p>
+        <div class="eyebrow">왜 전통적 역할표 방식이 아닌가?</div>
+        <div style="font-size:18px;font-weight:850;letter-spacing:-.03em;line-height:1.4;color:#fff;margin-bottom:14px">"모든 작업마다 담당·승인·협의·공유를 채워야 하나?"라는 오해를 낳는 순간, Playbook이 무거워집니다.</div>
+        <p class="note">역할·책임 정렬표 + 의사결정·승인 기준표 + 상위 보고·의사결정 경로로 나누면 목적이 명확해집니다. <em>"핵심 역할과 의사결정 구조만 정리하면 된다."</em></p>
       </div>
     </section>
 
@@ -115,39 +115,39 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
 
     <!-- 규모별 권장 패널 -->
     <div id="panel-short"    class="scale-panel short">
-      <div class="sp-header"><div class="sp-icon">⚡</div><div><div class="sp-title">단기 프로젝트 — 간단한 역할 정리로 충분합니다</div><div class="sp-desc">1~2개월 단기 프로젝트에서는 복잡한 Matrix보다 <strong>Stakeholder Map + 승인자 목록</strong> 수준으로 충분합니다. 회의 한 번에 역할을 확인하고 바로 착수하세요.</div></div></div>
-      <div class="sp-rec"><div class="sp-rec-title">권장 산출물</div><div class="sp-artifact"><span class="sp-artifact-pill required">✓ Stakeholder Map</span><span class="sp-artifact-pill required">✓ 승인자 목록</span><span class="sp-artifact-pill required">✓ Escalation 경로 (1장)</span><span class="sp-artifact-pill optional">△ Role Map (선택)</span><span class="sp-artifact-pill skip">✗ Decision Matrix (불필요)</span></div></div>
+      <div class="sp-header"><div class="sp-icon">⚡</div><div><div class="sp-title">단기 프로젝트 — 간단한 역할 정리로 충분합니다</div><div class="sp-desc">1~2개월 단기 프로젝트에서는 복잡한 기준표보다 <strong>이해관계자 목록 + 승인자 목록</strong> 수준으로 충분합니다. 회의 한 번에 역할을 확인하고 바로 착수하세요.</div></div></div>
+      <div class="sp-rec"><div class="sp-rec-title">권장 산출물</div><div class="sp-artifact"><span class="sp-artifact-pill required">✓ 이해관계자 목록</span><span class="sp-artifact-pill required">✓ 승인자 목록</span><span class="sp-artifact-pill required">✓ 상위 보고 경로 (1장)</span><span class="sp-artifact-pill optional">△ 역할별 책임 정리 (선택)</span><span class="sp-artifact-pill skip">✗ 의사결정 기준표 (불필요)</span></div></div>
     </div>
     <div id="panel-mid"      class="scale-panel mid">
-      <div class="sp-header"><div class="sp-icon">📅</div><div><div class="sp-title">중형 프로젝트 — Role & Accountability Map + Decision Matrix 권장</div><div class="sp-desc">3~6개월 프로젝트는 역할이 분화되고 의사결정 지연이 발생하기 쉽습니다. <strong>Role Map으로 핵심 책임을 정의</strong>하고 <strong>Decision Matrix로 승인 구조</strong>를 명확히 하세요.</div></div></div>
-      <div class="sp-rec"><div class="sp-rec-title">권장 산출물</div><div class="sp-artifact"><span class="sp-artifact-pill required">✓ Stakeholder Map</span><span class="sp-artifact-pill required">✓ Role &amp; Accountability Map</span><span class="sp-artifact-pill required">✓ Decision &amp; Approval Matrix</span><span class="sp-artifact-pill required">✓ Escalation Path</span><span class="sp-artifact-pill optional">△ Contact List</span><span class="sp-artifact-pill optional">△ Onboarding Checklist</span></div></div>
+      <div class="sp-header"><div class="sp-icon">📅</div><div><div class="sp-title">중형 프로젝트 — 역할별 책임 정리 + 의사결정 기준표 권장</div><div class="sp-desc">3~6개월 프로젝트는 역할이 분화되고 의사결정 지연이 발생하기 쉽습니다. <strong>역할별 책임 정리로 핵심 책임을 정의</strong>하고 <strong>의사결정 기준표로 승인 구조</strong>를 명확히 하세요.</div></div></div>
+      <div class="sp-rec"><div class="sp-rec-title">권장 산출물</div><div class="sp-artifact"><span class="sp-artifact-pill required">✓ 이해관계자 목록</span><span class="sp-artifact-pill required">✓ 역할별 책임 정리</span><span class="sp-artifact-pill required">✓ 의사결정 기준표</span><span class="sp-artifact-pill required">✓ 상위 보고 경로</span><span class="sp-artifact-pill optional">△ 연락망</span><span class="sp-artifact-pill optional">△ 투입 준비 체크리스트</span></div></div>
     </div>
     <div id="panel-long"     class="scale-panel long">
-      <div class="sp-header"><div class="sp-icon">🏗</div><div><div class="sp-title">장기 프로젝트 — RACI 금지에 가깝습니다</div><div class="sp-desc">6개월 이상 프로젝트에서 Task 단위 RACI를 만들면 유지보수가 불가능해집니다. <strong>역할·의사결정·Escalation</strong> 중심으로 관리하되, Task 담당은 WBS/Backlog로 분리하세요.</div></div></div>
-      <div class="sp-rec"><div class="sp-rec-title">권장 산출물</div><div class="sp-artifact"><span class="sp-artifact-pill required">✓ Stakeholder Map</span><span class="sp-artifact-pill required">✓ Role &amp; Accountability Map</span><span class="sp-artifact-pill required">✓ Decision &amp; Approval Matrix</span><span class="sp-artifact-pill required">✓ Escalation Path (단계별)</span><span class="sp-artifact-pill required">✓ Contact List</span><span class="sp-artifact-pill required">✓ Onboarding Checklist</span><span class="sp-artifact-pill skip">✗ Task 단위 RACI (금지)</span></div></div>
+      <div class="sp-header"><div class="sp-icon">🏗</div><div><div class="sp-title">장기 프로젝트 — 작업 단위 역할표 작성은 지양합니다</div><div class="sp-desc">6개월 이상 프로젝트에서 작업 단위로 역할표를 만들면 유지보수가 불가능해집니다. <strong>역할·의사결정·상위 보고</strong> 중심으로 관리하되, 작업 담당은 WBS/작업 목록으로 분리하세요.</div></div></div>
+      <div class="sp-rec"><div class="sp-rec-title">권장 산출물</div><div class="sp-artifact"><span class="sp-artifact-pill required">✓ 이해관계자 목록</span><span class="sp-artifact-pill required">✓ 역할별 책임 정리</span><span class="sp-artifact-pill required">✓ 의사결정 기준표</span><span class="sp-artifact-pill required">✓ 상위 보고 경로 (단계별)</span><span class="sp-artifact-pill required">✓ 연락망</span><span class="sp-artifact-pill required">✓ 투입 준비 체크리스트</span><span class="sp-artifact-pill skip">✗ 작업 단위 역할표 (지양)</span></div></div>
     </div>
     <div id="panel-regulatory" class="scale-panel regulatory">
-      <div class="sp-header"><div class="sp-icon">🏛</div><div><div class="sp-title">규제·감사·공공 프로젝트 — 산출물 승인 RACI는 필수, Task RACI는 불필요</div><div class="sp-desc">감리·감사 대상 산출물의 <strong>승인자와 검토자 구조</strong>는 명확히 해야 합니다. 그러나 개별 Task의 R/A/C/I는 오버헤드가 됩니다. Decision &amp; Approval Matrix로 승인 구조에 집중하세요.</div></div></div>
-      <div class="sp-rec"><div class="sp-rec-title">권장 산출물</div><div class="sp-artifact"><span class="sp-artifact-pill required">✓ Stakeholder Map</span><span class="sp-artifact-pill required">✓ Decision &amp; Approval Matrix (필수)</span><span class="sp-artifact-pill required">✓ 감리·감수 대상 승인자 목록</span><span class="sp-artifact-pill required">✓ Escalation Path</span><span class="sp-artifact-pill optional">△ Role Map</span><span class="sp-artifact-pill skip">✗ Task 단위 RACI (불필요)</span></div></div>
+      <div class="sp-header"><div class="sp-icon">🏛</div><div><div class="sp-title">규제·감사·공공 프로젝트 — 산출물 승인 구조는 필수, 작업 단위 역할표는 불필요</div><div class="sp-desc">감리·감사 대상 산출물의 <strong>승인자와 검토자 구조</strong>는 명확히 해야 합니다. 그러나 개별 작업 단위까지 역할을 나누면 오버헤드가 됩니다. 의사결정 기준표로 승인 구조에 집중하세요.</div></div></div>
+      <div class="sp-rec"><div class="sp-rec-title">권장 산출물</div><div class="sp-artifact"><span class="sp-artifact-pill required">✓ 이해관계자 목록</span><span class="sp-artifact-pill required">✓ 의사결정 기준표 (필수)</span><span class="sp-artifact-pill required">✓ 감리·감수 대상 승인자 목록</span><span class="sp-artifact-pill required">✓ 상위 보고 경로</span><span class="sp-artifact-pill optional">△ 역할별 책임 정리</span><span class="sp-artifact-pill skip">✗ 작업 단위 역할표 (불필요)</span></div></div>
     </div>
     <div id="panel-multi-vendor" class="scale-panel multi-vendor">
-      <div class="sp-header"><div class="sp-icon">🤝</div><div><div class="sp-title">다수 협력사 프로젝트 — 책임 경계표와 Decision Matrix가 핵심</div><div class="sp-desc">협력사 간 <strong>책임 경계</strong>가 불명확하면 책임 전가가 발생합니다. Responsibility Boundary Table로 경계를 명확히 하고, Decision Matrix로 협력사 간 의사결정 경로를 정의하세요.</div></div></div>
-      <div class="sp-rec"><div class="sp-rec-title">권장 산출물</div><div class="sp-artifact"><span class="sp-artifact-pill required">✓ Stakeholder Map (협력사 포함)</span><span class="sp-artifact-pill required">✓ Responsibility Boundary Table</span><span class="sp-artifact-pill required">✓ Decision &amp; Approval Matrix</span><span class="sp-artifact-pill required">✓ Escalation Path</span><span class="sp-artifact-pill required">✓ Contact List (협력사 구분)</span></div></div>
+      <div class="sp-header"><div class="sp-icon">🤝</div><div><div class="sp-title">다수 협력사 프로젝트 — 책임 경계표와 의사결정 기준표가 핵심</div><div class="sp-desc">협력사 간 <strong>책임 경계</strong>가 불명확하면 책임 전가가 발생합니다. 책임 경계표로 경계를 명확히 하고, 의사결정 기준표로 협력사 간 의사결정 경로를 정의하세요.</div></div></div>
+      <div class="sp-rec"><div class="sp-rec-title">권장 산출물</div><div class="sp-artifact"><span class="sp-artifact-pill required">✓ 이해관계자 목록 (협력사 포함)</span><span class="sp-artifact-pill required">✓ 책임 경계표</span><span class="sp-artifact-pill required">✓ 의사결정 기준표</span><span class="sp-artifact-pill required">✓ 상위 보고 경로</span><span class="sp-artifact-pill required">✓ 연락망 (협력사 구분)</span></div></div>
     </div>
     <div id="panel-agile"    class="scale-panel agile">
-      <div class="sp-header"><div class="sp-icon">🔄</div><div><div class="sp-title">순수 Agile 팀 — Scrum Accountabilities + Working Agreement 중심</div><div class="sp-desc">Scrum은 역할이 PO/SM/Developer 3개뿐입니다. 별도 Matrix 없이 <strong>Team Charter 또는 Working Agreement</strong>에 책임과 의사결정 방식을 담으세요.</div></div></div>
-      <div class="sp-rec"><div class="sp-rec-title">권장 산출물</div><div class="sp-artifact"><span class="sp-artifact-pill required">✓ Team Charter (1장)</span><span class="sp-artifact-pill required">✓ Scrum Accountabilities 정의</span><span class="sp-artifact-pill optional">△ Stakeholder Map (간소)</span><span class="sp-artifact-pill skip">✗ RACI (불필요)</span><span class="sp-artifact-pill skip">✗ Decision Matrix (불필요)</span></div></div>
+      <div class="sp-header"><div class="sp-icon">🔄</div><div><div class="sp-title">순수 Agile 팀 — Scrum 역할 정의 + 운영 합의서 중심</div><div class="sp-desc">Scrum은 역할이 PO/SM/Developer 3개뿐입니다. 별도 기준표 없이 <strong>Team Charter 또는 운영 합의서</strong>에 책임과 의사결정 방식을 담으세요.</div></div></div>
+      <div class="sp-rec"><div class="sp-rec-title">권장 산출물</div><div class="sp-artifact"><span class="sp-artifact-pill required">✓ Team Charter (1장)</span><span class="sp-artifact-pill required">✓ Scrum 역할 정의</span><span class="sp-artifact-pill optional">△ 이해관계자 목록 (간소)</span><span class="sp-artifact-pill skip">✗ 역할·책임 구조 (불필요)</span><span class="sp-artifact-pill skip">✗ 의사결정 기준표 (불필요)</span></div></div>
     </div>
     <div id="panel-hybrid"   class="scale-panel hybrid">
-      <div class="sp-header"><div class="sp-icon">⚙️</div><div><div class="sp-title">Hybrid AX 프로젝트 — Role Map + Backlog Owner + Decision Matrix 권장</div><div class="sp-desc">AXD 단계형과 Agile Sprint 운영이 혼재합니다. <strong>Role &amp; Accountability Map</strong>으로 AXD 역할을 정의하고, <strong>Backlog Owner</strong>를 별도 지정하며, <strong>Decision Matrix</strong>로 승인 구조를 관리하세요.</div></div></div>
-      <div class="sp-rec"><div class="sp-rec-title">권장 산출물</div><div class="sp-artifact"><span class="sp-artifact-pill required">✓ Stakeholder Map</span><span class="sp-artifact-pill required">✓ Role &amp; Accountability Map</span><span class="sp-artifact-pill required">✓ Decision &amp; Approval Matrix</span><span class="sp-artifact-pill required">✓ Escalation Path</span><span class="sp-artifact-pill optional">△ Onboarding Checklist</span></div></div>
+      <div class="sp-header"><div class="sp-icon">⚙️</div><div><div class="sp-title">Hybrid AX 프로젝트 — 역할별 책임 정리 + 작업 목록 담당자 지정 + 의사결정 기준표 권장</div><div class="sp-desc">AXD 단계형과 Agile Sprint 운영이 혼재합니다. <strong>역할별 책임 정리</strong>로 AXD 역할을 정의하고, <strong>작업 목록 담당자</strong>를 별도 지정하며, <strong>의사결정 기준표</strong>로 승인 구조를 관리하세요.</div></div></div>
+      <div class="sp-rec"><div class="sp-rec-title">권장 산출물</div><div class="sp-artifact"><span class="sp-artifact-pill required">✓ 이해관계자 목록</span><span class="sp-artifact-pill required">✓ 역할별 책임 정리</span><span class="sp-artifact-pill required">✓ 의사결정 기준표</span><span class="sp-artifact-pill required">✓ 상위 보고 경로</span><span class="sp-artifact-pill optional">△ 투입 준비 체크리스트</span></div></div>
     </div>
 
     <!-- 개요 카드 -->
     <section class="section">
       <div class="grid three">
-        <div class="card cyan"><h3>생성 수준</h3><p><span class="badge draft">초안 → 확정</span></p></div>
-        <div class="card blue"><h3>주요 산출물</h3><p>Stakeholder Map · Role &amp; Accountability Map · Decision &amp; Approval Matrix · Escalation Path</p></div>
+        <div class="card cyan"><h3>진행 상태</h3><p><span class="badge draft">초안 → 확정</span></p></div>
+        <div class="card blue"><h3>정리 결과</h3><p>이해관계자 목록 · 역할별 책임 정리 · 의사결정 기준표 · 상위 보고 경로</p></div>
         <div class="card green"><h3>사업수행계획서 반영</h3><p>5. 사업 추진 체계, 12. 인력관리 계획, 13. 의사소통관리 계획, 18. 보안 대책, 20. 교육 계획</p></div>
       </div>
     </section>
@@ -157,7 +157,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
       <div class="section-head"><div><div class="kicker">Task</div><h2>수행 Task</h2><p class="desc">이 Activity를 수행할 때 실제로 처리해야 할 작업입니다.</p></div></div>
       <div class="grid two">
         <div class="card blue"><h3><span class="task-no">1</span>이해관계자 식별</h3><p>Sponsor, 고객 PM, Product Owner, PM, Scrum Master, PL, QA, 보안, 인프라, 데이터, 운영 담당자를 식별합니다.</p></div>
-        <div class="card blue"><h3><span class="task-no">2</span>핵심 역할·책임 정렬</h3><p>고정 역할(PM, PO, SM, PL, QA, 고객 PM)의 핵심 Accountability와 주요 산출물/활동을 정의합니다. Task 단위 R/A/C/I는 작성하지 않습니다.</p></div>
+        <div class="card blue"><h3><span class="task-no">2</span>핵심 역할·책임 정렬</h3><p>고정 역할(PM, PO, SM, PL, QA, 고객 PM)의 핵심 책임과 주요 산출물/활동을 정의합니다. 작업 단위 역할표는 작성하지 않습니다.</p></div>
         <div class="card blue"><h3><span class="task-no">3</span>의사결정·승인 구조 확정</h3><p>요구사항 우선순위, 산출물 승인, 범위 변경, 보안 예외, 오픈 승인 등 주요 의사결정 항목별 결정자·검토자·지연 시 조치를 정의합니다.</p></div>
         <div class="card blue"><h3><span class="task-no">4</span>온보딩 항목 점검</h3><p>착수교육, 보안교육, 프로젝트 규칙 공유, 협업도구 접근 등 투입 준비를 확인합니다.</p></div>
         <div class="card blue"><h3><span class="task-no">5</span>Escalation 경로 정의</h3><p>일정·범위·품질·보안 이슈가 해결되지 않을 때 상위 의사결정 경로와 기준 기간을 정합니다.</p></div>
@@ -172,7 +172,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
           <li>PM이 사전 조직도와 역할표 초안을 준비한 뒤 고객 PM과 함께 이름을 채우는 방식으로 진행합니다.</li>
           <li>역할명만 쓰지 않고 반드시 <strong>"담당자 이름 또는 부서"</strong>를 기입합니다.</li>
           <li>산출물 승인자가 미정인 경우 본수행 착수점검 착수 보류 후보로 등록합니다.</li>
-          <li>RACI Matrix를 만들어야 한다는 압박 없이, <strong>역할과 의사결정 구조만 정리</strong>합니다.</li>
+          <li>모든 작업에 역할표를 채워야 한다는 압박 없이, <strong>역할과 의사결정 구조만 정리</strong>합니다.</li>
           <li>신규 투입자가 생겨도 같은 방식으로 온보딩될 수 있도록 체크리스트화합니다.</li>
         </ul>
       </div></div>
@@ -209,32 +209,32 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
     <section class="section" id="decisions">
       <div class="section-head"><div><div class="kicker">의사결정</div><h2>결정해야 할 항목</h2></div></div>
       <table class="map-table"><thead><tr><th>의사결정 항목</th><th>내용</th></tr></thead><tbody>
-        <tr><td><strong>고객 Product Owner 지정</strong></td><td>Backlog 우선순위와 Acceptance Criteria 승인 주체 확정</td></tr>
+        <tr><td><strong>고객 Product Owner 지정</strong></td><td>작업 목록 우선순위와 검수·수용 기준 승인 주체 확정</td></tr>
         <tr><td><strong>산출물 승인자 지정</strong></td><td>사업수행계획서, 요구사항정의서, 설계서 등 승인자 확정</td></tr>
         <tr><td><strong>Scrum Master 또는 Agile Lead 지정</strong></td><td>Sprint 운영과 장애 제거 책임자 지정</td></tr>
         <tr><td><strong>보안/인프라 담당자 지정</strong></td><td>권한·환경 준비 지연을 방지할 담당자 확정</td></tr>
-        <tr><td><strong>Escalation 단계 결정</strong></td><td>지연 발생 시 누구에게 언제 올릴지 기준 확정</td></tr>
+        <tr><td><strong>상위 보고 단계 결정</strong></td><td>지연 발생 시 누구에게 언제 올릴지 기준 확정</td></tr>
       </tbody></table>
     </section>
 
     <!-- 산출물 상세 탭 -->
     <section class="section" id="outputs">
-      <div class="section-head"><div><div class="kicker">산출물 상세</div><h2>생성 Artifact — 탭을 클릭하면 템플릿을 확인합니다</h2></div></div>
+      <div class="section-head"><div><div class="kicker">정리 결과 상세</div><h2>이 Activity에서 정리되는 운영 기준 — 탭을 클릭하면 양식을 확인합니다</h2></div></div>
 
       <div class="tab-bar">
-        <button class="tab-btn active" onclick="switchTab(this,'tab-stakeholder')">9.1 Stakeholder Map</button>
-        <button class="tab-btn" onclick="switchTab(this,'tab-rolemap')">9.2 Role &amp; Accountability Map</button>
-        <button class="tab-btn" onclick="switchTab(this,'tab-decision')">9.3 Decision &amp; Approval Matrix</button>
-        <button class="tab-btn" onclick="switchTab(this,'tab-dynamic')">9.4 Dynamic Ownership</button>
-        <button class="tab-btn" onclick="switchTab(this,'tab-escalation')">Escalation Path</button>
-        <button class="tab-btn" onclick="switchTab(this,'tab-onboarding')">Onboarding Checklist</button>
+        <button class="tab-btn active" onclick="switchTab(this,'tab-stakeholder')">9.1 이해관계자 목록</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-rolemap')">9.2 역할별 책임 정리</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-decision')">9.3 의사결정 기준표</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-dynamic')">9.4 작업 담당자 관리</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-escalation')">상위 보고 경로</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-onboarding')">투입 준비 체크리스트</button>
       </div>
 
-      <!-- 9.1 Stakeholder Map -->
+      <!-- 9.1 이해관계자 목록 -->
       <div class="tab-content active" id="tab-stakeholder">
         <div class="template-box">
           <div class="template-box-head">
-            <span>Stakeholder Map — 누가 프로젝트에 관여하는지 식별합니다</span>
+            <span>이해관계자 목록 — 누가 프로젝트에 관여하는지 식별합니다</span>
             <span class="badge ok">필수</span>
           </div>
           <div class="template-box-body">
@@ -259,18 +259,18 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
         </div>
       </div>
 
-      <!-- 9.2 Role & Accountability Map -->
+      <!-- 9.2 역할별 책임 정리 -->
       <div class="tab-content" id="tab-rolemap">
         <div class="template-box">
           <div class="template-box-head">
-            <span>Role &amp; Accountability Map — 고정 역할의 핵심 책임을 정의합니다</span>
+            <span>역할별 책임 정리 — 고정 역할의 핵심 책임을 정의합니다</span>
             <span class="badge draft">중형 이상 권장</span>
           </div>
           <div class="template-box-body">
             <table class="tpl-table">
-              <thead><tr><th>역할</th><th>핵심 Accountability</th><th>주요 산출물/활동</th></tr></thead>
+              <thead><tr><th>역할</th><th>핵심 책임</th><th>주요 산출물/활동</th></tr></thead>
               <tbody>
-                <tr><td><strong>Product Owner</strong></td><td>Backlog 우선순위와 가치 판단</td><td>Product Backlog, Sprint Review</td></tr>
+                <tr><td><strong>Product Owner</strong></td><td>작업 목록 우선순위와 가치 판단</td><td>작업 목록, Sprint Review</td></tr>
                 <tr><td><strong>Scrum Master</strong></td><td>Sprint 운영과 장애요인 제거</td><td>Sprint Event, Retrospective</td></tr>
                 <tr><td><strong>PM</strong></td><td>사업 범위, 일정, 리스크, 보고</td><td>사업수행계획서, 주간보고</td></tr>
                 <tr><td><strong>PL / Tech Lead</strong></td><td>기술 설계와 개발 품질</td><td>설계서, 개발 산출물</td></tr>
@@ -282,15 +282,15 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
           </div>
         </div>
         <div class="callout warn">
-          <strong>주의:</strong> 이 표는 고정 역할의 Accountability만 정의합니다. 개별 Task 담당자는 Sprint Backlog 또는 WBS에서 별도 관리합니다. 둘을 혼용하면 Playbook이 무거워집니다.
+          <strong>주의:</strong> 이 표는 고정 역할의 책임만 정의합니다. 개별 작업 담당자는 Sprint 작업 목록 또는 WBS에서 별도 관리합니다. 둘을 혼용하면 Playbook이 무거워집니다.
         </div>
       </div>
 
-      <!-- 9.3 Decision & Approval Matrix -->
+      <!-- 9.3 의사결정 기준표 -->
       <div class="tab-content" id="tab-decision">
         <div class="template-box">
           <div class="template-box-head">
-            <span>Decision &amp; Approval Matrix — 의사결정과 승인 책임을 정의합니다</span>
+            <span>의사결정 기준표 — 의사결정과 승인 책임을 정의합니다</span>
             <span class="badge warn">핵심 산출물</span>
           </div>
           <div class="template-box-body">
@@ -298,9 +298,9 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
               <thead><tr><th>결정/승인 항목</th><th>결정자</th><th>검토자</th><th>협의 대상</th><th>지연 시 조치</th></tr></thead>
               <tbody>
                 <tr><td><strong>요구사항 우선순위</strong></td><td>Product Owner</td><td>PM, PL</td><td>고객 PM</td><td>Steering 상정</td></tr>
-                <tr><td><strong>산출물 승인</strong></td><td>고객 PM</td><td>QA, PL</td><td>PM</td><td>승인 지연 Risk 등록</td></tr>
+                <tr><td><strong>산출물 승인</strong></td><td>고객 PM</td><td>QA, PL</td><td>PM</td><td>승인 지연 이슈 등록</td></tr>
                 <tr><td><strong>범위 변경</strong></td><td>Sponsor / 고객 PM</td><td>PM, QA</td><td>PO, PL</td><td>변경관리 절차</td></tr>
-                <tr><td><strong>보안 예외</strong></td><td>고객 보안담당</td><td>Tech Lead</td><td>PM</td><td>보안 Risk 등록</td></tr>
+                <tr><td><strong>보안 예외</strong></td><td>고객 보안담당</td><td>Tech Lead</td><td>PM</td><td>보안 이슈 등록</td></tr>
                 <tr><td><strong>오픈 승인</strong></td><td>고객 PM / 운영책임자</td><td>QA, 운영팀</td><td>PM</td><td>착수/오픈 보류</td></tr>
                 <tr><td class="tpl-ph">[추가 항목]</td><td class="tpl-ph">[결정자]</td><td class="tpl-ph">[검토자]</td><td class="tpl-ph">[협의]</td><td class="tpl-ph">[조치]</td></tr>
               </tbody>
@@ -312,38 +312,38 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
         </div>
       </div>
 
-      <!-- 9.4 Dynamic Ownership -->
+      <!-- 9.4 작업 담당자 관리 -->
       <div class="tab-content" id="tab-dynamic">
         <div class="template-box">
           <div class="template-box-head">
-            <span>Dynamic Ownership in Backlog/WBS — 실제 작업 담당자는 별도로 관리합니다</span>
+            <span>작업 목록/WBS 내 담당자 관리 — 실제 작업 담당자는 별도로 관리합니다</span>
             <span class="badge agile">Agile 원칙</span>
           </div>
           <div class="template-box-body">
             <table class="tpl-table">
               <thead><tr><th>항목</th><th>관리 위치</th><th>담당</th></tr></thead>
               <tbody>
-                <tr><td><strong>User Story Owner</strong></td><td>Product Backlog</td><td>Product Owner 지정</td></tr>
-                <tr><td><strong>Sprint Task Owner</strong></td><td>Sprint Backlog</td><td>Sprint Planning에서 자율 선택</td></tr>
-                <tr><td><strong>개발 담당자</strong></td><td>WBS / Backlog Tool</td><td>Sprint 단위 배분</td></tr>
+                <tr><td><strong>User Story Owner</strong></td><td>작업 목록</td><td>Product Owner 지정</td></tr>
+                <tr><td><strong>Sprint Task Owner</strong></td><td>Sprint 작업 목록</td><td>Sprint Planning에서 자율 선택</td></tr>
+                <tr><td><strong>개발 담당자</strong></td><td>WBS / 작업 목록 관리 도구</td><td>Sprint 단위 배분</td></tr>
                 <tr><td><strong>테스트 담당자</strong></td><td>Test Case</td><td>QA 또는 개발자</td></tr>
-                <tr><td><strong>결함 담당자</strong></td><td>Defect Log</td><td>발견 시 지정</td></tr>
-                <tr><td><strong>이슈 담당자</strong></td><td>RAID Log</td><td>PM 또는 Scrum Master</td></tr>
-                <tr><td><strong>산출물 작성자</strong></td><td>Deliverable Matrix</td><td>A4 Activity에서 확정</td></tr>
+                <tr><td><strong>결함 담당자</strong></td><td>결함 목록</td><td>발견 시 지정</td></tr>
+                <tr><td><strong>이슈 담당자</strong></td><td>이슈·리스크 목록</td><td>PM 또는 Scrum Master</td></tr>
+                <tr><td><strong>산출물 작성자</strong></td><td>산출물 검토·승인 기준표</td><td>A4 Activity에서 확정</td></tr>
               </tbody>
             </table>
           </div>
         </div>
         <div class="callout warn">
-          <strong>핵심 원칙:</strong> Task 담당자를 Role Map에 넣지 않습니다. Role Map은 <em>고정 역할의 Accountability</em>만 다루고, Task 담당자는 Sprint Backlog/WBS에서 동적으로 관리합니다.
+          <strong>핵심 원칙:</strong> 작업 담당자를 역할별 책임 정리표에 넣지 않습니다. 역할별 책임 정리표는 <em>고정 역할의 책임</em>만 다루고, 작업 담당자는 Sprint 작업 목록/WBS에서 동적으로 관리합니다.
         </div>
       </div>
 
-      <!-- Escalation Path -->
+      <!-- 상위 보고 경로 -->
       <div class="tab-content" id="tab-escalation">
         <div class="template-box">
           <div class="template-box-head">
-            <span>Escalation Path — 이슈 지연 시 상위 보고 경로를 정의합니다</span>
+            <span>상위 보고·의사결정 경로 — 이슈 지연 시 상위 보고 경로를 정의합니다</span>
             <span class="badge ok">필수</span>
           </div>
           <div class="template-box-body">
@@ -362,11 +362,11 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
         </div>
       </div>
 
-      <!-- Onboarding Checklist -->
+      <!-- 투입 준비 체크리스트 -->
       <div class="tab-content" id="tab-onboarding">
         <div class="template-box">
           <div class="template-box-head">
-            <span>Onboarding Checklist — 투입 준비 항목을 확인합니다</span>
+            <span>투입 준비 체크리스트 — 투입 준비 항목을 확인합니다</span>
             <span class="badge draft">선택</span>
           </div>
           <div class="template-box-body">
@@ -387,19 +387,19 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
       </div>
     </section>
 
-    <!-- 규모별 RACI 사용 가이드 -->
+    <!-- 규모별 역할·책임 정리 가이드 -->
     <section class="section">
-      <div class="section-head"><div><div class="kicker">RACI 사용 가이드</div><h2>프로젝트 유형별 권장 방식 요약</h2></div></div>
+      <div class="section-head"><div><div class="kicker">역할·책임 정리 가이드</div><h2>프로젝트 유형별 권장 방식 요약</h2></div></div>
       <table class="map-table">
         <thead><tr><th>프로젝트 유형</th><th>권장 방식</th><th>핵심 산출물</th></tr></thead>
         <tbody>
-          <tr><td><strong>⚡ 1~2개월 단기</strong></td><td>간단한 역할 정리 가능</td><td>Stakeholder Map, 승인자 목록</td></tr>
-          <tr><td><strong>📅 3~6개월 중형</strong></td><td>Role &amp; Accountability Map + Decision Matrix 권장</td><td>Role Map, Decision Matrix, Escalation Path</td></tr>
-          <tr><td><strong>🏗 6개월 이상 장기</strong></td><td>Task RACI 금지에 가까움. 역할·의사결정·Escalation 중심</td><td>Role Map, Decision Matrix, Contact List</td></tr>
-          <tr><td><strong>🏛 규제·감사·공공</strong></td><td>산출물 승인 구조는 필수. Task RACI는 불필요</td><td>Decision &amp; Approval Matrix (승인 구조 필수)</td></tr>
-          <tr><td><strong>🤝 다수 협력사</strong></td><td>책임 경계표와 Decision Matrix 필수</td><td>Responsibility Boundary Table, Decision Matrix</td></tr>
-          <tr><td><strong>🔄 순수 Agile</strong></td><td>Scrum Accountabilities + Working Agreement 중심</td><td>Team Charter (1장)</td></tr>
-          <tr><td><strong>⚙️ Hybrid AX</strong></td><td>Role Map + Backlog Owner + Decision Matrix 권장</td><td>Role Map, Decision Matrix, Backlog Owner 지정</td></tr>
+          <tr><td><strong>⚡ 1~2개월 단기</strong></td><td>간단한 역할 정리 가능</td><td>이해관계자 목록, 승인자 목록</td></tr>
+          <tr><td><strong>📅 3~6개월 중형</strong></td><td>역할별 책임 정리 + 의사결정 기준표 권장</td><td>역할별 책임 정리, 의사결정 기준표, 상위 보고 경로</td></tr>
+          <tr><td><strong>🏗 6개월 이상 장기</strong></td><td>작업 단위 역할표는 지양. 역할·의사결정·상위 보고 중심</td><td>역할별 책임 정리, 의사결정 기준표, 연락망</td></tr>
+          <tr><td><strong>🏛 규제·감사·공공</strong></td><td>산출물 승인 구조는 필수. 작업 단위 역할표는 불필요</td><td>의사결정 기준표 (승인 구조 필수)</td></tr>
+          <tr><td><strong>🤝 다수 협력사</strong></td><td>책임 경계표와 의사결정 기준표 필수</td><td>책임 경계표, 의사결정 기준표</td></tr>
+          <tr><td><strong>🔄 순수 Agile</strong></td><td>Scrum 역할 정의 + 운영 합의서 중심</td><td>Team Charter (1장)</td></tr>
+          <tr><td><strong>⚙️ Hybrid AX</strong></td><td>역할별 책임 정리 + 작업 목록 담당자 + 의사결정 기준표 권장</td><td>역할별 책임 정리, 의사결정 기준표, 작업 목록 담당자 지정</td></tr>
         </tbody>
       </table>
     </section>
@@ -410,9 +410,9 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
       <div class="grid two">
         <div class="card green"><p>&#10003; 고객 PM과 Product Owner가 실명으로 확정되었는가?</p></div>
         <div class="card green"><p>&#10003; 산출물별 승인자가 지정되었는가?</p></div>
-        <div class="card green"><p>&#10003; Decision &amp; Approval Matrix에 결정자가 모두 채워졌는가?</p></div>
+        <div class="card green"><p>&#10003; 의사결정 기준표에 결정자가 모두 채워졌는가?</p></div>
         <div class="card green"><p>&#10003; 보안·인프라·데이터·운영 담당자가 식별되었는가?</p></div>
-        <div class="card green"><p>&#10003; Escalation 경로가 기준 기간과 함께 정의되었는가?</p></div>
+        <div class="card green"><p>&#10003; 상위 보고 경로가 기준 기간과 함께 정의되었는가?</p></div>
         <div class="card green"><p>&#10003; 미정 항목이 Open Item으로 등록되었는가?</p></div>
       </div>
     </section>
@@ -422,12 +422,12 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
     </div>
 
     <div class="nextprev">
-      <a class="secondary" href="01_way-of-working.html">&larr; A1 프로젝트 수행방식 합의</a>
-      <a href="03_communication-cadence.html">A3 의사소통관리 및 운영 주기 수립 &rarr;</a>
+      <a class="secondary" href="01_way-of-working.html">&larr; A1 수행방식 및 Sprint 운영 기준 정렬</a>
+      <a href="03_communication-cadence.html">A3 커뮤니케이션 및 운영 리듬 수립 &rarr;</a>
     </div>
 
     <footer class="footer">
-      <p>Sprint 0 Activity Playbook — AXD Hybrid | A2 수행팀 투입 및 책임 정렬</p>
+      <p>Sprint 0 Activity Playbook — AXD Hybrid | A2 수행체계 및 책임구조 확인</p>
     </footer>
   </div>
 

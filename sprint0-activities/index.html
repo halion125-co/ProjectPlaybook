@@ -21,7 +21,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
 /* ── 프로젝트 규모 선택기 ── */
 .scale-selector{background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.045));border:1px solid var(--line);border-radius:var(--radius);padding:28px 32px;margin-bottom:28px;backdrop-filter:blur(12px)}
 .scale-title{font-size:13px;font-weight:850;color:#dbe8ff;letter-spacing:.07em;text-transform:uppercase;margin-bottom:14px}
-.scale-options{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+.scale-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .scale-btn{background:rgba(255,255,255,.06);border:1.5px solid var(--line);border-radius:16px;padding:14px 10px;cursor:pointer;text-align:center;transition:all .18s;color:var(--ink)}
 .scale-btn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3)}
 .scale-btn.active{background:rgba(108,168,255,.18);border-color:var(--blue);box-shadow:0 0 0 3px rgba(108,168,255,.18)}
@@ -49,7 +49,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
 .pg-table td{padding:10px 14px;border-top:1px solid var(--softline);background:#fff;color:#344054;vertical-align:top}
 .pg-table tr:nth-child(even) td{background:#f9fbff}
 
-@media(max-width:1100px){.hero{grid-template-columns:1fr}.grid.three,.grid.four,.activity-list,.flow{grid-template-columns:repeat(2,1fr)}.flow-step:after{display:none}.scale-options{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:1100px){.hero{grid-template-columns:1fr}.grid.three,.grid.four,.activity-list,.flow{grid-template-columns:repeat(2,1fr)}.flow-step:after{display:none}.scale-options{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:720px){.wrap{padding:20px 16px 60px}h1{font-size:30px}.grid.two,.grid.three,.grid.four,.activity-list,.flow{grid-template-columns:1fr}.map-table{font-size:12px}.map-table th,.map-table td{padding:10px}.nextprev{flex-direction:column}.hero-card{padding:22px}.scale-options{grid-template-columns:repeat(2,1fr)}.scale-selector{padding:20px}}
   </style>
 </head>
@@ -59,7 +59,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
       <a class="brand" href="index.html"><div class="logo"></div><div>Sprint 0 Playbook <span style="color:var(--muted);font-weight:650">AXD Hybrid</span></div></a>
       <nav class="nav" aria-label="activity navigation">
         <a href="index.html">Sprint 0 Overview</a>
-        <a href="01_way-of-working.html">A1 프로젝트 수행방식 합의</a><a href="02_team-raci.html">A2 수행팀 투입 및 책임 정렬</a><a href="03_communication-cadence.html">A3 의사소통관리 및 운영 주기 수립</a><a href="04_deliverable-acceptance.html">A4 산출물 검토·승인 기준 정의</a><a href="05_environment-access.html">A5 환경·도구·접근권한 준비</a><a href="06_readiness-raid.html">A6 고객 준비·보안성·리스크 점검</a><a href="07_transition-day1.html">A7 오픈·전환 고려사항 및 본수행 착수 점검</a><a href="artifact-repository.html" style="border-color:rgba(66,215,214,.5);color:#42d7d6">산출물 조회</a>
+        <a href="01_way-of-working.html">A1 수행방식 및 Sprint 운영 기준 정렬</a><a href="02_team-raci.html">A2 수행체계 및 책임구조 확인</a><a href="03_communication-cadence.html">A3 커뮤니케이션 및 운영 리듬 수립</a><a href="04_deliverable-acceptance.html">A4 산출물·검토·승인 기준 정렬</a><a href="05_environment-access.html">A5 환경·도구·접근권한 준비상태 확인</a><a href="06_readiness-raid.html">A6 고객 준비도·보안·리스크 점검</a><a href="07_transition-day1.html">A7 본수행 착수점검 및 미결사항 이관</a><a href="artifact-repository.html" style="border-color:rgba(66,215,214,.5);color:#42d7d6">산출물 조회</a>
       </nav>
     </header>
 
@@ -81,48 +81,43 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
       </div>
     </section>
 
-    <!-- ── 프로젝트 규모 선택기 ── -->
+    <!-- ── 프로젝트 유형·Tag 선택기 ── -->
     <div class="scale-selector">
-      <div class="scale-title">프로젝트 규모 선택 — Activity별 권장 Play가 자동으로 조정됩니다</div>
+      <div class="scale-title">프로젝트 유형 · Tag 선택 — Activity별 Play와 Artifact가 자동으로 조정됩니다</div>
       <div class="scale-options">
-        <button class="scale-btn" data-scale="short" onclick="selectScale(this)">
-          <div class="sb-icon">⚡</div>
-          <div class="sb-label">단기</div>
-          <div class="sb-sub">1~2개월</div>
+        <button class="scale-btn" data-scale="poc-general" onclick="selectScale(this)">
+          <div class="sb-icon">🧪</div>
+          <div class="sb-label">PoC · 일반AX</div>
+          <div class="sb-sub">기술·업무 적용 가능성 검증</div>
         </button>
-        <button class="scale-btn" data-scale="mid" onclick="selectScale(this)">
-          <div class="sb-icon">📅</div>
-          <div class="sb-label">중형</div>
-          <div class="sb-sub">3~6개월</div>
+        <button class="scale-btn" data-scale="poc-public" onclick="selectScale(this)">
+          <div class="sb-icon">🧪</div>
+          <div class="sb-label">PoC · 공공AX</div>
+          <div class="sb-sub">감리·인증 필요 여부 식별</div>
         </button>
-        <button class="scale-btn" data-scale="long" onclick="selectScale(this)">
-          <div class="sb-icon">🏗</div>
-          <div class="sb-label">장기</div>
-          <div class="sb-sub">6개월 이상</div>
+        <button class="scale-btn" data-scale="poc-finance" onclick="selectScale(this)">
+          <div class="sb-icon">🧪</div>
+          <div class="sb-label">PoC · 금융AX</div>
+          <div class="sb-sub">금융보안·데이터 리스크 식별</div>
         </button>
-        <button class="scale-btn" data-scale="regulatory" onclick="selectScale(this)">
-          <div class="sb-icon">🏛</div>
-          <div class="sb-label">규제·공공</div>
-          <div class="sb-sub">감사·인증 필요</div>
+        <button class="scale-btn" data-scale="prod-general" onclick="selectScale(this)">
+          <div class="sb-icon">🚀</div>
+          <div class="sb-label">본사업 · 일반AX</div>
+          <div class="sb-sub">실제 구축·적용·운영 전환</div>
         </button>
-        <button class="scale-btn" data-scale="multi-vendor" onclick="selectScale(this)">
-          <div class="sb-icon">🤝</div>
-          <div class="sb-label">다수 협력사</div>
-          <div class="sb-sub">복수 벤더</div>
+        <button class="scale-btn" data-scale="prod-public" onclick="selectScale(this)">
+          <div class="sb-icon">🚀</div>
+          <div class="sb-label">본사업 · 공공AX</div>
+          <div class="sb-sub">감리·인증·표준 산출물</div>
         </button>
-        <button class="scale-btn" data-scale="agile" onclick="selectScale(this)">
-          <div class="sb-icon">🔄</div>
-          <div class="sb-label">순수 Agile</div>
-          <div class="sb-sub">Scrum 중심</div>
-        </button>
-        <button class="scale-btn" data-scale="hybrid" onclick="selectScale(this)">
-          <div class="sb-icon">⚙️</div>
-          <div class="sb-label">Hybrid AX</div>
-          <div class="sb-sub">AXD + Agile</div>
+        <button class="scale-btn" data-scale="prod-finance" onclick="selectScale(this)">
+          <div class="sb-icon">🚀</div>
+          <div class="sb-label">본사업 · 금융AX</div>
+          <div class="sb-sub">혁신금융·금보원 감사·망분리</div>
         </button>
       </div>
       <div class="scale-hint" id="scaleHint">
-        ↑ 프로젝트 유형을 선택하면 각 Activity의 <strong>권장 Play</strong>가 표시됩니다.
+        ↑ 프로젝트 유형과 Tag를 선택하면 각 Activity의 <strong>Play와 Artifact</strong>가 표시됩니다.
       </div>
     </div>
 
@@ -136,77 +131,95 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
         </div>
       </div>
       <table class="pg-table">
-        <thead><tr><th>Activity</th><th>권장 Play</th><th>핵심 산출물</th><th>강도</th></tr></thead>
+        <thead><tr><th>Activity</th><th>Play</th><th>Artifact</th></tr></thead>
         <tbody id="pgBody"></tbody>
       </table>
     </div>
 
     <section class="section" id="core">
-      <div class="section-head"><div><div class="kicker">Sprint 0 Core</div><h2>Sprint 0 착수 준비 및 사업 맥락 정렬</h2><p class="desc">Sprint 0 본문은 7개 하위 Activity가 시작되기 전에 프로젝트 배경, 목표, 범위, Sprint 0 운영 계획을 정렬하는 Play입니다.</p></div></div>
-      <div class="grid two"><div class="card blue"><h3><span class="task-no">1</span>계약·제안 정보 수집</h3><p>RFP, 제안서, 계약서/SOW, 기술협상 내역, 사전 미팅 기록을 수집합니다.</p></div><div class="card blue"><h3><span class="task-no">2</span>Project Brief 작성</h3><p>사업명, 사업기간, 추진 배경, 고객 기대성과, 성공 기준을 정리합니다.</p></div><div class="card blue"><h3><span class="task-no">3</span>Scope 기준선 작성</h3><p>Scope In/Out, 구축 대상 업무, 개발 대상 업무, 주요 가정·제약사항을 정리합니다.</p></div><div class="card blue"><h3><span class="task-no">4</span>Sprint 0 수행계획 수립</h3><p>Sprint 0 기간, 참석자, 세션, 산출물, 책임자를 정의합니다.</p></div><div class="card blue"><h3><span class="task-no">5</span>Open Item 초기 등록</h3><p>미확정 범위, 의사결정, 환경·권한, 고객 준비 이슈를 초기 Open Item으로 등록합니다.</p></div></div>
+      <div class="section-head"><div><div class="kicker">Activity 0</div><h2>Sprint 0 착수 준비 및 사업 맥락 정렬</h2><p class="desc">Sprint 0의 7개 하위 Activity를 수행하기 전에 계약·제안 정보, 프로젝트 배경, 고객 Value 가설, 범위, 수행계획, 초기 Open Item을 정리하는 사전 정렬 Activity입니다. 산출물을 완성하는 것이 아니라, Sprint 0에서 무엇을 확인·결정해야 하는지, 본수행 착수 전 무엇이 미확정인지 정리하는 데 목적이 있습니다.</p></div></div>
+      <div class="grid two">
+        <div class="card blue"><h3><span class="task-no">1</span>계약·제안 정보 수집</h3><p>RFP, 제안서, 계약서/SOW, 과업범위, 기술협상 내역, 사전 미팅 기록을 수집합니다.</p></div>
+        <div class="card blue"><h3><span class="task-no">2</span>프로젝트 기본 맥락 정리</h3><p>사업명, 사업기간, 추진 배경, 고객 기대사항, 성공 기준 초안을 정리합니다.</p></div>
+        <div class="card blue"><h3><span class="task-no">3</span>프로젝트 유형 및 Tag 확인</h3><p>PoC / 본사업 여부와 일반AX / 공공AX / 금융AX Tag를 확인하여 Sprint 0 점검 깊이를 결정합니다.</p></div>
+        <div class="card blue"><h3><span class="task-no">4</span>Scope In/Out 초안 정리</h3><p>구축 대상 업무, 제외 범위, 주요 가정, 제약사항을 정리합니다.</p></div>
+        <div class="card blue"><h3><span class="task-no">5</span>Sprint 0 수행계획 수립</h3><p>Sprint 0 기간, 참석자, 수행할 Activity, Review 일정, 책임자를 정의합니다.</p></div>
+        <div class="card blue"><h3><span class="task-no">6</span>초기 Open Item 등록</h3><p>미확정 범위, 고객 의사결정, 환경·권한, 데이터, 보안, 일정 리스크를 등록합니다.</p></div>
+        <div class="card blue"><h3><span class="task-no">7</span>본수행 착수 판단 기준 초안 정의</h3><p>Sprint 0 종료 시 착수 가능 / 조건부 착수 / 착수 보류를 판단할 기준 초안을 수립합니다.</p></div>
+      </div>
     </section>
 
     <section class="section">
-      <div class="panel"><div class="panel-head"><div class="kicker">Core Outputs</div><h2>Sprint 0 본문에서 생성되는 템플릿</h2></div><div class="panel-body"><table class="map-table"><thead><tr><th>템플릿</th><th>설명</th></tr></thead><tbody><tr><td>02_Sprint0Plan</td><td>Sprint 0 착수 준비계획</td></tr><tr><td>03_BriefScope</td><td>Project Brief 및 Scope 기준선</td></tr><tr><td>12_BP_Transfer</td><td>사업수행계획서 Chapter 반영현황</td></tr></tbody></table></div></div>
+      <div class="panel"><div class="panel-head"><div class="kicker">Activity 0 Outputs</div><h2>Sprint 0에서 정리·결정해야 할 항목</h2></div><div class="panel-body"><table class="map-table"><thead><tr><th>구분</th><th>정리해야 할 항목</th><th>설명</th></tr></thead><tbody>
+        <tr><td><strong>프로젝트 기본정보</strong></td><td>사업명, 고객사, 사업기간, 시스템명, 업무명</td><td>이후 사업수행계획서와 Playbook의 기본정보로 사용</td></tr>
+        <tr><td><strong>사업 맥락</strong></td><td>추진 배경, 고객 기대사항, 성공 기준 초안</td><td>고객 Value 가설을 정리하는 기준</td></tr>
+        <tr><td><strong>프로젝트 유형</strong></td><td>PoC / 본사업</td><td>Sprint 0 적용 수준을 결정</td></tr>
+        <tr><td><strong>특성 Tag</strong></td><td>일반AX / 공공AX / 금융AX</td><td>감리·인증·금융보안·감사 등 추가 점검 깊이 결정</td></tr>
+        <tr><td><strong>범위</strong></td><td>Scope In / Scope Out, 주요 가정, 제약사항</td><td>본수행 범위와 Open Item 판단 기준</td></tr>
+        <tr><td><strong>Sprint 0 운영계획</strong></td><td>기간, 참석자, 수행 Activity, Review 일정</td><td>7개 Activity 수행을 위한 실행계획</td></tr>
+        <tr><td><strong>초기 리스크</strong></td><td>Risk / Issue / Decision / Dependency / Open Item</td><td>Sprint 0 이후 본수행 착수 판단에 반영</td></tr>
+        <tr><td><strong>본수행 착수 기준</strong></td><td>착수 가능 / 조건부 착수 / 착수 보류 기준</td><td>Sprint 0 종료 시 판단 기준으로 활용</td></tr>
+      </tbody></table></div></div>
     </section>
 
     <section class="section">
-      <div class="section-head"><div><div class="kicker">Seven Sub Activities</div><h2>7개 하위 Activity</h2><p class="desc">각 카드를 클릭하면 상세 Play 페이지로 이동합니다.</p></div></div>
+      <div class="section-head"><div><div class="kicker">Seven Sub Activities</div><h2>7개 하위 Activity</h2><p class="desc">Sprint 0에서는 본수행 착수 전 반드시 확인해야 할 수행방식, 책임구조, 운영 리듬, 산출물 기준, 환경·권한, 고객 준비도, 리스크, 착수 가능 여부를 정리합니다. 각 카드를 클릭하면 상세 Play 페이지로 이동합니다.</p></div></div>
       <div class="activity-list" id="activityList">
         <a class="activity-card" href="01_way-of-working.html" data-act="A1">
           <div class="act-no">A1</div>
-          <div class="act-title">프로젝트 수행방식 합의</div>
-          <div class="act-text">AXD 방법론과 Agile/Sprint 운영을 결합하는 Hybrid 수행방식을 정의합니다.</div>
-          <div class="chips" style="margin-top:auto"><span class="badge draft">초안 → 합의</span><span class="badge doc">09_WoW_DoR_DoD, 04_Backlog</span></div>
-          <div id="scale-tag-A1"></div>
+          <div class="act-title">수행방식 및 Sprint 운영 기준 정렬</div>
+          <div class="act-text">AXD, Agile, Hybrid 중 본 프로젝트에 맞는 수행방식을 정하고 Sprint 운영 기준을 합의합니다.</div>
+          <div class="small" style="color:#2656d9">이 프로젝트는 어떤 방식으로 수행할 것인가?</div>
         </a>
         <a class="activity-card" href="02_team-raci.html" data-act="A2">
           <div class="act-no">A2</div>
-          <div class="act-title">수행팀 투입 및 책임 정렬</div>
-          <div class="act-text">고객·수행사·지원조직의 역할·책임·의사결정 구조를 명확히 합니다.</div>
-          <div class="chips" style="margin-top:auto"><span class="badge draft">초안 → 확정</span><span class="badge doc">Stakeholder Map, Role Map, Decision Matrix</span></div>
-          <div id="scale-tag-A2"></div>
+          <div class="act-title">수행체계 및 책임구조 확인</div>
+          <div class="act-text">고객, 수행사, 협력사, 지원조직의 참여자와 의사결정 구조를 확인하고 책임 공백을 점검합니다.</div>
+          <div class="small" style="color:#2656d9">누가 무엇을 결정하고 책임지는가?</div>
         </a>
         <a class="activity-card" href="03_communication-cadence.html" data-act="A3">
           <div class="act-no">A3</div>
-          <div class="act-title">의사소통관리 및 운영 주기 수립</div>
-          <div class="act-text">보고체계, 회의체, Agile Ceremony, 의사결정·Action Item 관리 방식을 정합니다.</div>
-          <div class="chips" style="margin-top:auto"><span class="badge draft">확정 가능</span><span class="badge doc">06_CommCadence</span></div>
-          <div id="scale-tag-A3"></div>
+          <div class="act-title">커뮤니케이션 및 운영 리듬 수립</div>
+          <div class="act-text">보고, 회의, Sprint Review, 의사결정, Action Item 관리 방식을 정합니다.</div>
+          <div class="small" style="color:#2656d9">프로젝트 운영 리듬은 어떻게 가져갈 것인가?</div>
         </a>
         <a class="activity-card" href="04_deliverable-acceptance.html" data-act="A4">
           <div class="act-no">A4</div>
-          <div class="act-title">산출물 검토·승인 기준 정의</div>
-          <div class="act-text">산출물 목록, 작성자, 검토자, 승인자, 제출시점, Acceptance Criteria를 정의합니다.</div>
-          <div class="chips" style="margin-top:auto"><span class="badge draft">확정 가능</span><span class="badge doc">07_Deliverables</span></div>
-          <div id="scale-tag-A4"></div>
+          <div class="act-title">산출물·검토·승인 기준 정렬</div>
+          <div class="act-text">프로젝트 산출물의 작성, 검토, 승인, 제출 기준을 정리합니다.</div>
+          <div class="small" style="color:#2656d9">어떤 산출물을 언제, 누가 검토·승인하는가?</div>
         </a>
         <a class="activity-card" href="05_environment-access.html" data-act="A5">
           <div class="act-no">A5</div>
-          <div class="act-title">환경·도구·접근권한 준비</div>
-          <div class="act-text">협업도구, 저장소, 고객사 시스템, 클라우드/플랫폼, 개발·검증 환경 접근권한을 점검합니다.</div>
-          <div class="chips" style="margin-top:auto"><span class="badge draft">점검 → 일부 확정</span><span class="badge doc">08_Access</span></div>
-          <div id="scale-tag-A5"></div>
+          <div class="act-title">환경·도구·접근권한 준비상태 확인</div>
+          <div class="act-text">본수행에 필요한 협업도구, 저장소, 개발·검증 환경, 고객 시스템 접근권한을 확인합니다.</div>
+          <div class="small" style="color:#2656d9">Sprint 1을 시작할 최소 환경과 권한이 준비되었는가?</div>
         </a>
         <a class="activity-card" href="06_readiness-raid.html" data-act="A6">
           <div class="act-no">A6</div>
-          <div class="act-title">고객 준비·보안성·리스크 점검</div>
-          <div class="act-text">고객 담당자, 데이터, 보안, 권한, 의사결정 준비와 Risk/Issue/Decision을 관리합니다.</div>
-          <div class="chips" style="margin-top:auto"><span class="badge draft">점검 → 등록</span><span class="badge doc">10_Readiness_RAID</span></div>
-          <div id="scale-tag-A6"></div>
+          <div class="act-title">고객 준비도·보안·리스크 점검</div>
+          <div class="act-text">고객 준비상태, 데이터, 보안, 의사결정, 외부 의존성을 확인하고 본수행 지연 요인을 Open Item으로 관리합니다.</div>
+          <div class="small" style="color:#2656d9">본수행을 지연시킬 고객·보안·데이터 리스크는 무엇인가?</div>
         </a>
         <a class="activity-card" href="07_transition-day1.html" data-act="A7">
           <div class="act-no">A7</div>
-          <div class="act-title">오픈·전환 고려사항 및 본수행 착수 점검</div>
-          <div class="act-text">오픈·전환·교육·운영 고려사항을 식별하고 본수행 착수점검에서 착수 가능/조건부 착수/착수 보류를 판단합니다.</div>
-          <div class="chips" style="margin-top:auto"><span class="badge draft">확정 가능</span><span class="badge doc">11_Day1Check, 12_BP_Transfer</span></div>
-          <div id="scale-tag-A7"></div>
+          <div class="act-title">본수행 착수점검 및 미결사항 이관</div>
+          <div class="act-text">Sprint 0 결과를 종합해 본수행 착수 가능 여부를 판단하고 미결사항을 후속 단계로 이관합니다.</div>
+          <div class="small" style="color:#2656d9">지금 본수행에 착수해도 되는가?</div>
         </a>
       </div>
     </section>
 
     <section class="section">
-      <div class="panel"><div class="panel-head"><div class="kicker">Activity to Output</div><h2>Activity별 템플릿 생성 매핑</h2></div><div class="panel-body"><table class="map-table"><thead><tr><th>Activity</th><th>생성/보완 템플릿</th><th>사업수행계획서 반영 Chapter</th><th>생성 수준</th></tr></thead><tbody><tr><td><strong>A1 프로젝트 수행방식 합의</strong><br><span class="small">AXD 방법론과 Agile/Sprint 운영을 결합하는 Hybrid 수행방식을 정의합니다.</span></td><td>09_WoW_DoR_DoD, 04_Backlog</td><td>6. 사업 추진 절차, 10. 변경관리 계획, 11. 품질관리 계획, 13. 의사소통관리 계획</td><td><span class="badge draft">초안 → 합의</span></td></tr><tr><td><strong>A2 수행팀 투입 및 책임 정렬</strong><br><span class="small">Stakeholder Map, Role &amp; Accountability Map, Decision &amp; Approval Matrix를 생성합니다.</span></td><td>Stakeholder Map, Role Map, Decision Matrix, Escalation Path</td><td>5. 사업 추진 체계, 12. 인력관리 계획, 13. 의사소통관리 계획, 18. 보안 대책, 20. 교육 계획</td><td><span class="badge draft">초안 → 확정</span></td></tr><tr><td><strong>A3 의사소통관리 및 운영 주기 수립</strong><br><span class="small">보고체계, 회의체, Agile Ceremony, 의사결정·Action Item 관리 방식을 정합니다.</span></td><td>06_CommCadence</td><td>8. 일정 계획, 13. 의사소통관리 계획, 11. 품질관리 계획, 14. 위험관리 계획</td><td><span class="badge draft">확정 가능</span></td></tr><tr><td><strong>A4 산출물 검토·승인 기준 정의</strong><br><span class="small">산출물 목록, 작성자, 검토자, 승인자, 제출시점, Acceptance Criteria를 정의합니다.</span></td><td>07_Deliverables</td><td>7. 산출물 계획, 11. 품질관리 계획, 13. 의사소통관리 계획, 15. 형상관리 계획</td><td><span class="badge draft">확정 가능</span></td></tr><tr><td><strong>A5 환경·도구·접근권한 준비</strong><br><span class="small">협업도구, 저장소, 고객사 시스템, 클라우드/플랫폼, 개발·검증 환경 접근권한을 점검합니다.</span></td><td>08_Access</td><td>8. 일정 계획, 15. 형상관리 계획, 16. 백업관리 계획, 18. 보안 대책</td><td><span class="badge draft">점검 → 일부 확정</span></td></tr><tr><td><strong>A6 고객 준비·보안성·리스크 점검</strong><br><span class="small">고객 담당자, 데이터, 보안, 권한, 의사결정 준비와 Risk/Issue/Decision을 관리합니다.</span></td><td>10_Readiness_RAID</td><td>4. 사업 범위, 8. 일정 계획, 14. 위험관리 계획, 18. 보안 대책</td><td><span class="badge draft">점검 → 등록</span></td></tr><tr><td><strong>A7 오픈·전환 고려사항 및 본수행 착수 점검</strong><br><span class="small">오픈·전환·교육·운영 고려사항을 식별하고 착수 가능/조건부 착수/착수 보류를 판단합니다.</span></td><td>11_Day1Check, 12_BP_Transfer</td><td>8. 일정 계획, 14. 위험관리 계획, 20. 교육 계획, 21. 유지보수 계획, 부록</td><td><span class="badge draft">확정 가능</span></td></tr></tbody></table></div></div>
+      <div class="panel"><div class="panel-head"><div class="kicker">Activity to Output</div><h2>Activity 수행 결과 활용처</h2><p class="desc" style="margin-top:6px">각 Activity에서 정리한 정보는 사업수행계획서 초안, 본수행 착수점검, Open Item 관리에 반영됩니다.</p></div><div class="panel-body"><table class="map-table"><thead><tr><th>Activity</th><th>정리·결정해야 할 항목</th><th>정리 결과</th><th>사업수행계획서 반영 Chapter</th></tr></thead><tbody>
+        <tr><td><strong>A1 수행방식 및 Sprint 운영 기준 정렬</strong></td><td>수행방식, Sprint 주기, Backlog 관리 방식, DoR/DoD, 변경관리 연결 방식</td><td>수행방식 합의 내용, 초기 Backlog, Sprint 1 후보 Backlog, DoR/DoD 기준, Acceptance Criteria 작성 기준</td><td>6. 사업 추진 절차, 10. 변경관리 계획, 11. 품질관리 계획, 13. 의사소통관리 계획</td></tr>
+        <tr><td><strong>A2 수행체계 및 책임구조 확인</strong></td><td>핵심 참여자, 필수 역할, 승인자, 의사결정자, Escalation 경로</td><td>이해관계자 목록, 필수 역할 확인 결과, 승인자/의사결정자 목록, 연락망, Escalation 경로</td><td>5. 사업 추진 체계, 12. 인력관리 계획, 13. 의사소통관리 계획, 18. 보안 대책, 20. 교육 계획</td></tr>
+        <tr><td><strong>A3 커뮤니케이션 및 운영 리듬 수립</strong></td><td>보고 주기, 회의체, Sprint Review, 의사결정 회의, Action Item 관리 방식</td><td>의사소통관리 기준, 프로젝트 운영 주기, 회의체 일정, Action Item 관리 기준, 의사결정 회의 기준</td><td>8. 일정 계획, 11. 품질관리 계획, 13. 의사소통관리 계획, 14. 위험관리 계획</td></tr>
+        <tr><td><strong>A4 산출물·검토·승인 기준 정렬</strong></td><td>산출물 목록, 검토자, 승인자, 제출 시점, 승인 기준</td><td>산출물 목록, 산출물 검토·승인 기준, 승인 흐름, 산출물별 Acceptance Criteria</td><td>7. 산출물 계획, 11. 품질관리 계획, 13. 의사소통관리 계획, 15. 형상관리 계획</td></tr>
+        <tr><td><strong>A5 환경·도구·접근권한 준비상태 확인</strong></td><td>협업도구, 문서/소스 저장소, Backlog 도구, 개발·검증 환경, 고객 시스템 접근권한</td><td>환경·도구·접근권한 점검 결과, 권한 신청 목록, 저장소 관리 기준, 접근권한 지연 리스크</td><td>8. 일정 계획, 15. 형상관리 계획, 16. 백업관리 계획, 18. 보안 대책</td></tr>
+        <tr><td><strong>A6 고객 준비도·보안·리스크 점검</strong></td><td>고객 담당자, 고객 승인자, 데이터 제공 일정, 보안 기준, Risk/Issue/Open Item</td><td>고객 준비도 점검 결과, 보안성 점검 결과, RAID Log, Decision Log, Open Item List</td><td>4. 사업 범위, 8. 일정 계획, 14. 위험관리 계획, 18. 보안 대책</td></tr>
+        <tr><td><strong>A7 본수행 착수점검 및 미결사항 이관</strong></td><td>Activity 완료 상태, Sprint 1 준비상태, 조건부 착수 항목, 착수 보류 사유, Open Item 이관</td><td>본수행 착수점검 결과, 착수 가능/조건부 착수/착수 보류 판단, Open Item 이관 목록, 사업수행계획서 반영 상태</td><td>8. 일정 계획, 13. 의사소통관리 계획, 14. 위험관리 계획, 20. 교육 계획, 21. 유지보수 계획, 부록. 본수행 착수점검 결과</td></tr>
+      </tbody></table></div></div>
     </section>
 
     <section class="section">
@@ -226,102 +239,78 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
 
 <script>
 const SCALE_DATA = {
-  short: {
-    icon: '⚡', title: '단기 프로젝트 (1~2개월)', sub: '가볍고 빠르게 — 핵심만 정리하고 바로 착수합니다.',
+  'poc-general': {
+    icon: '🧪', title: 'PoC · 일반AX', sub: '기술·업무 적용 가능성 검증 — Lite 산출물, 초안, 체크리스트, 검증결과 중심으로 운영합니다.',
     plays: [
-      { act:'A1', play:'간소화된 WoW 합의 (1시간 이내)', artifact:'WoW 1장 요약', intensity:'낮음' },
-      { act:'A2', play:'간단한 역할 정리 + 승인자 확정', artifact:'Stakeholder Map, 승인자 목록', intensity:'낮음' },
-      { act:'A3', play:'주간보고 + Sprint Review 기준만 확정', artifact:'보고 주기 1장', intensity:'낮음' },
-      { act:'A4', play:'필수 산출물만 Tailoring (3~5종)', artifact:'산출물 목록 축약', intensity:'낮음' },
-      { act:'A5', play:'필수 권한·도구 점검 (체크리스트)', artifact:'Access Checklist', intensity:'낮음' },
-      { act:'A6', play:'핵심 Risk 3~5건만 등록', artifact:'RAID 간소판', intensity:'낮음' },
-      { act:'A7', play:'착수 가능/착수 보류 기준만 확인', artifact:'착수점검표 (간소)', intensity:'낮음' },
+      { act:'A1', play:'AXD / Agile / Hybrid 적용 수준을 합의한다. 빠른 검증 중심으로 운영방식을 정한다.', artifact:'프로젝트 수행방식 합의서, Initial Backlog, DoR/DoD' },
+      { act:'A2', play:'수행PM, PL/Tech Lead, QA, 고객 PM 등 필수 역할이 지정되었는지 확인한다.', artifact:'Stakeholder Map, 필수 역할 확인표, Contact List' },
+      { act:'A3', play:'주간보고, Sprint Review, 이슈회의 등 운영 리듬을 정한다.', artifact:'Communication Plan, Meeting Calendar' },
+      { act:'A4', play:'필수 산출물만 Tailoring하여 검토자, 승인자, 제출 시점을 정의한다.', artifact:'Deliverable List, Deliverable Acceptance Criteria' },
+      { act:'A5', play:'협업도구, 저장소, 개발/검증 환경 접근권한 준비상태를 확인한다.', artifact:'Environment & Access Matrix, Access Request List' },
+      { act:'A6', play:'고객 담당자, 데이터 제공 일정, 보안성, 미결사항을 점검한다.', artifact:'Customer Readiness Checklist, RAID Log, Open Item List' },
+      { act:'A7', play:'Sprint 0 결과를 종합하여 검증 착수 가능 여부를 판단한다.', artifact:'본수행 착수점검표, 착수 판단 결과서, Open Item 이관 목록' },
     ]
   },
-  mid: {
-    icon: '📅', title: '중형 프로젝트 (3~6개월)', sub: 'Role & Accountability Map + Decision Matrix 중심으로 운영합니다.',
+  'poc-public': {
+    icon: '🧪', title: 'PoC · 공공AX', sub: '기술·업무 적용 가능성 검증 + 감리·인증 필요 여부 식별을 함께 확인합니다.',
     plays: [
-      { act:'A1', play:'Hybrid WoW Workshop (2~3시간)', artifact:'WoW 합의서, DoR/DoD, Backlog', intensity:'중간' },
-      { act:'A2', play:'Role & Accountability Map + Decision Matrix', artifact:'Stakeholder Map, Role Map, Decision Matrix', intensity:'중간' },
-      { act:'A3', play:'Operating Rhythm Design (전체 회의체 설계)', artifact:'Communication Plan, Meeting Calendar', intensity:'중간' },
-      { act:'A4', play:'산출물 Tailoring + Acceptance Criteria 정의', artifact:'Deliverable Matrix, AC 기준', intensity:'중간' },
-      { act:'A5', play:'환경·권한 전체 점검 + 지연 RAID 등록', artifact:'Access Matrix, Access Request List', intensity:'중간' },
-      { act:'A6', play:'고객 준비·보안·RAID 전체 점검', artifact:'Customer Readiness, Security Checklist, RAID Log', intensity:'중간' },
-      { act:'A7', play:'본수행 착수점검 회의 + 조건부 착수 관리', artifact:'착수점검표, 착수점검 결과서', intensity:'중간' },
+      { act:'A1', play:'AXD / Agile / Hybrid 적용 수준을 정하되, 공공 감리·검수 일정과 충돌하지 않도록 검토한다.', artifact:'프로젝트 수행방식 합의서, 공공 단계 Gate 정의서' },
+      { act:'A2', play:'수행팀 외에 감리 대응, 보안, 인증, 고객기관 검수 담당자를 식별한다.', artifact:'Stakeholder Map, 공공 검수/승인자 확인표' },
+      { act:'A3', play:'감리 대응 회의, 검수 회의 등 공공 회의체를 운영 주기에 반영한다.', artifact:'Communication Plan, 감리/검수 회의체 운영안' },
+      { act:'A4', play:'공공 표준 산출물, 감리·인증 대상 여부만 식별하여 Lite 체크리스트로 관리한다.', artifact:'공공 표준 산출물 목록, 감리/인증 대상 확인표' },
+      { act:'A5', play:'공공기관 보안정책, 접근권한, 자료 반출입 준비상태를 확인한다.', artifact:'Environment & Access Matrix, 공공기관 보안정책 확인표' },
+      { act:'A6', play:'감리 대상 여부, 인증 필요 여부, 개인정보 처리 여부를 점검한다.', artifact:'Customer Readiness Checklist, 감리/인증 대상 확인표' },
+      { act:'A7', play:'감리·인증 관점의 검증 착수 리스크가 정리되었는지 확인한다.', artifact:'본수행 착수점검표, 감리/인증 Open Item 이관 목록' },
     ]
   },
-  long: {
-    icon: '🏗', title: '장기 프로젝트 (6개월 이상)', sub: 'RACI 금지에 가까움. 역할·의사결정·Escalation 중심으로 운영합니다.',
+  'poc-finance': {
+    icon: '🧪', title: 'PoC · 금융AX', sub: '기술·업무 적용 가능성 검증 + 금융보안·데이터·권한 리스크 식별을 함께 확인합니다.',
     plays: [
-      { act:'A1', play:'Phase별 WoW 분리 설계 (단계별 Sprint 설계)', artifact:'WoW per Phase, Backlog 구조', intensity:'높음' },
-      { act:'A2', play:'Role Map + Decision Matrix + Escalation Path (필수)', artifact:'전체 3종 세트, Contact List', intensity:'높음' },
-      { act:'A3', play:'Steering + CCB + Sprint Ceremony 전체 설계', artifact:'Communication Plan, Cadence Calendar', intensity:'높음' },
-      { act:'A4', play:'단계별 산출물 Tailoring + Gate 기준 정의', artifact:'전체 산출물 Matrix, Gate Checklist', intensity:'높음' },
-      { act:'A5', play:'환경·권한 로드맵 수립 (단계별 준비 계획)', artifact:'Access Roadmap, Repository Rule', intensity:'높음' },
-      { act:'A6', play:'Risk Management Plan 수립 + RAID 체계 구축', artifact:'Risk Register, RAID Log, Decision Log', intensity:'높음' },
-      { act:'A7', play:'Phase Gate Review + 본수행 착수점검 공식화', artifact:'Phase Gate Report, 착수점검 결과서', intensity:'높음' },
+      { act:'A1', play:'AXD / Agile / Hybrid 적용 수준을 정하되, 금융보안 심의·혁신금융 검토 일정을 함께 검토한다.', artifact:'프로젝트 수행방식 합의서, 금융AX 적용 기준 확인표' },
+      { act:'A2', play:'수행팀 외에 금융보안, 개인정보, 감사 대응 담당자를 식별한다.', artifact:'Stakeholder Map, 금융보안/감사 담당자 확인표' },
+      { act:'A3', play:'보안/감사 이슈 회의, 데이터 제공·반출입 점검 회의체를 반영한다.', artifact:'Communication Plan, 금융보안/감사 회의체 운영안' },
+      { act:'A4', play:'금융보안, 데이터 처리 관련 증적만 Lite 수준으로 식별한다.', artifact:'금융보안 증적 목록, 혁신금융 검토 체크리스트' },
+      { act:'A5', play:'망분리, VDI/VPN, 데이터 반출입 등 접근방식을 확인한다.', artifact:'Environment & Access Matrix, 망분리/접근방식 확인표' },
+      { act:'A6', play:'혁신금융 적용 여부, 금보원 감사 대응 필요 여부, 개인정보 처리 여부를 점검한다.', artifact:'Customer Readiness Checklist, 혁신금융/감사 대응 체크리스트' },
+      { act:'A7', play:'금융보안·데이터·권한 리스크 관점의 검증 착수 가능 여부를 판단한다.', artifact:'본수행 착수점검표, 금융보안/감사 Open Item 이관 목록' },
     ]
   },
-  regulatory: {
-    icon: '🏛', title: '규제·감사·공공 프로젝트', sub: '산출물 승인 구조는 필수. Task 단위 RACI는 불필요합니다.',
+  'prod-general': {
+    icon: '🚀', title: '본사업 · 일반AX', sub: '실제 구축·적용·운영 전환 — 정식 계획서, 관리 Matrix, 승인 기준을 포함하여 운영합니다.',
     plays: [
-      { act:'A1', play:'방법론 준수 계획 + 감사 대응 WoW 설계', artifact:'WoW 합의서, 컴플라이언스 체크', intensity:'높음' },
-      { act:'A2', play:'Decision & Approval Matrix 필수 (승인 구조 명확화)', artifact:'Approval Matrix, Stakeholder Map', intensity:'높음' },
-      { act:'A3', play:'공문 기준 + 의사결정 이력 관리 체계 설계', artifact:'Communication Plan, Decision Log 양식', intensity:'높음' },
-      { act:'A4', play:'감리·검수 대상 산출물 별도 분류', artifact:'Deliverable Matrix + 감리 대상 목록', intensity:'높음' },
-      { act:'A5', play:'보안 승인 절차 + 개인정보 처리 방침 확인', artifact:'Access Matrix + 보안 승인 이력', intensity:'중간' },
-      { act:'A6', play:'법적 리스크 + 보안 규정 준수 점검', artifact:'Security Checklist, Legal Risk 등록', intensity:'높음' },
-      { act:'A7', play:'감사 기준 착수 체크리스트 + 공식 승인', artifact:'착수점검표 (공식), 착수 승인서', intensity:'높음' },
+      { act:'A1', play:'프로젝트 특성에 맞게 AXD / Agile / Hybrid 적용 수준을 합의하고 단계·Sprint 병행 운영 기준을 정한다.', artifact:'프로젝트 수행방식 합의서, Sprint 1 후보 Backlog, DoR/DoD, Acceptance Criteria 기준' },
+      { act:'A2', play:'필수 역할이 지정되었는지 확인하고 책임 공백과 승인자 미정 항목을 Open Item으로 관리한다.', artifact:'Stakeholder Map, 필수 역할 확인표, Escalation Path, Onboarding Checklist' },
+      { act:'A3', play:'주간보고, Sprint Review, 이슈회의, 의사결정 회의체 등 운영 리듬을 정한다.', artifact:'Communication Plan, Program Cadence, Meeting Calendar, Decision Meeting Rule' },
+      { act:'A4', play:'표준 산출물 목록을 기반으로 필수/조건부/제외 산출물을 정리하고 검토·승인 기준을 정의한다.', artifact:'Deliverable List, Deliverable Acceptance Matrix, Approval Workflow' },
+      { act:'A5', play:'협업도구, 저장소, Backlog 도구, 개발/검증 환경, 접근권한 준비상태를 확인한다.', artifact:'Environment & Access Matrix, Repository Rule, Access Risk List' },
+      { act:'A6', play:'고객 담당자, 승인자, 데이터 제공 일정, 보안성, 미결사항을 점검하고 RAID로 관리한다.', artifact:'Customer Readiness Checklist, Security Readiness Checklist, RAID Log, Decision Log' },
+      { act:'A7', play:'Sprint 0 결과를 종합하여 Sprint 1 또는 본수행 착수 가능 여부를 판단한다.', artifact:'본수행 착수점검표, 착수점검 결과서, 사업수행계획서 초안, Chapter 작성 상태표' },
     ]
   },
-  'multi-vendor': {
-    icon: '🤝', title: '다수 협력사 프로젝트', sub: '책임 경계표와 의사결정 Matrix가 핵심입니다.',
+  'prod-public': {
+    icon: '🚀', title: '본사업 · 공공AX', sub: '감리·인증·표준 산출물·검수 체계를 일반AX Play에 추가로 확인합니다.',
     plays: [
-      { act:'A1', play:'협력사별 WoW 합의 + 인터페이스 기준 설계', artifact:'WoW + 협력사 인터페이스 정의', intensity:'높음' },
-      { act:'A2', play:'협력사 책임 경계표 + Decision Matrix (필수)', artifact:'Responsibility Boundary Table, Decision Matrix', intensity:'높음' },
-      { act:'A3', play:'협력사 포함 전체 Communication Plan 설계', artifact:'Communication Plan + 협력사 보고 체계', intensity:'높음' },
-      { act:'A4', play:'협력사별 산출물 분리 + 통합 승인 기준', artifact:'Deliverable Matrix (협력사 구분)', intensity:'높음' },
-      { act:'A5', play:'협력사별 접근권한 분리 + 보안 경계 설정', artifact:'Access Matrix (협력사 구분)', intensity:'높음' },
-      { act:'A6', play:'협력사 Dependency 리스크 집중 등록', artifact:'RAID Log + Dependency Map', intensity:'높음' },
-      { act:'A7', play:'협력사 준비 체크 + 통합 착수점검', artifact:'착수점검표 (협력사 포함)', intensity:'높음' },
+      { act:'A1', play:'AXD / Agile / Hybrid 적용 수준을 정하되, 공공 감리·검수 일정과 충돌하지 않도록 단계 Gate를 함께 정의한다.', artifact:'프로젝트 수행방식 합의서, 공공 단계 Gate 정의서, Sprint 1 후보 Backlog' },
+      { act:'A2', play:'감리 대응, 보안, 인증, 고객기관 검수 담당자를 식별하고 승인 라인을 확인한다.', artifact:'Stakeholder Map, 공공 검수/승인자 확인표, Escalation Path' },
+      { act:'A3', play:'주간보고 외 감리 대응 회의, 검수 회의, 보안/인증 점검 회의체를 운영 주기에 반영한다.', artifact:'Communication Plan, 감리/검수 회의체 운영안, Meeting Calendar' },
+      { act:'A4', play:'공공 표준 산출물, 감리 대상 산출물, 인증 제출물, 검수 증적을 구분하여 관리한다.', artifact:'공공 표준 산출물 목록, 감리 대응 산출물 목록, 인증 제출물 체크리스트, 검수 증적 목록' },
+      { act:'A5', play:'공공기관 보안정책, 접근권한, 자료 반출입, 망분리 준비상태를 확인한다.', artifact:'Environment & Access Matrix, 공공기관 보안정책 확인표, 자료 반출입 기준표' },
+      { act:'A6', play:'감리·인증 대상 여부, 보안성, 개인정보 처리, 승인 지연 리스크를 점검한다.', artifact:'Security Readiness Checklist, 감리/인증 대상 확인표, 공공AX RAID Log' },
+      { act:'A7', play:'감리·인증·검수 관점의 착수 리스크를 정리하고 미확정 항목은 조건부 항목으로 관리한다.', artifact:'본수행 착수점검표, 공공AX 착수 판단 결과서, 감리/인증 Open Item 이관 목록' },
     ]
   },
-  agile: {
-    icon: '🔄', title: '순수 Agile 팀', sub: 'Scrum Accountabilities + Working Agreement 중심으로 가볍게 운영합니다.',
+  'prod-finance': {
+    icon: '🚀', title: '본사업 · 금융AX', sub: '혁신금융·금융보안·금보원 감사·데이터/망/권한 통제를 일반AX Play에 추가로 확인합니다.',
     plays: [
-      { act:'A1', play:'Scrum Working Agreement 작성 (DoR/DoD 중심)', artifact:'Working Agreement, DoR/DoD', intensity:'낮음' },
-      { act:'A2', play:'Scrum Accountabilities 정의 (PO/SM/Dev)', artifact:'Team Charter (1장)', intensity:'낮음' },
-      { act:'A3', play:'Sprint Ceremony 주기만 확정', artifact:'Ceremony Calendar', intensity:'낮음' },
-      { act:'A4', play:'Definition of Done 중심 (산출물 목록 최소화)', artifact:'DoD + 핵심 산출물 3종', intensity:'낮음' },
-      { act:'A5', play:'개발 환경 + 협업 도구 접근 확인만', artifact:'Environment Checklist', intensity:'낮음' },
-      { act:'A6', play:'Sprint 1 Block 요인만 점검', artifact:'Block Item List', intensity:'낮음' },
-      { act:'A7', play:'Sprint 1 Backlog 준비 여부 확인', artifact:'Sprint 1 Backlog Ready Checklist', intensity:'낮음' },
-    ]
-  },
-  hybrid: {
-    icon: '⚙️', title: 'Hybrid AX 프로젝트 (AXD + Agile)', sub: 'Role & Accountability Map + Backlog Owner + Decision Matrix를 권장합니다.',
-    plays: [
-      { act:'A1', play:'Hybrid WoW Workshop — AXD 단계 + Sprint 운영 결합', artifact:'WoW 합의서, DoR/DoD, Backlog 구조', intensity:'중간' },
-      { act:'A2', play:'Role & Accountability Map + Decision Matrix (권장)', artifact:'Stakeholder Map, Role Map, Decision Matrix', intensity:'중간' },
-      { act:'A3', play:'AXD 보고체계 + Sprint Ceremony 통합 설계', artifact:'Communication Plan, Cadence Calendar', intensity:'중간' },
-      { act:'A4', play:'AXD 산출물 + Agile 산출물 통합 Tailoring', artifact:'Deliverable Matrix (AXD+Agile 구분)', intensity:'중간' },
-      { act:'A5', play:'개발환경 + 협업도구 + 고객 시스템 전체 점검', artifact:'Access Matrix, Repository Rule', intensity:'중간' },
-      { act:'A6', play:'고객 준비 + RAID + Decision Log 통합 운영', artifact:'Customer Readiness, RAID Log, Decision Log', intensity:'중간' },
-      { act:'A7', play:'본수행 착수점검 + Sprint 1 착수 동시 확인', artifact:'착수점검표, Sprint 1 Backlog 확정', intensity:'중간' },
+      { act:'A1', play:'AXD / Agile / Hybrid 적용 수준을 정하되, 금융보안 심의, 혁신금융 검토, 감사 대응 일정을 함께 검토한다.', artifact:'프로젝트 수행방식 합의서, 금융AX 적용 기준 확인표, Sprint 1 후보 Backlog' },
+      { act:'A2', play:'금융보안, 개인정보, 고객 보안, 감사 대응, 운영 통제 담당자를 식별하고 의사결정 지연 리스크를 확인한다.', artifact:'Stakeholder Map, 금융보안/감사 담당자 확인표, Escalation Path' },
+      { act:'A3', play:'주간보고 외 보안/감사 이슈 회의, 데이터 제공·반출입 점검, 고객 승인 회의체를 반영한다.', artifact:'Communication Plan, 금융보안/감사 회의체 운영안, Decision Meeting Rule' },
+      { act:'A4', play:'금융보안, 감사 대응, 데이터 처리, 운영 전환 관련 증적을 산출물 기준에 포함한다.', artifact:'금융보안 증적 목록, 감사 대응 증적 목록, 데이터 처리 기준표, 혁신금융 검토 체크리스트' },
+      { act:'A5', play:'망분리, VDI/VPN, 데이터 반출입, 로그/감사 추적, 권한 승인 상태를 확인한다.', artifact:'Environment & Access Matrix, 망분리/접근방식 확인표, 로그/감사 추적 기준표' },
+      { act:'A6', play:'혁신금융 적용 여부, 금보원 감사 대응 필요 여부, 데이터 마스킹, 보안 심의 리스크를 점검한다.', artifact:'Security Readiness Checklist, 금융AX RAID Log, 혁신금융/감사 대응 체크리스트' },
+      { act:'A7', play:'금융보안, 감사, 데이터, 접근권한, 운영통제 관련 필수 조건을 점검하고 미확정 리스크는 조건부 착수 또는 착수 보류로 관리한다.', artifact:'본수행 착수점검표, 금융AX 착수 판단 결과서, 금융보안/감사 Open Item 이관 목록' },
     ]
   }
-};
-
-const INTENSITY_BADGE = {
-  '낮음': '<span class="badge ok">낮음</span>',
-  '중간': '<span class="badge draft">중간</span>',
-  '높음': '<span class="badge warn">높음</span>'
-};
-
-const SCALE_TAG_TEXT = {
-  '낮음': { cls: 'recommended', label: '✓ 권장' },
-  '중간': { cls: 'recommended', label: '✓ 권장' },
-  '높음': { cls: 'optional', label: '▲ 강화' }
 };
 
 function selectScale(btn) {
@@ -348,16 +337,14 @@ function selectScale(btn) {
       <td><strong>${p.act}</strong></td>
       <td>${p.play}</td>
       <td style="color:#2656d9;font-size:12px">${p.artifact}</td>
-      <td>${INTENSITY_BADGE[p.intensity]}</td>
     </tr>`
   ).join('');
 
-  // Activity 카드에 규모 태그 업데이트
+  // Activity 카드에 선택된 유형 태그 업데이트
   d.plays.forEach(p => {
     const el = document.getElementById('scale-tag-' + p.act);
     if (!el) return;
-    const t = SCALE_TAG_TEXT[p.intensity];
-    el.innerHTML = `<span class="scale-tag ${t.cls}">${t.label}</span>`;
+    el.innerHTML = `<span class="scale-tag recommended">✓ 적용</span>`;
   });
 
   // localStorage에 저장 (다른 페이지에서 읽을 수 있도록)

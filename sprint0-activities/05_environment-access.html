@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>A5 환경·도구·접근권한 준비</title>
+  <title>A5 환경·도구·접근권한 준비상태 확인</title>
   <style>
 :root{
   --bg:#0b1020; --bg2:#111936; --panel:#151f3f; --card:#ffffff; --ink:#eff5ff;
@@ -26,17 +26,17 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
       <a class="brand" href="index.html"><div class="logo"></div><div>Sprint 0 Playbook <span style="color:var(--muted);font-weight:650">AXD Hybrid</span></div></a>
       <nav class="nav" aria-label="activity navigation">
         <a href="index.html">Sprint 0 Overview</a>
-        <a href="01_way-of-working.html">A1 프로젝트 수행방식 합의</a><a href="02_team-raci.html">A2 수행팀 투입 및 R&amp;R 정렬</a><a href="03_communication-cadence.html">A3 의사소통관리 및 운영 주기 수립</a><a href="04_deliverable-acceptance.html">A4 산출물 검토·승인 기준 정의</a><a href="05_environment-access.html">A5 환경·도구·접근권한 준비</a><a href="06_readiness-raid.html">A6 고객 준비·보안성·리스크 점검</a><a href="07_transition-day1.html">A7 오픈·전환 고려사항 및 본수행 착수 점검</a><a href="artifact-repository.html" style="border-color:rgba(66,215,214,.5);color:#42d7d6">산출물 조회</a>
+        <a href="01_way-of-working.html">A1 수행방식 및 Sprint 운영 기준 정렬</a><a href="02_team-raci.html">A2 수행체계 및 책임구조 확인</a><a href="03_communication-cadence.html">A3 커뮤니케이션 및 운영 리듬 수립</a><a href="04_deliverable-acceptance.html">A4 산출물·검토·승인 기준 정렬</a><a href="05_environment-access.html">A5 환경·도구·접근권한 준비상태 확인</a><a href="06_readiness-raid.html">A6 고객 준비도·보안·리스크 점검</a><a href="07_transition-day1.html">A7 본수행 착수점검 및 미결사항 이관</a><a href="artifact-repository.html" style="border-color:rgba(66,215,214,.5);color:#42d7d6">산출물 조회</a>
       </nav>
     </header>
 
     <section class="hero">
       <div class="hero-card">
         <div class="eyebrow">A5 Activity Detail</div>
-        <h1><span class="activity-code">A5</span>환경·도구·접근권한 준비</h1>
+        <h1><span class="activity-code">A5</span>환경·도구·접근권한 준비상태 확인</h1>
         <p class="lead">본수행 착수점검 이후 Sprint 1 작업이 권한·환경·도구 미준비로 멈추지 않도록 필수 준비 항목을 확인하고 지연 항목을 관리합니다.</p>
         <div class="chips">
-          <span class="chip">Agile 용어 유지: Sprint 0 · Backlog · DoR · DoD · Acceptance Criteria</span>
+          <span class="chip">공통 운영 기준: Sprint 0 · 작업 목록 · 작업 시작·완료 기준 · 검수·수용 기준</span>
           <span class="chip">AXD 수행계획서 Chapter 연결</span>
           <span class="chip">본수행 착수점검 착수 판단 입력</span>
         </div>
@@ -50,8 +50,8 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
 
 <section class="section">
   <div class="grid three">
-    <div class="card cyan"><h3>생성 수준</h3><p><span class="badge draft">점검 → 일부 확정</span></p></div>
-    <div class="card blue"><h3>주요 템플릿</h3><p>08_Access</p></div>
+    <div class="card cyan"><h3>진행 상태</h3><p><span class="badge draft">점검 → 일부 확정</span></p></div>
+    <div class="card blue"><h3>정리 결과</h3><p>환경·접근권한 점검표</p></div>
     <div class="card green"><h3>사업수행계획서 반영</h3><p>8. 일정 계획, 15. 형상관리 계획, 16. 백업관리 계획, 18. 보안 대책</p></div>
   </div>
 </section>
@@ -62,12 +62,12 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
 <section class="section" id="play">
   <div class="section-head"><div><div class="kicker">Play 방식</div><h2>어떻게 수행하는가</h2></div></div>
   <div class="panel"><div class="panel-body">
-    <ul><li>Architect 또는 Tech Lead가 필요한 환경·권한 목록을 사전 작성합니다.</li><li>고객 IT/보안 담당자와 함께 가능/불가/필요기간/승인절차를 확인합니다.</li><li>Sprint 1 필수 권한과 후속 단계 권한을 구분합니다.</li><li>지연 항목은 Access Matrix에만 두지 않고 RAID와 본수행 착수점검표에 연결합니다.</li></ul>
+    <ul><li>Architect 또는 Tech Lead가 필요한 환경·권한 목록을 사전 작성합니다.</li><li>고객 IT/보안 담당자와 함께 가능/불가/필요기간/승인절차를 확인합니다.</li><li>Sprint 1 필수 권한과 후속 단계 권한을 구분합니다.</li><li>지연 항목은 접근권한 점검표에만 두지 않고 이슈·리스크 목록과 본수행 착수점검표에 연결합니다.</li></ul>
   </div></div>
 </section>
 <section class="section" id="owners">
   <div class="section-head"><div><div class="kicker">Play 담당자</div><h2>역할과 책임</h2></div></div>
-  <table class="map-table"><thead><tr><th>역할</th><th>RACI</th><th>역할 설명</th></tr></thead><tbody><tr><td><strong>Architect / Tech Lead</strong></td><td>R</td><td>필요 환경·도구·권한 목록 정의</td></tr><tr><td><strong>고객 IT / 인프라 담당</strong></td><td>A/R</td><td>계정 발급, 환경 준비, 내부망 접근 승인</td></tr><tr><td><strong>보안 담당자</strong></td><td>A/C</td><td>권한 범위, 보안접속, 자료반출 기준 검토</td></tr><tr><td><strong>PM</strong></td><td>A</td><td>지연 리스크와 일정 영향 관리</td></tr><tr><td><strong>DevOps / 형상관리 담당</strong></td><td>R/C</td><td>저장소, Branch, 백업, 배포도구 기준 정의</td></tr><tr><td><strong>사업관리 담당</strong></td><td>C</td><td>문서저장소와 산출물 보관 기준 반영</td></tr></tbody></table>
+  <table class="map-table"><thead><tr><th>역할</th><th>역할 구분</th><th>역할 설명</th></tr></thead><tbody><tr><td><strong>Architect / Tech Lead</strong></td><td>담당</td><td>필요 환경·도구·권한 목록 정의</td></tr><tr><td><strong>고객 IT / 인프라 담당</strong></td><td>담당·승인</td><td>계정 발급, 환경 준비, 내부망 접근 승인</td></tr><tr><td><strong>보안 담당자</strong></td><td>승인·협의</td><td>권한 범위, 보안접속, 자료반출 기준 검토</td></tr><tr><td><strong>PM</strong></td><td>승인</td><td>지연 리스크와 일정 영향 관리</td></tr><tr><td><strong>DevOps / 형상관리 담당</strong></td><td>담당·협의</td><td>저장소, Branch, 백업, 배포도구 기준 정의</td></tr><tr><td><strong>사업관리 담당</strong></td><td>협의</td><td>문서저장소와 산출물 보관 기준 반영</td></tr></tbody></table>
 </section>
 <section class="section" id="info">
   <div class="section-head"><div><div class="kicker">수집 필요 정보</div><h2>입력 데이터</h2></div></div>
@@ -82,8 +82,8 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
   </tbody></table>
 </section>
 <section class="section" id="outputs">
-  <div class="section-head"><div><div class="kicker">생성 Artifact</div><h2>이 Activity에서 생성되는 산출물</h2></div></div>
-  <table class="map-table"><thead><tr><th>템플릿 / 산출물</th><th>설명</th></tr></thead><tbody><tr><td><strong>08_Access</strong></td><td>환경·도구·접근권한 점검표, 계정 신청 목록, 권한 승인 현황</td></tr><tr><td><strong>10_Readiness_RAID</strong></td><td>권한·환경 지연 Risk/Issue 등록</td></tr><tr><td><strong>11_Day1Check</strong></td><td>본수행 착수점검 필수 접근권한 준비 여부 판단</td></tr><tr><td><strong>12_BP_Transfer</strong></td><td>형상관리·백업관리·보안대책 반영 현황</td></tr></tbody></table>
+  <div class="section-head"><div><div class="kicker">정리 결과</div><h2>이 Activity에서 정리되는 운영 기준</h2></div></div>
+  <table class="map-table"><thead><tr><th>구분</th><th>설명</th></tr></thead><tbody><tr><td><strong>환경·접근권한 점검표</strong></td><td>환경·도구·접근권한 점검표, 계정 신청 목록, 권한 승인 현황</td></tr><tr><td><strong>미확정 항목 등록</strong></td><td>권한·환경 지연 이슈·리스크 등록</td></tr><tr><td><strong>착수점검 연계</strong></td><td>본수행 착수점검 필수 접근권한 준비 여부 판단</td></tr><tr><td><strong>사업수행계획서 반영 현황</strong></td><td>형상관리·백업관리·보안대책 반영 현황</td></tr></tbody></table>
 </section>
 <section class="section" id="checklist">
   <div class="section-head"><div><div class="kicker">완료 체크리스트</div><h2>Activity 완료 여부 확인</h2></div></div>
@@ -93,11 +93,11 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
   <strong>산출물 조회:</strong> 이 Activity에서 생성된 산출물은 <a href="artifact-repository.html" style="color:#2656d9;text-decoration:underline">Artifact Repository</a>에서 상태·버전·Chapter 반영 현황을 확인할 수 있습니다.
 </div>
 <div class="nextprev">
-  <a class="secondary" href="04_deliverable-acceptance.html">&larr; A4 산출물 검토·승인 기준 정의</a>
-  <a href="06_readiness-raid.html">A6 고객 준비·보안성·리스크 점검 &rarr;</a>
+  <a class="secondary" href="04_deliverable-acceptance.html">&larr; A4 산출물·검토·승인 기준 정렬</a>
+  <a href="06_readiness-raid.html">A6 고객 준비도·보안·리스크 점검 &rarr;</a>
 </div>
 <footer class="footer">
-  <p>Sprint 0 Activity Playbook — AXD Hybrid | A5 환경·도구·접근권한 준비</p>
+  <p>Sprint 0 Activity Playbook — AXD Hybrid | A5 환경·도구·접근권한 준비상태 확인</p>
 </footer>
   </div>
 </body>
