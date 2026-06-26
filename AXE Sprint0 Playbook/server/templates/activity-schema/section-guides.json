@@ -1,0 +1,20 @@
+{
+  "_comment": "PRD v0.1 6장 표의 '섹션 목적' 컬럼을 AI 프롬프트 컨텍스트로 재사용하기 위한 데이터.",
+  "doc-info": "문서 버전, 작성일, 작성자, 상태를 표시한다. 자동 생성 영역이며 AI 보완 대상이 아니다.",
+  "overview": "사업명, 기간, 고객, 목적을 한눈에 파악할 수 있도록 요약한다.",
+  "background": "추진 배경, 고객 기대성과, 성공 기준을 설명한다.",
+  "scope": "Scope In/Out과 가정/제약사항을 명확히 한다.",
+  "governance": "거버넌스 구조와 의사결정 라인을 설명한다.",
+  "raci": "역할과 책임(RACI 매트릭스)을 표 형태로 정리한다.",
+  "methodology": "AXD/Hybrid 적용 방식과 WoW, DoR/DoD를 설명한다.",
+  "schedule": "Sprint 0 일정과 주요 마일스톤을 정리한다.",
+  "communication": "회의체, 보고 주기, 채널을 정리한다.",
+  "deliverables": "산출물 목록, 작성 책임, 일정을 정리한다.",
+  "acceptance": "산출물 검토/승인 절차와 기준을 설명한다.",
+  "environment": "환경/도구/접근권한 준비 상태를 정리한다.",
+  "raid": "리스크/이슈/의존성/결정사항을 표로 정리한다.",
+  "transition": "Day-1 준비와 오픈/전환 고려사항을 설명한다.",
+  "quality": "품질 점검 기준과 검토 프로세스를 설명한다.",
+  "change-management": "변경 요청 처리 절차를 설명한다.",
+  "appendix": "Open Item, Action Item 목록을 정리한다. 자동 목록 영역이며 AI가 자유 생성하지 않는다."
+}

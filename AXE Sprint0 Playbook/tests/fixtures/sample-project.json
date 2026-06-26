@@ -1,0 +1,127 @@
+{
+  "_comment": "PRD v0.1 7장 데이터 모델의 예시 데이터 모음. 테스트/개발 시 fixture로 사용.",
+
+  "project": {
+    "project_id": "PJT-2026-001",
+    "name": "AI 상담 자동화 구축",
+    "customer": "고객사A",
+    "pm": "홍길동",
+    "start_date": "2026-06-01",
+    "end_date": "2026-12-31",
+    "created_at": "2026-06-19T09:00:00+09:00",
+    "updated_at": "2026-06-19T09:00:00+09:00"
+  },
+
+  "phase": {
+    "phase_id": "sprint0",
+    "project_id": "PJT-2026-001",
+    "name": "Sprint 0",
+    "order": 1
+  },
+
+  "activityResult": {
+    "result_id": "res-0007",
+    "project_id": "PJT-2026-001",
+    "activity_id": "team-raci",
+    "task_id": "raci-matrix",
+    "fields": {
+      "members": [
+        { "name": "홍길동", "role": "PM", "raci": "A" },
+        { "name": "고객측 김OO", "role": "고객 PM", "raci": "A/R" }
+      ]
+    },
+    "status": "saved",
+    "created_by": "홍길동",
+    "created_at": "2026-06-19T09:30:00+09:00",
+    "updated_at": "2026-06-19T09:30:00+09:00"
+  },
+
+  "executionPlan": {
+    "plan_id": "plan-PJT-2026-001",
+    "project_id": "PJT-2026-001",
+    "file_path": "output/projects/PJT-2026-001/execution-plan.md",
+    "version": 12,
+    "last_generated_at": "2026-06-19T10:00:00+09:00"
+  },
+
+  "executionPlanSection": {
+    "section_id": "raci",
+    "plan_id": "plan-PJT-2026-001",
+    "current_text": "(생성된 RACI 표 텍스트)",
+    "source_result_ids": ["res-0007"],
+    "last_updated_at": "2026-06-19T10:00:00+09:00",
+    "update_status": "pending"
+  },
+
+  "decisionLog": {
+    "decision_id": "dec-003",
+    "project_id": "PJT-2026-001",
+    "title": "MVP 범위에서 모바일 앱 제외",
+    "description": "고객 요청에 따라 1차 출시 범위를 웹으로 한정",
+    "decided_by": "딜리버리리드",
+    "decided_at": "2026-06-10",
+    "related_section_id": "scope"
+  },
+
+  "raidItem": {
+    "raid_id": "raid-011",
+    "project_id": "PJT-2026-001",
+    "type": "risk",
+    "description": "고객 환경 접근권한 지연",
+    "impact": "High",
+    "owner": "고객 IT 담당",
+    "status": "open",
+    "mitigation": "Sandbox 환경으로 우회 진행",
+    "due_date": "2026-06-25"
+  },
+
+  "actionItem": {
+    "action_id": "act-022",
+    "project_id": "PJT-2026-001",
+    "title": "VPN 접근권한 신청",
+    "owner": "홍길동",
+    "due_date": "2026-06-25",
+    "status": "open",
+    "source_activity_id": "environment-access"
+  },
+
+  "artifact": {
+    "artifact_id": "art-002",
+    "project_id": "PJT-2026-001",
+    "name": "Sprint0 수행계획",
+    "template_ref": "02_Sprint0Plan",
+    "status": "draft"
+  },
+
+  "approval": {
+    "approval_id": "appr-014",
+    "target_type": "ai_suggestion",
+    "target_id": "suggestion-009",
+    "approver": "홍길동",
+    "decision": "approved",
+    "decided_at": "2026-06-19T10:00:00+09:00",
+    "comment": "RACI 표 형식 적절함"
+  },
+
+  "changeHistory": {
+    "change_id": "chg-101",
+    "project_id": "PJT-2026-001",
+    "section_id": "raci",
+    "before_text": "(이전 RACI 섹션 텍스트)",
+    "after_text": "(생성된 RACI 표 텍스트)",
+    "triggered_by": "appr-014",
+    "changed_at": "2026-06-19T10:00:00+09:00",
+    "backup_file": "backups/execution-plan.v11.md"
+  },
+
+  "aiSuggestion": {
+    "suggestion_id": "suggestion-009",
+    "project_id": "PJT-2026-001",
+    "section_id": "raci",
+    "suggested_text": "## 역할과 책임\n\n| 역할 | RACI | 책임 |\n|---|---|---|\n| PM | A | ... |",
+    "change_summary": "팀 구성원 2명의 RACI를 표 형식으로 정리",
+    "missing_inputs": ["고객측 Accountable 담당자 미입력"],
+    "clarifying_questions": ["고객측 의사결정자는 누구인가요?"],
+    "created_at": "2026-06-19T09:55:00+09:00"
+  }
+}

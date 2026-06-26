@@ -1,0 +1,33 @@
+services:
+  server:
+    build:
+      context: ..
+      dockerfile: "AXE Sprint0 Playbook/server/Dockerfile"
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./data:/repo/axe-sprint0-playbook/data
+      - ./output:/repo/axe-sprint0-playbook/output
+      # 소스 변경 시 즉시 반영(tsx watch)되도록 마운트. node_modules는 컨테이너 내부 것을 사용.
+      - ./server/src:/repo/axe-sprint0-playbook/server/src
+      - ./server/templates:/repo/axe-sprint0-playbook/server/templates
+      - ../sprint0-activities/activity_data.json:/repo/sprint0-activities/activity_data.json:ro
+    environment:
+      - PORT=4000
+    restart: unless-stopped
+
+  client:
+    build:
+      context: ..
+      dockerfile: "AXE Sprint0 Playbook/client/Dockerfile"
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./client/src:/app/src
+      - ./client/index.html:/app/index.html
+      - ./client/vite.config.ts:/app/vite.config.ts
+    environment:
+      - API_PROXY_TARGET=http://server:4000
+    depends_on:
+      - server
+    restart: unless-stopped

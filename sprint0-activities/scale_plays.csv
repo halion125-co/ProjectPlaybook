@@ -1,0 +1,50 @@
+scale_key,activity,play,artifact,intensity
+short,A1,간소화된 WoW 합의 (1시간 이내),WoW 1장 요약,낮음
+short,A2,간단한 역할 정리 + 승인자 확정,"Stakeholder Map, 승인자 목록",낮음
+short,A3,주간보고 + Sprint Review 기준만 확정,보고 주기 1장,낮음
+short,A4,필수 산출물만 Tailoring (3~5종),산출물 목록 축약,낮음
+short,A5,필수 권한·도구 점검 (체크리스트),Access Checklist,낮음
+short,A6,핵심 Risk 3~5건만 등록,RAID 간소판,낮음
+short,A7,착수 가능/착수 보류 기준만 확인,착수점검표 (간소),낮음
+mid,A1,Hybrid WoW Workshop (2~3시간),"WoW 합의서, DoR/DoD, Backlog",중간
+mid,A2,Role & Accountability Map + Decision Matrix,"Stakeholder Map, Role Map, Decision Matrix",중간
+mid,A3,Operating Rhythm Design (전체 회의체 설계),"Communication Plan, Meeting Calendar",중간
+mid,A4,산출물 Tailoring + Acceptance Criteria 정의,"Deliverable Matrix, AC 기준",중간
+mid,A5,환경·권한 전체 점검 + 지연 RAID 등록,"Access Matrix, Access Request List",중간
+mid,A6,고객 준비·보안·RAID 전체 점검,"Customer Readiness, Security Checklist, RAID Log",중간
+mid,A7,본수행 착수점검 회의 + 조건부 착수 관리,"착수점검표, 착수점검 결과서",중간
+long,A1,Phase별 WoW 분리 설계 (단계별 Sprint 설계),"WoW per Phase, Backlog 구조",높음
+long,A2,Role Map + Decision Matrix + Escalation Path (필수),"전체 3종 세트, Contact List",높음
+long,A3,Steering + CCB + Sprint Ceremony 전체 설계,"Communication Plan, Cadence Calendar",높음
+long,A4,단계별 산출물 Tailoring + Gate 기준 정의,"전체 산출물 Matrix, Gate Checklist",높음
+long,A5,환경·권한 로드맵 수립 (단계별 준비 계획),"Access Roadmap, Repository Rule",높음
+long,A6,Risk Management Plan 수립 + RAID 체계 구축,"Risk Register, RAID Log, Decision Log",높음
+long,A7,Phase Gate Review + 본수행 착수점검 공식화,"Phase Gate Report, 착수점검 결과서",높음
+regulatory,A1,방법론 준수 계획 + 감사 대응 WoW 설계,"WoW 합의서, 컴플라이언스 체크",높음
+regulatory,A2,Decision & Approval Matrix 필수 (승인 구조 명확화),"Approval Matrix, Stakeholder Map",높음
+regulatory,A3,공문 기준 + 의사결정 이력 관리 체계 설계,"Communication Plan, Decision Log 양식",높음
+regulatory,A4,감리·검수 대상 산출물 별도 분류,Deliverable Matrix + 감리 대상 목록,높음
+regulatory,A5,보안 승인 절차 + 개인정보 처리 방침 확인,Access Matrix + 보안 승인 이력,중간
+regulatory,A6,법적 리스크 + 보안 규정 준수 점검,"Security Checklist, Legal Risk 등록",높음
+regulatory,A7,감사 기준 착수 체크리스트 + 공식 승인,"착수점검표 (공식), 착수 승인서",높음
+multi-vendor,A1,협력사별 WoW 합의 + 인터페이스 기준 설계,WoW + 협력사 인터페이스 정의,높음
+multi-vendor,A2,협력사 책임 경계표 + Decision Matrix (필수),"Responsibility Boundary Table, Decision Matrix",높음
+multi-vendor,A3,협력사 포함 전체 Communication Plan 설계,Communication Plan + 협력사 보고 체계,높음
+multi-vendor,A4,협력사별 산출물 분리 + 통합 승인 기준,Deliverable Matrix (협력사 구분),높음
+multi-vendor,A5,협력사별 접근권한 분리 + 보안 경계 설정,Access Matrix (협력사 구분),높음
+multi-vendor,A6,협력사 Dependency 리스크 집중 등록,RAID Log + Dependency Map,높음
+multi-vendor,A7,협력사 준비 체크 + 통합 착수점검,착수점검표 (협력사 포함),높음
+agile,A1,Scrum Working Agreement 작성 (DoR/DoD 중심),"Working Agreement, DoR/DoD",낮음
+agile,A2,Scrum Accountabilities 정의 (PO/SM/Dev),Team Charter (1장),낮음
+agile,A3,Sprint Ceremony 주기만 확정,Ceremony Calendar,낮음
+agile,A4,Definition of Done 중심 (산출물 목록 최소화),DoD + 핵심 산출물 3종,낮음
+agile,A5,개발 환경 + 협업 도구 접근 확인만,Environment Checklist,낮음
+agile,A6,Sprint 1 Block 요인만 점검,Block Item List,낮음
+agile,A7,Sprint 1 Backlog 준비 여부 확인,Sprint 1 Backlog Ready Checklist,낮음
+hybrid,A1,Hybrid WoW Workshop — AXD 단계 + Sprint 운영 결합,"WoW 합의서, DoR/DoD, Backlog 구조",중간
+hybrid,A2,Role & Accountability Map + Decision Matrix (권장),"Stakeholder Map, Role Map, Decision Matrix",중간
+hybrid,A3,AXD 보고체계 + Sprint Ceremony 통합 설계,"Communication Plan, Cadence Calendar",중간
+hybrid,A4,AXD 산출물 + Agile 산출물 통합 Tailoring,Deliverable Matrix (AXD+Agile 구분),중간
+hybrid,A5,개발환경 + 협업도구 + 고객 시스템 전체 점검,"Access Matrix, Repository Rule",중간
+hybrid,A6,고객 준비 + RAID + Decision Log 통합 운영,"Customer Readiness, RAID Log, Decision Log",중간
+hybrid,A7,본수행 착수점검 + Sprint 1 착수 동시 확인,"착수점검표, Sprint 1 Backlog 확정",중간

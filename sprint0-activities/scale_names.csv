@@ -1,0 +1,8 @@
+key,icon,label,sub,title,description
+short,⚡,단기,1~2개월,단기 프로젝트 (1~2개월),가볍고 빠르게 — 핵심만 정리하고 바로 착수합니다.
+mid,📅,중형,3~6개월,중형 프로젝트 (3~6개월),Role & Accountability Map + Decision Matrix 중심으로 운영합니다.
+long,🏗,장기,6개월 이상,장기 프로젝트 (6개월 이상),RACI 금지에 가까움. 역할·의사결정·Escalation 중심으로 운영합니다.
+regulatory,🏛,규제·공공,감사·인증 필요,규제·감사·공공 프로젝트,산출물 승인 구조는 필수. Task 단위 RACI는 불필요합니다.
+multi-vendor,🤝,다수 협력사,복수 벤더,다수 협력사 프로젝트,책임 경계표와 의사결정 Matrix가 핵심입니다.
+agile,🔄,순수 Agile,Scrum 중심,순수 Agile 팀,Scrum Accountabilities + Working Agreement 중심으로 가볍게 운영합니다.
+hybrid,⚙️,Hybrid AX,AXD + Agile,Hybrid AX 프로젝트 (AXD + Agile),Role & Accountability Map + Backlog Owner + Decision Matrix를 권장합니다.
