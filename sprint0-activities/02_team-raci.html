@@ -21,7 +21,6 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
 
 /* ── Task Play Guide 카드/모달 ── */
 .task-guide-card{cursor:pointer;transition:box-shadow .18s,border-color .18s,transform .12s}.task-guide-card:hover{box-shadow:0 10px 28px rgba(23,32,51,.10);border-color:#b8caed;transform:translateY(-1px)}.task-guide-card .task-click-hint{margin-top:auto;font-size:12px;color:#2656d9;font-weight:800;display:flex;align-items:center;gap:4px}
-.task-guide-card.conditional{border-style:dashed}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(11,16,32,.6);backdrop-filter:blur(3px);z-index:1000;align-items:center;justify-content:center;padding:24px}.modal-overlay.active{display:flex}
 .modal-box{background:#fff;border-radius:24px;max-width:760px;width:100%;max-height:86vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.35);color:var(--dark)}
 .modal-head{position:sticky;top:0;background:#172033;color:#fff;padding:20px 26px;border-radius:24px 24px 0 0;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
@@ -39,9 +38,10 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
 .mg-pill{font-size:13px;background:#edf2ff;color:#2656d9;border-radius:999px;padding:6px 12px;font-weight:700}
 .mg-example{background:#f5fbff;border-left:4px solid var(--cyan);border-radius:12px;padding:14px 16px;font-size:13px;color:#344054;white-space:pre-line;line-height:1.6}
 
-/* ── 조건부 토글 ── */
-.toggle-bar{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:18px}
-.toggle-bar label{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:#dce9ff;cursor:pointer}
+/* ── 결과 활용처 접기 ── */
+.usage-toggle{cursor:pointer;list-style:none;background:#172033;color:#fff;padding:14px 20px;border-radius:18px;font-size:13px;font-weight:800;display:flex;justify-content:space-between;align-items:center}
+.usage-toggle::-webkit-details-marker{display:none}
+.usage-body{padding:18px 4px 4px}
 
 @media(max-width:1100px){.hero{grid-template-columns:1fr}.grid.three,.grid.four{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:720px){.wrap{padding:20px 16px 60px}h1{font-size:30px}.grid.two,.grid.three,.grid.four{grid-template-columns:1fr}.map-table{font-size:12px}.map-table th,.map-table td{padding:10px}.nextprev{flex-direction:column}.hero-card{padding:22px}.modal-box{max-height:92vh}}
@@ -60,7 +60,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
 
     <section class="hero">
       <div class="hero-card">
-        <div class="eyebrow">A2 Activity Detail</div>
+        <div class="eyebrow">A2 Activity 개요</div>
         <h1><span class="activity-code">A2</span>참여자 역할과 의사결정 구조 확인</h1>
         <p class="lead">본수행 중 책임 공백과 의사결정 지연이 발생하지 않도록, 주요 참여자, 역할별 책임 범위, 승인자, 상위 보고 경로를 확인합니다. 이 Activity는 역할표를 만드는 것이 아니라, 프로젝트 수행 중 "누가 결정하고, 누가 책임지고, 이슈가 막히면 어디로 올릴지"를 정리하는 활동입니다.</p>
         <p class="note" style="margin-top:14px"><strong style="color:#fff">핵심 질문</strong><br>본수행 중 누가 책임지고, 누가 승인하며, 이슈가 막히면 누구에게 올릴 것인가?</p>
@@ -72,7 +72,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
         </div>
       </div>
       <div class="hero-card">
-        <div class="eyebrow">A2 Decision Point</div>
+        <div class="eyebrow">A2 결정해야 할 것</div>
         <div class="quote">A2에서 결정해야 할 것</div>
         <p class="note" style="margin-top:12px">이 Activity의 결과는 역할표 작성이 아니라, 본수행 중 책임 공백과 의사결정 지연을 방지하기 위한 운영 기준입니다.</p>
         <table class="map-table" style="margin-top:16px"><thead><tr><th>구분</th><th>결정해야 할 내용</th></tr></thead><tbody>
@@ -110,17 +110,13 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
     <section class="section" id="tasks">
       <div class="section-head"><div><div class="kicker">Task</div><h2>수행 Task별 Play Guide</h2><p class="desc">각 Task는 PM이 회의에서 바로 사용할 수 있도록 진행 질문, 결정해야 할 것, 기록할 결과로 구성됩니다. 카드를 클릭하면 상세 Play Guide를 확인할 수 있습니다.</p></div></div>
 
-      <div class="toggle-bar">
-        <label><input type="checkbox" id="vendorToggle" onchange="toggleVendorTask()"> 협력사 또는 외부 인력이 참여합니다 (협력사 책임 경계 확인 Task 표시)</label>
-      </div>
-
       <div class="grid two">
         <div class="card blue task-guide-card" onclick="openTaskModal(1)"><h3><span class="task-no">1</span>주요 참여자 확인</h3><p>고객, 수행사, 협력사, 지원조직의 핵심 참여자를 확인합니다.</p><div class="task-click-hint">Play Guide 보기 →</div></div>
         <div class="card blue task-guide-card" onclick="openTaskModal(2)"><h3><span class="task-no">2</span>역할별 책임 범위 확인</h3><p>핵심 역할이 무엇을 책임지는지 확인하고 책임 공백을 줄입니다. 작업 단위 역할표는 작성하지 않습니다.</p><div class="task-click-hint">Play Guide 보기 →</div></div>
         <div class="card blue task-guide-card" onclick="openTaskModal(3)"><h3><span class="task-no">3</span>승인자·의사결정자 확인</h3><p>요구사항 우선순위, 산출물 승인, 범위 변경, 보안 예외, 오픈 승인 등 주요 결정 항목별 승인자와 결정자를 확인합니다.</p><div class="task-click-hint">Play Guide 보기 →</div></div>
         <div class="card blue task-guide-card" onclick="openTaskModal(4)"><h3><span class="task-no">4</span>상위 보고·의사결정 경로 확인</h3><p>현장 수준에서 해결되지 않는 이슈를 언제, 누구에게 올릴지 정리합니다.</p><div class="task-click-hint">Play Guide 보기 →</div></div>
         <div class="card blue task-guide-card" onclick="openTaskModal(5)"><h3><span class="task-no">5</span>미확정 항목 및 착수 영향 정리</h3><p>A2에서 결정되지 않은 항목을 Open Item으로 등록하고 본수행 착수 영향을 판단합니다.</p><div class="task-click-hint">Play Guide 보기 →</div></div>
-        <div class="card blue task-guide-card conditional" id="vendorTaskCard" style="display:none" onclick="openTaskModal(6)"><h3><span class="task-no">조건부</span>협력사 책임 경계 확인</h3><p>협력사, 외부 개발사, VDC, 파트너사가 참여하는 경우 책임 전가와 의사결정 지연을 방지합니다.</p><div class="task-click-hint">Play Guide 보기 →</div></div>
+        <div class="card blue task-guide-card" onclick="openTaskModal(6)"><h3><span class="task-no">6</span>협력사 책임 경계 확인</h3><p>협력사, 외부 개발사, VDC, 파트너사가 참여하는 경우 책임 전가와 의사결정 지연을 방지합니다.</p><div class="task-click-hint">Play Guide 보기 →</div></div>
       </div>
     </section>
 
@@ -135,37 +131,31 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
       </div>
     </div>
 
-    <!-- 최종 결정 및 기록 항목 -->
-    <section class="section" id="decisions">
-      <div class="section-head"><div><div class="kicker">최종 결정 및 기록 항목</div><h2>무엇을 결정하고 남겨야 하는가</h2><p class="desc">Activity 종료 시 Playbook에 남길 결과값입니다. Task별 Play Guide에서 논의한 내용을 요약하여, 본수행 착수점검과 후속 Activity에서 재사용할 수 있도록 기록합니다.</p></div></div>
-      <table class="map-table"><thead><tr><th>기록 항목</th><th>설명</th></tr></thead><tbody>
-        <tr><td><strong>주요 참여자 목록</strong></td><td>고객, 수행사, 지원조직의 핵심 참여자</td></tr>
-        <tr><td><strong>역할별 책임 범위</strong></td><td>핵심 역할이 책임지는 범위</td></tr>
-        <tr><td><strong>승인자·의사결정자 목록</strong></td><td>요구사항, 산출물, 범위 변경, 보안 예외, 오픈 승인자</td></tr>
-        <tr><td><strong>상위 보고 경로</strong></td><td>일정·범위·품질·보안 이슈 지연 시 보고 기준</td></tr>
-        <tr><td><strong>책임 공백 항목</strong></td><td>담당자·승인자·결정자가 미정인 항목</td></tr>
-        <tr><td><strong>본수행 착수 영향</strong></td><td>착수 가능 / 조건부 착수 / 착수 보류 영향</td></tr>
+    <!-- 이행 확인 체크리스트 -->
+    <section class="section" id="checklist">
+      <div class="section-head"><div><div class="kicker">이행 확인 체크리스트</div><h2>A2가 실제로 이행되었는지 무엇으로 확인하는가</h2><p class="desc">Task별 Play Guide를 진행한 뒤, 그 결과가 실제 프로젝트 운영에 반영되었는지 아래 기준과 근거로 확인합니다.</p></div></div>
+      <table class="map-table"><thead><tr><th>확인 기준</th><th>확인 근거</th><th>미흡 시 조치</th></tr></thead><tbody>
+        <tr><td>고객·수행·지원조직의 핵심 참여자가 실제 이름 또는 부서로 확인되어 있는가</td><td>주요 참여자 목록, 회의 참석자, 고객 연락망</td><td>미정 참여자를 고객 PM 또는 수행PM 통해 확인</td></tr>
+        <tr><td>주요 책임 영역에 공백이 없는가</td><td>역할별 책임 범위, 수행조직도</td><td>품질, 보안, 데이터, 운영 등 공백 역할 보완</td></tr>
+        <tr><td>산출물, 요구사항, 범위 변경, 오픈 승인자가 확인되어 있는가</td><td>승인자 목록, 의사결정 기준</td><td>승인자 미정 항목을 후속 확인 대상으로 지정</td></tr>
+        <tr><td>일정·범위·품질·보안 이슈의 상위 보고 경로가 명확한가</td><td>보고체계, 회의체, 상위 보고·의사결정 경로 기준</td><td>이슈 유형별 보고 기준 재정리</td></tr>
+        <tr><td>핵심 의사결정자가 미정인 항목이 별도 관리되고 있는가</td><td>미정 항목 목록, 회의록</td><td>본수행 착수점검에서 조건부/보류 판단 항목으로 반영</td></tr>
       </tbody></table>
     </section>
 
-    <!-- Open Item 및 본수행 착수 영향 -->
-    <section class="section" id="open-items">
-      <div class="section-head"><div><div class="kicker">Open Item 및 본수행 착수 영향</div><h2>미확정 항목은 무엇인가</h2><p class="desc">승인자, 의사결정자, 핵심 담당자가 미정인 항목은 Open Item으로 등록합니다. 각 Open Item은 담당자, 기한, 본수행 착수 영향을 함께 관리합니다.</p></div></div>
-      <table class="map-table"><thead><tr><th>Open Item</th><th>담당</th><th>기한</th><th>착수 영향</th><th>처리 기준</th></tr></thead><tbody>
-        <tr><td class="tpl-ph">산출물 승인자 미정</td><td class="tpl-ph">[담당 입력]</td><td class="tpl-ph">[기한 입력]</td><td><span class="badge warn">조건부 착수 / 착수 보류</span></td><td>승인자 후보와 확인 일정 필요</td></tr>
-        <tr><td class="tpl-ph">보안 담당자 미정</td><td class="tpl-ph">[담당 입력]</td><td class="tpl-ph">[기한 입력]</td><td><span class="badge warn">조건부 착수</span></td><td>A5/A6와 연계</td></tr>
-        <tr><td class="tpl-ph">범위 변경 결정자 미정</td><td class="tpl-ph">[담당 입력]</td><td class="tpl-ph">[기한 입력]</td><td><span class="badge danger">착수 보류 후보</span></td><td>고객 PM 확인 필요</td></tr>
-        <tr><td class="tpl-ph">오픈 승인자 미정</td><td class="tpl-ph">[담당 입력]</td><td class="tpl-ph">[기한 입력]</td><td><span class="badge warn">조건부 착수</span></td><td>A7에서 재확인</td></tr>
-        <tr><td class="tpl-ph">[추가 항목]</td><td class="tpl-ph">[담당]</td><td class="tpl-ph">[기한]</td><td class="tpl-ph">[영향]</td><td class="tpl-ph">[처리 기준]</td></tr>
-      </tbody></table>
-      <div class="grid two" style="margin-top:14px">
-        <div class="card"><h3>착수 영향 없음</h3><p>본수행 착수와 직접 관련 없음</p></div>
-        <div class="card orange"><h3>조건부 착수 영향</h3><p>담당자와 기한이 정해져 있고 수행 중 해결 가능</p></div>
-        <div class="card red"><h3>착수 보류 영향</h3><p>핵심 승인자, 결정자, 책임자가 없어 본수행 착수 리스크가 큼</p></div>
-      </div>
-      <div class="callout warn" style="margin-top:14px">
-        <strong>활용 원칙:</strong> 승인자·결정자가 없는 항목은 착수 보류 후보로, Owner와 기한이 있는 항목은 조건부 착수 항목으로 구분하여 A7 본수행 착수점검에 전달합니다.
-      </div>
+    <!-- 결과 활용처 -->
+    <section class="section" id="usage">
+      <details>
+        <summary class="usage-toggle"><span>결과 활용처</span><span class="badge dark">펼쳐서 확인</span></summary>
+        <div class="usage-body">
+          <table class="map-table"><thead><tr><th>활용처</th><th>내용</th></tr></thead><tbody>
+            <tr><td><strong>사업수행계획서</strong></td><td>5. 사업 추진 체계 / 12. 인력관리 계획 / 13. 의사소통관리 계획</td></tr>
+            <tr><td><strong>A3 연결</strong></td><td>회의체 및 보고 대상 설정</td></tr>
+            <tr><td><strong>A4 연결</strong></td><td>산출물 승인자 확인</td></tr>
+            <tr><td><strong>A7 연결</strong></td><td>승인자·결정자 미정 항목 착수 영향 판단</td></tr>
+          </tbody></table>
+        </div>
+      </details>
     </section>
 
     <div class="nextprev">
@@ -189,7 +179,7 @@ const TASK_GUIDE = {
     criteria: ["역할명만 쓰지 않고 실제 이름 또는 부서를 채운다", "확정되지 않은 참여자는 Open Item으로 등록한다"],
     results: ["주요 참여자 목록", "실제 이름 또는 부서", "참여 시점", "연락 채널"],
     example: "이번 프로젝트의 고객 측 조율 담당자와 최종 승인자를 먼저 확인하겠습니다.\n보안과 인프라 환경을 담당하시는 분도 함께 알려주시겠어요?",
-    openItem: "고객 PM, 산출물 승인자, 보안 담당자 등 핵심 참여자가 미정인 경우 Open Item으로 등록합니다."
+    unresolved: "고객 PM, 산출물 승인자, 보안 담당자 등 핵심 참여자가 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
   },
   2: {
     title: "역할별 책임 범위 확인",
@@ -200,7 +190,7 @@ const TASK_GUIDE = {
     criteria: ["작업 단위 역할표는 작성하지 않는다", "개별 작업 담당자는 Sprint 작업 목록 또는 WBS에서 별도 관리한다"],
     results: ["역할별 핵심 책임 범위", "중복 책임 항목", "비어 있는 책임 영역"],
     example: "고정 역할별 핵심 책임만 정리하고, 개별 작업 담당자는 Sprint 작업 목록에서 관리하겠습니다.\n책임이 비어 있는 영역이 있는지 함께 확인해 주시겠어요?",
-    openItem: "품질, 보안, 데이터, 운영 등 필수 책임 영역의 담당이 미정인 경우 Open Item으로 등록합니다."
+    unresolved: "품질, 보안, 데이터, 운영 등 필수 책임 영역의 담당이 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
   },
   3: {
     title: "승인자·의사결정자 확인",
@@ -211,7 +201,7 @@ const TASK_GUIDE = {
     criteria: ["결정자가 미정인 항목은 조건부 착수 항목으로 관리한다", "산출물 승인자가 없으면 착수 보류 후보로 등록한다"],
     results: ["의사결정 기준", "결정자", "검토자", "협의 대상", "지연 시 조치"],
     example: "산출물 승인자가 아직 정해지지 않았다면 우선 조건부 항목으로 등록하고,\n착수 전까지 확정되어야 한다는 점을 함께 공유드리겠습니다.",
-    openItem: "산출물 승인자 또는 범위 변경 결정자가 미정이면 조건부 착수 또는 착수 보류 후보로 등록합니다."
+    unresolved: "산출물 승인자 또는 범위 변경 결정자가 미정이면 조건부 착수 또는 착수 보류 후보로 등록합니다."
   },
   4: {
     title: "상위 보고·의사결정 경로 확인",
@@ -222,7 +212,7 @@ const TASK_GUIDE = {
     criteria: ["이슈 유형별로 1차 조치, 기준 기간, 2차·최종 보고 대상을 구분한다"],
     results: ["이슈 유형별 1차 조치 기준", "기준 기간", "2차 보고 대상", "최종 의사결정자"],
     example: "일정 지연이 3일 이상 지속되면 Steering에 상정하고,\n보안 이슈는 발생 즉시 PM과 고객 PM에게 보고하는 방식으로 정리하겠습니다.",
-    openItem: "일정·범위·품질·보안 이슈의 보고 경로가 미정이면 Open Item으로 등록합니다."
+    unresolved: "일정·범위·품질·보안 이슈의 보고 경로가 미정이면 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
   },
   5: {
     title: "미확정 항목 및 착수 영향 정리",
@@ -233,7 +223,7 @@ const TASK_GUIDE = {
     criteria: ["Owner와 Due Date가 있으면 조건부 착수 항목", "핵심 승인자·결정자가 없으면 착수 보류 후보"],
     results: ["Open Item 목록", "조건부 착수 항목", "착수 보류 후보"],
     example: "오늘 확정하지 못한 역할과 승인자는 Open Item으로 등록하겠습니다.\n각 항목은 담당자와 확인 기한을 지정하고, 본수행 착수에 영향이 있는지 구분하겠습니다.",
-    openItem: "Owner와 Due Date가 있으면 조건부 착수 항목, 핵심 승인자·결정자가 없으면 착수 보류 후보로 등록합니다."
+    unresolved: "Owner와 Due Date가 있으면 조건부 착수 항목, 핵심 승인자·결정자가 없으면 착수 보류 후보로 등록합니다."
   },
   6: {
     title: "협력사 책임 경계 확인",
@@ -244,7 +234,7 @@ const TASK_GUIDE = {
     criteria: ["협력사 책임 범위가 불명확하거나 승인자가 미정이면 Open Item으로 등록한다"],
     results: ["협력사별 책임 범위", "협력사 보고 경로", "협력사 산출물 검토 기준"],
     example: "협력사가 여러 곳 참여하므로, 업무 경계와 보고 경로를 협력사별로 명확히 구분해 정리하겠습니다.",
-    openItem: "협력사 책임 범위가 불명확하거나 승인자가 미정이면 Open Item으로 등록합니다."
+    unresolved: "협력사 책임 범위가 불명확하거나 승인자가 미정이면 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
   }
 };
 
@@ -264,7 +254,7 @@ function openTaskModal(taskNo) {
     <div class="mg-row"><div class="mg-label">결정해야 할 것</div><div class="mg-content mg-pills">${t.options.map(o => `<span class="mg-pill">${o}</span>`).join("")}</div></div>
     <div class="mg-row"><div class="mg-label">결정 기준</div><div class="mg-content">${buildList(t.criteria)}</div></div>
     <div class="mg-row"><div class="mg-label">기록할 결과</div><div class="mg-content">${buildList(t.results)}</div></div>
-    <div class="mg-row"><div class="mg-label">Open Item 기준</div><div class="mg-content">${t.openItem}</div></div>
+    <div class="mg-row"><div class="mg-label">미정 시 처리</div><div class="mg-content">${t.unresolved}</div></div>
     <div class="mg-row"><div class="mg-label">PM 진행 예시</div><div class="mg-example">${t.example}</div></div>
   `;
   document.getElementById("task-modal-overlay").classList.add("active");
@@ -283,21 +273,6 @@ function closeTaskModalOnOverlay(event) {
 document.addEventListener("keydown", function(e) {
   if (e.key === "Escape") closeTaskModal();
 });
-
-// 협력사 책임 경계 Task 조건부 표시
-function toggleVendorTask() {
-  const checked = document.getElementById("vendorToggle").checked;
-  document.getElementById("vendorTaskCard").style.display = checked ? "" : "none";
-  localStorage.setItem("axd_a2_vendor_participation", checked ? "1" : "0");
-}
-
-(function initVendorToggle() {
-  const saved = localStorage.getItem("axd_a2_vendor_participation");
-  if (saved === "1") {
-    document.getElementById("vendorToggle").checked = true;
-    document.getElementById("vendorTaskCard").style.display = "";
-  }
-})();
 </script>
 </body>
 </html>
