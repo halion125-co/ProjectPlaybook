@@ -68,23 +68,23 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
       <div class="hero-card">
         <div class="eyebrow">Sprint 0 Overview</div>
         <h1>Sprint 0 Activity Playbook</h1>
-        <p class="lead">Sprint 0 본문과 7개 하위 Activity별로 Task, Play 방식, 담당자, 수집정보, 의사결정, 산출물 템플릿을 정의한 HTML Pack입니다.</p>
+        <p class="lead">Sprint 0 본문과 7개 하위 Activity별로 PM이 무엇을 질문하고, 결정하고, 기록해야 하는지 안내하는 실행 가이드입니다.</p>
         <div class="chips">
-          <span class="chip">Agile 용어 유지: Sprint 0 · Backlog · DoR · DoD · Acceptance Criteria</span>
-          <span class="chip">AXD 수행계획서 Chapter 연결</span>
-          <span class="chip">본수행 착수점검 착수 판단 입력</span>
+          <span class="chip">결정해야 할 것</span>
+          <span class="chip">수행 Task별 Play Guide</span>
+          <span class="chip">이행 확인 체크리스트</span>
         </div>
       </div>
       <div class="hero-card">
-        <div class="eyebrow">Playbook Output</div>
-        <div class="quote">Task를 수행하면 템플릿이 생성되고, 템플릿 상태가 본수행 착수 판단으로 연결됩니다.</div>
-        <p class="note" style="margin-top:16px">이 HTML Pack은 전통적 사업수행계획서 산출물을 대체하기보다, Sprint 0에서 Hybrid 수행에 필요한 입력값과 실행 산출물을 구조화하는 용도입니다.</p>
+        <div class="eyebrow">Read-only Playbook</div>
+        <div class="quote">Task를 수행한 결과가 결정사항으로 정리되고, 그 결정사항이 본수행 착수 판단으로 연결됩니다.</div>
+        <p class="note" style="margin-top:16px">이 Playbook은 화면에 값을 입력하거나 저장하는 시스템이 아니라, PM이 각 Activity를 수행할 때 참고하는 가이드입니다. 정리된 결과는 사업수행계획서, 본수행 착수점검과 연결됩니다.</p>
       </div>
     </section>
 
     <!-- ── 프로젝트 유형·Tag 선택기 ── -->
     <div class="scale-selector">
-      <div class="scale-title">프로젝트 유형 · Tag 선택 — Activity별 Play와 Artifact가 자동으로 조정됩니다</div>
+      <div class="scale-title">프로젝트 유형 · Tag 선택 — Activity별 진행 방식과 정리 결과가 자동으로 조정됩니다</div>
       <div class="scale-options">
         <button class="scale-btn" data-scale="poc-general" onclick="selectScale(this)">
           <div class="sb-icon">🧪</div>
@@ -118,7 +118,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
         </button>
       </div>
       <div class="scale-hint" id="scaleHint">
-        ↑ 프로젝트 유형과 Tag를 선택하면 각 Activity의 <strong>Play와 Artifact</strong>가 표시됩니다.
+        ↑ 프로젝트 유형과 Tag를 선택하면 각 Activity의 <strong>진행 방식과 정리 결과</strong>가 표시됩니다.
       </div>
     </div>
     </div>
@@ -135,7 +135,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
         </div>
       </div>
       <table class="pg-table">
-        <thead><tr><th>Activity</th><th>Play</th><th>Artifact</th></tr></thead>
+        <thead><tr><th>Activity</th><th>진행 방식</th><th>정리 결과</th></tr></thead>
         <tbody id="pgBody"></tbody>
       </table>
     </div>
@@ -246,12 +246,12 @@ const SCALE_DATA = {
   'poc-general': {
     icon: '🧪', title: 'PoC · 일반AX', sub: '기술·업무 적용 가능성 검증 — Lite 산출물, 초안, 체크리스트, 검증결과 중심으로 운영합니다.',
     plays: [
-      { act:'A1', play:'AXD / Agile / Hybrid 적용 수준을 합의한다. 빠른 검증 중심으로 운영방식을 정한다.', artifact:'프로젝트 수행방식 합의서, Initial Backlog, DoR/DoD' },
-      { act:'A2', play:'수행PM, PL/Tech Lead, QA, 고객 PM 등 필수 역할이 지정되었는지 확인한다.', artifact:'Stakeholder Map, 필수 역할 확인표, Contact List' },
-      { act:'A3', play:'주간보고, Sprint Review, 이슈회의 등 운영 리듬을 정한다.', artifact:'Communication Plan, Meeting Calendar' },
-      { act:'A4', play:'필수 산출물만 Tailoring하여 검토자, 승인자, 제출 시점을 정의한다.', artifact:'Deliverable List, Deliverable Acceptance Criteria' },
-      { act:'A5', play:'협업도구, 저장소, 개발/검증 환경 접근권한 준비상태를 확인한다.', artifact:'Environment & Access Matrix, Access Request List' },
-      { act:'A6', play:'고객 담당자, 데이터 제공 일정, 보안성, 미결사항을 점검한다.', artifact:'Customer Readiness Checklist, RAID Log, Open Item List' },
+      { act:'A1', play:'AXD / Agile / Hybrid 적용 수준을 합의한다. 빠른 검증 중심으로 운영방식을 정한다.', artifact:'프로젝트 수행방식 합의서, 초기 작업 목록, 작업 시작·완료 기준' },
+      { act:'A2', play:'수행PM, PL/Tech Lead, QA, 고객 PM 등 필수 역할이 지정되었는지 확인한다.', artifact:'주요 참여자 목록, 필수 역할 확인표, 연락망' },
+      { act:'A3', play:'주간보고, Sprint Review, 이슈회의 등 운영 리듬을 정한다.', artifact:'의사소통관리 기준, 회의 일정' },
+      { act:'A4', play:'필수 산출물만 Tailoring하여 검토자, 승인자, 제출 시점을 정의한다.', artifact:'산출물 목록, 산출물 검수·수용 기준' },
+      { act:'A5', play:'협업도구, 저장소, 개발/검증 환경 접근권한 준비상태를 확인한다.', artifact:'환경·접근권한 점검표, 권한 신청 목록' },
+      { act:'A6', play:'고객 담당자, 데이터 제공 일정, 보안성, 미결사항을 점검한다.', artifact:'고객 준비도 점검표, 이슈·리스크·의사결정 목록, Open Item 목록' },
       { act:'A7', play:'Sprint 0 결과를 종합하여 검증 착수 가능 여부를 판단한다.', artifact:'본수행 착수점검표, 착수 판단 결과서, Open Item 이관 목록' },
     ]
   },
@@ -259,11 +259,11 @@ const SCALE_DATA = {
     icon: '🧪', title: 'PoC · 공공AX', sub: '기술·업무 적용 가능성 검증 + 감리·인증 필요 여부 식별을 함께 확인합니다.',
     plays: [
       { act:'A1', play:'AXD / Agile / Hybrid 적용 수준을 정하되, 공공 감리·검수 일정과 충돌하지 않도록 검토한다.', artifact:'프로젝트 수행방식 합의서, 공공 단계 Gate 정의서' },
-      { act:'A2', play:'수행팀 외에 감리 대응, 보안, 인증, 고객기관 검수 담당자를 식별한다.', artifact:'Stakeholder Map, 공공 검수/승인자 확인표' },
-      { act:'A3', play:'감리 대응 회의, 검수 회의 등 공공 회의체를 운영 주기에 반영한다.', artifact:'Communication Plan, 감리/검수 회의체 운영안' },
+      { act:'A2', play:'수행팀 외에 감리 대응, 보안, 인증, 고객기관 검수 담당자를 식별한다.', artifact:'주요 참여자 목록, 공공 검수/승인자 확인표' },
+      { act:'A3', play:'감리 대응 회의, 검수 회의 등 공공 회의체를 운영 주기에 반영한다.', artifact:'의사소통관리 기준, 감리/검수 회의체 운영안' },
       { act:'A4', play:'공공 표준 산출물, 감리·인증 대상 여부만 식별하여 Lite 체크리스트로 관리한다.', artifact:'공공 표준 산출물 목록, 감리/인증 대상 확인표' },
-      { act:'A5', play:'공공기관 보안정책, 접근권한, 자료 반출입 준비상태를 확인한다.', artifact:'Environment & Access Matrix, 공공기관 보안정책 확인표' },
-      { act:'A6', play:'감리 대상 여부, 인증 필요 여부, 개인정보 처리 여부를 점검한다.', artifact:'Customer Readiness Checklist, 감리/인증 대상 확인표' },
+      { act:'A5', play:'공공기관 보안정책, 접근권한, 자료 반출입 준비상태를 확인한다.', artifact:'환경·접근권한 점검표, 공공기관 보안정책 확인표' },
+      { act:'A6', play:'감리 대상 여부, 인증 필요 여부, 개인정보 처리 여부를 점검한다.', artifact:'고객 준비도 점검표, 감리/인증 대상 확인표' },
       { act:'A7', play:'감리·인증 관점의 검증 착수 리스크가 정리되었는지 확인한다.', artifact:'본수행 착수점검표, 감리/인증 Open Item 이관 목록' },
     ]
   },
@@ -271,47 +271,47 @@ const SCALE_DATA = {
     icon: '🧪', title: 'PoC · 금융AX', sub: '기술·업무 적용 가능성 검증 + 금융보안·데이터·권한 리스크 식별을 함께 확인합니다.',
     plays: [
       { act:'A1', play:'AXD / Agile / Hybrid 적용 수준을 정하되, 금융보안 심의·혁신금융 검토 일정을 함께 검토한다.', artifact:'프로젝트 수행방식 합의서, 금융AX 적용 기준 확인표' },
-      { act:'A2', play:'수행팀 외에 금융보안, 개인정보, 감사 대응 담당자를 식별한다.', artifact:'Stakeholder Map, 금융보안/감사 담당자 확인표' },
-      { act:'A3', play:'보안/감사 이슈 회의, 데이터 제공·반출입 점검 회의체를 반영한다.', artifact:'Communication Plan, 금융보안/감사 회의체 운영안' },
+      { act:'A2', play:'수행팀 외에 금융보안, 개인정보, 감사 대응 담당자를 식별한다.', artifact:'주요 참여자 목록, 금융보안/감사 담당자 확인표' },
+      { act:'A3', play:'보안/감사 이슈 회의, 데이터 제공·반출입 점검 회의체를 반영한다.', artifact:'의사소통관리 기준, 금융보안/감사 회의체 운영안' },
       { act:'A4', play:'금융보안, 데이터 처리 관련 증적만 Lite 수준으로 식별한다.', artifact:'금융보안 증적 목록, 혁신금융 검토 체크리스트' },
-      { act:'A5', play:'망분리, VDI/VPN, 데이터 반출입 등 접근방식을 확인한다.', artifact:'Environment & Access Matrix, 망분리/접근방식 확인표' },
-      { act:'A6', play:'혁신금융 적용 여부, 금보원 감사 대응 필요 여부, 개인정보 처리 여부를 점검한다.', artifact:'Customer Readiness Checklist, 혁신금융/감사 대응 체크리스트' },
+      { act:'A5', play:'망분리, VDI/VPN, 데이터 반출입 등 접근방식을 확인한다.', artifact:'환경·접근권한 점검표, 망분리/접근방식 확인표' },
+      { act:'A6', play:'혁신금융 적용 여부, 금보원 감사 대응 필요 여부, 개인정보 처리 여부를 점검한다.', artifact:'고객 준비도 점검표, 혁신금융/감사 대응 체크리스트' },
       { act:'A7', play:'금융보안·데이터·권한 리스크 관점의 검증 착수 가능 여부를 판단한다.', artifact:'본수행 착수점검표, 금융보안/감사 Open Item 이관 목록' },
     ]
   },
   'prod-general': {
     icon: '🚀', title: '본사업 · 일반AX', sub: '실제 구축·적용·운영 전환 — 정식 계획서, 관리 Matrix, 승인 기준을 포함하여 운영합니다.',
     plays: [
-      { act:'A1', play:'프로젝트 특성에 맞게 AXD / Agile / Hybrid 적용 수준을 합의하고 단계·Sprint 병행 운영 기준을 정한다.', artifact:'프로젝트 수행방식 합의서, Sprint 1 후보 Backlog, DoR/DoD, Acceptance Criteria 기준' },
-      { act:'A2', play:'필수 역할이 지정되었는지 확인하고 책임 공백과 승인자 미정 항목을 Open Item으로 관리한다.', artifact:'Stakeholder Map, 필수 역할 확인표, Escalation Path, Onboarding Checklist' },
-      { act:'A3', play:'주간보고, Sprint Review, 이슈회의, 의사결정 회의체 등 운영 리듬을 정한다.', artifact:'Communication Plan, Program Cadence, Meeting Calendar, Decision Meeting Rule' },
-      { act:'A4', play:'표준 산출물 목록을 기반으로 필수/조건부/제외 산출물을 정리하고 검토·승인 기준을 정의한다.', artifact:'Deliverable List, Deliverable Acceptance Matrix, Approval Workflow' },
-      { act:'A5', play:'협업도구, 저장소, Backlog 도구, 개발/검증 환경, 접근권한 준비상태를 확인한다.', artifact:'Environment & Access Matrix, Repository Rule, Access Risk List' },
-      { act:'A6', play:'고객 담당자, 승인자, 데이터 제공 일정, 보안성, 미결사항을 점검하고 RAID로 관리한다.', artifact:'Customer Readiness Checklist, Security Readiness Checklist, RAID Log, Decision Log' },
-      { act:'A7', play:'Sprint 0 결과를 종합하여 Sprint 1 또는 본수행 착수 가능 여부를 판단한다.', artifact:'본수행 착수점검표, 착수점검 결과서, 사업수행계획서 초안, Chapter 작성 상태표' },
+      { act:'A1', play:'프로젝트 특성에 맞게 AXD / Agile / Hybrid 적용 수준을 합의하고 단계·Sprint 병행 운영 기준을 정한다.', artifact:'프로젝트 수행방식 합의서, Sprint 1 후보 작업 목록, 작업 시작·완료 기준, 검수·수용 기준' },
+      { act:'A2', play:'필수 역할이 지정되었는지 확인하고 책임 공백과 승인자 미정 항목을 Open Item으로 관리한다.', artifact:'주요 참여자 목록, 필수 역할 확인표, 상위 보고·의사결정 경로, 투입 준비 확인항목' },
+      { act:'A3', play:'주간보고, Sprint Review, 이슈회의, 의사결정 회의체 등 운영 리듬을 정한다.', artifact:'의사소통관리 기준, 운영 주기, 회의 일정, 의사결정 회의 기준' },
+      { act:'A4', play:'표준 산출물 목록을 기반으로 필수/조건부/제외 산출물을 정리하고 검토·승인 기준을 정의한다.', artifact:'산출물 목록, 산출물 검토·승인 기준표, 승인 흐름' },
+      { act:'A5', play:'협업도구, 저장소, 작업 목록 관리 도구, 개발/검증 환경, 접근권한 준비상태를 확인한다.', artifact:'환경·접근권한 점검표, 저장소 운영 기준, 접근권한 지연 리스크 목록' },
+      { act:'A6', play:'고객 담당자, 승인자, 데이터 제공 일정, 보안성, 미결사항을 점검하고 RAID로 관리한다.', artifact:'고객 준비도 점검표, 보안 준비도 점검표, 이슈·리스크·의사결정 목록, 의사결정 목록' },
+      { act:'A7', play:'Sprint 0 결과를 종합하여 Sprint 1 또는 본수행 착수 가능 여부를 판단한다.', artifact:'본수행 착수점검표, 착수점검 결과서, 사업수행계획서 초안, 사업수행계획서 Chapter 반영 현황' },
     ]
   },
   'prod-public': {
     icon: '🚀', title: '본사업 · 공공AX', sub: '감리·인증·표준 산출물·검수 체계를 일반AX Play에 추가로 확인합니다.',
     plays: [
-      { act:'A1', play:'AXD / Agile / Hybrid 적용 수준을 정하되, 공공 감리·검수 일정과 충돌하지 않도록 단계 Gate를 함께 정의한다.', artifact:'프로젝트 수행방식 합의서, 공공 단계 Gate 정의서, Sprint 1 후보 Backlog' },
-      { act:'A2', play:'감리 대응, 보안, 인증, 고객기관 검수 담당자를 식별하고 승인 라인을 확인한다.', artifact:'Stakeholder Map, 공공 검수/승인자 확인표, Escalation Path' },
-      { act:'A3', play:'주간보고 외 감리 대응 회의, 검수 회의, 보안/인증 점검 회의체를 운영 주기에 반영한다.', artifact:'Communication Plan, 감리/검수 회의체 운영안, Meeting Calendar' },
+      { act:'A1', play:'AXD / Agile / Hybrid 적용 수준을 정하되, 공공 감리·검수 일정과 충돌하지 않도록 단계 Gate를 함께 정의한다.', artifact:'프로젝트 수행방식 합의서, 공공 단계 Gate 정의서, Sprint 1 후보 작업 목록' },
+      { act:'A2', play:'감리 대응, 보안, 인증, 고객기관 검수 담당자를 식별하고 승인 라인을 확인한다.', artifact:'주요 참여자 목록, 공공 검수/승인자 확인표, 상위 보고·의사결정 경로' },
+      { act:'A3', play:'주간보고 외 감리 대응 회의, 검수 회의, 보안/인증 점검 회의체를 운영 주기에 반영한다.', artifact:'의사소통관리 기준, 감리/검수 회의체 운영안, 회의 일정' },
       { act:'A4', play:'공공 표준 산출물, 감리 대상 산출물, 인증 제출물, 검수 증적을 구분하여 관리한다.', artifact:'공공 표준 산출물 목록, 감리 대응 산출물 목록, 인증 제출물 체크리스트, 검수 증적 목록' },
-      { act:'A5', play:'공공기관 보안정책, 접근권한, 자료 반출입, 망분리 준비상태를 확인한다.', artifact:'Environment & Access Matrix, 공공기관 보안정책 확인표, 자료 반출입 기준표' },
-      { act:'A6', play:'감리·인증 대상 여부, 보안성, 개인정보 처리, 승인 지연 리스크를 점검한다.', artifact:'Security Readiness Checklist, 감리/인증 대상 확인표, 공공AX RAID Log' },
+      { act:'A5', play:'공공기관 보안정책, 접근권한, 자료 반출입, 망분리 준비상태를 확인한다.', artifact:'환경·접근권한 점검표, 공공기관 보안정책 확인표, 자료 반출입 기준표' },
+      { act:'A6', play:'감리·인증 대상 여부, 보안성, 개인정보 처리, 승인 지연 리스크를 점검한다.', artifact:'보안 준비도 점검표, 감리/인증 대상 확인표, 공공AX 이슈·리스크·의사결정 목록' },
       { act:'A7', play:'감리·인증·검수 관점의 착수 리스크를 정리하고 미확정 항목은 조건부 항목으로 관리한다.', artifact:'본수행 착수점검표, 공공AX 착수 판단 결과서, 감리/인증 Open Item 이관 목록' },
     ]
   },
   'prod-finance': {
     icon: '🚀', title: '본사업 · 금융AX', sub: '혁신금융·금융보안·금보원 감사·데이터/망/권한 통제를 일반AX Play에 추가로 확인합니다.',
     plays: [
-      { act:'A1', play:'AXD / Agile / Hybrid 적용 수준을 정하되, 금융보안 심의, 혁신금융 검토, 감사 대응 일정을 함께 검토한다.', artifact:'프로젝트 수행방식 합의서, 금융AX 적용 기준 확인표, Sprint 1 후보 Backlog' },
-      { act:'A2', play:'금융보안, 개인정보, 고객 보안, 감사 대응, 운영 통제 담당자를 식별하고 의사결정 지연 리스크를 확인한다.', artifact:'Stakeholder Map, 금융보안/감사 담당자 확인표, Escalation Path' },
-      { act:'A3', play:'주간보고 외 보안/감사 이슈 회의, 데이터 제공·반출입 점검, 고객 승인 회의체를 반영한다.', artifact:'Communication Plan, 금융보안/감사 회의체 운영안, Decision Meeting Rule' },
+      { act:'A1', play:'AXD / Agile / Hybrid 적용 수준을 정하되, 금융보안 심의, 혁신금융 검토, 감사 대응 일정을 함께 검토한다.', artifact:'프로젝트 수행방식 합의서, 금융AX 적용 기준 확인표, Sprint 1 후보 작업 목록' },
+      { act:'A2', play:'금융보안, 개인정보, 고객 보안, 감사 대응, 운영 통제 담당자를 식별하고 의사결정 지연 리스크를 확인한다.', artifact:'주요 참여자 목록, 금융보안/감사 담당자 확인표, 상위 보고·의사결정 경로' },
+      { act:'A3', play:'주간보고 외 보안/감사 이슈 회의, 데이터 제공·반출입 점검, 고객 승인 회의체를 반영한다.', artifact:'의사소통관리 기준, 금융보안/감사 회의체 운영안, 의사결정 회의 기준' },
       { act:'A4', play:'금융보안, 감사 대응, 데이터 처리, 운영 전환 관련 증적을 산출물 기준에 포함한다.', artifact:'금융보안 증적 목록, 감사 대응 증적 목록, 데이터 처리 기준표, 혁신금융 검토 체크리스트' },
-      { act:'A5', play:'망분리, VDI/VPN, 데이터 반출입, 로그/감사 추적, 권한 승인 상태를 확인한다.', artifact:'Environment & Access Matrix, 망분리/접근방식 확인표, 로그/감사 추적 기준표' },
-      { act:'A6', play:'혁신금융 적용 여부, 금보원 감사 대응 필요 여부, 데이터 마스킹, 보안 심의 리스크를 점검한다.', artifact:'Security Readiness Checklist, 금융AX RAID Log, 혁신금융/감사 대응 체크리스트' },
+      { act:'A5', play:'망분리, VDI/VPN, 데이터 반출입, 로그/감사 추적, 권한 승인 상태를 확인한다.', artifact:'환경·접근권한 점검표, 망분리/접근방식 확인표, 로그/감사 추적 기준표' },
+      { act:'A6', play:'혁신금융 적용 여부, 금보원 감사 대응 필요 여부, 데이터 마스킹, 보안 심의 리스크를 점검한다.', artifact:'보안 준비도 점검표, 금융AX 이슈·리스크·의사결정 목록, 혁신금융/감사 대응 체크리스트' },
       { act:'A7', play:'금융보안, 감사, 데이터, 접근권한, 운영통제 관련 필수 조건을 점검하고 미확정 리스크는 조건부 착수 또는 착수 보류로 관리한다.', artifact:'본수행 착수점검표, 금융AX 착수 판단 결과서, 금융보안/감사 Open Item 이관 목록' },
     ]
   }
