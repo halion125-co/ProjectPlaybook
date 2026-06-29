@@ -84,7 +84,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
 
     <!-- ── 프로젝트 유형·특성 선택기 ── -->
     <div class="scale-selector">
-      <div class="scale-title">프로젝트 유형 · 특성 선택 — Activity별 진행 방식과 정리 결과가 자동으로 조정됩니다</div>
+      <div class="scale-title">프로젝트 유형 · 특성(Tag) 선택 — Activity별 진행 방식과 정리 결과가 자동으로 조정됩니다</div>
       <div class="scale-options">
         <button class="scale-btn" data-scale="poc-general" onclick="selectScale(this)">
           <div class="sb-icon">🧪</div>
@@ -141,7 +141,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
     </div>
 
     <section class="section" id="core">
-      <div class="section-head"><div><div class="kicker">Sprint 0 사전 정렬</div><h2>7개 Activity를 시작하기 전에 확인할 기본 정보</h2><p class="desc">기존 7개 Activity를 대체하거나 새로운 Activity를 추가하는 것이 아니라, A1~A7을 시작하기 전에 PM이 확인해 두면 좋은 계약·제안 정보, 프로젝트 배경, 고객 기대효과 가설, 범위, 수행계획, 초기 미정 항목을 정리하는 준비 단계입니다. 결과물을 완성하는 것이 아니라, Sprint 0에서 무엇을 확인·결정해야 하는지, 본수행 착수 전 무엇이 미확정인지 정리하는 데 목적이 있습니다.</p></div></div>
+      <div class="section-head"><div><div class="kicker">Sprint 0 사전 정렬</div><h2>7개 Activity를 시작하기 전에 확인할 기본 정보</h2><p class="desc">기존 7개 Activity를 대체하거나 새로운 Activity를 추가하는 것이 아니라, A1~A7을 시작하기 전에 PM이 확인해 두면 좋은 계약·제안 정보, 프로젝트 배경, 고객 기대효과 가설, 범위, 수행계획, 초기 미정 항목(Open Item)을 정리하는 준비 단계입니다. 결과물을 완성하는 것이 아니라, Sprint 0에서 무엇을 확인·결정해야 하는지, 본수행 착수 전 무엇이 미확정인지 정리하는 데 목적이 있습니다.</p></div></div>
       <div class="grid two">
         <div class="card blue"><h3><span class="task-no">1</span>계약·제안 정보 수집</h3><p>RFP, 제안서, 계약서/SOW, 과업범위, 기술협상 내역, 사전 미팅 기록을 수집합니다.</p></div>
         <div class="card blue"><h3><span class="task-no">2</span>프로젝트 기본 맥락 정리</h3><p>사업명, 사업기간, 추진 배경, 고객 기대사항, 성공 기준 초안을 정리합니다.</p></div>
@@ -158,10 +158,10 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
         <tr><td><strong>프로젝트 기본정보</strong></td><td>사업명, 고객사, 사업기간, 시스템명, 업무명</td><td>이후 사업수행계획서와 Playbook의 기본정보로 사용</td></tr>
         <tr><td><strong>사업 맥락</strong></td><td>추진 배경, 고객 기대사항, 성공 기준 초안</td><td>고객 기대효과 가설을 정리하는 기준</td></tr>
         <tr><td><strong>프로젝트 유형</strong></td><td>PoC / 본사업</td><td>Sprint 0 적용 수준을 결정</td></tr>
-        <tr><td><strong>프로젝트 특성</strong></td><td>일반AX / 공공AX / 금융AX</td><td>감리·인증·금융보안·감사 등 추가 점검 깊이 결정</td></tr>
+        <tr><td><strong>프로젝트 특성(Tag)</strong></td><td>일반AX / 공공AX / 금융AX</td><td>감리·인증·금융보안·감사 등 추가 점검 깊이 결정</td></tr>
         <tr><td><strong>범위</strong></td><td>Scope In / Scope Out, 주요 가정, 제약사항</td><td>본수행 범위와 미정 항목 판단 기준</td></tr>
         <tr><td><strong>Sprint 0 운영계획</strong></td><td>기간, 참석자, 수행 Activity, 검토 일정</td><td>7개 Activity 수행을 위한 실행계획</td></tr>
-        <tr><td><strong>초기 리스크</strong></td><td>위험 / 이슈 / 의사결정 / 외부 의존사항 / 미정 항목</td><td>Sprint 0 이후 본수행 착수 판단에 반영</td></tr>
+        <tr><td><strong>초기 리스크</strong></td><td>위험 / 이슈 / 의사결정 / 외부 의존사항(Dependency) / 미정 항목(Open Item)</td><td>Sprint 0 이후 본수행 착수 판단에 반영</td></tr>
         <tr><td><strong>본수행 착수 기준</strong></td><td>착수 가능 / 조건부 착수 / 착수 보류 기준</td><td>Sprint 0 종료 시 판단 기준으로 활용</td></tr>
       </tbody></table></div></div>
     </section>
@@ -202,7 +202,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
         <a class="activity-card" href="06_readiness-raid.html" data-act="A6">
           <div class="act-no">A6</div>
           <div class="act-title">고객 준비도·보안·리스크 점검</div>
-          <div class="act-text">고객 준비상태, 데이터, 보안, 의사결정, 외부 의존사항을 확인하고 본수행 지연 요인을 미정 항목으로 관리합니다.</div>
+          <div class="act-text">고객 준비상태, 데이터, 보안, 의사결정, 외부 의존사항(Dependency)을 확인하고 본수행 지연 요인을 미정 항목(Open Item)으로 관리합니다.</div>
           <div class="small" style="color:#2656d9">본수행을 지연시킬 고객·보안·데이터 리스크는 무엇인가?</div>
         </a>
         <a class="activity-card" href="07_transition-day1.html" data-act="A7">
@@ -223,7 +223,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
         <tr><td><strong>A6</strong></td><td>고객 참여, 데이터 제공, 보안 등 확인을 막을 수 있는 리스크를 점검합니다</td></tr>
         <tr><td><strong>A7</strong></td><td>Sprint 1에서 가장 작게 먼저 확인해 볼 업무 시나리오를 정리합니다</td></tr>
       </tbody></table>
-      <div class="callout" style="margin-top:14px"><strong>참고:</strong> 각 Activity 상세 화면의 "고객 가치 발견(Value Discovery) 관점" 섹션에서 더 자세한 확인 기준을 볼 수 있습니다.</div>
+      <div class="callout" style="margin-top:14px"><strong>참고:</strong> 각 Activity 상세 화면의 "고객 기대효과 확인(Value Discovery) 관점" 섹션에서 더 자세한 확인 기준을 볼 수 있습니다.</div>
     </section>
 
     <section class="section">
@@ -244,7 +244,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
     </section>
 
     <section class="section">
-      <div class="callout"><strong>운영 원칙:</strong> Sprint 0에서 모든 내용을 완성하려고 하지 않습니다. 사전 자료를 기반으로 60~70% 초안을 준비하고, Sprint 0에서는 검토·합의·결정·Owner 지정에 집중합니다. 미완료 항목은 이슈·리스크·의사결정 항목과 본수행 착수점검표로 연결합니다.</div>
+      <div class="callout"><strong>운영 원칙:</strong> Sprint 0에서 모든 내용을 완성하려고 하지 않습니다. 사전 자료를 기반으로 60~70% 초안을 준비하고, Sprint 0에서는 검토·합의·결정·Owner 지정에 집중합니다. 미완료 항목은 이슈·리스크·의사결정 항목(RAID)과 본수행 착수점검표로 연결합니다.</div>
     </section>
 
     <footer class="footer">
@@ -295,7 +295,7 @@ const SCALE_DATA = {
     icon: '🚀', title: '본사업 · 일반AX', sub: '실제 구축·적용·운영 전환 — 정식 계획서, 관리 Matrix, 승인 기준을 포함하여 운영합니다.',
     plays: [
       { act:'A1', play:'프로젝트 특성에 맞게 AXD / Agile / Hybrid 적용 수준을 합의하고 단계·Sprint 병행 운영 기준을 정한다.', artifact:'프로젝트 수행방식 합의서, Sprint 1 후보 작업 목록, 작업 시작·완료 기준, 검수·수용 기준' },
-      { act:'A2', play:'필수 역할이 지정되었는지 확인하고 책임 공백과 승인자 미정 항목을 미정 항목으로 관리한다.', artifact:'주요 참여자 목록, 필수 역할 확인표, 상위 보고·의사결정 경로, 투입 준비 확인항목' },
+      { act:'A2', play:'필수 역할이 지정되었는지 확인하고 책임 공백과 승인자 미정 항목(Open Item)을 관리한다.', artifact:'주요 참여자 목록, 필수 역할 확인표, 상위 보고·의사결정 경로, 투입 준비 확인항목' },
       { act:'A3', play:'주간보고, Sprint Review, 이슈회의, 의사결정 회의체 등 운영 리듬을 정한다.', artifact:'의사소통관리 기준, 운영 주기, 회의 일정, 의사결정 회의 기준' },
       { act:'A4', play:'표준 산출물 목록을 기반으로 필수/조건부/제외 산출물을 정리하고 검토·승인 기준을 정의한다.', artifact:'산출물 목록, 산출물 검토·승인 기준표, 승인 흐름' },
       { act:'A5', play:'협업도구, 저장소, 작업 목록 관리 도구, 개발/검증 환경, 접근권한 준비상태를 확인한다.', artifact:'환경·접근권한 점검표, 저장소 운영 기준, 접근권한 지연 리스크 목록' },
