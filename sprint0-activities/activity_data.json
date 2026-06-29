@@ -288,7 +288,7 @@
         "보안·인프라·데이터·운영 담당자가 식별되었는가?",
         "Escalation 경로가 실제 작동 가능한가?"
       ],
-      "file": "02_team-raci.html"
+      "file": "02_roles-decision.html"
     },
     {
       "id": "communication-cadence",
@@ -909,7 +909,7 @@
         "사업수행계획서에 반영할 보완 항목이 추적되는가?",
         "조건부 착수 항목의 Owner와 Due Date가 있는가?"
       ],
-      "file": "07_transition-day1.html"
+      "file": "07_sprint1-readiness.html"
     }
   ]
 }

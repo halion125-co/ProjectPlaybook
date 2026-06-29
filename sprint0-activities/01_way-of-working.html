@@ -55,7 +55,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
       <a class="brand" href="index.html"><div class="brand-text"><span class="brand-parent">AX Delivery Way</span><span class="brand-title">Sprint 0 Playbook</span></div></a>
       <nav class="nav" aria-label="activity navigation">
         <a href="index.html">Sprint 0 Overview</a>
-        <a href="01_way-of-working.html">A1 수행방식 및 Sprint 운영 기준 정렬</a><a href="02_team-raci.html">A2 참여자 역할과 의사결정 구조 확인</a><a href="03_communication-cadence.html">A3 커뮤니케이션 및 운영 리듬 수립</a><a href="04_deliverable-acceptance.html">A4 산출물·검토·승인 기준 정렬</a><a href="05_environment-access.html">A5 환경·도구·접근권한 준비상태 확인</a><a href="06_readiness-raid.html">A6 고객 준비도·보안·리스크 점검</a><a href="07_transition-day1.html">A7 본수행 착수점검 및 미결사항 이관</a>
+        <a href="01_way-of-working.html">A1 수행방식 및 Sprint 운영 기준 정렬</a><a href="02_roles-decision.html">A2 참여자 역할과 의사결정 구조 확인</a><a href="03_communication-cadence.html">A3 커뮤니케이션 및 운영 리듬 수립</a><a href="04_deliverable-acceptance.html">A4 산출물·검토·승인 기준 정렬</a><a href="05_environment-access.html">A5 환경·도구·접근권한 준비상태 확인</a><a href="06_readiness-raid.html">A6 고객 준비도·보안·리스크 점검</a><a href="07_sprint1-readiness.html">A7 Sprint 1 실행준비 및 미정 항목 이관</a>
       </nav>
     </header>
 
@@ -84,7 +84,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
           <tr><td><strong>작업 기준</strong></td><td>작업 시작 기준, 작업 완료 기준, 검수·수용 기준</td></tr>
           <tr><td><strong>변경관리 연결</strong></td><td>작업 변경과 공식 범위·일정·비용 변경관리의 연결 기준</td></tr>
         </tbody></table>
-        <p class="note" style="margin-top:14px"><strong style="color:#fff">완료 기준</strong><br>PM, PL, QA, 고객 PM이 동일한 수행방식을 이해하고, Sprint 1 착수에 필요한 최소 운영 기준이 정리되어야 합니다. 미확정 항목은 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다.</p>
+        <p class="note" style="margin-top:14px"><strong style="color:#fff">완료 기준</strong><br>PM, PL, QA, 고객 PM이 동일한 수행방식을 이해하고, Sprint 1 착수에 필요한 최소 운영 기준이 정리되어야 합니다. 미확정 항목은 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다.</p>
       </div>
     </section>
     </div>
@@ -139,7 +139,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
             <tr><td><strong>사업수행계획서</strong></td><td>6. 사업 추진 절차 / 10. 변경관리 계획 / 11. 품질관리 계획 / 13. 의사소통관리 계획</td></tr>
             <tr><td><strong>A3 연결</strong></td><td>Sprint Review, 보고 주기 설정</td></tr>
             <tr><td><strong>A4 연결</strong></td><td>산출물 완료·검수 기준 연결</td></tr>
-            <tr><td><strong>A7 연결</strong></td><td>Sprint 1 착수 가능 여부 판단</td></tr>
+            <tr><td><strong>A7 연결</strong></td><td>Sprint 1 시작 방식 정리</td></tr>
           </tbody></table>
         </div>
       </details>
@@ -147,7 +147,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
 
     <div class="nextprev">
       <a class="secondary" href="index.html">&larr; Sprint 0 Overview</a>
-      <a href="02_team-raci.html">A2 참여자 역할과 의사결정 구조 확인 &rarr;</a>
+      <a href="02_roles-decision.html">A2 참여자 역할과 의사결정 구조 확인 &rarr;</a>
     </div>
     <footer class="footer">
       <p>Sprint 0 Activity Playbook — AXD Hybrid | A1 수행방식 및 Sprint 운영 기준 정렬</p>
@@ -165,7 +165,7 @@ const TASK_GUIDE = {
     criteria: ["PoC는 검증 중심, 본사업은 구축·운영전환 중심", "공공AX는 감리·인증 중심", "금융AX는 금융보안·감사·데이터 통제 중심"],
     results: ["프로젝트 유형", "특성 Tag", "추가 점검 필요 항목"],
     example: "이번 프로젝트는 기술 검증이 목적인가요, 실제 구축과 운영전환까지 포함하나요?\n공공 감리나 인증 대응이 필요한가요?\n금융보안, 금보원 감사, 혁신금융 관련 검토가 필요한가요?",
-    unresolved: "프로젝트 유형 또는 특성 Tag가 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
+    unresolved: "프로젝트 유형 또는 특성 Tag가 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
   },
   2: {
     title: "수행모델 결정",
@@ -176,7 +176,7 @@ const TASK_GUIDE = {
     criteria: ["요구사항이 명확하고 산출물 중심이면 단계형", "변경 가능성이 높고 반복 검증이 필요하면 Sprint 중심", "공식 산출물과 반복 개발이 모두 필요하면 Hybrid"],
     results: ["선택한 수행모델", "선택 사유", "고객 합의 여부"],
     example: "고객 산출물 제출과 검수는 단계별로 필요하지만,\n개발은 Sprint 단위로 반복 검토하는 방식이 적절해 보입니다.\n본 프로젝트는 Hybrid 방식으로 운영해도 될까요?",
-    unresolved: "고객 또는 내부 합의가 완료되지 않은 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
+    unresolved: "고객 또는 내부 합의가 완료되지 않은 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
   },
   3: {
     title: "Sprint 운영 기준 결정",
@@ -187,7 +187,7 @@ const TASK_GUIDE = {
     criteria: ["팀 규모가 작고 PoC면 1주도 가능", "본사업은 2주 단위 권장", "고객 피드백이 중요하면 고객 포함 Review 필요"],
     results: ["Sprint 주기", "Review 방식", "Sprint 1 착수 조건"],
     example: "2주 단위로 Sprint를 운영하고,\n각 Sprint 종료 시 고객 PM과 주요 업무 담당자가 결과를 확인하는 방식으로 진행하겠습니다.\nSprint 1 시작 전 필요한 조건은 무엇인가요?",
-    unresolved: "Sprint 1 착수 기준이 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
+    unresolved: "Sprint 1 착수 기준이 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
   },
   4: {
     title: "작업 목록 관리 방식 결정",
@@ -198,7 +198,7 @@ const TASK_GUIDE = {
     criteria: ["고객과 공동 관리가 필요하면 Jira/Playbook", "PoC나 소규모면 Excel 가능", "변경이 많으면 상태값과 우선순위 기준 필요"],
     results: ["작업 목록 관리 도구", "상태값", "우선순위 기준", "우선순위 결정자"],
     example: "작업 목록은 Playbook에서 관리하고,\n상태는 대기, 준비됨, 진행중, 검토중, 완료로 운영하겠습니다.\n우선순위는 고객 PM과 수행PM이 주간 단위로 조정하는 방식이 적절할까요?",
-    unresolved: "관리 위치 또는 우선순위 결정자가 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
+    unresolved: "관리 위치 또는 우선순위 결정자가 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
   },
   5: {
     title: "작업 시작 기준 정의",
@@ -209,7 +209,7 @@ const TASK_GUIDE = {
     criteria: ["시작 조건이 불명확하면 작업 착수 후 지연 가능성 높음", "필수 조건이 미정이면 Open Item 등록"],
     results: ["작업 시작 기준", "시작 불가 항목"],
     example: "작업을 시작하려면 최소한 담당자, 요구사항, 검토자, 필요한 환경이 정리되어야 합니다.\n이 기준을 충족하지 못한 항목은 '준비 중' 상태로 두고 Open Item으로 관리하겠습니다.",
-    unresolved: "담당자, 요구사항, 환경 중 하나라도 미정이면 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
+    unresolved: "담당자, 요구사항, 환경 중 하나라도 미정이면 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
   },
   6: {
     title: "작업 완료·검수 기준 정의",
@@ -220,7 +220,7 @@ const TASK_GUIDE = {
     criteria: ["고객 검수 대상 작업은 고객 확인 필요", "기술 작업은 테스트 또는 리뷰 기준 필요", "산출물은 승인 기준 필요"],
     results: ["작업 완료 기준", "검수·수용 기준", "반려·보완 방식"],
     example: "작업 완료는 단순 개발 완료가 아니라,\n내부 검토와 고객 확인까지 완료된 상태로 보겠습니다.\n고객 검토 후 보완이 필요한 경우에는 다시 '검토중' 상태로 되돌리는 방식으로 관리하겠습니다.",
-    unresolved: "검수·수용 기준이 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
+    unresolved: "검수·수용 기준이 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
   },
   7: {
     title: "변경관리 연결 기준 정의",
@@ -231,18 +231,18 @@ const TASK_GUIDE = {
     criteria: ["일정/비용/범위 영향이 없으면 작업 목록 내 조정", "고객 승인 필요 항목은 협의", "계약 범위 변경은 공식 변경관리"],
     results: ["변경관리 연결 기준", "변경 유형별 처리 방식", "고객 승인 필요 여부"],
     example: "작업 우선순위 조정은 주간회의에서 처리하되,\n범위·일정·비용에 영향이 있는 변경은 공식 변경관리로 전환하겠습니다.\n계약 범위에 영향을 주는 항목은 별도 변경 요청으로 관리하겠습니다.",
-    unresolved: "범위·일정·비용 영향 기준이 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
+    unresolved: "범위·일정·비용 영향 기준이 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
   },
   8: {
     title: "미확정 항목 정리",
-    purpose: "A1에서 결정되지 않은 항목을 Open Item으로 등록하고 본수행 착수 영향을 판단합니다.",
+    purpose: "A1에서 결정되지 않은 항목을 Open Item으로 등록하고 Sprint 1 시작 영향을 판단합니다.",
     prep: ["회의 결과", "미결사항", "조건부 합의 사항"],
-    questions: ["지금 확정되지 않은 항목은 무엇인가?", "누가 언제까지 확인해야 하는가?", "본수행 착수에 영향을 주는가?"],
-    options: ["즉시 확정", "후속 Activity에서 확인", "조건부 착수 항목", "착수 보류 영향 항목"],
-    criteria: ["Sprint 1 시작에 직접 영향이 있으면 조건부/보류 항목", "영향이 낮으면 후속 확인 항목"],
-    results: ["Open Item", "담당자", "기한", "본수행 착수 영향"],
-    example: "오늘 확정하지 못한 항목은 Open Item으로 등록하겠습니다.\n각 항목은 담당자와 확인 기한을 지정하고,\nSprint 1 착수에 영향이 있는지 구분하겠습니다.",
-    unresolved: "담당자와 기한이 없는 항목은 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
+    questions: ["지금 확정되지 않은 항목은 무엇인가?", "누가 언제까지 확인해야 하는가?", "Sprint 1 시작에 영향을 주는가?"],
+    options: ["즉시 확정", "후속 Activity에서 확인", "조건부 진행 항목", "시작 전 확인 필요 항목"],
+    criteria: ["Sprint 1 시작에 직접 영향이 있으면 조건부/확인 필요 항목", "영향이 낮으면 후속 확인 항목"],
+    results: ["Open Item", "담당자", "기한", "Sprint 1 시작 영향"],
+    example: "오늘 확정하지 못한 항목은 Open Item으로 등록하겠습니다.\n각 항목은 담당자와 확인 기한을 지정하고,\nSprint 1 시작에 영향이 있는지 구분하겠습니다.",
+    unresolved: "담당자와 기한이 없는 항목은 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
   }
 };
 

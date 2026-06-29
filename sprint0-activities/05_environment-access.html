@@ -54,7 +54,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
       <a class="brand" href="index.html"><div class="brand-text"><span class="brand-parent">AX Delivery Way</span><span class="brand-title">Sprint 0 Playbook</span></div></a>
       <nav class="nav" aria-label="activity navigation">
         <a href="index.html">Sprint 0 Overview</a>
-        <a href="01_way-of-working.html">A1 수행방식 및 Sprint 운영 기준 정렬</a><a href="02_team-raci.html">A2 참여자 역할과 의사결정 구조 확인</a><a href="03_communication-cadence.html">A3 커뮤니케이션 및 운영 리듬 수립</a><a href="04_deliverable-acceptance.html">A4 산출물·검토·승인 기준 정렬</a><a href="05_environment-access.html">A5 환경·도구·접근권한 준비상태 확인</a><a href="06_readiness-raid.html">A6 고객 준비도·보안·리스크 점검</a><a href="07_transition-day1.html">A7 본수행 착수점검 및 미결사항 이관</a>
+        <a href="01_way-of-working.html">A1 수행방식 및 Sprint 운영 기준 정렬</a><a href="02_roles-decision.html">A2 참여자 역할과 의사결정 구조 확인</a><a href="03_communication-cadence.html">A3 커뮤니케이션 및 운영 리듬 수립</a><a href="04_deliverable-acceptance.html">A4 산출물·검토·승인 기준 정렬</a><a href="05_environment-access.html">A5 환경·도구·접근권한 준비상태 확인</a><a href="06_readiness-raid.html">A6 고객 준비도·보안·리스크 점검</a><a href="07_sprint1-readiness.html">A7 Sprint 1 실행준비 및 미정 항목 이관</a>
       </nav>
     </header>
 
@@ -83,7 +83,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
           <tr><td><strong>저장소 기준</strong></td><td>문서/소스 저장 위치와 접근통제</td></tr>
           <tr><td><strong>우회방안</strong></td><td>권한·환경 지연 시 대안</td></tr>
         </tbody></table>
-        <p class="note" style="margin-top:14px"><strong style="color:#fff">완료 기준</strong><br>Sprint 1 필수 권한과 환경 사용 가능일이 확정되어야 합니다. 미확보 항목은 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다.</p>
+        <p class="note" style="margin-top:14px"><strong style="color:#fff">완료 기준</strong><br>Sprint 1 필수 권한과 환경 사용 가능일이 확정되어야 합니다. 미확보 항목은 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다.</p>
       </div>
     </section>
     </div>
@@ -122,8 +122,8 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
         <tr><td>Sprint 1 수행에 필요한 필수 도구와 저장소가 준비되어 있는가</td><td>협업도구, 문서저장소, 소스저장소 접속 여부</td><td>필수 도구·저장소 준비 요청</td></tr>
         <tr><td>개발·검증 환경의 사용 가능일이 확인되어 있는가</td><td>환경 준비 일정, 인프라 담당 확인</td><td>사용 가능일과 지연 영향 확인</td></tr>
         <tr><td>고객 시스템 접근권한, VPN/VDI/망접속 기준이 확인되어 있는가</td><td>권한 신청 현황, 보안 접속 기준</td><td>권한 신청 및 승인 일정 확인</td></tr>
-        <tr><td>권한 또는 환경 지연이 Sprint 1 착수에 영향을 주는지 구분되어 있는가</td><td>환경·권한 미준비 목록</td><td>조건부 착수/착수 보류 후보로 반영</td></tr>
-        <tr><td>환경 지연 시 우회방안이 있는가</td><td>Sandbox, 샘플 데이터, Mock 환경</td><td>우회방안이 없으면 착수 리스크로 분류</td></tr>
+        <tr><td>권한 또는 환경 지연이 Sprint 1 시작에 영향을 주는지 구분되어 있는가</td><td>환경·권한 미준비 목록</td><td>조건부 진행/시작 전 확인 필요 후보로 반영</td></tr>
+        <tr><td>환경 지연 시 우회방안이 있는가</td><td>Sandbox, 샘플 데이터, Mock 환경</td><td>우회방안이 없으면 Sprint 1 시작 리스크로 분류</td></tr>
       </tbody></table>
     </section>
 
@@ -176,7 +176,7 @@ const TASK_GUIDE = {
     criteria: ["고객과 공동 관리가 필요한 도구는 우선 확정한다"],
     results: ["사용 도구와 관리 위치"],
     example: "협업도구는 고객과 공동으로 사용하는 Jira로 정하고,\n소스관리는 내부 GitLab을 사용하는 방식으로 정리하겠습니다.",
-    unresolved: "도구가 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
+    unresolved: "도구가 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
   },
   2: {
     title: "접근권한 확인",
@@ -184,10 +184,10 @@ const TASK_GUIDE = {
     prep: ["고객 IT 보안정책, 계정 신청 절차, VPN/VDI 신청 기준", "사용자 목록, 역할별 권한 수준"],
     questions: ["Sprint 1에 반드시 필요한 권한은 무엇인가?", "권한 신청은 누가 진행하는가?"],
     options: ["권한: 고객 시스템 / 내부망 / VPN·VDI / 클라우드"],
-    criteria: ["필수 권한이 미확보면 착수 보류 후보로 등록한다"],
+    criteria: ["필수 권한이 미확보면 시작 전 확인 필요 후보로 등록한다"],
     results: ["권한 목록", "권한 신청 상태"],
     example: "Sprint 1 시작에 필요한 최소 권한은 고객 시스템 조회 권한과 VPN 접속 권한이며,\n신청은 고객 IT 담당자를 통해 진행하겠습니다.",
-    unresolved: "필수 권한이 미확보된 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
+    unresolved: "필수 권한이 미확보된 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
   },
   3: {
     title: "환경 준비상태 확인",
@@ -198,7 +198,7 @@ const TASK_GUIDE = {
     criteria: ["환경 사용 가능일이 Sprint 1 시작일보다 늦으면 우회방안이 필요하다"],
     results: ["환경별 사용 가능일"],
     example: "개발환경은 이번 주 내 사용 가능하지만, 검증환경은 2주 후에 제공될 예정이라,\nSprint 1에서는 Sandbox로 우선 진행하는 방식을 검토하겠습니다.",
-    unresolved: "환경 사용 가능일이 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
+    unresolved: "환경 사용 가능일이 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
   },
   4: {
     title: "저장소·형상관리 기준 확인",
@@ -209,7 +209,7 @@ const TASK_GUIDE = {
     criteria: ["저장 위치가 분산되면 형상관리가 어려워진다"],
     results: ["저장소 기준"],
     example: "문서는 문서관리 시스템에, 소스는 GitLab에 단일 저장하고,\nBranch 전략은 Git Flow를 기준으로 운영하겠습니다.",
-    unresolved: "저장 위치가 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
+    unresolved: "저장 위치가 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
   },
   5: {
     title: "우회방안 정리",
@@ -217,10 +217,10 @@ const TASK_GUIDE = {
     prep: ["환경·권한 점검 결과"],
     questions: ["환경·권한 지연 시 대안은 무엇인가?"],
     options: ["대안: Sandbox / Mock 데이터 / 대체 작업"],
-    criteria: ["대안 없이 지연되는 항목은 착수 보류 후보로 등록한다"],
+    criteria: ["대안 없이 지연되는 항목은 시작 전 확인 필요 후보로 등록한다"],
     results: ["우회방안"],
     example: "고객 시스템 접근이 지연되면 Mock 데이터로 우선 개발을 진행하고,\n접근권한이 확보되면 실제 연동 테스트로 전환하겠습니다.",
-    unresolved: "대안 없는 지연 항목은 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
+    unresolved: "대안 없는 지연 항목은 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
   },
   6: {
     title: "투입 준비 확인항목 점검",
@@ -231,7 +231,7 @@ const TASK_GUIDE = {
     criteria: ["전 팀원 공통 항목과 해당자 한정 항목을 구분한다"],
     results: ["투입 준비 확인항목", "미완료 항목"],
     example: "신규 투입자는 협업도구 접근 권한과 출입증 등록을 투입일 전까지 완료하는 방식으로 진행하겠습니다.",
-    unresolved: "투입 준비 항목이 미완료인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 착수점검에서 재확인합니다."
+    unresolved: "투입 준비 항목이 미완료인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
   }
 };
 
