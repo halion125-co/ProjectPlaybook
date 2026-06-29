@@ -115,25 +115,6 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
       </div>
     </div>
 
-    <!-- Open Item 및 본수행 착수 영향 -->
-    <section class="section" id="open-items">
-      <div class="section-head"><div><div class="kicker">Open Item 및 본수행 착수 영향</div><h2>미확정 항목은 무엇인가</h2><p class="desc">A1~A6에서 이관된 Open Item을 종합하여 본수행 착수 영향을 최종 판단합니다.</p></div></div>
-      <table class="map-table"><thead><tr><th>Open Item</th><th>유형</th><th>담당</th><th>기한</th><th>착수 영향</th><th>후속 연결</th></tr></thead><tbody>
-        <tr><td class="tpl-ph">Sprint 1 작업 목록 미정</td><td>작업 목록 미확정</td><td class="tpl-ph">[담당 입력]</td><td class="tpl-ph">[기한 입력]</td><td><span class="badge warn">조건부 착수</span></td><td>Sprint 1</td></tr>
-        <tr><td class="tpl-ph">필수 접근권한 미확보</td><td>환경 미준비</td><td class="tpl-ph">[담당 입력]</td><td class="tpl-ph">[기한 입력]</td><td><span class="badge danger">착수 보류 후보</span></td><td>A5</td></tr>
-        <tr><td class="tpl-ph">데이터 제공 일정 미정</td><td>데이터 미확정</td><td class="tpl-ph">[담당 입력]</td><td class="tpl-ph">[기한 입력]</td><td><span class="badge danger">착수 보류 후보</span></td><td>A6</td></tr>
-        <tr><td class="tpl-ph">[추가 항목]</td><td class="tpl-ph">[유형]</td><td class="tpl-ph">[담당]</td><td class="tpl-ph">[기한]</td><td class="tpl-ph">[영향]</td><td class="tpl-ph">[연결]</td></tr>
-      </tbody></table>
-      <div class="grid three" style="margin-top:14px">
-        <div class="card"><h3>영향 없음</h3><p>본수행 착수와 직접 관련 없음</p></div>
-        <div class="card orange"><h3>조건부 착수</h3><p>담당과 기한이 정해져 있고 본수행 중 해결 가능</p></div>
-        <div class="card red"><h3>착수 보류 후보</h3><p>핵심 승인자, 환경, 권한, 데이터, 보안 등 필수 조건이 미정</p></div>
-      </div>
-      <div class="callout warn" style="margin-top:14px">
-        <strong>판정 기준:</strong> 착수 보류 후보 항목이 있으면 기본 판정은 착수 보류입니다. 보류 항목 없이 조건부 항목만 있으면 조건부 착수, 모두 충족되면 착수 가능입니다.
-      </div>
-    </section>
-
     <!-- 이행 확인 체크리스트 -->
     <section class="section" id="checklist">
       <div class="section-head"><div><div class="kicker">이행 확인 체크리스트</div><h2>A7이 실제로 이행되었는지 무엇으로 확인하는가</h2><p class="desc">Task별 Play Guide를 진행한 뒤, 그 결과가 본수행 착수 판단으로 제대로 연결되었는지 아래 기준과 근거로 확인합니다.</p></div></div>
@@ -144,6 +125,9 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
         <tr><td>착수 보류 후보가 실제 본수행 차단 요인인지 검토되었는가</td><td>차단 리스크 목록</td><td>보류 사유와 해소 조건 명확화</td></tr>
         <tr><td>미결사항이 Sprint 1 또는 후속 Activity로 이관되어 있는가</td><td>이관 목록, 후속 계획</td><td>이관 대상과 확인 시점 보완</td></tr>
       </tbody></table>
+      <div class="callout warn" style="margin-top:14px">
+        <strong>판정 기준:</strong> 착수 보류 후보 항목이 있으면 기본 판정은 착수 보류입니다. 보류 항목 없이 조건부 항목만 있으면 조건부 착수, 모두 충족되면 착수 가능입니다.
+      </div>
     </section>
 
     <!-- Value Discovery 관점 (보조 세션) -->
