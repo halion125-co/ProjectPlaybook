@@ -1,12 +1,12 @@
-# Sprint 0 Playbook Rebuild PRD v0.1
+# Sprint 0 Playbook PRD v0.1
 
-> 기존 공개 정적 사이트 `sprint0-activities/index.html`을 재구축하기 위한 제품 요구사항 문서. 본 PRD는 단순 HTML 안내 페이지가 아니라, Sprint 0 Activity 수행, 프로젝트 유형별 Play 추천, 산출물 상태 추적, Open Item/RAID 관리, 본수행 착수 판단까지 연결하는 데이터 기반 Playbook 시스템을 정의한다.
+> 기존 공개 정적 사이트 `Sprint0_Playbook/index.html`을 재구축하기 위한 제품 요구사항 문서. 본 PRD는 단순 HTML 안내 페이지가 아니라, Sprint 0 Activity 수행, 프로젝트 유형별 Play 추천, 산출물 상태 추적, Open Item/RAID 관리, 본수행 착수 판단까지 연결하는 데이터 기반 Playbook 시스템을 정의한다.
 
 **문서 버전**: v0.1  
 **작성일**: 2026-06-23  
 **문서 상태**: Draft  
 **작성 대상 저장소**: `d:\ProjectPlaybook`  
-**분석 기준**: `sprint0-activities/index.html`, `sprint0-activities/activity_data.json`, `sprint0-activities/artifact-repository.html`, `AXE Sprint0 Playbook/`, 기존 `Execution_Plan_Builder_PRD_v0.1.md`
+**분석 기준**: `Sprint0_Playbook/index.html`, `Sprint0_Playbook/activity_data.json`, `Sprint0_Playbook/artifact-repository.html`, `Sprint0_Working_book/`, 기존 `Execution_Plan_Builder_PRD_v0.1.md`
 
 ---
 
@@ -485,7 +485,7 @@ Day 1 Readiness Check는 다음 영역을 종합한다.
 
 ## 13. 기존 구현과의 차이 및 보완 요구
 
-현재 `AXE Sprint0 Playbook` 앱은 프로젝트, Activity 입력, 수행계획서 Preview, Change History 중심으로 구현되어 있다. 재구축 PRD 기준으로는 다음 보완이 필요하다.
+현재 `Sprint0_Working_book` 앱은 프로젝트, Activity 입력, 수행계획서 Preview, Change History 중심으로 구현되어 있다. 재구축 PRD 기준으로는 다음 보완이 필요하다.
 
 | 현재 구현 | 보완 필요 |
 |---|---|

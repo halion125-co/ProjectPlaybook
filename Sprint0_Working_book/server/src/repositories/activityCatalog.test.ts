@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { getActivity, loadActivityCatalog } from "./activityCatalog.js";
 
 describe("activityCatalog", () => {
-  it("sprint0-activities/activity_data.json의 7개 활동을 모두 로드한다", async () => {
+  it("Sprint0_Playbook/activity_data.json의 7개 활동을 모두 로드한다", async () => {
     const catalog = await loadActivityCatalog();
     expect(catalog).toHaveLength(7);
     expect(catalog.map((a) => a.activity_id)).toEqual([

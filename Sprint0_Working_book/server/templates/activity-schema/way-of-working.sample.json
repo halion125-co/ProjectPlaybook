@@ -1,5 +1,5 @@
 {
-  "_comment": "sprint0-activities/activity_data.json의 'way-of-working' 활동을 Activity 타입(server/src/models/types.ts)으로 변환한 예시. 원본 mock 파일은 수정하지 않으며, 이 변환은 빌드 타임 또는 서버 기동 시 생성하는 캐시 형태로 둔다.",
+  "_comment": "Sprint0_Playbook/activity_data.json의 'way-of-working' 활동을 Activity 타입(server/src/models/types.ts)으로 변환한 예시. 원본 mock 파일은 수정하지 않으며, 이 변환은 빌드 타임 또는 서버 기동 시 생성하는 캐시 형태로 둔다.",
   "activity_id": "way-of-working",
   "code": "A1",
   "title": "프로젝트 수행방식 합의",

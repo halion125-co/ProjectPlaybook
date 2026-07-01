@@ -10,7 +10,7 @@ const ROOT_DIR = path.resolve(__dirname, "..", "..", "..");
 const MOCK_ACTIVITY_DATA_PATH = path.join(
   ROOT_DIR,
   "..",
-  "sprint0-activities",
+  "Sprint0_Playbook",
   "activity_data.json"
 );
 const SECTION_MAPPING_PATH = path.join(

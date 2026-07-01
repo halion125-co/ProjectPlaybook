@@ -1,11 +1,10 @@
 # Docker로 로컬 기동
 
-빌드 컨텍스트가 repo 루트(`d:\ProjectPlaybook`)이므로, 명령은 `AXE Sprint0 Playbook/` 안에서 실행한다.
-(server가 기존 mock의 `sprint0-activities/activity_data.json`을 읽기 전용으로 참조하기 때문.)
-폴더명에 공백이 포함되어 있으므로 경로를 인용부호로 감싼다.
+빌드 컨텍스트가 repo 루트(`d:\ProjectPlaybook`)이므로, 명령은 `Sprint0_Working_book/` 안에서 실행한다.
+(server가 기존 mock의 `Sprint0_Playbook/activity_data.json`을 읽기 전용으로 참조하기 때문.)
 
 ```bash
-cd "AXE Sprint0 Playbook"
+cd Sprint0_Working_book
 docker compose up -d --build
 ```
 

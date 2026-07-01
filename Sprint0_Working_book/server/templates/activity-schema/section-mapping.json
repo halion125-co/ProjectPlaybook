@@ -1,5 +1,5 @@
 {
-  "_comment": "PRD v0.1 6장 표 기준. activity_id -> 매핑되는 execution-plan.md 섹션 ID 목록. sprint0-activities/activity_data.json 은 읽기 전용으로 참조하고 수정하지 않는다.",
+  "_comment": "PRD v0.1 6장 표 기준. activity_id -> 매핑되는 execution-plan.md 섹션 ID 목록. Sprint0_Playbook/activity_data.json 은 읽기 전용으로 참조하고 수정하지 않는다.",
   "core": ["overview", "background", "scope", "schedule"],
   "way-of-working": ["methodology", "change-management"],
   "team-raci": ["governance", "raci"],

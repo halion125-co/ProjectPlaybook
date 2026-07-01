@@ -6,7 +6,7 @@
 **작성일**: 2026-06-19
 **문서 상태**: Draft — 개발 착수 가능 수준
 **작성 대상 저장소**: `d:\ProjectPlaybook`
-**관련 문서**: [KT_Delivery_Way_PRD_v0.3.md](KT_Delivery_Way_PRD_v0.3.md), `sprint0-activities/activity_data.json`
+**관련 문서**: [KT_Delivery_Way_PRD_v0.3.md](KT_Delivery_Way_PRD_v0.3.md), `Sprint0_Playbook/activity_data.json`
 
 ---
 
@@ -16,7 +16,7 @@
 
 | # | 가정 | 근거 |
 |---|---|---|
-| A1 | 신규 시스템은 기존 `sprint0-activities/`, `requirement-playbook/`, `close-playbook/`, `index.html`, `kt-delivery-playbook.html` 등 기존 mock HTML을 **읽기 전용 참조**로만 사용하며, 파일을 일절 수정하지 않는다. | 명시적 제약 |
+| A1 | 신규 시스템은 기존 `Sprint0_Playbook/`, `requirement-playbook/`, `close-playbook/`, `index.html`, `kt-delivery-playbook.html` 등 기존 mock HTML을 **읽기 전용 참조**로만 사용하며, 파일을 일절 수정하지 않는다. | 명시적 제약 |
 | A2 | 신규 시스템은 `d:\ProjectPlaybook` 루트에 **새 폴더**(예: `app/`)로 추가되며, 기존 정적 사이트와 같은 저장소에 공존한다. | "신규 시스템은 별도 구조" 요구 |
 | A3 | MVP는 **단일 사용자, 로컬 실행** 환경을 우선한다. 다중 사용자 동시 편집, 인증/권한 분리는 MVP 범위에서 제외한다. | MVP 중심 설계 요청, 입력 폼 위주 워크플로우 |
 | A4 | MVP의 AI 보완 기능은 **외부 LLM API 호출 없이도 동작**해야 한다 — 즉 "AI 프롬프트 생성"까지는 자동화하고, 실제 LLM 호출/응답 수신은 사용자가 외부 도구(ChatGPT 등)에 복사해 사용하거나, 키가 설정된 경우에만 API를 직접 호출하는 **선택적 기능**으로 둔다. | 로컬 우선, 외부 의존성 최소화, 보안/비용 리스크 회피 |
@@ -57,7 +57,7 @@ PM이 신규 프로젝트를 시스템에 등록 → Sprint0 Activity(A1~A7) 중
 
 ### 1.5 기존 mock 시스템과 실제 시스템의 차이
 
-| 구분 | 기존 mock (`sprint0-activities/` 등) | 신규 시스템 (Execution Plan Builder) |
+| 구분 | 기존 mock (`Sprint0_Playbook/` 등) | 신규 시스템 (Execution Plan Builder) |
 |---|---|---|
 | 역할 | Task/산출물 안내, 읽기 전용 가이드 | 실제 입력을 받고 저장·문서화하는 작업 도구 |
 | 데이터 | `activity_data.json`에 정적 콘텐츠만 존재 (사용자 입력 없음) | 프로젝트별 사용자 입력이 구조화되어 저장됨 |
@@ -95,7 +95,7 @@ PM이 신규 프로젝트를 시스템에 등록 → Sprint0 Activity(A1~A7) 중
 - NG4. KT Delivery Way의 PRB/ERP/KOS/TM 행정 Control 자동화 — 본 시스템은 Sprint0/착수 단계 문서화에 한정
 - NG5. LLM API의 완전 자동 실행(사용자 승인 없는 자동 반영)
 - NG6. 워드(.docx)/PPT 등 타 포맷 변환 — MVP는 Markdown만 지원
-- NG7. 기존 mock HTML(`sprint0-activities/*.html` 등)의 수정 또는 신규 시스템과의 자동 연동(임베드, iframe 등)
+- NG7. 기존 mock HTML(`Sprint0_Playbook/*.html` 등)의 수정 또는 신규 시스템과의 자동 연동(임베드, iframe 등)
 - NG8. 요구사항 플레이북·종료 플레이북의 입력 폼 — MVP는 Sprint0 착수 단계만. (향후 확장 항목으로 별도 명시)
 
 ---
@@ -427,20 +427,20 @@ PM이 신규 프로젝트를 시스템에 등록 → Sprint0 Activity(A1~A7) 중
 
 ## 11. 파일 및 폴더 구조 제안
 
-기존 mock(`index.html`, `kt-delivery-playbook.html`, `sprint0-activities/`, `requirement-playbook/`, `close-playbook/`, `src/`, `docs/`, `readme/`)과 완전히 분리된 신규 폴더를 루트에 추가한다.
+기존 mock(`index.html`, `kt-delivery-playbook.html`, `Sprint0_Playbook/`, `requirement-playbook/`, `close-playbook/`, `src/`, `docs/`, `readme/`)과 완전히 분리된 신규 폴더를 루트에 추가한다.
 
 ```text
 ProjectPlaybook/                  (기존 mock — 수정하지 않음)
   index.html
   kt-delivery-playbook.html
-  sprint0-activities/
+  Sprint0_Playbook/
   requirement-playbook/
   close-playbook/
   src/
   docs/
   readme/
 
-AXE Sprint0 Playbook/             (신규 시스템 — 완전 분리)
+Sprint0_Working_book/             (신규 시스템 — 완전 분리)
   client/                         (React/Vite SPA)
     src/
       components/                 (폼, diff뷰, 미리보기 등 UI 컴포넌트)
@@ -537,7 +537,7 @@ AXE Sprint0 Playbook/             (신규 시스템 — 완전 분리)
 - 사용자가 manual 마커 안에 직접 작성한 텍스트는 어떤 자동 갱신 작업으로도 변경되지 않는다.
 - 모든 섹션 갱신은 `ChangeHistory`에 기록되고, 파일 스냅샷 백업이 생성된다.
 - 최종 `execution-plan.md`는 시스템 밖에서 단독으로 열어도 완결된 문서로 읽힌다(마커 주석은 가독성을 해치지 않는 수준이어야 함).
-- 기존 mock 폴더(`sprint0-activities/`, `requirement-playbook/`, `close-playbook/`, `index.html`, `kt-delivery-playbook.html`, `src/`)의 파일은 본 시스템 개발 과정에서 일절 수정되지 않는다.
+- 기존 mock 폴더(`Sprint0_Playbook/`, `requirement-playbook/`, `close-playbook/`, `index.html`, `kt-delivery-playbook.html`, `src/`)의 파일은 본 시스템 개발 과정에서 일절 수정되지 않는다.
 
 ---
 
@@ -560,7 +560,7 @@ AXE Sprint0 Playbook/             (신규 시스템 — 완전 분리)
 ## 15. 개발 단계 제안
 
 1. 현재 mock 구조 분석 — `activity_data.json` 스키마, Sprint0 Task/Output 목록 확정 (본 PRD 작성 과정에서 1차 완료)
-2. 신규 `AXE Sprint0 Playbook/` 구조 생성 (client/server/data/output 스캐폴딩)
+2. 신규 `Sprint0_Working_book/` 구조 생성 (client/server/data/output 스캐폴딩)
 3. 데이터 모델 정의 (7장 엔티티의 TypeScript 타입 + JSON 스키마 확정)
 4. Markdown 템플릿 작성 (`execution-plan.template.md`, 섹션/manual 마커 포함)
 5. 프로젝트 생성 및 저장 구조 구현 (Project CRUD, 폴더 스캐폴딩 자동화)
