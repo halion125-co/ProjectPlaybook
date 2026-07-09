@@ -1,7 +1,7 @@
 {
   "core": {
-    "title": "Sprint 0 착수 준비 및 사업 맥락 정렬",
-    "purpose": "Sprint 0 본문은 7개 하위 Activity가 시작되기 전에 프로젝트 배경, 목표, 범위, Sprint 0 운영 계획을 정렬하는 Play입니다.",
+    "title": "Sprint 0 준비",
+    "purpose": "Sprint 0 수행을 위한, 기초자료(프로젝트 배경, 목표, 범위, 운영 계획) 수집 활동입니다.",
     "tasks": [
       [
         "계약·제안 정보 수집",
@@ -21,7 +21,7 @@
       ],
       [
         "Open Item 초기 등록",
-        "미확정 범위, 의사결정, 환경·권한, 고객 준비도 이슈를 초기 Open Item으로 등록합니다."
+        "미확정 범위, 의사결정, 환경·권한, 고객 측 준비 현황 이슈를 초기 Open Item으로 등록합니다."
       ]
     ],
     "outputs": [
@@ -48,7 +48,7 @@
       "chapters": "6. 사업 추진 절차, 10. 변경관리 계획, 11. 품질관리 계획, 13. 의사소통관리 계획",
       "level": "초안 → 합의",
       "template": "09_WoW_DoR_DoD, 04_Backlog",
-      "purpose": "AX 프로젝트를 전통적 산출물 중심으로만 운영하지 않고, Sprint 단위의 실행·검토·보정이 가능하도록 팀의 일하는 방식을 합의합니다.",
+      "purpose": "실제 수행 단계에서 사용할 수행 방식과 작업 기준을 정의합니다.",
       "tasks": [
         [
           "Hybrid 적용 범위 결정",
@@ -59,11 +59,11 @@
           "Sprint 길이, Sprint Planning, Daily Stand-up, Sprint Review, Retrospective 운영 여부와 주기를 정합니다."
         ],
         [
-          "Backlog 관리 방식 정의",
+          "작업 목록(Backlog) 관리 방식 정의",
           "Initial Backlog 구조, Epic/Feature/User Story/Task 기준, 우선순위 기준, 관리 도구를 정합니다."
         ],
         [
-          "DoR/DoD/Acceptance Criteria 합의",
+          "작업 시작 기준(DoR)/작업 완료 기준(DoD)/검수 기준 합의",
           "작업 착수 가능 기준, 완료 기준, 수락 기준을 정의하여 품질 기준으로 연결합니다."
         ],
         [
@@ -74,7 +74,7 @@
       "play": [
         "PM 또는 Scrum Master가 60~90분 Workshop을 주관합니다.",
         "기존 AXD 방법론의 단계와 산출물 목록을 먼저 보여주고, 어떤 부분을 Sprint 방식으로 운영할지 표시합니다.",
-        "Sprint 1 후보 Backlog를 샘플로 놓고 DoR/DoD가 실제 적용 가능한지 검토합니다.",
+        "Sprint1 Backlog를 샘플로 놓고 작업 시작 기준(DoR)/작업 완료 기준(DoD)이 실제 적용 가능한지 검토합니다.",
         "합의되지 않은 항목은 결론 없이 넘기지 않고 Decision Log 또는 RAID에 등록합니다."
       ],
       "owners": [
@@ -86,12 +86,12 @@
         [
           "Scrum Master / Agile Lead",
           "R",
-          "Workshop 진행, Sprint 운영 기준, DoR/DoD 초안 작성"
+          "Workshop 진행, Sprint 운영 기준, 작업 시작 기준(DoR)/작업 완료 기준(DoD) 초안 작성"
         ],
         [
           "Product Owner",
           "R/C",
-          "Backlog 우선순위와 Acceptance Criteria 검토"
+          "Backlog 우선순위와 검수 기준 검토"
         ],
         [
           "PL / Tech Lead",
@@ -126,7 +126,7 @@
           "Jira, Redmine, Excel, 자체 시스템 등 단일 관리 위치 결정"
         ],
         [
-          "DoR/DoD 기준",
+          "작업 시작 기준(DoR)/작업 완료 기준(DoD)",
           "작업 시작·완료의 최소 조건 확정"
         ],
         [
@@ -141,11 +141,11 @@
       "outputs": [
         [
           "09_WoW_DoR_DoD",
-          "프로젝트 수행방식 합의서, DoR, DoD, Sprint 운영 규칙"
+          "프로젝트 수행방식 합의서, 작업 시작 기준(DoR), 작업 완료 기준(DoD), Sprint 운영 규칙"
         ],
         [
           "04_Backlog",
-          "Initial Backlog 및 Sprint 1 후보 Backlog"
+          "Initial Backlog 및 Sprint1 Backlog"
         ],
         [
           "06_CommCadence",
@@ -158,8 +158,8 @@
       ],
       "checklist": [
         "Sprint 적용 범위가 명확한가?",
-        "Sprint 1 후보 Backlog가 있는가?",
-        "DoR/DoD가 과도하거나 모호하지 않은가?",
+        "Sprint1 Backlog가 있는가?",
+        "작업 시작 기준(DoR)/작업 완료 기준(DoD)이 과도하거나 모호하지 않은가?",
         "Backlog 변경과 공식 변경요청 기준이 구분되었는가?",
         "고객 PO가 Backlog 우선순위를 결정할 수 있는가?"
       ],
@@ -244,7 +244,7 @@
       "decisions": [
         [
           "고객 Product Owner 지정",
-          "Backlog 우선순위와 Acceptance Criteria 승인 주체 확정"
+          "Backlog 우선순위와 검수 기준 승인 주체 확정"
         ],
         [
           "산출물 승인자 지정",
@@ -415,7 +415,7 @@
       "id": "deliverable-acceptance",
       "code": "A4",
       "title": "산출물 검토·승인 기준 정의",
-      "short": "산출물 목록, 작성자, 검토자, 승인자, 제출시점, Acceptance Criteria를 정의합니다.",
+      "short": "산출물 목록, 작성자, 검토자, 승인자, 제출시점, 검수 기준을 정의합니다.",
       "chapters": "7. 산출물 계획, 11. 품질관리 계획, 13. 의사소통관리 계획, 15. 형상관리 계획",
       "level": "확정 가능",
       "template": "07_Deliverables",
@@ -434,7 +434,7 @@
           "단계, Sprint, Gate, 고객 검토 시점별 제출 일정을 정의합니다."
         ],
         [
-          "Acceptance Criteria 정의",
+          "검수 기준 정의",
           "산출물 승인 기준, 반려 기준, 보완 기한을 정합니다."
         ],
         [
@@ -502,7 +502,7 @@
         ],
         [
           "승인 기준",
-          "Acceptance Criteria, 품질검토 기준, 반려 처리 기준 확정"
+          "검수 기준, 품질검토 기준, 반려 처리 기준 확정"
         ],
         [
           "산출물 저장 위치",
@@ -512,7 +512,7 @@
       "outputs": [
         [
           "07_Deliverables",
-          "산출물 검토·승인 Matrix, 산출물 Acceptance Criteria"
+          "산출물 검토·승인 Matrix, 산출물 검수 기준"
         ],
         [
           "12_BP_Transfer",
@@ -530,7 +530,7 @@
       "checklist": [
         "산출물이 필수/조건부/선택/제외로 구분되었는가?",
         "각 산출물에 작성자·검토자·승인자가 있는가?",
-        "Acceptance Criteria가 산출물별로 명확한가?",
+        "검수 기준이 산출물별로 명확한가?",
         "반려 시 보완 절차와 기한이 있는가?",
         "산출물 저장·버전관리 기준이 정해졌는가?"
       ],
@@ -664,7 +664,7 @@
     {
       "id": "readiness-raid",
       "code": "A6",
-      "title": "고객 준비도·보안성·리스크 점검",
+      "title": "고객 측 준비 현황·보안성·리스크 점검",
       "short": "고객 담당자, 데이터, 보안, 권한, 의사결정 준비도와 Risk/Issue/Decision을 관리합니다.",
       "chapters": "4. 사업 범위, 8. 일정 계획, 14. 위험관리 계획, 18. 보안 대책",
       "level": "점검 → 등록",
@@ -672,7 +672,7 @@
       "purpose": "착수 후 반복적으로 발생하는 지연 요인을 Sprint 0에서 조기에 드러내고, Owner와 Due Date를 지정하여 Day 1 판단에 연결합니다.",
       "tasks": [
         [
-          "고객 준비도 점검",
+          "고객 측 준비 현황 점검",
           "고객 PM, Product Owner, 업무 담당자, 승인자 지정과 참여 가능 시간을 확인합니다."
         ],
         [
@@ -739,7 +739,7 @@
       ],
       "decisions": [
         [
-          "고객 준비도 상태",
+          "고객 측 준비 현황 상태",
           "각 영역을 완료/진행/지연/미완료/해당없음으로 판단"
         ],
         [
@@ -762,7 +762,7 @@
       "outputs": [
         [
           "10_Readiness_RAID",
-          "고객 준비도 점검표, 보안 준비도 점검표, RAID, Decision Log"
+          "고객 측 준비 현황 점검표, 보안 준비도 점검표, RAID, Decision Log"
         ],
         [
           "11_Day1Check",
@@ -778,7 +778,7 @@
         ]
       ],
       "checklist": [
-        "고객 준비도 미완료 항목이 식별되었는가?",
+        "고객 측 준비 현황 미완료 항목이 식별되었는가?",
         "데이터·보안·권한 리스크가 RAID에 등록되었는가?",
         "모든 Risk/Issue/Decision에 Owner와 Due Date가 있는가?",
         "No-Go 후보 항목이 명확한가?",
@@ -895,7 +895,7 @@
         ],
         [
           "04_Backlog",
-          "Sprint 1 후보 Backlog 확정 및 Open Item 이관"
+          "Sprint1 Backlog 확정 및 Open Item 이관"
         ],
         [
           "10_Readiness_RAID",
@@ -905,7 +905,7 @@
       "checklist": [
         "Day 1 필수 항목이 완료 또는 조건부로 관리되는가?",
         "No-Go 항목이 명확히 식별되었는가?",
-        "Sprint 1 목표와 후보 Backlog가 준비되었는가?",
+        "Sprint 1 목표와 Sprint1 Backlog가 준비되었는가?",
         "사업수행계획서에 반영할 보완 항목이 추적되는가?",
         "조건부 착수 항목의 Owner와 Due Date가 있는가?"
       ],
