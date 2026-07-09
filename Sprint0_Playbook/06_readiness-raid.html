@@ -83,7 +83,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
           <tr><td><strong>이슈·리스크 등급</strong></td><td>영향도, 발생가능성, 대응전략</td></tr>
           <tr><td><strong>Sprint 1 시작 차단 여부</strong></td><td>조건부 진행 / 시작 전 확인 필요 후보 여부</td></tr>
         </tbody></table>
-        <p class="note" style="margin-top:14px"><strong style="color:#fff">완료 기준</strong><br>고객·데이터·보안 준비상태가 확인되고, 모든 이슈·리스크 항목에 담당과 기한이 있어야 합니다. 미확정 항목은 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다.</p>
+        <p class="note" style="margin-top:14px"><strong style="color:#fff">완료 기준</strong><br>고객·데이터·보안 준비상태가 확인되고, 모든 이슈·리스크 항목에 담당과 기한이 있어야 합니다. 미확정 항목은 이행 확인 체크리스트에서 미흡 항목으로 표시하고 Sprint 1 실행준비 및 미정 항목 이관 점검에서 재확인합니다.</p>
       </div>
     </section>
     </div>
@@ -116,19 +116,19 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
 
     <!-- 이행 확인 체크리스트 -->
     <section class="section" id="checklist">
-      <div class="section-head"><div><div class="kicker">이행 확인 체크리스트</div><h2>A6가 실제로 이행되었는지 무엇으로 확인하는가</h2><p class="desc">Task별 Play Guide를 진행한 뒤, 그 결과가 실제 프로젝트 운영에 반영되었는지 아래 기준과 근거로 확인합니다.</p></div></div>
-      <table class="map-table"><thead><tr><th>확인 기준</th><th>확인 근거</th><th>미흡 시 조치</th></tr></thead><tbody>
-        <tr><td>고객 담당자, 승인자, 업무 담당자의 참여 가능 일정이 확인되어 있는가</td><td>고객 담당자 목록, 회의 일정</td><td>고객 PM을 통해 참여자 재확인</td></tr>
-        <tr><td>데이터 제공 일정, 제공 방식, 마스킹 기준이 확인되어 있는가</td><td>데이터 제공 계획, 보안 기준</td><td>데이터 제공 일정과 책임자 확인</td></tr>
-        <tr><td>보안·개인정보·자료 반출입 기준이 확인되어 있는가</td><td>보안정책, 개인정보 처리 기준, 자료 반출입 기준</td><td>보안 담당자 확인 및 후속 점검 지정</td></tr>
-        <tr><td>주요 이슈와 리스크가 영향도 기준으로 구분되어 있는가</td><td>이슈·리스크 목록, 회의록</td><td>영향도와 대응 필요성 재분류</td></tr>
-        <tr><td>Sprint 1 시작을 막을 수 있는 차단 리스크가 별도로 식별되어 있는가</td><td>Sprint 1 시작 차단 항목 목록</td><td>A7 Sprint 1 실행준비 점검에서 시작 전 확인 필요 후보로 반영</td></tr>
+      <div class="section-head"><div><div class="kicker">이행 확인 체크리스트</div><p class="desc">Task별 Play Guide를 진행한 뒤, 그 결과가 실제 프로젝트 운영에 반영되었는지 아래 기준과 근거로 확인합니다.</p></div></div>
+      <table class="map-table"><thead><tr><th>확인 기준</th><th>미흡 시 조치</th></tr></thead><tbody>
+        <tr><td>고객 담당자, 승인자, 업무 담당자의 참여 가능 일정이 확인되어 있는가</td><td>수행PM이 고객 PM에게 참여자 일정 재확인을 요청하고, 3일 이내 확정한다</td></tr>
+        <tr><td>데이터 제공 일정, 제공 방식, 마스킹 기준이 확인되어 있는가</td><td>수행PM이 고객 데이터 담당자에게 제공 일정과 책임자를 확인 요청하고, 데이터 제공 계획에 반영한다</td></tr>
+        <tr><td>보안·개인정보·자료 반출입 기준이 확인되어 있는가</td><td>수행PM이 고객 보안 담당자에게 기준 확인을 요청하고, 확인 결과를 후속 점검 항목으로 지정한다</td></tr>
+        <tr><td>주요 이슈와 리스크가 영향도 기준으로 구분되어 있는가</td><td>PL이 이슈·리스크 목록의 영향도를 재분류하고, 수행PM이 대응 우선순위를 확정한다</td></tr>
+        <tr><td>Sprint 1 시작을 막을 수 있는 차단 리스크가 별도로 식별되어 있는가</td><td>수행PM이 차단 리스크를 별도 목록으로 정리해 Sprint 1 실행준비 및 미정 항목 이관 점검에서 시작 전 확인 필요 후보로 반영한다</td></tr>
       </tbody></table>
     </section>
 
     <!-- Value Discovery 관점 (보조 세션) -->
     <section class="section" id="value-discovery">
-      <div class="section-head"><div><div class="kicker">고객 기대효과 확인(Value Discovery) 관점</div><h2>고객 기대효과 확인(Value Discovery)을 방해하는 리스크는 무엇인가</h2><p class="desc">고객 기대효과 확인이 실패하는 주요 원인은 개발 역량 부족이 아니라 고객 참여 부족, 데이터 미확보, 보안 제약, 현업 일정 부족, 의사결정 지연입니다. A6의 전체 이슈·리스크 관리와 중복하지 않고, 고객 기대효과 확인을 직접 막는 항목만 별도로 확인합니다.</p></div></div>
+      <div class="section-head"><div><div class="kicker">고객 기대효과 확인(Value Discovery) 관점</div><h2>고객 기대효과 확인(Value Discovery)을 방해하는 리스크는 무엇인가</h2><p class="desc">고객 기대효과 확인이 실패하는 주요 원인은 개발 역량 부족이 아니라 고객 참여 부족, 데이터 미확보, 보안 제약, 현업 일정 부족, 의사결정 지연입니다. 이 Activity의 전체 이슈·리스크 관리와 중복하지 않고, 고객 기대효과 확인을 직접 막는 항목만 별도로 확인합니다.</p></div></div>
       <table class="map-table"><thead><tr><th>구분</th><th>정리 정보</th></tr></thead><tbody>
         <tr><td><strong>참여 리스크</strong></td><td>현업 인터뷰/관찰 참여 불가 가능성</td></tr>
         <tr><td><strong>데이터 리스크</strong></td><td>데이터 제공 지연, 비식별화(마스킹), 반출 제한</td></tr>
@@ -137,7 +137,7 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
         <tr><td><strong>대체 방안</strong></td><td>샘플 데이터, 가상 자료(Mock Data), 제한된 관찰, 비식별 자료</td></tr>
       </tbody></table>
       <div class="callout" style="margin-top:14px">
-        <strong>진행 방식:</strong> 일반 리스크 목록을 다시 만들지 않습니다. A6의 기존 이슈·리스크 점검 중에서 고객 기대효과 확인을 직접 막는 항목만 별도로 표시합니다.
+        <strong>진행 방식:</strong> 일반 리스크 목록을 다시 만들지 않습니다. 앞서 진행한 이슈·리스크 점검 중에서 고객 기대효과 확인을 직접 막는 항목만 별도로 표시합니다.
       </div>
     </section>
 
@@ -148,8 +148,8 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1440px;margin:0 auto;paddin
         <div class="usage-body">
           <table class="map-table"><thead><tr><th>활용처</th><th>내용</th></tr></thead><tbody>
             <tr><td><strong>사업수행계획서</strong></td><td>4. 사업 범위 / 8. 일정 계획 / 14. 위험관리 계획 / 18. 보안 대책</td></tr>
-            <tr><td><strong>A3 연결</strong></td><td>위험·이슈 보고 주기</td></tr>
-            <tr><td><strong>A7 연결</strong></td><td>조건부 진행/시작 전 확인 필요 판단</td></tr>
+            <tr><td><strong>커뮤니케이션 및 운영 리듬 수립 연결</strong></td><td>위험·이슈 보고 주기</td></tr>
+            <tr><td><strong>Sprint 1 실행준비 연결</strong></td><td>조건부 진행/시작 전 확인 필요 판단</td></tr>
           </tbody></table>
         </div>
       </details>
@@ -177,7 +177,7 @@ const TASK_GUIDE = {
     criteria: ["고객 핵심 참여자가 미정이면 조건부 진행으로 등록한다"],
     results: ["고객 담당자", "참여 일정", "고객 준비상태"],
     example: "고객 측 업무 담당자와 승인자가 아직 지정되지 않았다면,\n이번 주 내 지정을 요청드리고 조건부 항목으로 등록하겠습니다.",
-    unresolved: "고객 참여자가 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
+    unresolved: "고객 참여자가 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 Sprint 1 실행준비 및 미정 항목 이관 점검에서 재확인합니다."
   },
   2: {
     title: "데이터 준비상태 확인",
@@ -188,7 +188,7 @@ const TASK_GUIDE = {
     criteria: ["데이터 제공일이 Sprint 1 시작보다 늦으면 시작 전 확인 필요 후보로 등록한다"],
     results: ["제공 일정", "마스킹 기준", "데이터 준비상태"],
     example: "초기에는 샘플 데이터로 개발을 진행하고,\n원천 데이터는 마스킹 처리 후 2주 내 제공받는 방식으로 정리하겠습니다.",
-    unresolved: "데이터 제공일이 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
+    unresolved: "데이터 제공일이 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 Sprint 1 실행준비 및 미정 항목 이관 점검에서 재확인합니다."
   },
   3: {
     title: "보안 준비상태 확인",
@@ -199,7 +199,7 @@ const TASK_GUIDE = {
     criteria: ["보안 승인이 미정이면 시작 전 확인 필요 후보로 등록한다"],
     results: ["보안 기준", "접속 기준", "보안 준비상태"],
     example: "투입 인력은 보안교육과 서약을 투입 전까지 완료하고,\n자료 반출은 사전 승인 절차를 거치는 방식으로 진행하겠습니다.",
-    unresolved: "보안 승인이 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
+    unresolved: "보안 승인이 미정인 경우 이행 확인 체크리스트에서 미흡 항목으로 표시하고 Sprint 1 실행준비 및 미정 항목 이관 점검에서 재확인합니다."
   },
   4: {
     title: "이슈·리스크 등록",
@@ -210,7 +210,7 @@ const TASK_GUIDE = {
     criteria: ["담당과 기한이 없는 항목은 추적이 불가능하다"],
     results: ["이슈·리스크 목록", "담당", "기한"],
     example: "데이터 제공 지연은 이미 발생한 이슈로 등록하고,\n보안 승인 지연 가능성은 잠재 리스크로 등록하겠습니다.",
-    unresolved: "담당 또는 기한이 없는 항목은 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
+    unresolved: "담당 또는 기한이 없는 항목은 이행 확인 체크리스트에서 미흡 항목으로 표시하고 Sprint 1 실행준비 및 미정 항목 이관 점검에서 재확인합니다."
   },
   5: {
     title: "Sprint 1 시작 차단요소 판단",
@@ -221,7 +221,7 @@ const TASK_GUIDE = {
     criteria: ["핵심 조건이 미충족이면 시작 전 확인 필요 후보로 등록한다"],
     results: ["Sprint 1 시작 영향"],
     example: "데이터 제공 지연은 시작 전 확인 필요 후보로,\n고객 승인자 지정 지연은 조건부 진행 항목으로 정리하겠습니다.",
-    unresolved: "핵심 조건 미충족 항목은 이행 확인 체크리스트에서 미흡 항목으로 표시하고 A7 Sprint 1 실행준비 점검에서 재확인합니다."
+    unresolved: "핵심 조건 미충족 항목은 이행 확인 체크리스트에서 미흡 항목으로 표시하고 Sprint 1 실행준비 및 미정 항목 이관 점검에서 재확인합니다."
   }
 };
 
